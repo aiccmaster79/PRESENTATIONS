@@ -219,6 +219,128 @@
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.55), rgba(0, 189, 165, 0.45));
         }
 
+        /* ====== SEARCH + SORT CONTROLS ====== */
+        .index-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            animation: fadeUp 0.7s ease 0.15s both;
+        }
+
+        .search-wrap {
+            position: relative;
+            flex: 1 1 320px;
+            max-width: 460px;
+        }
+
+        .search-wrap .search-icon {
+            position: absolute;
+            left: 1.05rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--brand-teal);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .search-wrap input {
+            width: 100%;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: #fff;
+            background: rgba(20, 20, 40, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 0.7rem 2.6rem 0.7rem 2.7rem;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .search-wrap input::placeholder { color: rgba(255, 255, 255, 0.45); }
+
+        .search-wrap input:focus {
+            border-color: var(--brand-teal);
+            box-shadow: 0 0 0 3px rgba(0, 189, 165, 0.18);
+        }
+
+        .search-wrap .search-clear {
+            position: absolute;
+            right: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            appearance: none;
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 0.95rem;
+            padding: 0.2rem;
+            line-height: 1;
+            display: none;
+        }
+
+        .search-wrap .search-clear:hover,
+        .search-wrap .search-clear:focus-visible { color: #fff; outline: none; }
+
+        .search-wrap.has-value .search-clear { display: block; }
+
+        .sort-toggle {
+            display: inline-flex;
+            gap: 0.35rem;
+            padding: 0.3rem;
+            border-radius: 999px;
+            background: rgba(20, 20, 40, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .sort-toggle button {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            color: var(--muted);
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        .sort-toggle button:hover,
+        .sort-toggle button:focus-visible { color: #fff; outline: none; }
+
+        .sort-toggle button[aria-pressed="true"] {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.55), rgba(0, 189, 165, 0.45));
+        }
+
+        .presentation-link.is-hidden,
+        .section-label.is-hidden,
+        .contents.is-hidden { display: none !important; }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            color: var(--muted);
+            font-size: 1rem;
+            margin: 2.5rem auto;
+        }
+
+        .no-results.is-visible { display: block; }
+
+        .no-results strong { color: var(--brand-teal); }
+
         body.view-list .contents {
             grid-template-columns: 1fr;
             gap: 0.75rem;
@@ -338,6 +460,30 @@
                 <button type="button" id="view-list" data-view="list" aria-pressed="false">
                     <i class="fas fa-list" aria-hidden="true"></i>
                     List
+                </button>
+            </div>
+        </div>
+
+        <div class="index-controls">
+            <div class="search-wrap" id="search-wrap">
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                <input type="search" id="search-input" placeholder="Search presentations…" aria-label="Search presentations" autocomplete="off">
+                <button type="button" class="search-clear" id="search-clear" aria-label="Clear search">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="sort-toggle" role="group" aria-label="Sort order">
+                <button type="button" data-sort="default" aria-pressed="true">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    Default
+                </button>
+                <button type="button" data-sort="asc" aria-pressed="false">
+                    <i class="fas fa-arrow-up-a-z" aria-hidden="true"></i>
+                    A–Z
+                </button>
+                <button type="button" data-sort="desc" aria-pressed="false">
+                    <i class="fas fa-arrow-down-z-a" aria-hidden="true"></i>
+                    Z–A
                 </button>
             </div>
         </div>
@@ -1350,6 +1496,10 @@
             </a>
         </section>
 
+        <p class="no-results" id="no-results" role="status" aria-live="polite">
+            No presentations match <strong id="no-results-term"></strong>. Try a different search term.
+        </p>
+
         <footer>
             Level 2, Level 3 &amp; Level 5 — L2, L3 &amp; L5 Combined
             <span class="site-credit-line">Powered by A1 Agents - Designs by C4R50N</span>
@@ -1382,6 +1532,100 @@
                 saved = localStorage.getItem(STORAGE_KEY) || 'grid';
             } catch (e) {}
             setView(saved === 'list' ? 'list' : 'grid');
+        })();
+
+        // ====== SEARCH + SORT ======
+        (function () {
+            var SORT_KEY = 'presentations-index-sort';
+            var searchInput = document.getElementById('search-input');
+            var searchWrap = document.getElementById('search-wrap');
+            var searchClear = document.getElementById('search-clear');
+            var sortButtons = document.querySelectorAll('.sort-toggle button');
+            var noResults = document.getElementById('no-results');
+            var noResultsTerm = document.getElementById('no-results-term');
+            var sections = Array.prototype.slice.call(document.querySelectorAll('.contents'));
+
+            // Capture each section, its heading label, and its cards in original order.
+            var sectionData = sections.map(function (section) {
+                var label = section.previousElementSibling;
+                if (label && !label.classList.contains('section-label')) label = null;
+                var cards = Array.prototype.slice.call(section.querySelectorAll('.presentation-link'));
+                return { section: section, label: label, cards: cards, original: cards.slice() };
+            });
+
+            function titleOf(card) {
+                var h = card.querySelector('h2');
+                return (h ? h.textContent : '').trim().toLowerCase();
+            }
+
+            function textOf(card) {
+                var h = card.querySelector('h2');
+                var p = card.querySelector('p');
+                return ((h ? h.textContent : '') + ' ' + (p ? p.textContent : '')).toLowerCase();
+            }
+
+            function applySort(mode) {
+                if (mode !== 'asc' && mode !== 'desc') mode = 'default';
+                sectionData.forEach(function (data) {
+                    var ordered = data.original.slice();
+                    if (mode === 'asc' || mode === 'desc') {
+                        ordered.sort(function (a, b) {
+                            var ta = titleOf(a), tb = titleOf(b);
+                            if (ta < tb) return mode === 'asc' ? -1 : 1;
+                            if (ta > tb) return mode === 'asc' ? 1 : -1;
+                            return 0;
+                        });
+                    }
+                    ordered.forEach(function (card) { data.section.appendChild(card); });
+                });
+                sortButtons.forEach(function (btn) {
+                    btn.setAttribute('aria-pressed', String(btn.dataset.sort === mode));
+                });
+                try { localStorage.setItem(SORT_KEY, mode); } catch (e) {}
+            }
+
+            function applySearch(rawQuery) {
+                var query = (rawQuery || '').trim().toLowerCase();
+                var anyVisible = false;
+                sectionData.forEach(function (data) {
+                    var shown = 0;
+                    data.cards.forEach(function (card) {
+                        var match = !query || textOf(card).indexOf(query) !== -1;
+                        card.classList.toggle('is-hidden', !match);
+                        if (match) shown++;
+                    });
+                    var empty = shown === 0;
+                    data.section.classList.toggle('is-hidden', empty);
+                    if (data.label) data.label.classList.toggle('is-hidden', empty);
+                    if (!empty) anyVisible = true;
+                });
+                if (searchWrap) searchWrap.classList.toggle('has-value', query.length > 0);
+                if (noResults) {
+                    var noneFound = query.length > 0 && !anyVisible;
+                    if (noResultsTerm) noResultsTerm.textContent = '“' + rawQuery.trim() + '”';
+                    noResults.classList.toggle('is-visible', noneFound);
+                }
+            }
+
+            sortButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () { applySort(btn.dataset.sort); });
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function () { applySearch(searchInput.value); });
+            }
+
+            if (searchClear) {
+                searchClear.addEventListener('click', function () {
+                    searchInput.value = '';
+                    applySearch('');
+                    searchInput.focus();
+                });
+            }
+
+            var savedSort = 'default';
+            try { savedSort = localStorage.getItem(SORT_KEY) || 'default'; } catch (e) {}
+            applySort(savedSort);
         })();
     </script>
 </body>
