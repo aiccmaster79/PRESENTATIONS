@@ -571,9 +571,76 @@
             background: rgba(10, 10, 26, 0.85);
             z-index: -1;
         }
+
+        /* ====== BACK TO INDEX ====== */
+        .back-to-index {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+        }
+
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #fff;
+        }
+
+        .back-to-index i {
+            color: #00BDA5;
+            font-size: 0.9rem;
+        }
+
+
+        /* ====== SITE CREDIT ====== */
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
     </style>
 </head>
 <body>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to index</span>
+    </a>
     <div class="reveal">
         <div class="slides">
 
@@ -751,5 +818,6 @@
             });
         });
     </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
