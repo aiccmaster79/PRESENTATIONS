@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log Analysis | OCN NI Level 5 IT</title>
+    <title>#33 | Level 5 | Log Analysis | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
@@ -610,6 +610,35 @@
             font-size: 0.9rem;
         }
 
+
+        /* ====== DEMO META BADGE ====== */
+        .demo-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin: 0 0 1.1rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #fff;
+            background: rgba(0, 189, 165, 0.18);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+        }
+
+        .demo-meta .demo-number {
+            color: var(--brand-teal);
+        }
+
+        .demo-meta .demo-level {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .demo-meta .sep {
+            opacity: 0.45;
+        }
+
     </style>
 </head>
 <body>
@@ -622,6 +651,7 @@
 
             <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
                 <div class="title-slide">
+                    <span class="demo-meta"><span class="demo-number">#33</span><span class="sep">·</span><span class="demo-level">Level 5</span><span class="sep">·</span><span class="demo-level">Cyber Security</span></span>
                     <h1 class="animated-gradient">Log Analysis</h1>
                     <p class="subtitle">How logs reveal what happened on a system</p>
                     <span class="qualification">OCN NI Level 5 — Cyber Security</span>
