@@ -325,9 +325,24 @@
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.55), rgba(0, 189, 165, 0.45));
         }
 
+        .badge-list-wrap.is-hidden,
         .presentation-link.is-hidden,
         .section-label.is-hidden,
         .contents.is-hidden { display: none !important; }
+
+        body.sort-by-badge .page > .section-label,
+        body.sort-by-badge .page > .contents {
+            display: none !important;
+        }
+
+        body.sort-by-badge .badge-list-wrap {
+            display: block;
+        }
+
+        .badge-list-wrap {
+            display: none;
+            animation: fadeUp 0.45s ease both;
+        }
 
         .no-results {
             display: none;
@@ -485,6 +500,10 @@
                     <i class="fas fa-arrow-down-z-a" aria-hidden="true"></i>
                     Z–A
                 </button>
+                <button type="button" data-sort="badge" aria-pressed="false">
+                    <i class="fas fa-hashtag" aria-hidden="true"></i>
+                    By #
+                </button>
             </div>
         </div>
 
@@ -573,6 +592,7 @@
             </a>
             <a class="presentation-link teal" href="software-updating-ocn-level2-presentation.html">
                 <i class="fas fa-sync-alt icon" aria-hidden="true"></i>
+                <span class="card-meta"><span class="num">#89</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Software Updating</h2>
                 <p>Patch safely — OS, apps, drivers and firmware.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
@@ -1506,6 +1526,13 @@
             </a>
         </section>
 
+        <div class="badge-list-wrap is-hidden" id="badge-list-wrap">
+            <p class="section-label" id="badge-list-label">All presentations by meta badge</p>
+            <section class="contents" id="badge-list" aria-label="Presentations listed by meta badge number"></section>
+            <p class="section-label is-hidden" id="badge-other-label">Without a meta badge</p>
+            <section class="contents is-hidden" id="badge-other-list" aria-label="Presentations without a meta badge"></section>
+        </div>
+
         <p class="no-results" id="no-results" role="status" aria-live="polite">
             No presentations match <strong id="no-results-term"></strong>. Try a different search term.
         </p>
@@ -1553,7 +1580,11 @@
             var sortButtons = document.querySelectorAll('.sort-toggle button');
             var noResults = document.getElementById('no-results');
             var noResultsTerm = document.getElementById('no-results-term');
-            var sections = Array.prototype.slice.call(document.querySelectorAll('.contents'));
+            var badgeWrap = document.getElementById('badge-list-wrap');
+            var badgeList = document.getElementById('badge-list');
+            var badgeOtherList = document.getElementById('badge-other-list');
+            var badgeOtherLabel = document.getElementById('badge-other-label');
+            var sections = Array.prototype.slice.call(document.querySelectorAll('.page > .contents'));
 
             // Capture each section, its heading label, and its cards in original order.
             var sectionData = sections.map(function (section) {
@@ -1563,6 +1594,12 @@
                 return { section: section, label: label, cards: cards, original: cards.slice() };
             });
 
+            var allCards = sectionData.reduce(function (acc, data) {
+                return acc.concat(data.original);
+            }, []);
+
+            var currentSort = 'default';
+
             function titleOf(card) {
                 var h = card.querySelector('h2');
                 return (h ? h.textContent : '').trim().toLowerCase();
@@ -1571,44 +1608,147 @@
             function textOf(card) {
                 var h = card.querySelector('h2');
                 var p = card.querySelector('p');
-                return ((h ? h.textContent : '') + ' ' + (p ? p.textContent : '')).toLowerCase();
+                var meta = card.querySelector('.card-meta');
+                return (
+                    (h ? h.textContent : '') + ' ' +
+                    (p ? p.textContent : '') + ' ' +
+                    (meta ? meta.textContent : '')
+                ).toLowerCase();
+            }
+
+            function badgeNumberOf(card) {
+                var numEl = card.querySelector('.card-meta .num');
+                if (!numEl) return null;
+                var match = (numEl.textContent || '').match(/#?\s*(\d+)/);
+                return match ? parseInt(match[1], 10) : null;
+            }
+
+            function compareTitle(a, b, mode) {
+                var ta = titleOf(a), tb = titleOf(b);
+                if (ta < tb) return mode === 'asc' ? -1 : 1;
+                if (ta > tb) return mode === 'asc' ? 1 : -1;
+                return 0;
+            }
+
+            function compareBadge(a, b) {
+                var na = badgeNumberOf(a);
+                var nb = badgeNumberOf(b);
+                var aHas = na !== null;
+                var bHas = nb !== null;
+                if (aHas && bHas) {
+                    if (na !== nb) return na - nb;
+                    return compareTitle(a, b, 'asc');
+                }
+                if (aHas && !bHas) return -1;
+                if (!aHas && bHas) return 1;
+                return compareTitle(a, b, 'asc');
+            }
+
+            function restoreCardsToSections() {
+                sectionData.forEach(function (data) {
+                    data.original.forEach(function (card) {
+                        data.section.appendChild(card);
+                    });
+                });
+            }
+
+            function applyBadgeList() {
+                document.body.classList.add('sort-by-badge');
+                if (badgeWrap) badgeWrap.classList.remove('is-hidden');
+
+                var numbered = [];
+                var unnumbered = [];
+                allCards.forEach(function (card) {
+                    if (badgeNumberOf(card) !== null) numbered.push(card);
+                    else unnumbered.push(card);
+                });
+                numbered.sort(compareBadge);
+                unnumbered.sort(function (a, b) { return compareTitle(a, b, 'asc'); });
+
+                if (badgeList) {
+                    numbered.forEach(function (card) { badgeList.appendChild(card); });
+                }
+                if (badgeOtherList) {
+                    unnumbered.forEach(function (card) { badgeOtherList.appendChild(card); });
+                    var hasOther = unnumbered.length > 0;
+                    badgeOtherList.classList.toggle('is-hidden', !hasOther);
+                    if (badgeOtherLabel) badgeOtherLabel.classList.toggle('is-hidden', !hasOther);
+                }
+            }
+
+            function leaveBadgeList() {
+                document.body.classList.remove('sort-by-badge');
+                if (badgeWrap) badgeWrap.classList.add('is-hidden');
+                restoreCardsToSections();
             }
 
             function applySort(mode) {
-                if (mode !== 'asc' && mode !== 'desc') mode = 'default';
-                sectionData.forEach(function (data) {
-                    var ordered = data.original.slice();
-                    if (mode === 'asc' || mode === 'desc') {
-                        ordered.sort(function (a, b) {
-                            var ta = titleOf(a), tb = titleOf(b);
-                            if (ta < tb) return mode === 'asc' ? -1 : 1;
-                            if (ta > tb) return mode === 'asc' ? 1 : -1;
-                            return 0;
-                        });
-                    }
-                    ordered.forEach(function (card) { data.section.appendChild(card); });
-                });
+                if (mode !== 'asc' && mode !== 'desc' && mode !== 'badge') mode = 'default';
+
+                if (currentSort === 'badge' && mode !== 'badge') {
+                    leaveBadgeList();
+                }
+
+                currentSort = mode;
+
+                if (mode === 'badge') {
+                    applyBadgeList();
+                } else {
+                    sectionData.forEach(function (data) {
+                        var ordered = data.original.slice();
+                        if (mode === 'asc' || mode === 'desc') {
+                            ordered.sort(function (a, b) { return compareTitle(a, b, mode); });
+                        }
+                        ordered.forEach(function (card) { data.section.appendChild(card); });
+                    });
+                }
+
                 sortButtons.forEach(function (btn) {
                     btn.setAttribute('aria-pressed', String(btn.dataset.sort === mode));
                 });
                 try { localStorage.setItem(SORT_KEY, mode); } catch (e) {}
+                applySearch(searchInput ? searchInput.value : '');
             }
 
             function applySearch(rawQuery) {
                 var query = (rawQuery || '').trim().toLowerCase();
                 var anyVisible = false;
-                sectionData.forEach(function (data) {
-                    var shown = 0;
-                    data.cards.forEach(function (card) {
+
+                if (currentSort === 'badge') {
+                    var shownBadge = 0;
+                    var shownOther = 0;
+                    allCards.forEach(function (card) {
                         var match = !query || textOf(card).indexOf(query) !== -1;
                         card.classList.toggle('is-hidden', !match);
-                        if (match) shown++;
+                        if (match) {
+                            anyVisible = true;
+                            if (badgeNumberOf(card) !== null) shownBadge++;
+                            else shownOther++;
+                        }
                     });
-                    var empty = shown === 0;
-                    data.section.classList.toggle('is-hidden', empty);
-                    if (data.label) data.label.classList.toggle('is-hidden', empty);
-                    if (!empty) anyVisible = true;
-                });
+                    if (badgeList) badgeList.classList.toggle('is-hidden', shownBadge === 0 && query.length > 0);
+                    var badgeLabel = document.getElementById('badge-list-label');
+                    if (badgeLabel) badgeLabel.classList.toggle('is-hidden', shownBadge === 0 && query.length > 0);
+                    if (badgeOtherList) {
+                        var hideOther = shownOther === 0;
+                        badgeOtherList.classList.toggle('is-hidden', hideOther);
+                        if (badgeOtherLabel) badgeOtherLabel.classList.toggle('is-hidden', hideOther);
+                    }
+                } else {
+                    sectionData.forEach(function (data) {
+                        var shown = 0;
+                        data.cards.forEach(function (card) {
+                            var match = !query || textOf(card).indexOf(query) !== -1;
+                            card.classList.toggle('is-hidden', !match);
+                            if (match) shown++;
+                        });
+                        var empty = shown === 0;
+                        data.section.classList.toggle('is-hidden', empty);
+                        if (data.label) data.label.classList.toggle('is-hidden', empty);
+                        if (!empty) anyVisible = true;
+                    });
+                }
+
                 if (searchWrap) searchWrap.classList.toggle('has-value', query.length > 0);
                 if (noResults) {
                     var noneFound = query.length > 0 && !anyVisible;
