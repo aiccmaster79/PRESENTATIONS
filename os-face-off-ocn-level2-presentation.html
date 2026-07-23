@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating Systems Face-Off | OCN NI Level 2 IT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ====== BRAND COLORS ====== */
+        :root {
+            --brand-orange: #F7931E;
+            --brand-purple: #8A2BE2;
+            --brand-teal: #00BDA5;
+            --brand-orange-dark: #d47a0a;
+            --brand-purple-dark: #6a1fb2;
+            --brand-teal-dark: #008f7a;
+            --brand-orange-light: #ffb858;
+            --brand-purple-light: #a855f7;
+            --brand-teal-light: #3dd5c0;
+            --dark-bg: #0a0a1a;
+            --glass-bg: rgba(20, 20, 40, 0.85);
+        }
+
+        /* ====== GLOBAL STYLES ====== */
+        .reveal {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .slides section {
+            height: 100%;
+            padding: 20px 40px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+
+        /* ====== ANIMATED GRADIENT TITLE ====== */
+        .animated-gradient {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ====== GLASSMORPHISM CARDS ====== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card-small {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ====== FEATURE GRID ====== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--brand-teal);
+            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
+        }
+
+        .feature-card i {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card.orange i { color: var(--brand-orange); }
+        .feature-card.purple i { color: var(--brand-purple); }
+        .feature-card.teal i { color: var(--brand-teal); }
+
+        .feature-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        /* ====== COMPARISON TABLE ====== */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .comparison-box {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 2px solid;
+        }
+
+        .comparison-box.type1 { border-color: var(--brand-purple); }
+        .comparison-box.type2 { border-color: var(--brand-teal); }
+
+        .comparison-box h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-box.type1 h3 { color: var(--brand-purple); }
+        .comparison-box.type2 h3 { color: var(--brand-teal); }
+
+        .comparison-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.85em;
+        }
+
+        .comparison-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+
+        /* ====== ARCHITECTURE DIAGRAM ====== */
+        .architecture-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .arch-layer {
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .arch-layer:hover { transform: scale(1.02); }
+
+        .layer-app { background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark)); }
+        .layer-os { background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark)); }
+        .layer-hypervisor { background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark)); }
+        .layer-hardware { background: linear-gradient(135deg, #444, #222); border: 2px solid #666; }
+
+        .arch-label {
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ====== CLOUD SERVICE MODELS ====== */
+        .cloud-models {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .cloud-model {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border-top: 4px solid;
+            transition: all 0.3s ease;
+        }
+
+        .cloud-model:hover { transform: translateY(-5px); }
+
+        .cloud-model.iaas { border-color: var(--brand-orange); }
+        .cloud-model.paas { border-color: var(--brand-purple); }
+        .cloud-model.saas { border-color: var(--brand-teal); }
+
+        .cloud-model h3 { font-size: 1.3em; margin-bottom: 10px; }
+
+        .cloud-model.iaas h3 { color: var(--brand-orange); }
+        .cloud-model.paas h3 { color: var(--brand-purple); }
+        .cloud-model.saas h3 { color: var(--brand-teal); }
+
+        .cloud-model p {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+
+        .cloud-model .examples {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        /* ====== QUIZ STYLES ====== */
+        .quiz-container { max-width: 800px; margin: 0 auto; }
+
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            color: var(--brand-orange);
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: var(--glass-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--brand-teal);
+            background: rgba(0, 189, 165, 0.1);
+        }
+
+        .quiz-option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .quiz-option span {
+            display: block;
+            font-weight: 600;
+            color: var(--brand-purple);
+            margin-bottom: 5px;
+        }
+
+        /* ====== STATS BAR ====== */
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item { text-align: center; padding: 20px; }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            display: block;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ====== SOFTWARE LOGOS ====== */
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .software-item {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .software-item:hover {
+            transform: scale(1.05);
+            border-color: var(--brand-teal);
+        }
+
+        .software-item i { font-size: 3em; margin-bottom: 15px; }
+        .software-item h4 { font-size: 1.1em; margin-bottom: 8px; color: #fff; }
+
+        .software-item .type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            margin-bottom: 10px;
+        }
+
+        .type-badge.type1 { background: var(--brand-purple); }
+        .type-badge.type2 { background: var(--brand-teal); }
+
+        .software-item p {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        /* ====== BENEFITS LIST ====== */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border-left: 4px solid var(--brand-teal);
+        }
+
+        .benefit-item i {
+            font-size: 1.5em;
+            color: var(--brand-orange);
+            flex-shrink: 0;
+        }
+
+        .benefit-item h4 { font-size: 1em; margin: 0 0 5px 0; color: #fff; }
+        .benefit-item p { font-size: 0.8em; color: rgba(255, 255, 255, 0.7); margin: 0; }
+
+        /* ====== VPN / FLOW DIAGRAM ====== */
+        .vpn-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .vpn-element {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .vpn-element i { font-size: 2.5em; display: block; margin-bottom: 10px; }
+        .vpn-element.user i { color: var(--brand-orange); }
+        .vpn-element.tunnel i { color: var(--brand-teal); }
+        .vpn-element.server i { color: var(--brand-purple); }
+
+        .vpn-arrow { font-size: 2em; color: var(--brand-teal); }
+
+        /* ====== CAREER PATHWAY ====== */
+        .career-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .career-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            z-index: 0;
+        }
+
+        .career-step {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            min-width: 150px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .career-step:hover {
+            transform: translateY(-10px);
+            border-color: var(--brand-teal);
+        }
+
+        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
+        .career-step:nth-child(1) i { color: var(--brand-orange); }
+        .career-step:nth-child(2) i { color: var(--brand-purple); }
+        .career-step:nth-child(3) i { color: var(--brand-teal); }
+
+        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
+        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+
+        /* ====== TITLE SLIDE ====== */
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
+        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
+
+        .title-slide .qualification {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        /* ====== LEARNING OBJECTIVES ====== */
+        .objectives-list { list-style: none; padding: 0; margin: 0; }
+
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+
+        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
+
+        /* ====== HIGHLIGHT BOX ====== */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
+
+        /* ====== RULE TABLE ====== */
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.85em;
+        }
+
+        .rule-table th, .rule-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rule-table th {
+            background: rgba(138, 43, 226, 0.3);
+            color: var(--brand-teal);
+            font-weight: 600;
+        }
+
+        .rule-table tr:hover td {
+            background: rgba(0, 189, 165, 0.1);
+        }
+
+        .rule-allow { color: #22c55e; font-weight: 600; }
+        .rule-deny { color: #ef4444; font-weight: 600; }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .feature-grid, .cloud-models, .software-grid { grid-template-columns: 1fr; }
+            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
+            .career-path { flex-direction: column; gap: 20px; }
+            .career-path::before { display: none; }
+        }
+
+        /* ====== FRAGMENT ANIMATIONS ====== */
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .reveal .slides section .fragment.fade-up.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ====== BACKGROUND OVERLAY ====== */
+        .reveal .slides section[data-background-image]::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 26, 0.85);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+                <div class="title-slide">
+                    <h1 class="animated-gradient">OS Face-Off</h1>
+                    <p class="subtitle">Windows vs macOS vs Linux vs ChromeOS — which one, and why?</p>
+                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> the core purpose of an operating system</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Compare</strong> Windows, macOS, Linux and ChromeOS features</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> the file system each OS typically uses</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recommend</strong> an OS for a given user or use case</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Navigate</strong> a Linux desktop you've never used before</span></li>
+                </ul>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-desktop"></i> What Does an OS Actually Do?</h2>
+                <div class="glass-card fragment fade-up">
+                    <p>The operating system is the software that manages everything else — hardware, apps, files and users — so you never have to talk to the hardware directly.</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip"></i><h3>Manages Hardware</h3><p>Shares CPU, RAM and devices between programs</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-play"></i><h3>Runs Software</h3><p>Loads and controls every app you open</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-folder"></i><h3>Manages Files</h3><p>Organises data into a file system</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-user-shield"></i><h3>Handles Users</h3><p>Logins, permissions and security</p></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-laptop"></i> The Big Four</h2>
+                <div class="software-grid">
+                    <div class="software-item fragment fade-up">
+                        <i class="fab fa-windows" style="color: #00A4EF;"></i>
+                        <span class="type-badge type1">Closed Source</span>
+                        <h4>Windows</h4>
+                        <p>Most widely used desktop OS</p>
+                    </div>
+                    <div class="software-item fragment fade-up">
+                        <i class="fab fa-apple" style="color: #A2AAAD;"></i>
+                        <span class="type-badge type1">Closed Source</span>
+                        <h4>macOS</h4>
+                        <p>Apple hardware only, polished UI</p>
+                    </div>
+                    <div class="software-item fragment fade-up">
+                        <i class="fab fa-linux" style="color: #FCC624;"></i>
+                        <span class="type-badge type2">Open Source</span>
+                        <h4>Linux</h4>
+                        <p>Free, customisable, many "distros"</p>
+                    </div>
+                    <div class="software-item fragment fade-up">
+                        <i class="fab fa-chrome" style="color: #4285F4;"></i>
+                        <span class="type-badge type1">Closed Source</span>
+                        <h4>ChromeOS</h4>
+                        <p>Lightweight, cloud-first, fast to boot</p>
+                    </div>
+                    <div class="software-item fragment fade-up">
+                        <i class="fas fa-shield-alt" style="color: var(--brand-teal);"></i>
+                        <span class="type-badge type2">Built-in</span>
+                        <h4>Security Model</h4>
+                        <p>Every OS handles updates &amp; permissions differently</p>
+                    </div>
+                    <div class="software-item fragment fade-up">
+                        <i class="fas fa-store" style="color: var(--brand-orange);"></i>
+                        <span class="type-badge type1">Ecosystem</span>
+                        <h4>App Stores</h4>
+                        <p>Different software availability per OS</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-folder-tree"></i> File Systems Compared</h2>
+                <div style="overflow-x:auto;">
+                <table class="rule-table">
+                    <tr><th>OS</th><th>Common File System</th><th>Notes</th></tr>
+                    <tr class="fragment fade-up"><td>Windows</td><td>NTFS</td><td>Supports permissions, journaling, large files</td></tr>
+                    <tr class="fragment fade-up"><td>macOS</td><td>APFS</td><td>Optimised for SSDs, snapshots, encryption</td></tr>
+                    <tr class="fragment fade-up"><td>Linux</td><td>ext4</td><td>Fast, reliable, standard on most distros</td></tr>
+                    <tr class="fragment fade-up"><td>ChromeOS</td><td>ext4 (sandboxed)</td><td>Most files live in the cloud instead</td></tr>
+                </table>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-user-check"></i> Choosing the Right OS</h2>
+                <div class="cloud-models">
+                    <div class="cloud-model iaas fragment fade-up">
+                        <h3>Budget Student</h3>
+                        <p>Needs the web, docs and video calls on cheap hardware.</p>
+                        <p class="examples">ChromeOS or lightweight Linux</p>
+                    </div>
+                    <div class="cloud-model paas fragment fade-up">
+                        <h3>Creative Professional</h3>
+                        <p>Needs polished creative apps and Apple ecosystem sync.</p>
+                        <p class="examples">macOS</p>
+                    </div>
+                    <div class="cloud-model saas fragment fade-up">
+                        <h3>Office / Gamer</h3>
+                        <p>Needs broad software and hardware compatibility.</p>
+                        <p class="examples">Windows</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-tasks"></i> Practical Task</h2>
+                <div class="glass-card fragment fade-up">
+                    <h3 style="color: var(--brand-teal); margin-bottom: 15px;"><i class="fab fa-linux"></i> Live Boot &amp; Explore</h3>
+                    <p>Boot a spare PC from a Linux live USB (Ubuntu or Mint) — no install, no risk to the existing system.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-globe"></i><div><h4>1. Open a browser</h4><p>Load a webpage and note how it feels different (or not!)</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-folder-plus"></i><div><h4>2. Create a folder</h4><p>Make and rename a new folder on the desktop</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-cog"></i><div><h4>3. Find settings</h4><p>Locate Wi-Fi, display and user account settings</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-clipboard-list"></i><div><h4>4. Compare</h4><p>List 3 things that felt familiar vs different from Windows</p></div></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about operating systems</p>
+                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
+            </section>
+
+            <section>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q1: Which operating system is open source?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Windows</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>macOS</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>C</span>Linux</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>ChromeOS</div>
+                    </div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: C</strong> — Linux's source code is free to view, modify and redistribute.</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q2: Which file system does Windows commonly use?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>NTFS</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>APFS</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>ext4</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>FAT12</div>
+                    </div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — NTFS is the standard modern Windows file system.</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q3: Which OS is the best fit for a low-cost, cloud-first school laptop?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>macOS</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>ChromeOS</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>A gaming-focused Windows build</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>None — laptops don't need an OS</div>
+                    </div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — ChromeOS is lightweight, cheap to run and designed around cloud apps like a school would use.</div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
+            <div class="feature-grid">
+                <div class="feature-card orange fragment fade-up"><i class="fas fa-desktop"></i><h3>OS = manager</h3><p>Controls hardware, software, files and users</p></div>
+                <div class="feature-card purple fragment fade-up"><i class="fas fa-balance-scale"></i><h3>No single "best"</h3><p>Right OS depends on the user's needs</p></div>
+                <div class="feature-card teal fragment fade-up"><i class="fas fa-folder-tree"></i><h3>File systems differ</h3><p>NTFS, APFS and ext4 each have strengths</p></div>
+                <div class="feature-card orange fragment fade-up"><i class="fab fa-linux"></i><h3>Try it yourself</h3><p>Hands-on time builds real confidence</p></div>
+            </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Multi-OS confidence opens doors across IT support and admin</p>
+                <div class="career-path fragment fade-up">
+                    <div class="career-step"><i class="fas fa-headset"></i><h4>Entry Level</h4><p>IT Support / Desktop Technician</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Systems Administrator</p></div>
+                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Linux / DevOps Engineer</p></div>
+                </div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Linux+</span><span class="stat-label">CompTIA Path</span></div><div class="stat-item"><span class="stat-number">Multi-OS</span><span class="stat-label">Real Workplaces</span></div><div class="stat-item"><span class="stat-number">£22-50K</span><span class="stat-label">Early Range</span></div></div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
+                <div class="glass-card fragment fade-up">
+                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fab fa-linux" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Keep exploring</strong> — Try a different Linux distro at home from a live USB</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-clipboard-list" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Write it up</strong> — Complete your Windows vs Linux comparison sheet</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-wrench" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Go deeper</strong> — Move on to the Troubleshooting deck</li>
+                        <li style="padding: 12px 0; "><i class="fas fa-users" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Discuss</strong> — Which OS would you recommend to a family member, and why?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+                <div class="title-slide">
+                    <h1 class="animated-gradient">Thank You!</h1>
+                    <p class="subtitle">Questions? Let's discuss!</p>
+                    <div style="margin-top: 40px;">
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Essentials / IT Systems — Software</p>
+                        <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                    </div>
+                    <div style="margin-top: 50px;"><i class="fab fa-windows" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fab fa-linux" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fab fa-apple" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true, controls: true, progress: true, center: true,
+            transition: 'slide', backgroundTransition: 'fade',
+            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
+            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
+            plugins: [RevealNotes, RevealHighlight, RevealZoom]
+        });
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
+                const container = this.closest('.quiz-options');
+                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+            });
+        });
+    </script>
+</body>
+</html>
