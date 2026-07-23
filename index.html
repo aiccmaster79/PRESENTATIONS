@@ -11,20 +11,13 @@
             --brand-orange: #F7931E;
             --brand-purple: #8A2BE2;
             --brand-teal: #00BDA5;
-            --brand-orange-dark: #d47a0a;
-            --brand-purple-dark: #6a1fb2;
-            --brand-teal-dark: #008f7a;
             --dark-bg: #0a0a1a;
             --glass-bg: rgba(20, 20, 40, 0.85);
             --text: #ffffff;
             --muted: rgba(255, 255, 255, 0.7);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -44,10 +37,9 @@
             padding: 4rem 1.5rem 3rem;
         }
 
-        /* ====== HERO ====== */
         .hero {
             text-align: center;
-            margin-bottom: 3.5rem;
+            margin-bottom: 3rem;
             animation: fadeUp 0.7s ease both;
         }
 
@@ -90,22 +82,20 @@
             font-weight: 600;
         }
 
-        /* ====== CONTENTS ====== */
         .section-label {
             font-size: 0.75rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--brand-teal);
-            margin-bottom: 1.25rem;
+            margin: 2.5rem 0 1.1rem;
             text-align: center;
-            animation: fadeUp 0.7s ease 0.15s both;
         }
 
         .contents {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            animation: fadeUp 0.7s ease 0.25s both;
+            gap: 1.25rem;
+            animation: fadeUp 0.7s ease 0.2s both;
         }
 
         .presentation-link {
@@ -117,7 +107,7 @@
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
-            padding: 1.75rem 1.5rem;
+            padding: 1.5rem 1.35rem;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
         }
 
@@ -130,62 +120,45 @@
         }
 
         .presentation-link .icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            margin-bottom: 0.85rem;
             display: block;
+            color: var(--brand-orange);
         }
 
-        .presentation-link.virtualisation .icon { color: var(--brand-purple); }
-        .presentation-link.firewalls .icon { color: var(--brand-orange); }
+        .presentation-link.teal .icon { color: var(--brand-teal); }
+        .presentation-link.purple .icon { color: var(--brand-purple); }
 
         .presentation-link h2 {
-            font-size: 1.35rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
             letter-spacing: -0.02em;
         }
 
         .presentation-link p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--muted);
-            line-height: 1.55;
-            margin-bottom: 1.1rem;
-        }
-
-        .presentation-link .meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1rem;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .presentation-link .meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
+            line-height: 1.5;
+            margin-bottom: 0.9rem;
         }
 
         .presentation-link .cta {
-            margin-top: 1.25rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: var(--brand-teal);
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
+            gap: 0.4rem;
         }
 
-        .presentation-link:hover .cta {
-            color: var(--brand-orange);
-        }
+        .presentation-link:hover .cta { color: var(--brand-orange); }
 
         footer {
             margin-top: 3.5rem;
             text-align: center;
             color: rgba(255, 255, 255, 0.4);
             font-size: 0.8rem;
-            animation: fadeUp 0.7s ease 0.4s both;
         }
 
         @keyframes gradientShift {
@@ -194,20 +167,13 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(22px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 720px) {
             .page { padding: 2.5rem 1.15rem 2rem; }
             .contents { grid-template-columns: 1fr; }
-            .hero { margin-bottom: 2.5rem; }
         }
     </style>
 </head>
@@ -220,28 +186,100 @@
             <span class="qualification">Level 2 IT Content Library</span>
         </header>
 
-        <p class="section-label">Contents</p>
-
-        <section class="contents" aria-label="Presentation contents">
-            <a class="presentation-link virtualisation" href="virtualisation-ocn-level2-presentation.html">
+        <p class="section-label">Core IT</p>
+        <section class="contents" aria-label="Core IT presentations">
+            <a class="presentation-link purple" href="virtualisation-ocn-level2-presentation.html">
                 <i class="fas fa-cloud icon" aria-hidden="true"></i>
                 <h2>Virtualisation</h2>
-                <p>Virtual machines, hypervisors, cloud service models, business benefits, and VPNs.</p>
-                <div class="meta">
-                    <span><i class="fas fa-layer-group" aria-hidden="true"></i> Cloud &amp; VMs</span>
-                    <span><i class="fas fa-file-alt" aria-hidden="true"></i> Reveal.js deck</span>
-                </div>
+                <p>VMs, hypervisors, cloud models, benefits and VPNs.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-
-            <a class="presentation-link firewalls" href="firewalls-ocn-level2-presentation.html">
+            <a class="presentation-link" href="firewalls-ocn-level2-presentation.html">
                 <i class="fas fa-shield-alt icon" aria-hidden="true"></i>
                 <h2>Firewalls</h2>
-                <p>Network security, firewall types, rules and ports, best practices, and real-world examples.</p>
-                <div class="meta">
-                    <span><i class="fas fa-lock" aria-hidden="true"></i> Network security</span>
-                    <span><i class="fas fa-file-alt" aria-hidden="true"></i> Reveal.js deck</span>
-                </div>
+                <p>Types, rules, ports, placement and business security.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="building-networks-ocn-level2-presentation.html">
+                <i class="fas fa-network-wired icon" aria-hidden="true"></i>
+                <h2>Building Networks</h2>
+                <p>PAN/LAN/WAN, hardware, IP basics and small-office design.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="making-568b-network-cables-ocn-level2-presentation.html">
+                <i class="fas fa-ethernet icon" aria-hidden="true"></i>
+                <h2>Making 568B Cables</h2>
+                <p>T568B colour order, crimping steps, testing and faults.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="building-computers-ocn-level2-presentation.html">
+                <i class="fas fa-microchip icon" aria-hidden="true"></i>
+                <h2>Building Computers</h2>
+                <p>Parts, compatibility, assembly sequence and first boot.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="hak5-rubber-ducky-ocn-level2-presentation.html">
+                <i class="fas fa-usb icon" aria-hidden="true"></i>
+                <h2>USB Attack Awareness</h2>
+                <p>Rubber Ducky concepts, ethics, and defensive controls.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </section>
+
+        <p class="section-label">Emerging Technology (A/651/0447)</p>
+        <section class="contents" aria-label="Emerging technology presentations">
+            <a class="presentation-link purple" href="emerging-technology-ocn-level2-presentation.html">
+                <i class="fas fa-rocket icon" aria-hidden="true"></i>
+                <h2>Emerging Technology Overview</h2>
+                <p>Adoption factors, society and business impact, assessment tips.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="ai-ml-ocn-level2-presentation.html">
+                <i class="fas fa-robot icon" aria-hidden="true"></i>
+                <h2>AI &amp; Machine Learning</h2>
+                <p>How ML learns, use cases, benefits, risks and ethics.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="5g-ocn-level2-presentation.html">
+                <i class="fas fa-signal icon" aria-hidden="true"></i>
+                <h2>5G Technology</h2>
+                <p>Speed, latency, capacity, smart cities and challenges.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="blockchain-ocn-level2-presentation.html">
+                <i class="fas fa-link icon" aria-hidden="true"></i>
+                <h2>Blockchain</h2>
+                <p>Ledgers, features, supply-chain uses and limitations.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="iot-ocn-level2-presentation.html">
+                <i class="fas fa-wifi icon" aria-hidden="true"></i>
+                <h2>Internet of Things</h2>
+                <p>Sensors, networks, business value and security risks.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="quantum-computing-ocn-level2-presentation.html">
+                <i class="fas fa-atom icon" aria-hidden="true"></i>
+                <h2>Quantum Computing</h2>
+                <p>Qubits, applications, limitations and cyber implications.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="ar-vr-ocn-level2-presentation.html">
+                <i class="fas fa-vr-cardboard icon" aria-hidden="true"></i>
+                <h2>AR &amp; VR</h2>
+                <p>Immersive tech for training, retail, health and design.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="meta-quest-3-xr-ocn-level2-presentation.html">
+                <i class="fas fa-headphones icon" aria-hidden="true"></i>
+                <h2>Meta Quest 3 &amp; XR</h2>
+                <p>Headset features, classroom setup, safety and XR careers.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="biotech-crispr-ocn-level2-presentation.html">
+                <i class="fas fa-dna icon" aria-hidden="true"></i>
+                <h2>Biotechnology &amp; CRISPR</h2>
+                <p>Gene editing, IT links, ethics and society impact.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
         </section>
