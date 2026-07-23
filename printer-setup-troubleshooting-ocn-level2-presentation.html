@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USB Attack Awareness (Rubber Ducky) | OCN NI Level 2 IT</title>
+    <title>Printer Setup & Troubleshooting | OCN NI Level 2 IT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
@@ -622,9 +622,9 @@
 
             <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
                 <div class="title-slide">
-                    <h1 class="animated-gradient">USB Attack Awareness</h1>
-                    <p class="subtitle">Understanding Rubber Ducky-style threats</p>
-                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                    <h1 class="animated-gradient">Printer Setup &amp; Troubleshooting</h1>
+                    <p class="subtitle">Install and fix printers the structured support way</p>
+                    <span class="qualification">OCN NI Level 2–3 — IT Support / Service Delivery</span>
                 </div>
             </section>
 
@@ -632,141 +632,119 @@
                 <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
                 <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> what a USB keystroke-injection device is at a high level</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Describe</strong> why these tools appear in authorised security testing</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recognise</strong> risks of unknown USB devices in the workplace</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> defensive policies and user awareness controls</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>State</strong> legal and ethical boundaries for security tools</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Install</strong> a printer with the correct driver package</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Connect</strong> via USB, Wi‑Fi or shared network queue</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Print</strong> a test page and verify quality settings</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Troubleshoot</strong> common offline, queue and connectivity faults</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Communicate</strong> clearly with the user during the fix</span></li>
                 </ul>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-exclamation-triangle"></i> Ethics &amp; Legal First</h2>
+                <h2 class="animated-gradient"><i class="fas fa-print"></i> Printers Still Matter</h2>
                 <div class="glass-card fragment fade-up">
-                    <p style="font-size:1.05em;">Devices like the <strong style="color: var(--brand-orange);">Hak5 USB Rubber Ducky</strong> are commercial security-testing tools. Using them on systems <strong>without explicit authorisation</strong> can be illegal and can get you expelled, fired, or prosecuted.</p>
+                    <p>Despite digital workflows, printers generate a huge share of helpdesk tickets. Technicians who fix them calmly are valued.</p>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Setup Demo Flow</h2>
+                <div class="glass-card fragment fade-up">
+                    <ol style="font-size:0.9em; line-height:1.7;">
+                        <li class="fragment">Unbox / check power, paper and consumables (toner/ink)</li>
+                        <li class="fragment">Connect — USB for simplicity, or Wi‑Fi/Ethernet for shared use</li>
+                        <li class="fragment">Install vendor driver / use Windows Add Printer thoughtfully</li>
+                        <li class="fragment">Set as default if appropriate; configure duplex/tray defaults</li>
+                        <li class="fragment">Print a test page and a user document</li>
+                        <li class="fragment">Show user how to check ink/toner and clear a simple jam</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-bug"></i> Top Printer Faults</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-plug"></i><div><h4>Offline / not connected</h4><p>Wrong network, asleep, cable loose</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-list"></i><div><h4>Stuck print queue</h4><p>Restart spooler; clear jobs</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-file"></i><div><h4>Wrong driver</h4><p>Garbled text or missing features</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-tint"></i><div><h4>Poor quality</h4><p>Low ink, wrong paper, heads clogged</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-copy"></i><div><h4>Paper jams</h4><p>Clear path carefully; use supported media</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-wifi"></i><div><h4>Wi‑Fi woes</h4><p>Printer on guest VLAN / old password</p></div></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-network-wired"></i> USB vs Network Printing</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>USB direct</h3>
+                        <ul><li>Simple one-to-one setup</li><li>Great for desk inkjets</li><li>Not ideal for teams</li><li>Cable length limits</li></ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>Network / shared</h3>
+                        <ul><li>Many users, one device</li><li>Needs IP/queue management</li><li>Driver deployment matters</li><li>Permissions &amp; accounting</li></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-box"></i><h3>Printer</h3><p>USB and/or Wi‑Fi capable</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-tools"></i><h3>Driver package</h3><p>Cached offline installer</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-laptop"></i><h3>Laptop</h3><p>Clean test account</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-eye"></i><h3>Test page</h3><p>Known-good PDF/DOCX</p></div>
                 </div>
                 <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-gavel"></i> Classroom rule</h4>
-                    <p>We study these tools to <strong>defend</strong> networks and train awareness—not to attack friends, school systems, or employers.</p>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-plug"></i> What Is a Rubber Ducky?</h2>
-                <div class="glass-card fragment fade-up">
-                    <p>It looks like a normal USB flash drive, but the computer often sees it as a <strong style="color: var(--brand-teal);">keyboard</strong>. Once plugged in, it can type pre-programmed keystrokes very quickly.</p>
-                </div>
-                <div class="vpn-diagram fragment fade-up">
-                    <div class="vpn-element user"><i class="fas fa-plug"></i><p>USB Device</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element tunnel"><i class="fas fa-keyboard"></i><p>Seen as Keyboard</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element server"><i class="fas fa-terminal"></i><p>Typed Commands</p></div>
-                </div>
-                <p class="fragment" style="text-align:center; color: rgba(255,255,255,0.65); margin-top:15px;">This presentation does <strong>not</strong> include attack scripts or payloads.</p>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-user-shield"></i> Why Security Teams Care</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-check"></i><h3>Authorised Testing</h3><p>Red teams verify controls with permission</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-chalkboard-teacher"></i><h3>Awareness Training</h3><p>Show staff why “free USBs” are risky</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-building"></i><h3>Physical Security</h3><p>Prove that desk access can become IT access</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-balance-scale"></i><h3>Risk Assessment</h3><p>Measure impact of USB policy gaps</p></div>
-            </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-shield-alt"></i> Defences That Work</h2>
-
-                <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-ban"></i><div><h4>USB control policies</h4><p>Block unapproved devices via endpoint tools</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-user-lock"></i><div><h4>Least privilege</h4><p>Limit what standard user accounts can run</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-bell"></i><div><h4>User awareness</h4><p>Never plug in found or gifted unknown USBs</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-lock"></i><div><h4>Screen locks</h4><p>Locked sessions reduce unattended injection risk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-eye"></i><div><h4>Physical security</h4><p>Reception, CCTV, visitor badges, clean desk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-sync-alt"></i><div><h4>Patch &amp; EDR</h4><p>Detect unusual keyboard activity / scripts</p></div></div>
-                </div>
-
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-briefcase"></i> Workplace Policy Example</h2>
-                <div class="glass-card fragment fade-up">
-                    <ul>
-                        <li class="fragment">Only company-issued storage devices allowed</li>
-                        <li class="fragment">Guest machines for vendor demos—not corporate laptops</li>
-                        <li class="fragment">Report lost/found USB sticks to IT Security</li>
-                        <li class="fragment">Disable AutoRun / AutoPlay features</li>
-                        <li class="fragment">Security testing only via approved change requests</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-store"></i> Awareness Scenario</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-orange);"><i class="fas fa-gift"></i> “Free USB” at reception</h3>
-                    <p>During an authorised phishing/USB awareness campaign, labelled test sticks are left in public areas (with management approval).</p>
-                    <div class="highlight-box"><h4><i class="fas fa-chart-pie"></i> Learning outcome</h4><p>Staff who plug them in get a <strong>training page</strong>, not malware—and the organisation measures how many people need more awareness support.</p></div>
+                    <h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4>
+                    <p>Prepare one ‘broken’ scenario (paused queue or wrong Wi‑Fi) for learners to fix.</p>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about USB attack awareness</p>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about printer support</p>
                 <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q1: A Rubber Ducky-style device often pretends to be a…</p>
+                    <p class="quiz-question">Q1: A printer shows Offline on a working PC. First checks include…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Monitor</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Keyboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Printer toner chip</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>HDMI cable</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Reinstall the OS immediately</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Power, cable/Wi‑Fi, and whether it is set to Use Printer Offline</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Buy a new motherboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Disable Device Manager entirely</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Keystroke-injection tools emulate a human interface device (keyboard).</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Start with power, connectivity and the offline flag.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q2: Using such a tool on a school PC without permission is…</p>
+                    <p class="quiz-question">Q2: Jobs sit in the queue and never print. A common fix is…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Always fine if it’s for a laugh</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Unauthorised and potentially illegal</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Required homework</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A Windows update</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Delete System32</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Restart the Print Spooler service and clear stuck jobs</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Turn off the monitor</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Change the desktop wallpaper</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Only use security tools with clear written authorisation.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Spooler issues are classic — restart and clear.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q3: A strong defence is…</p>
+                    <p class="quiz-question">Q3: Why prefer the vendor driver package?</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Plugging in every USB you find</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Endpoint USB control + staff awareness + locked screens</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Sharing admin passwords</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Disabling all firewalls</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>It always costs more</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>It often unlocks full features and reliable communication</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Windows can never install printers</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>It removes the need for paper</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Layered technical and human controls reduce USB risk.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — OEM packages match firmware features better than generic drivers.</div>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-plug"></i><h3>Looks harmless</h3><p>Malicious USBs can emulate keyboards</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-user-shield"></i><h3>Authorised use only</h3><p>Red team / training contexts with permission</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Defend in layers</h3><p>Policy, endpoint control, awareness, physical security</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-gavel"></i><h3>Ethics matter</h3><p>Curiosity is not consent</p></div>
-            </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-print"></i><h3>Setup path</h3><p>Power → connect → driver → test page</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-stethoscope"></i><h3>Structured fixes</h3><p>Queue, connectivity, consumables</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-comments"></i><h3>User calm</h3><p>Explain steps; confirm success</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-network-wired"></i><h3>Know the link</h3><p>USB vs network changes the fault map</p></div>
+                </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
                 <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
                 <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>IT Support / SOC Junior</p></div>
-                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Security Analyst</p></div>
-                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Penetration Tester (authorised)</p></div>
+                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Service Desk</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Desktop Support</p></div>
+                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Managed Print Specialist</p></div>
                 </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Ethics</span><span class="stat-label">Non‑negotiable</span></div><div class="stat-item"><span class="stat-number">CompTIA</span><span class="stat-label">Security+</span></div><div class="stat-item"><span class="stat-number">Scope</span><span class="stat-label">Always Written</span></div></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Tickets</span><span class="stat-label">High volume</span></div><div class="stat-item"><span class="stat-number">Process</span><span class="stat-label">Wins</span></div><div class="stat-item"><span class="stat-number">Patience</span><span class="stat-label">Key soft skill</span></div></div>
             </section>
 
             <section data-auto-animate>
@@ -774,10 +752,7 @@
                 <div class="glass-card fragment fade-up">
                     <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Policy hunt</strong> — Find your centre’s removable media rules</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-chalkboard" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Awareness poster</strong> — Design a “don’t plug in unknown USBs” reminder</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-shield-alt" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Defend lab</strong> — Review USB settings on a practice Windows image</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-certificate" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Cyber path</strong> — Link to Understanding Cyber Security unit topics</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Install</strong> — Add the classroom printer two ways if possible</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Break/fix</strong> — Clear a stuck queue on a lab PC</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Script</strong> — Write a 5-question user triage for printer calls</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Imaging and Deployment</li>
                     </ul>
                 </div>
             </section>
@@ -787,10 +762,10 @@
                     <h1 class="animated-gradient">Thank You!</h1>
                     <p class="subtitle">Questions? Let's discuss!</p>
                     <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Cyber Security Awareness — Physical / USB Threats</p>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Support — Printer Setup &amp; Troubleshooting</p>
                         <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-shield-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-user-lock" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-gavel" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;"><i class="fas fa-print" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-tools" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-check" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
                 </div>
             </section>
 

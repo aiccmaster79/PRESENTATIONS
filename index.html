@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRESENTATIONS | OCN NI Level 2 IT</title>
+    <title>PRESENTATIONS | L2 and L3 Combined</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -154,6 +154,99 @@
 
         .presentation-link:hover .cta { color: var(--brand-orange); }
 
+        .view-toolbar {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            animation: fadeUp 0.7s ease 0.1s both;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            gap: 0.35rem;
+            padding: 0.3rem;
+            border-radius: 999px;
+            background: rgba(20, 20, 40, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .view-toggle button {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            color: var(--muted);
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.5rem 0.95rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        .view-toggle button:hover,
+        .view-toggle button:focus-visible {
+            color: #fff;
+            outline: none;
+        }
+
+        .view-toggle button[aria-pressed="true"] {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.55), rgba(0, 189, 165, 0.45));
+        }
+
+        body.view-list .contents {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        body.view-list .presentation-link {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-areas:
+                "icon title cta"
+                "icon desc cta";
+            align-items: center;
+            column-gap: 1rem;
+            row-gap: 0.2rem;
+            padding: 1rem 1.2rem;
+        }
+
+        body.view-list .presentation-link:hover,
+        body.view-list .presentation-link:focus-visible {
+            transform: translateY(-2px);
+        }
+
+        body.view-list .presentation-link .icon {
+            grid-area: icon;
+            margin-bottom: 0;
+            font-size: 1.35rem;
+            width: 1.6rem;
+            text-align: center;
+        }
+
+        body.view-list .presentation-link h2 {
+            grid-area: title;
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+
+        body.view-list .presentation-link p {
+            grid-area: desc;
+            margin-bottom: 0;
+            font-size: 0.8rem;
+        }
+
+        body.view-list .presentation-link .cta {
+            grid-area: cta;
+            white-space: nowrap;
+        }
+
         footer {
             margin-top: 3.5rem;
             text-align: center;
@@ -174,6 +267,18 @@
         @media (max-width: 720px) {
             .page { padding: 2.5rem 1.15rem 2rem; }
             .contents { grid-template-columns: 1fr; }
+
+            body.view-list .presentation-link {
+                grid-template-columns: auto 1fr;
+                grid-template-areas:
+                    "icon title"
+                    "icon desc"
+                    "icon cta";
+            }
+
+            body.view-list .presentation-link .cta {
+                margin-top: 0.35rem;
+            }
         }
     </style>
 </head>
@@ -181,10 +286,165 @@
     <main class="page">
         <header class="hero">
             <p class="brand">PRESENTATIONS</p>
-            <h1>OCN NI Level 2 Diploma in Information Technology</h1>
+            <h1>L2 and L3 Combined</h1>
             <p>Teaching decks for classroom delivery — open a topic below to start the slideshow.</p>
-            <span class="qualification">Level 2 IT Content Library</span>
+            <span class="qualification">OCN NI Level 2 &amp; Level 3 IT Content Library</span>
         </header>
+
+        <div class="view-toolbar" role="group" aria-label="Presentation layout">
+            <div class="view-toggle">
+                <button type="button" id="view-grid" data-view="grid" aria-pressed="true">
+                    <i class="fas fa-th-large" aria-hidden="true"></i>
+                    Grid
+                </button>
+                <button type="button" id="view-list" data-view="list" aria-pressed="false">
+                    <i class="fas fa-list" aria-hidden="true"></i>
+                    List
+                </button>
+            </div>
+        </div>
+
+        <p class="section-label">IT Fundamentals — Demos</p>
+        <section class="contents" aria-label="IT Fundamentals demo presentations">
+            <a class="presentation-link" href="safe-working-esd-ocn-level2-presentation.html">
+                <i class="fas fa-bolt icon" aria-hidden="true"></i>
+                <h2>Safe Working &amp; ESD</h2>
+                <p>Protect people, equipment and data; ESD kit habits.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="inside-a-laptop-ocn-level2-presentation.html">
+                <i class="fas fa-laptop icon" aria-hidden="true"></i>
+                <h2>Inside a Laptop</h2>
+                <p>Open a serviceable laptop and identify key parts.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="bios-uefi-setup-ocn-level2-presentation.html">
+                <i class="fas fa-microchip icon" aria-hidden="true"></i>
+                <h2>BIOS / UEFI Setup</h2>
+                <p>Firmware menus, boot order and safe changes.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="installing-an-os-ocn-level2-presentation.html">
+                <i class="fas fa-compact-disc icon" aria-hidden="true"></i>
+                <h2>Installing an OS</h2>
+                <p>Clean install stages on a PC or virtual machine.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="drivers-device-manager-ocn-level2-presentation.html">
+                <i class="fas fa-tasks icon" aria-hidden="true"></i>
+                <h2>Drivers &amp; Device Manager</h2>
+                <p>Diagnose, update and roll back device drivers.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="storage-comparison-ocn-level2-presentation.html">
+                <i class="fas fa-hdd icon" aria-hidden="true"></i>
+                <h2>Storage Comparison</h2>
+                <p>HDD, SATA SSD, NVMe, USB and cloud trade-offs.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </section>
+
+        <p class="section-label">IT Support / Service Delivery — Demos</p>
+        <section class="contents" aria-label="IT Support demo presentations">
+            <a class="presentation-link purple" href="printer-setup-troubleshooting-ocn-level2-presentation.html">
+                <i class="fas fa-print icon" aria-hidden="true"></i>
+                <h2>Printer Setup &amp; Troubleshooting</h2>
+                <p>Install, test pages and fix common printer faults.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="imaging-and-deployment-ocn-level2-presentation.html">
+                <i class="fas fa-clone icon" aria-hidden="true"></i>
+                <h2>Imaging &amp; Deployment</h2>
+                <p>Why gold images beat building every PC by hand.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="remote-support-tools-ocn-level2-presentation.html">
+                <i class="fas fa-headset icon" aria-hidden="true"></i>
+                <h2>Remote Support Tools</h2>
+                <p>How remote help works and why consent matters.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="helpdesk-ticket-lifecycle-ocn-level2-presentation.html">
+                <i class="fas fa-ticket-alt icon" aria-hidden="true"></i>
+                <h2>Helpdesk Ticket Lifecycle</h2>
+                <p>One request from first report through to closure.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="backup-and-restore-ocn-level2-presentation.html">
+                <i class="fas fa-save icon" aria-hidden="true"></i>
+                <h2>Backup &amp; Restore</h2>
+                <p>Prove backups work by restoring test files.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="software-updating-ocn-level2-presentation.html">
+                <i class="fas fa-sync-alt icon" aria-hidden="true"></i>
+                <h2>Software Updating</h2>
+                <p>Patch safely — OS, apps, drivers and firmware.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="performance-monitoring-ocn-level2-presentation.html">
+                <i class="fas fa-tachometer-alt icon" aria-hidden="true"></i>
+                <h2>Performance Monitoring</h2>
+                <p>Find CPU, RAM, disk and network bottlenecks.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="account-permissions-ocn-level2-presentation.html">
+                <i class="fas fa-user-lock icon" aria-hidden="true"></i>
+                <h2>Account Permissions</h2>
+                <p>How accounts and folder rights protect files.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </section>
+
+        <p class="section-label">Intro to Networking — Demos</p>
+        <section class="contents" aria-label="Intro to networking demo presentations">
+            <a class="presentation-link" href="cable-crimping-ocn-level2-presentation.html">
+                <i class="fas fa-cut icon" aria-hidden="true"></i>
+                <h2>Cable Crimping</h2>
+                <p>Terminate Ethernet, follow T568B and test.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="switch-vs-router-ocn-level2-presentation.html">
+                <i class="fas fa-random icon" aria-hidden="true"></i>
+                <h2>Switch vs Router</h2>
+                <p>LAN switching versus routing between networks.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="dhcp-ip-addressing-ocn-level2-presentation.html">
+                <i class="fas fa-file-contract icon" aria-hidden="true"></i>
+                <h2>DHCP &amp; IP Addressing</h2>
+                <p>Automatic leases, static use cases and APIPA clues.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link" href="dns-in-action-ocn-level2-presentation.html">
+                <i class="fas fa-search icon" aria-hidden="true"></i>
+                <h2>DNS in Action</h2>
+                <p>How names become IPs — and how to test failures.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="vlans-segmentation-ocn-level2-presentation.html">
+                <i class="fas fa-object-group icon" aria-hidden="true"></i>
+                <h2>VLANs &amp; Segmentation</h2>
+                <p>Why networks are split for security and control.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="wifi-signal-channels-ocn-level2-presentation.html">
+                <i class="fas fa-wifi icon" aria-hidden="true"></i>
+                <h2>Wi‑Fi Signal &amp; Channels</h2>
+                <p>Range, obstacles, bands and congestion walks.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </section>
+
+        <p class="section-label">Virtualisation — Demos</p>
+        <section class="contents" aria-label="Virtualisation demo presentations">
+            <a class="presentation-link teal" href="type1-vs-type2-hypervisors-ocn-level2-presentation.html">
+                <i class="fas fa-cube icon" aria-hidden="true"></i>
+                <h2>Type 1 vs Type 2 Hypervisors</h2>
+                <p>Bare-metal versus hosted virtualisation platforms.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </section>
 
         <p class="section-label">Core IT</p>
         <section class="contents" aria-label="Core IT presentations">
@@ -246,6 +506,10 @@
                 <i class="fas fa-cloud-upload-alt icon" aria-hidden="true"></i>
                 <h2>Backups &amp; Data Recovery</h2>
                 <p>The 3-2-1 rule, backup types and restoring data.</p>
+            <a class="presentation-link teal" href="parallels-virtualisation-ocn-level2-presentation.html">
+                <i class="fas fa-cloud icon" aria-hidden="true"></i>
+                <h2>Parallels Desktop</h2>
+                <p>Type 2 hypervisor demo: install, configure and use on Mac.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
         </section>
@@ -258,6 +522,16 @@
                 <p>Types, rules, ports, placement and business security.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
+            <a class="presentation-link purple" href="pfsense-ocn-level2-presentation.html">
+                <i class="fas fa-server icon" aria-hidden="true"></i>
+                <h2>pfSense</h2>
+                <p>Building an open-source firewall/router from a spare PC.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </section>
+
+        <p class="section-label">Offensive Cyber Security</p>
+        <section class="contents" aria-label="Offensive cyber security presentations">
             <a class="presentation-link teal" href="hak5-rubber-ducky-ocn-level2-presentation.html">
                 <i class="fas fa-plug icon" aria-hidden="true"></i>
                 <h2>USB Attack Awareness</h2>
@@ -310,6 +584,22 @@
                 <i class="fas fa-gavel icon" aria-hidden="true"></i>
                 <h2>Staying Legal</h2>
                 <p>Data protection, copyright and acceptable use in practice.</p>
+            <a class="presentation-link" href="omg-cable-ocn-level2-presentation.html">
+                <i class="fas fa-usb icon" aria-hidden="true"></i>
+                <h2>O.MG Cable</h2>
+                <p>Covert USB implant cables, capabilities and defences.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link teal" href="flipper-zero-ocn-level2-presentation.html">
+                <i class="fas fa-microchip icon" aria-hidden="true"></i>
+                <h2>Flipper Zero</h2>
+                <p>Sub-GHz, RFID/NFC, IR and BadUSB multi-tool testing.</p>
+                <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="presentation-link purple" href="wifi-pineapple-ocn-level2-presentation.html">
+                <i class="fas fa-wifi icon" aria-hidden="true"></i>
+                <h2>WiFi Pineapple</h2>
+                <p>Rogue access points, evil twins and wireless auditing.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
         </section>
@@ -483,8 +773,37 @@
         </section>
 
         <footer>
-            OCN NI Level 2 Diploma in Information Technology
+            OCN NI Level 2 &amp; Level 3 — L2 and L3 Combined
         </footer>
     </main>
+    <script>
+        (function () {
+            var STORAGE_KEY = 'presentations-index-view';
+            var buttons = document.querySelectorAll('.view-toggle button');
+
+            function setView(view) {
+                var isList = view === 'list';
+                document.body.classList.toggle('view-list', isList);
+                buttons.forEach(function (button) {
+                    button.setAttribute('aria-pressed', String(button.dataset.view === view));
+                });
+                try {
+                    localStorage.setItem(STORAGE_KEY, view);
+                } catch (e) {}
+            }
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    setView(button.dataset.view);
+                });
+            });
+
+            var saved = 'grid';
+            try {
+                saved = localStorage.getItem(STORAGE_KEY) || 'grid';
+            } catch (e) {}
+            setView(saved === 'list' ? 'list' : 'grid');
+        })();
+    </script>
 </body>
 </html>

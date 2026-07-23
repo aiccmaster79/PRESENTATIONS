@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USB Attack Awareness (Rubber Ducky) | OCN NI Level 2 IT</title>
+    <title>Storage Comparison | OCN NI Level 2 IT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
@@ -622,8 +622,8 @@
 
             <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
                 <div class="title-slide">
-                    <h1 class="animated-gradient">USB Attack Awareness</h1>
-                    <p class="subtitle">Understanding Rubber Ducky-style threats</p>
+                    <h1 class="animated-gradient">Storage Comparison</h1>
+                    <p class="subtitle">HDD, SATA SSD, NVMe, USB and cloud — choose the right place for data</p>
                     <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                 </div>
             </section>
@@ -632,141 +632,114 @@
                 <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
                 <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> what a USB keystroke-injection device is at a high level</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Describe</strong> why these tools appear in authorised security testing</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recognise</strong> risks of unknown USB devices in the workplace</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> defensive policies and user awareness controls</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>State</strong> legal and ethical boundaries for security tools</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Compare</strong> HDD, SATA SSD, NVMe SSD, USB and cloud storage</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> speed, durability, capacity and cost trade-offs</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recommend</strong> storage types for common user scenarios</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> physical connectors and form factors</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Interpret</strong> simple benchmark differences</span></li>
                 </ul>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-exclamation-triangle"></i> Ethics &amp; Legal First</h2>
+                <h2 class="animated-gradient"><i class="fas fa-database"></i> Same Job, Different Tools</h2>
                 <div class="glass-card fragment fade-up">
-                    <p style="font-size:1.05em;">Devices like the <strong style="color: var(--brand-orange);">Hak5 USB Rubber Ducky</strong> are commercial security-testing tools. Using them on systems <strong>without explicit authorisation</strong> can be illegal and can get you expelled, fired, or prosecuted.</p>
+                    <p>All storage keeps data — but <strong style='color:var(--brand-orange);'>how fast</strong>, <strong style='color:var(--brand-purple);'>how reliable</strong>, and <strong style='color:var(--brand-teal);'>where it lives</strong> changes the technician’s advice.</p>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-table"></i> At-a-Glance Comparison</h2>
+                <div class="glass-card fragment fade-up">
+                    <table class="rule-table">
+                        <thead><tr><th>Type</th><th>Speed feel</th><th>Best for</th><th>Watch-outs</th></tr></thead>
+                        <tbody>
+                            <tr class="fragment"><td>HDD</td><td>Slowest</td><td>Bulk archive / cheap TB</td><td>Moving parts, fragile if dropped</td></tr><tr class="fragment"><td>SATA SSD</td><td>Fast</td><td>OS &amp; apps on older PCs</td><td>SATA bottleneck vs NVMe</td></tr><tr class="fragment"><td>NVMe SSD</td><td>Fastest local</td><td>Modern boot / creative work</td><td>Needs M.2 slot / heatsink</td></tr><tr class="fragment"><td>USB flash/HDD</td><td>Varies</td><td>Portable transfer</td><td>Easy to lose; check encryption</td></tr><tr class="fragment"><td>Cloud</td><td>Network-dependent</td><td>Sync, share, off-site copy</td><td>Subscription, connectivity, privacy</td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-gavel"></i> Classroom rule</h4>
-                    <p>We study these tools to <strong>defend</strong> networks and train awareness—not to attack friends, school systems, or employers.</p>
+                    <h4><i class="fas fa-lightbulb"></i> Tip</h4>
+                    <p>Show real drives next to benchmark screenshots for impact.</p>
                 </div>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-plug"></i> What Is a Rubber Ducky?</h2>
-                <div class="glass-card fragment fade-up">
-                    <p>It looks like a normal USB flash drive, but the computer often sees it as a <strong style="color: var(--brand-teal);">keyboard</strong>. Once plugged in, it can type pre-programmed keystrokes very quickly.</p>
+                <h2 class="animated-gradient"><i class="fas fa-tachometer-alt"></i> What to Feel in the Demo</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-hdd"></i><h3>HDD</h3><p>Spinning platters — audible, heavier</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-sd-card"></i><h3>SATA SSD</h3><p>2.5&quot; or mSATA — quiet and snappy</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-memory"></i><h3>NVMe</h3><p>M.2 stick — OS boots in seconds</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-usb"></i><h3>USB storage</h3><p>Convenience king — verify safely</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-cloud"></i><h3>Cloud</h3><p>OneDrive/Google/Dropbox patterns</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>3‑2‑1 idea</h3><p>Copies, media types, off-site</p></div>
                 </div>
-                <div class="vpn-diagram fragment fade-up">
-                    <div class="vpn-element user"><i class="fas fa-plug"></i><p>USB Device</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element tunnel"><i class="fas fa-keyboard"></i><p>Seen as Keyboard</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element server"><i class="fas fa-terminal"></i><p>Typed Commands</p></div>
-                </div>
-                <p class="fragment" style="text-align:center; color: rgba(255,255,255,0.65); margin-top:15px;">This presentation does <strong>not</strong> include attack scripts or payloads.</p>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-user-shield"></i> Why Security Teams Care</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-check"></i><h3>Authorised Testing</h3><p>Red teams verify controls with permission</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-chalkboard-teacher"></i><h3>Awareness Training</h3><p>Show staff why “free USBs” are risky</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-building"></i><h3>Physical Security</h3><p>Prove that desk access can become IT access</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-balance-scale"></i><h3>Risk Assessment</h3><p>Measure impact of USB policy gaps</p></div>
-            </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-shield-alt"></i> Defences That Work</h2>
-
+                <h2 class="animated-gradient"><i class="fas fa-comments"></i> Advice Cheatsheet</h2>
                 <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-ban"></i><div><h4>USB control policies</h4><p>Block unapproved devices via endpoint tools</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-user-lock"></i><div><h4>Least privilege</h4><p>Limit what standard user accounts can run</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-bell"></i><div><h4>User awareness</h4><p>Never plug in found or gifted unknown USBs</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-lock"></i><div><h4>Screen locks</h4><p>Locked sessions reduce unattended injection risk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-eye"></i><div><h4>Physical security</h4><p>Reception, CCTV, visitor badges, clean desk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-sync-alt"></i><div><h4>Patch &amp; EDR</h4><p>Detect unusual keyboard activity / scripts</p></div></div>
-                </div>
-
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-briefcase"></i> Workplace Policy Example</h2>
-                <div class="glass-card fragment fade-up">
-                    <ul>
-                        <li class="fragment">Only company-issued storage devices allowed</li>
-                        <li class="fragment">Guest machines for vendor demos—not corporate laptops</li>
-                        <li class="fragment">Report lost/found USB sticks to IT Security</li>
-                        <li class="fragment">Disable AutoRun / AutoPlay features</li>
-                        <li class="fragment">Security testing only via approved change requests</li>
-                    </ul>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-rocket"></i><div><h4>User wants speed</h4><p>NVMe (or SATA SSD if that’s all the kit allows)</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-pound-sign"></i><div><h4>User wants cheap TB</h4><p>HDD for cold data; SSD for OS</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-laptop"></i><div><h4>Upgrade old laptop</h4><p>Swap HDD → SATA SSD = biggest win</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-share-alt"></i><div><h4>Team collaboration</h4><p>Cloud + permissions</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-user-secret"></i><div><h4>Sensitive files</h4><p>Encrypt; know cloud policy</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-copy"></i><div><h4>Only one copy</h4><p>That’s not a backup — make another</p></div></div>
                 </div>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-store"></i> Awareness Scenario</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-orange);"><i class="fas fa-gift"></i> “Free USB” at reception</h3>
-                    <p>During an authorised phishing/USB awareness campaign, labelled test sticks are left in public areas (with management approval).</p>
-                    <div class="highlight-box"><h4><i class="fas fa-chart-pie"></i> Learning outcome</h4><p>Staff who plug them in get a <strong>training page</strong>, not malware—and the organisation measures how many people need more awareness support.</p></div>
+                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-box"></i><h3>Sample drives</h3><p>HDD, SATA SSD, NVMe, USB</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-tools"></i><h3>Benchmark screenshots</h3><p>CrystalDiskMark or similar</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-laptop"></i><h3>Demo PC</h3><p>To show Device Manager / Disk Management</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-eye"></i><h3>Cloud account</h3><p>For sync contrast</p></div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4>
+                    <p>Pass drives around labelled — then reveal benchmark numbers.</p>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about USB attack awareness</p>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about storage types</p>
                 <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q1: A Rubber Ducky-style device often pretends to be a…</p>
+                    <p class="quiz-question">Q1: The quickest everyday upgrade for a slow HDD laptop is usually…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Monitor</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Keyboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Printer toner chip</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>HDMI cable</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>More RGB lights</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Replacing the HDD with an SSD</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>A longer power cable</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Removing RAM</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Keystroke-injection tools emulate a human interface device (keyboard).</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — SSD boot/app load times transform older machines.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q2: Using such a tool on a school PC without permission is…</p>
+                    <p class="quiz-question">Q2: NVMe SSDs typically connect via…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Always fine if it’s for a laugh</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Unauthorised and potentially illegal</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Required homework</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A Windows update</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>VGA port</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>M.2 slot (PCIe)</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Ethernet only</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>PS/2 keyboard port</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Only use security tools with clear written authorisation.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — NVMe uses PCIe through an M.2 (or U.2/add-in) interface.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q3: A strong defence is…</p>
+                    <p class="quiz-question">Q3: Cloud storage alone is risky if…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Plugging in every USB you find</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Endpoint USB control + staff awareness + locked screens</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Sharing admin passwords</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Disabling all firewalls</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>You also keep a local copy</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>It is your only copy and you lose access/connectivity</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Files are encrypted</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>You use a strong password</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Layered technical and human controls reduce USB risk.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Single-location data is not resilient — think 3‑2‑1.</div>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-plug"></i><h3>Looks harmless</h3><p>Malicious USBs can emulate keyboards</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-user-shield"></i><h3>Authorised use only</h3><p>Red team / training contexts with permission</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Defend in layers</h3><p>Policy, endpoint control, awareness, physical security</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-gavel"></i><h3>Ethics matter</h3><p>Curiosity is not consent</p></div>
-            </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-tachometer-alt"></i><h3>Speed ladder</h3><p>HDD &lt; SATA SSD &lt; NVMe</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-puzzle-piece"></i><h3>Fit the need</h3><p>Capacity, portability, collaboration</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-cloud"></i><h3>Cloud ≠ backup alone</h3><p>Plan copies and access</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-comments"></i><h3>Advise clearly</h3><p>Match tech to user scenario</p></div>
+                </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
                 <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
                 <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>IT Support / SOC Junior</p></div>
-                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Security Analyst</p></div>
-                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Penetration Tester (authorised)</p></div>
+                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Retail/Tech Advisor</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Support Technician</p></div>
+                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Storage / Backup Admin</p></div>
                 </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Ethics</span><span class="stat-label">Non‑negotiable</span></div><div class="stat-item"><span class="stat-number">CompTIA</span><span class="stat-label">Security+</span></div><div class="stat-item"><span class="stat-number">Scope</span><span class="stat-label">Always Written</span></div></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Compare</span><span class="stat-label">Trade-offs</span></div><div class="stat-item"><span class="stat-number">Recommend</span><span class="stat-label">Scenarios</span></div><div class="stat-item"><span class="stat-number">Protect</span><span class="stat-label">Copies</span></div></div>
             </section>
 
             <section data-auto-animate>
@@ -774,10 +747,7 @@
                 <div class="glass-card fragment fade-up">
                     <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Policy hunt</strong> — Find your centre’s removable media rules</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-chalkboard" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Awareness poster</strong> — Design a “don’t plug in unknown USBs” reminder</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-shield-alt" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Defend lab</strong> — Review USB settings on a practice Windows image</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-certificate" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Cyber path</strong> — Link to Understanding Cyber Security unit topics</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Handle</strong> — Identify each sample drive by form factor</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Explain</strong> — Give a 60-second recommendation for a photo studio PC</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Benchmark</strong> — Read one screenshot and pick the fastest</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next unit</strong> — IT Support — Printer Setup</li>
                     </ul>
                 </div>
             </section>
@@ -787,10 +757,10 @@
                     <h1 class="animated-gradient">Thank You!</h1>
                     <p class="subtitle">Questions? Let's discuss!</p>
                     <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Cyber Security Awareness — Physical / USB Threats</p>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Fundamentals — Storage Comparison</p>
                         <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-shield-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-user-lock" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-gavel" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;"><i class="fas fa-hdd" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-database" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-cloud" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
                 </div>
             </section>
 

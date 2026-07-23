@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USB Attack Awareness (Rubber Ducky) | OCN NI Level 2 IT</title>
+    <title>Remote Support Tools | OCN NI Level 2 IT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
@@ -622,9 +622,9 @@
 
             <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
                 <div class="title-slide">
-                    <h1 class="animated-gradient">USB Attack Awareness</h1>
-                    <p class="subtitle">Understanding Rubber Ducky-style threats</p>
-                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                    <h1 class="animated-gradient">Remote Support Tools</h1>
+                    <p class="subtitle">How remote support works — and why consent always matters</p>
+                    <span class="qualification">OCN NI Level 2–3 — IT Support / Service Delivery</span>
                 </div>
             </section>
 
@@ -632,141 +632,126 @@
                 <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
                 <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> what a USB keystroke-injection device is at a high level</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Describe</strong> why these tools appear in authorised security testing</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recognise</strong> risks of unknown USB devices in the workplace</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> defensive policies and user awareness controls</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>State</strong> legal and ethical boundaries for security tools</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Describe</strong> how remote support sessions work</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Compare</strong> common remote tool types (attended vs unattended)</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Demonstrate</strong> a consent-first support session</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> privacy and professionalism on a user’s desktop</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>List</strong> security controls for remote access</span></li>
                 </ul>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-exclamation-triangle"></i> Ethics &amp; Legal First</h2>
+                <h2 class="animated-gradient"><i class="fas fa-headset"></i> Help Without Travelling</h2>
                 <div class="glass-card fragment fade-up">
-                    <p style="font-size:1.05em;">Devices like the <strong style="color: var(--brand-orange);">Hak5 USB Rubber Ducky</strong> are commercial security-testing tools. Using them on systems <strong>without explicit authorisation</strong> can be illegal and can get you expelled, fired, or prosecuted.</p>
+                    <p>Remote tools let technicians see and control a screen over the network — powerful for speed, risky without <strong style='color:var(--brand-orange);'>permission and care</strong>.</p>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-cubes"></i> Session Building Blocks</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-user-check"></i><h3>Consent</h3><p>User agrees before control</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-desktop"></i><h3>Screen share</h3><p>See what the user sees</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-mouse"></i><h3>Input control</h3><p>Move mouse/type when allowed</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-comments"></i><h3>Voice / chat</h3><p>Guide the user clearly</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-file-upload"></i><h3>File transfer</h3><p>Push logs or fixes carefully</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-clipboard"></i><h3>Notes</h3><p>Record what you changed</p></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-user-clock"></i> Attended vs Unattended</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>Attended support</h3>
+                        <ul><li>User present to approve</li><li>Ideal for home/staff help</li><li>Session ends when done</li><li>Higher transparency</li></ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>Unattended access</h3>
+                        <ul><li>Pre-approved agent on device</li><li>Servers / kiosks / labs</li><li>Needs strict controls</li><li>Audit who connected</li></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Consent-First Demo</h2>
+                <div class="glass-card fragment fade-up">
+                    <ol style="font-size:0.9em; line-height:1.7;">
+                        <li class="fragment">Explain why you need remote access and what you will do</li>
+                        <li class="fragment">Start tool; share code / wait for user accept prompt</li>
+                        <li class="fragment">Confirm visible consent on both PCs before taking control</li>
+                        <li class="fragment">Work only on the reported issue; avoid personal files</li>
+                        <li class="fragment">Tell the user before reboots or installs</li>
+                        <li class="fragment">End session, confirm resolution, thank the user, ticket notes</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-user-shield"></i> Security &amp; Etiquette</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-eye-slash"></i><div><h4>Privacy</h4><p>Ask before opening folders/email</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-lock"></i><div><h4>Encryption</h4><p>Prefer org-approved tools only</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-key"></i><div><h4>Accounts</h4><p>No shared ‘god’ passwords on sticky notes</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-user-lock"></i><div><h4>Least privilege</h4><p>Admin only when required</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-ban"></i><div><h4>No surprise installs</h4><p>Malware risk &amp; trust damage</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-scroll"></i><div><h4>Audit trail</h4><p>Who connected, when, and why</p></div></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-box"></i><h3>Two test PCs</h3><p>Helper + user roles</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-tools"></i><h3>Remote support tool</h3><p>Org-approved / classroom licence</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-laptop"></i><h3>Test account</h3><p>Non-production user</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-eye"></i><h3>Sample ticket</h3><p>Issue to resolve live</p></div>
                 </div>
                 <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-gavel"></i> Classroom rule</h4>
-                    <p>We study these tools to <strong>defend</strong> networks and train awareness—not to attack friends, school systems, or employers.</p>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-plug"></i> What Is a Rubber Ducky?</h2>
-                <div class="glass-card fragment fade-up">
-                    <p>It looks like a normal USB flash drive, but the computer often sees it as a <strong style="color: var(--brand-teal);">keyboard</strong>. Once plugged in, it can type pre-programmed keystrokes very quickly.</p>
-                </div>
-                <div class="vpn-diagram fragment fade-up">
-                    <div class="vpn-element user"><i class="fas fa-plug"></i><p>USB Device</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element tunnel"><i class="fas fa-keyboard"></i><p>Seen as Keyboard</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element server"><i class="fas fa-terminal"></i><p>Typed Commands</p></div>
-                </div>
-                <p class="fragment" style="text-align:center; color: rgba(255,255,255,0.65); margin-top:15px;">This presentation does <strong>not</strong> include attack scripts or payloads.</p>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-user-shield"></i> Why Security Teams Care</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-check"></i><h3>Authorised Testing</h3><p>Red teams verify controls with permission</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-chalkboard-teacher"></i><h3>Awareness Training</h3><p>Show staff why “free USBs” are risky</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-building"></i><h3>Physical Security</h3><p>Prove that desk access can become IT access</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-balance-scale"></i><h3>Risk Assessment</h3><p>Measure impact of USB policy gaps</p></div>
-            </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-shield-alt"></i> Defences That Work</h2>
-
-                <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-ban"></i><div><h4>USB control policies</h4><p>Block unapproved devices via endpoint tools</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-user-lock"></i><div><h4>Least privilege</h4><p>Limit what standard user accounts can run</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-bell"></i><div><h4>User awareness</h4><p>Never plug in found or gifted unknown USBs</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-lock"></i><div><h4>Screen locks</h4><p>Locked sessions reduce unattended injection risk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-eye"></i><div><h4>Physical security</h4><p>Reception, CCTV, visitor badges, clean desk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-sync-alt"></i><div><h4>Patch &amp; EDR</h4><p>Detect unusual keyboard activity / scripts</p></div></div>
-                </div>
-
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-briefcase"></i> Workplace Policy Example</h2>
-                <div class="glass-card fragment fade-up">
-                    <ul>
-                        <li class="fragment">Only company-issued storage devices allowed</li>
-                        <li class="fragment">Guest machines for vendor demos—not corporate laptops</li>
-                        <li class="fragment">Report lost/found USB sticks to IT Security</li>
-                        <li class="fragment">Disable AutoRun / AutoPlay features</li>
-                        <li class="fragment">Security testing only via approved change requests</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-store"></i> Awareness Scenario</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-orange);"><i class="fas fa-gift"></i> “Free USB” at reception</h3>
-                    <p>During an authorised phishing/USB awareness campaign, labelled test sticks are left in public areas (with management approval).</p>
-                    <div class="highlight-box"><h4><i class="fas fa-chart-pie"></i> Learning outcome</h4><p>Staff who plug them in get a <strong>training page</strong>, not malware—and the organisation measures how many people need more awareness support.</p></div>
+                    <h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4>
+                    <p>Role-play: one learner is the user who must explicitly accept the session.</p>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about USB attack awareness</p>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about remote support</p>
                 <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q1: A Rubber Ducky-style device often pretends to be a…</p>
+                    <p class="quiz-question">Q1: Before controlling a user’s PC you should…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Monitor</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Keyboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Printer toner chip</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>HDMI cable</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Connect silently whenever you like</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Obtain clear consent / acceptance for the session</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Disable their antivirus forever</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Post their screen on social media</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Keystroke-injection tools emulate a human interface device (keyboard).</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Consent is ethical and often a policy/legal requirement.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q2: Using such a tool on a school PC without permission is…</p>
+                    <p class="quiz-question">Q2: Unattended remote access is most appropriate for…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Always fine if it’s for a laugh</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Unauthorised and potentially illegal</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Required homework</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A Windows update</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Random strangers on the internet</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Managed devices with policy and auditing (e.g. servers/labs)</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Any home PC without agreement</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Public library PCs you do not own</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Only use security tools with clear written authorisation.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Unattended access needs formal control and monitoring.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q3: A strong defence is…</p>
+                    <p class="quiz-question">Q3: During a remote session, good practice is to…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Plugging in every USB you find</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Endpoint USB control + staff awareness + locked screens</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Sharing admin passwords</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Disabling all firewalls</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Browse personal photos out of curiosity</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Stay on-task, narrate actions, and document changes</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Install unrelated games</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Share the session code publicly</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Layered technical and human controls reduce USB risk.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Professionalism protects the user and the organisation.</div>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-plug"></i><h3>Looks harmless</h3><p>Malicious USBs can emulate keyboards</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-user-shield"></i><h3>Authorised use only</h3><p>Red team / training contexts with permission</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Defend in layers</h3><p>Policy, endpoint control, awareness, physical security</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-gavel"></i><h3>Ethics matter</h3><p>Curiosity is not consent</p></div>
-            </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-handshake"></i><h3>Consent first</h3><p>No silent takeovers</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-headset"></i><h3>Remote = speed</h3><p>Resolve without travel</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-user-shield"></i><h3>Privacy always</h3><p>Least privilege, approved tools</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard"></i><h3>Leave evidence</h3><p>Ticket what you did</p></div>
+                </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
                 <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
                 <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>IT Support / SOC Junior</p></div>
-                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Security Analyst</p></div>
-                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Penetration Tester (authorised)</p></div>
+                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Remote Support Agent</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Service Desk Analyst</p></div>
+                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>IT Support Team Lead</p></div>
                 </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Ethics</span><span class="stat-label">Non‑negotiable</span></div><div class="stat-item"><span class="stat-number">CompTIA</span><span class="stat-label">Security+</span></div><div class="stat-item"><span class="stat-number">Scope</span><span class="stat-label">Always Written</span></div></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Consent</span><span class="stat-label">Mandatory</span></div><div class="stat-item"><span class="stat-number">Tools</span><span class="stat-label">Approved only</span></div><div class="stat-item"><span class="stat-number">Trust</span><span class="stat-label">Your brand</span></div></div>
             </section>
 
             <section data-auto-animate>
@@ -774,10 +759,7 @@
                 <div class="glass-card fragment fade-up">
                     <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Policy hunt</strong> — Find your centre’s removable media rules</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-chalkboard" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Awareness poster</strong> — Design a “don’t plug in unknown USBs” reminder</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-shield-alt" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Defend lab</strong> — Review USB settings on a practice Windows image</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-certificate" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Cyber path</strong> — Link to Understanding Cyber Security unit topics</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Role-play</strong> — Run one consented remote fix between two PCs</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Policy</strong> — Find your org/school remote access rules</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Reflect</strong> — List three privacy mistakes to avoid</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Helpdesk Ticket Lifecycle</li>
                     </ul>
                 </div>
             </section>
@@ -787,10 +769,10 @@
                     <h1 class="animated-gradient">Thank You!</h1>
                     <p class="subtitle">Questions? Let's discuss!</p>
                     <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Cyber Security Awareness — Physical / USB Threats</p>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Support — Remote Support Tools</p>
                         <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-shield-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-user-lock" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-gavel" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;"><i class="fas fa-headset" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-desktop" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-user-shield" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
                 </div>
             </section>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USB Attack Awareness (Rubber Ducky) | OCN NI Level 2 IT</title>
+    <title>BIOS / UEFI Setup | OCN NI Level 2 IT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
@@ -622,8 +622,8 @@
 
             <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
                 <div class="title-slide">
-                    <h1 class="animated-gradient">USB Attack Awareness</h1>
-                    <p class="subtitle">Understanding Rubber Ducky-style threats</p>
+                    <h1 class="animated-gradient">BIOS / UEFI Setup</h1>
+                    <p class="subtitle">How technicians use firmware settings before the operating system starts</p>
                     <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                 </div>
             </section>
@@ -632,141 +632,126 @@
                 <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
                 <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> what a USB keystroke-injection device is at a high level</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Describe</strong> why these tools appear in authorised security testing</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recognise</strong> risks of unknown USB devices in the workplace</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> defensive policies and user awareness controls</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>State</strong> legal and ethical boundaries for security tools</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> the difference between BIOS and UEFI</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Enter</strong> firmware setup and navigate key menus safely</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> boot order, secure boot and hardware info screens</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Change</strong> boot device to USB/DVD for installs — then restore it</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Recognise</strong> when firmware settings cause (or fix) boot problems</span></li>
                 </ul>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-exclamation-triangle"></i> Ethics &amp; Legal First</h2>
+                <h2 class="animated-gradient"><i class="fas fa-microchip"></i> Firmware Comes First</h2>
                 <div class="glass-card fragment fade-up">
-                    <p style="font-size:1.05em;">Devices like the <strong style="color: var(--brand-orange);">Hak5 USB Rubber Ducky</strong> are commercial security-testing tools. Using them on systems <strong>without explicit authorisation</strong> can be illegal and can get you expelled, fired, or prosecuted.</p>
+                    <p>Before Windows or Linux loads, <strong style='color:var(--brand-orange);'>BIOS/UEFI</strong> initialises hardware and decides <em>what</em> to boot.</p><p style='margin-top:12px;color:rgba(255,255,255,0.75);'>Technicians use it for installs, diagnostics and hardware checks.</p>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-exchange-alt"></i> BIOS vs UEFI</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>Legacy BIOS</h3>
+                        <ul><li>Older text-style interface</li><li>MBR partitioning era</li><li>Limited drive size support</li><li>Still seen on older kit</li></ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>Modern UEFI</h3>
+                        <ul><li>Graphical menus, mouse support</li><li>GPT disks &amp; large drives</li><li>Secure Boot support</li><li>Faster boot on modern PCs</li></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check"></i> What Technicians Check</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-info-circle"></i><h3>System info</h3><p>CPU, RAM size, firmware version</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-sort-numeric-down"></i><h3>Boot order</h3><p>SSD / USB / network PXE</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Secure Boot</h3><p>Blocks unsigned bootloaders</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-calendar"></i><h3>Date &amp; time</h3><p>Wrong clock can break certs/logons</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-memory"></i><h3>Virtualisation</h3><p>VT-x/AMD-V for VMs</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-undo"></i><h3>Load defaults</h3><p>Safe recovery if settings go wrong</p></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Demo Walkthrough</h2>
+                <div class="glass-card fragment fade-up">
+                    <ol style="font-size:0.9em; line-height:1.7;">
+                        <li class="fragment">Power on and tap the vendor key (Del, F2, F10, Esc — know the model)</li>
+                        <li class="fragment">Show system information: confirm RAM and disks are detected</li>
+                        <li class="fragment">Open Boot menu — note current order</li>
+                        <li class="fragment">Temporarily set USB installer first (for OS install demos)</li>
+                        <li class="fragment">Point out Secure Boot and virtualisation toggles</li>
+                        <li class="fragment">Save &amp; Exit — or discard changes if only observing</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-bug"></i> Common Boot Problems</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-usb"></i><div><h4>Boots to wrong device</h4><p>USB left first in boot order</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-shield-alt"></i><div><h4>Install media blocked</h4><p>Secure Boot / CSM mismatch</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-hdd"></i><div><h4>No boot device</h4><p>Disk not detected or cable/NVMe issue</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-network-wired"></i><div><h4>Unexpected PXE boot</h4><p>Network boot above disk</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-clock"></i><div><h4>Time drift</h4><p>CMOS battery failing</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-key"></i><div><h4>Forgotten passwords</h4><p>Supervisor password locks setup</p></div></div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-box"></i><h3>Demo PC / laptop</h3><p>With UEFI access enabled</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-tools"></i><h3>Known entry key</h3><p>Documented for the model</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-laptop"></i><h3>USB installer (optional)</h3><p>To show boot-order change</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-eye"></i><h3>Projector / visualiser</h3><p>So learners can follow menus</p></div>
                 </div>
                 <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-gavel"></i> Classroom rule</h4>
-                    <p>We study these tools to <strong>defend</strong> networks and train awareness—not to attack friends, school systems, or employers.</p>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-plug"></i> What Is a Rubber Ducky?</h2>
-                <div class="glass-card fragment fade-up">
-                    <p>It looks like a normal USB flash drive, but the computer often sees it as a <strong style="color: var(--brand-teal);">keyboard</strong>. Once plugged in, it can type pre-programmed keystrokes very quickly.</p>
-                </div>
-                <div class="vpn-diagram fragment fade-up">
-                    <div class="vpn-element user"><i class="fas fa-plug"></i><p>USB Device</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element tunnel"><i class="fas fa-keyboard"></i><p>Seen as Keyboard</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element server"><i class="fas fa-terminal"></i><p>Typed Commands</p></div>
-                </div>
-                <p class="fragment" style="text-align:center; color: rgba(255,255,255,0.65); margin-top:15px;">This presentation does <strong>not</strong> include attack scripts or payloads.</p>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-user-shield"></i> Why Security Teams Care</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-check"></i><h3>Authorised Testing</h3><p>Red teams verify controls with permission</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-chalkboard-teacher"></i><h3>Awareness Training</h3><p>Show staff why “free USBs” are risky</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-building"></i><h3>Physical Security</h3><p>Prove that desk access can become IT access</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-balance-scale"></i><h3>Risk Assessment</h3><p>Measure impact of USB policy gaps</p></div>
-            </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-shield-alt"></i> Defences That Work</h2>
-
-                <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-ban"></i><div><h4>USB control policies</h4><p>Block unapproved devices via endpoint tools</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-user-lock"></i><div><h4>Least privilege</h4><p>Limit what standard user accounts can run</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-bell"></i><div><h4>User awareness</h4><p>Never plug in found or gifted unknown USBs</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-lock"></i><div><h4>Screen locks</h4><p>Locked sessions reduce unattended injection risk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-eye"></i><div><h4>Physical security</h4><p>Reception, CCTV, visitor badges, clean desk</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-sync-alt"></i><div><h4>Patch &amp; EDR</h4><p>Detect unusual keyboard activity / scripts</p></div></div>
-                </div>
-
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-briefcase"></i> Workplace Policy Example</h2>
-                <div class="glass-card fragment fade-up">
-                    <ul>
-                        <li class="fragment">Only company-issued storage devices allowed</li>
-                        <li class="fragment">Guest machines for vendor demos—not corporate laptops</li>
-                        <li class="fragment">Report lost/found USB sticks to IT Security</li>
-                        <li class="fragment">Disable AutoRun / AutoPlay features</li>
-                        <li class="fragment">Security testing only via approved change requests</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-store"></i> Awareness Scenario</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-orange);"><i class="fas fa-gift"></i> “Free USB” at reception</h3>
-                    <p>During an authorised phishing/USB awareness campaign, labelled test sticks are left in public areas (with management approval).</p>
-                    <div class="highlight-box"><h4><i class="fas fa-chart-pie"></i> Learning outcome</h4><p>Staff who plug them in get a <strong>training page</strong>, not malware—and the organisation measures how many people need more awareness support.</p></div>
+                    <h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4>
+                    <p>Agree a classroom rule: learners must not set firmware passwords.</p>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about USB attack awareness</p>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about BIOS and UEFI</p>
                 <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q1: A Rubber Ducky-style device often pretends to be a…</p>
+                    <p class="quiz-question">Q1: UEFI is best described as…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Monitor</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Keyboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Printer toner chip</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>HDMI cable</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>An office app like Word</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Firmware that starts hardware and chooses a boot device</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>A type of SSD</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A helpdesk ticket system</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Keystroke-injection tools emulate a human interface device (keyboard).</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — UEFI/BIOS runs before the operating system.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q2: Using such a tool on a school PC without permission is…</p>
+                    <p class="quiz-question">Q2: To install from USB you often need to…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Always fine if it’s for a laugh</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Unauthorised and potentially illegal</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Required homework</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A Windows update</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Delete all drivers first</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Put the USB higher in the boot order (or use Boot Menu)</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Disable the keyboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Remove the SSD permanently</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Only use security tools with clear written authorisation.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Boot order (or one-time boot menu) selects the installer.</div>
                 </div>
             </section>
 
             <section>
                 <div class="quiz-container">
-                    <p class="quiz-question">Q3: A strong defence is…</p>
+                    <p class="quiz-question">Q3: If settings become confusing, a safe option is…</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Plugging in every USB you find</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Endpoint USB control + staff awareness + locked screens</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Sharing admin passwords</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Disabling all firewalls</div>
+                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Smash the CMOS chip</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Load optimised/default settings</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Format the SSD from UEFI always</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Ignore Save &amp; Exit forever</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Layered technical and human controls reduce USB risk.</div>
+                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Defaults restore a known-good firmware baseline.</div>
                 </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-plug"></i><h3>Looks harmless</h3><p>Malicious USBs can emulate keyboards</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-user-shield"></i><h3>Authorised use only</h3><p>Red team / training contexts with permission</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Defend in layers</h3><p>Policy, endpoint control, awareness, physical security</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-gavel"></i><h3>Ethics matter</h3><p>Curiosity is not consent</p></div>
-            </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip"></i><h3>Before the OS</h3><p>Firmware controls first boot decisions</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-list-ol"></i><h3>Boot order</h3><p>Essential for installs and recovery</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Secure Boot</h3><p>Know it exists — don’t fight it blindly</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-undo"></i><h3>Defaults help</h3><p>Recover safely when unsure</p></div>
+                </div>
             </section>
 
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
                 <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
                 <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>IT Support / SOC Junior</p></div>
-                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Security Analyst</p></div>
-                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Penetration Tester (authorised)</p></div>
+                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>IT Support Assistant</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Desktop Engineer</p></div>
+                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Systems Administrator</p></div>
                 </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Ethics</span><span class="stat-label">Non‑negotiable</span></div><div class="stat-item"><span class="stat-number">CompTIA</span><span class="stat-label">Security+</span></div><div class="stat-item"><span class="stat-number">Scope</span><span class="stat-label">Always Written</span></div></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">UEFI</span><span class="stat-label">Daily tool</span></div><div class="stat-item"><span class="stat-number">Boot</span><span class="stat-label">Fix skill</span></div><div class="stat-item"><span class="stat-number">Docs</span><span class="stat-label">Vendor keys</span></div></div>
             </section>
 
             <section data-auto-animate>
@@ -774,10 +759,7 @@
                 <div class="glass-card fragment fade-up">
                     <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Policy hunt</strong> — Find your centre’s removable media rules</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-chalkboard" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Awareness poster</strong> — Design a “don’t plug in unknown USBs” reminder</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-shield-alt" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Defend lab</strong> — Review USB settings on a practice Windows image</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-certificate" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Cyber path</strong> — Link to Understanding Cyber Security unit topics</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Memorise</strong> — Entry key for your classroom PCs</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Practice</strong> — Change boot order and restore it</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Note</strong> — Record Secure Boot state before an OS install</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Installing an Operating System</li>
                     </ul>
                 </div>
             </section>
@@ -787,10 +769,10 @@
                     <h1 class="animated-gradient">Thank You!</h1>
                     <p class="subtitle">Questions? Let's discuss!</p>
                     <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Cyber Security Awareness — Physical / USB Threats</p>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Fundamentals — BIOS / UEFI Setup</p>
                         <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-shield-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-user-lock" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-gavel" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;"><i class="fas fa-microchip" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-sliders-h" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-laptop" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
                 </div>
             </section>
 
