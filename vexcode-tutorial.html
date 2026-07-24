@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEXcode Tutorial | Learn to Program VEX Robots</title>
+    <meta name="description" content="A clear, step-by-step tutorial for using VEXcode from VEX Robotics — Blocks, Text, connect, download, and drive.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --vex-red: #C8102E;
+            --vex-red-deep: #9B0C23;
+            --ink: #1A1F2C;
+            --ink-soft: #3D4659;
+            --muted: #5C6578;
+            --paper: #F2F5F8;
+            --paper-2: #E4EAF1;
+            --line: #C9D3DF;
+            --white: #FFFFFF;
+            --signal: #0E8F7B;
+            --code-bg: #1E2433;
+            --max: 68rem;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--ink);
+            background-color: var(--paper);
+            background-image:
+                linear-gradient(180deg, rgba(200, 16, 46, 0.06) 0%, transparent 28%),
+                linear-gradient(rgba(201, 211, 223, 0.45) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 211, 223, 0.45) 1px, transparent 1px),
+                radial-gradient(ellipse 90% 55% at 80% -10%, rgba(14, 143, 123, 0.12), transparent 55%),
+                linear-gradient(165deg, #F7F9FB 0%, #E8EEF4 48%, #F3F1ED 100%);
+            background-size: auto, 28px 28px, 28px 28px, auto, auto;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--vex-red); text-underline-offset: 0.15em; }
+        a:hover { color: var(--vex-red-deep); }
+
+        img, svg { display: block; max-width: 100%; }
+
+        /* ——— Nav ——— */
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            backdrop-filter: blur(12px);
+            background: rgba(242, 245, 248, 0.82);
+            border-bottom: 1px solid rgba(201, 211, 223, 0.7);
+        }
+
+        .site-nav__inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0.85rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .site-nav__brand {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .site-nav__brand span { color: var(--vex-red); }
+
+        .site-nav__links {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .site-nav__links a {
+            color: var(--ink-soft);
+            text-decoration: none;
+        }
+
+        .site-nav__links a:hover { color: var(--vex-red); }
+
+        @media (max-width: 720px) {
+            .site-nav__links { display: none; }
+        }
+
+        /* ——— Hero ——— */
+        .hero {
+            position: relative;
+            min-height: min(100vh, 52rem);
+            display: grid;
+            align-items: end;
+            overflow: hidden;
+        }
+
+        .hero__plane {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 70% 40%, rgba(200, 16, 46, 0.18), transparent 60%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(14, 143, 123, 0.14), transparent 55%),
+                linear-gradient(160deg, #1A1F2C 0%, #2A3348 55%, #1E2838 100%);
+        }
+
+        .hero__grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.22;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 90%);
+        }
+
+        .hero__visual {
+            position: absolute;
+            right: -4%;
+            bottom: 8%;
+            width: min(58vw, 36rem);
+            height: auto;
+            opacity: 0;
+            animation: heroIn 1.1s var(--ease) 0.15s forwards;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 6rem 1.25rem 4.5rem;
+            color: var(--white);
+        }
+
+        .hero__brand {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: clamp(3.2rem, 11vw, 6.4rem);
+            letter-spacing: -0.045em;
+            line-height: 0.92;
+            margin-bottom: 1.1rem;
+            opacity: 0;
+            animation: rise 0.9s var(--ease) 0.05s forwards;
+        }
+
+        .hero__brand em {
+            font-style: normal;
+            color: #FF4D6A;
+        }
+
+        .hero__headline {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+            letter-spacing: -0.02em;
+            max-width: 18ch;
+            margin-bottom: 0.85rem;
+            opacity: 0;
+            animation: rise 0.9s var(--ease) 0.18s forwards;
+        }
+
+        .hero__lede {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.72);
+            max-width: 34ch;
+            margin-bottom: 1.75rem;
+            opacity: 0;
+            animation: rise 0.9s var(--ease) 0.3s forwards;
+        }
+
+        .hero__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            background: var(--vex-red);
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.9rem 1.35rem;
+            border-radius: 4px;
+            transition: background 0.25s ease, transform 0.25s var(--ease);
+            opacity: 0;
+            animation: rise 0.9s var(--ease) 0.42s forwards;
+        }
+
+        .hero__cta:hover {
+            background: #E01535;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .hero__cta svg { width: 1.1rem; height: 1.1rem; }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroIn {
+            from { opacity: 0; transform: translate(24px, 18px) scale(0.96); }
+            to { opacity: 1; transform: translate(0, 0) scale(1); }
+        }
+
+        @media (max-width: 800px) {
+            .hero__visual {
+                width: 78vw;
+                right: -12%;
+                bottom: 42%;
+                opacity: 0.35;
+            }
+            .hero__content { padding-top: 5rem; padding-bottom: 3.5rem; }
+        }
+
+        /* ——— Shared sections ——— */
+        .section {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 4.5rem 1.25rem;
+        }
+
+        .section__label {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--vex-red);
+            margin-bottom: 0.65rem;
+        }
+
+        .section__title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.7rem, 3.5vw, 2.35rem);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+            max-width: 18ch;
+        }
+
+        .section__text {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 42rem;
+            margin-bottom: 2rem;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ——— Platforms ——— */
+        .platforms {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .platform {
+            padding: 1.5rem 1.25rem 1.6rem;
+            border-right: 1px solid var(--line);
+        }
+
+        .platform:last-child { border-right: none; }
+
+        .platform__name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .platform__name span { color: var(--vex-red); }
+
+        .platform p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 720px) {
+            .platforms { grid-template-columns: 1fr; }
+            .platform {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+            .platform:last-child { border-bottom: none; }
+        }
+
+        /* ——— Steps ——— */
+        .steps {
+            display: grid;
+            gap: 0;
+            counter-reset: step;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 4.5rem 1fr;
+            gap: 1rem;
+            padding: 1.6rem 0;
+            border-bottom: 1px solid var(--line);
+            align-items: start;
+        }
+
+        .step:last-child { border-bottom: none; }
+
+        .step__num {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: -0.04em;
+            color: var(--vex-red);
+            line-height: 1;
+            padding-top: 0.15rem;
+        }
+
+        .step__num::before {
+            counter-increment: step;
+            content: counter(step, decimal-leading-zero);
+        }
+
+        .step h3 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        .step p { color: var(--muted); max-width: 40rem; }
+
+        @media (max-width: 520px) {
+            .step { grid-template-columns: 3.2rem 1fr; gap: 0.75rem; }
+            .step__num { font-size: 1.55rem; }
+        }
+
+        /* ——— Workspace ——— */
+        .workspace-band {
+            background: linear-gradient(180deg, rgba(26, 31, 44, 0.03), transparent);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .workspace__panel {
+            background: var(--code-bg);
+            color: #E8ECF4;
+            border-radius: 6px;
+            padding: 1.1rem 1.15rem 1.25rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82rem;
+            box-shadow: 0 18px 40px rgba(26, 31, 44, 0.18);
+            overflow: hidden;
+        }
+
+        .workspace__chrome {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .workspace__chrome i {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: #4A5568;
+            display: block;
+        }
+
+        .workspace__chrome i:nth-child(1) { background: #C8102E; }
+        .workspace__chrome i:nth-child(2) { background: #D4A017; }
+        .workspace__chrome i:nth-child(3) { background: #0E8F7B; }
+
+        .block-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 0.55rem;
+            align-items: center;
+        }
+
+        .vex-block {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.65rem;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            animation: blockPulse 3.6s ease-in-out infinite;
+        }
+
+        .vex-block--motion { background: #3B82F6; animation-delay: 0s; }
+        .vex-block--looks { background: #8B5CF6; animation-delay: 0.4s; }
+        .vex-block--sensing { background: #0E8F7B; animation-delay: 0.8s; }
+        .vex-block--events { background: #D4A017; color: #1A1F2C; animation-delay: 1.2s; }
+        .vex-block--control { background: #F59E0B; color: #1A1F2C; animation-delay: 0.2s; }
+
+        .vex-block small {
+            font-weight: 500;
+            opacity: 0.85;
+            font-size: 0.72rem;
+        }
+
+        @keyframes blockPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .indent { margin-left: 1.1rem; }
+
+        .workspace__list {
+            list-style: none;
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        .workspace__list li {
+            padding-left: 1.1rem;
+            border-left: 3px solid var(--vex-red);
+        }
+
+        .workspace__list strong {
+            display: block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .workspace__list span {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 860px) {
+            .workspace { grid-template-columns: 1fr; gap: 1.75rem; }
+        }
+
+        /* ——— Language split ——— */
+        .lang-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .lang-col h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lang-col p { color: var(--muted); margin-bottom: 1rem; }
+
+        .code-sample {
+            background: var(--code-bg);
+            color: #D7DEEA;
+            border-radius: 6px;
+            padding: 1rem 1.1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.55;
+            overflow-x: auto;
+        }
+
+        .code-sample .kw { color: #FF7A90; }
+        .code-sample .fn { color: #6EE7B7; }
+        .code-sample .cm { color: #7B8499; }
+        .code-sample .num { color: #FBBF24; }
+
+        @media (max-width: 720px) {
+            .lang-split { grid-template-columns: 1fr; }
+        }
+
+        /* ——— First program ——— */
+        .program-flow {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .flow-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .flow-badge {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--ink);
+            padding: 0.45rem 0.65rem;
+            border-radius: 3px;
+            min-width: 4.5rem;
+            text-align: center;
+        }
+
+        .flow-badge--go { background: var(--signal); }
+        .flow-badge--run { background: var(--vex-red); }
+
+        .flow-item h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .flow-item p { color: var(--muted); font-size: 0.98rem; }
+
+        /* ——— Challenges ——— */
+        .challenges {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .challenge {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .challenge:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .challenge__level {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--signal);
+            margin-bottom: 0.35rem;
+        }
+
+        .challenge h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .challenge p { color: var(--muted); max-width: 40rem; }
+
+        /* ——— Resources ——— */
+        .resources {
+            background: var(--ink);
+            color: var(--white);
+            margin-top: 2rem;
+        }
+
+        .resources .section__label { color: #FF7A90; }
+        .resources .section__text { color: rgba(255, 255, 255, 0.65); }
+
+        .resource-links {
+            list-style: none;
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .resource-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.85rem;
+            width: 100%;
+            max-width: 32rem;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .resource-links a:hover {
+            color: #FF7A90;
+            border-color: #FF7A90;
+        }
+
+        .resource-links a svg {
+            width: 1rem;
+            height: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ——— Footer ——— */
+        .site-footer {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 2rem 1.25rem 2.5rem;
+            color: var(--muted);
+            font-size: 0.88rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .site-footer a {
+            color: var(--ink-soft);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .site-footer a:hover { color: var(--vex-red); }
+    </style>
+</head>
+<body>
+    <nav class="site-nav" aria-label="Page">
+        <div class="site-nav__inner">
+            <a class="site-nav__brand" href="#top">VEX<span>code</span></a>
+            <ul class="site-nav__links">
+                <li><a href="#start">Start</a></li>
+                <li><a href="#workspace">Workspace</a></li>
+                <li><a href="#first-program">First program</a></li>
+                <li><a href="#practice">Practice</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="hero__plane" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
+        <svg class="hero__visual" viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Robot chassis -->
+            <rect x="150" y="120" width="220" height="150" rx="18" fill="#2F3A52" stroke="#FF4D6A" stroke-width="3"/>
+            <rect x="175" y="145" width="170" height="70" rx="8" fill="#1A1F2C"/>
+            <text x="260" y="188" text-anchor="middle" fill="#FF4D6A" font-family="Sora, sans-serif" font-size="28" font-weight="800">VEX</text>
+            <!-- Arms / motors -->
+            <rect x="95" y="155" width="55" height="36" rx="8" fill="#0E8F7B"/>
+            <rect x="370" y="155" width="55" height="36" rx="8" fill="#0E8F7B"/>
+            <!-- Wheels -->
+            <circle cx="190" cy="300" r="42" fill="#1A1F2C" stroke="#C9D3DF" stroke-width="4"/>
+            <circle cx="330" cy="300" r="42" fill="#1A1F2C" stroke="#C9D3DF" stroke-width="4"/>
+            <circle cx="190" cy="300" r="16" fill="#C8102E"/>
+            <circle cx="330" cy="300" r="16" fill="#C8102E"/>
+            <!-- Floating code blocks -->
+            <rect x="40" y="40" width="130" height="36" rx="6" fill="#3B82F6">
+                <animate attributeName="y" values="40;32;40" dur="3.2s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="360" y="55" width="120" height="36" rx="6" fill="#D4A017">
+                <animate attributeName="y" values="55;48;55" dur="2.8s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="400" y="220" width="100" height="36" rx="6" fill="#8B5CF6">
+                <animate attributeName="y" values="220;212;220" dur="3.5s" repeatCount="indefinite"/>
+            </rect>
+        </svg>
+        <div class="hero__content">
+            <p class="hero__brand">VEX<em>code</em></p>
+            <h1 class="hero__headline">Program a robot that moves because you told it to.</h1>
+            <p class="hero__lede">A practical tutorial for VEXcode from VEX Robotics — from opening the app to downloading your first drive routine.</p>
+            <a class="hero__cta" href="#start">
+                Start the tutorial
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section reveal-on-scroll" id="what">
+            <p class="section__label">What it is</p>
+            <h2 class="section__title">VEXcode is the official coding environment for VEX robots.</h2>
+            <p class="section__text">
+                Built by VEX Robotics, VEXcode lets you write programs in Blocks, Python, or C++ and send them to classroom robots such as VEX GO, IQ, and V5.
+                Drag colourful blocks when you are learning; switch to text when you are ready for more control.
+            </p>
+            <div class="platforms">
+                <article class="platform">
+                    <h3 class="platform__name">VEX <span>GO</span></h3>
+                    <p>Early STEM builds. Snap-together parts and a gentle Blocks introduction.</p>
+                </article>
+                <article class="platform">
+                    <h3 class="platform__name">VEX <span>IQ</span></h3>
+                    <p>Middle-school competition kits. Sensors, drivetrains, and event-driven code.</p>
+                </article>
+                <article class="platform">
+                    <h3 class="platform__name">VEX <span>V5</span></h3>
+                    <p>High-school competition robots. Powerful motors, vision, and text coding.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section reveal-on-scroll" id="start">
+            <p class="section__label">Getting started</p>
+            <h2 class="section__title">Open VEXcode and talk to your brain.</h2>
+            <p class="section__text">
+                You can run VEXcode on Windows, macOS, Chromebook, iPad, or in a supported browser, depending on your platform.
+                Match the app edition to the robot you are using.
+            </p>
+            <ol class="steps">
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Install or launch the right edition</h3>
+                        <p>Download VEXcode GO, IQ, or V5 from the official VEX site, or open the web version if your school uses it. The toolbox and device list change to match that platform.</p>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Power the robot and connect</h3>
+                        <p>Turn on the Brain. Connect with USB, or pair over Bluetooth / VEXlink when available. In VEXcode, open the Devices or Robot panel and confirm the Brain shows as connected.</p>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Configure motors and sensors</h3>
+                        <p>Add each motor, drivetrain, bumper, distance sensor, or inertial sensor to the project configuration so Blocks and Text know which ports to use.</p>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Start a new project</h3>
+                        <p>Choose Blocks for visual coding, or Python / C++ for text. Save early — competition day is a bad time to lose a drivetrain routine.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <div class="workspace-band">
+            <section class="section reveal-on-scroll" id="workspace">
+                <p class="section__label">The workspace</p>
+                <h2 class="section__title">Know the four places you live in VEXcode.</h2>
+                <p class="section__text">Once connected, almost every task happens in the same layout: toolbox, canvas, toolbar, and monitor.</p>
+                <div class="workspace">
+                    <div class="workspace__panel" aria-hidden="true">
+                        <div class="workspace__chrome"><i></i><i></i><i></i></div>
+                        <div class="block-row">
+                            <span class="vex-block vex-block--events">when started</span>
+                        </div>
+                        <div class="block-row indent">
+                            <span class="vex-block vex-block--motion">drive forward <small>200 mm</small></span>
+                        </div>
+                        <div class="block-row indent">
+                            <span class="vex-block vex-block--motion">turn right <small>90°</small></span>
+                        </div>
+                        <div class="block-row indent">
+                            <span class="vex-block vex-block--control">wait <small>1 second</small></span>
+                        </div>
+                        <div class="block-row indent">
+                            <span class="vex-block vex-block--sensing">if bumper pressed?</span>
+                        </div>
+                        <div class="block-row indent" style="margin-left:2.2rem">
+                            <span class="vex-block vex-block--looks">print <small>"Hit!"</small></span>
+                        </div>
+                    </div>
+                    <ul class="workspace__list">
+                        <li>
+                            <strong>Toolbox</strong>
+                            <span>Categories of blocks or a text API reference — Motion, Sensing, Control, Events, and more.</span>
+                        </li>
+                        <li>
+                            <strong>Coding canvas</strong>
+                            <span>Where you snap blocks together or type statements. Programs usually begin with a “when started” event.</span>
+                        </li>
+                        <li>
+                            <strong>Toolbar</strong>
+                            <span>Download / Run, stop, help, examples, and project settings live here.</span>
+                        </li>
+                        <li>
+                            <strong>Monitor &amp; console</strong>
+                            <span>Watch sensor values and printed messages while the robot runs — essential for debugging.</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <section class="section reveal-on-scroll" id="languages">
+            <p class="section__label">Blocks or text</p>
+            <h2 class="section__title">Same robot. Two ways to speak to it.</h2>
+            <p class="section__text">Start with Blocks to learn structure. Move to Python or C++ when you need loops, functions, and finer motor control.</p>
+            <div class="lang-split">
+                <div class="lang-col">
+                    <h3>Blocks</h3>
+                    <p>Snap puzzle pieces. Great for sequencing, conditionals, and classroom demos. Harder to mistype a command.</p>
+                    <div class="block-row">
+                        <span class="vex-block vex-block--events">when started</span>
+                    </div>
+                    <div class="block-row">
+                        <span class="vex-block vex-block--motion">drive forward</span>
+                    </div>
+                </div>
+                <div class="lang-col">
+                    <h3>Python (example)</h3>
+                    <p>Readable text coding used widely in V5 and IQ classrooms once students leave Blocks.</p>
+                    <pre class="code-sample" tabindex="0"><code><span class="cm"># Drive forward, then turn</span>
+<span class="fn">drivetrain</span>.<span class="fn">drive_for</span>(
+    FORWARD, <span class="num">200</span>, MM
+)
+<span class="fn">drivetrain</span>.<span class="fn">turn_for</span>(
+    RIGHT, <span class="num">90</span>, DEGREES
+)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal-on-scroll" id="first-program">
+            <p class="section__label">First program</p>
+            <h2 class="section__title">Make the robot drive a short square.</h2>
+            <p class="section__text">This is the classic “it works” project: move, turn, repeat. Clear space on a desk or floor before you run it.</p>
+            <div class="program-flow">
+                <div class="flow-item">
+                    <span class="flow-badge">01</span>
+                    <div>
+                        <h3>Add a drivetrain in Devices</h3>
+                        <p>Configure left and right motors (and wheel size / track width if prompted). Without this, drive blocks have nowhere to send power.</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <span class="flow-badge">02</span>
+                    <div>
+                        <h3>Stack motion under “when started”</h3>
+                        <p>Drive forward a set distance, turn 90°, and repeat four times — or use a repeat loop around one side of the square.</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <span class="flow-badge">03</span>
+                    <div>
+                        <h3>Download to the Brain</h3>
+                        <p>Press Download (or Slot download on V5). Keep the cable connected until VEXcode reports success.</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <span class="flow-badge flow-badge--run">Run</span>
+                    <div>
+                        <h3>Run from the Brain or the app</h3>
+                        <p>Start the program on the Brain screen, or use the VEXcode run control when tethered. Watch corners — slow the drive speed if it skids.</p>
+                    </div>
+                </div>
+                <div class="flow-item">
+                    <span class="flow-badge flow-badge--go">Tip</span>
+                    <div>
+                        <h3>Print while you learn</h3>
+                        <p>Add a print or screen block after each turn. If the square fails, the last message on the console tells you where the stack stopped.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal-on-scroll" id="sensors">
+            <p class="section__label">Sensors &amp; events</p>
+            <h2 class="section__title">Stop guessing — let the robot feel the world.</h2>
+            <p class="section__text">
+                Once open-loop driving works, add sensing. Bumper switches, distance sensors, gyros / inertial sensors, and optical sensors turn a script into a reactive behaviour.
+            </p>
+            <ol class="steps">
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Wait until a condition is true</h3>
+                        <p>Example: drive forward until the distance sensor reports less than 100&nbsp;mm, then stop. This is more reliable than a fixed “drive for 3 seconds.”</p>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Use events for buttons and bumps</h3>
+                        <p>“When bumper pressed” or controller button events keep the main stack clean and make teleop (driver control) programs easier to read.</p>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step__num" aria-hidden="true"></div>
+                    <div>
+                        <h3>Watch values live</h3>
+                        <p>Open the monitor. Wave your hand in front of a distance sensor and confirm the number changes before you trust it in a competition routine.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="section reveal-on-scroll" id="practice">
+            <p class="section__label">Practice</p>
+            <h2 class="section__title">Three challenges that teach the real skills.</h2>
+            <p class="section__text">Work through these in order. Each one forces a new VEXcode habit: sequencing, sensing, or structure.</p>
+            <div class="challenges">
+                <article class="challenge">
+                    <p class="challenge__level">Challenge A · Sequencing</p>
+                    <h3>Tape line out-and-back</h3>
+                    <p>Drive forward along a taped line for one metre, wait one second, reverse to the start. Tune distance and speed until the robot parks on the mark.</p>
+                </article>
+                <article class="challenge">
+                    <p class="challenge__level">Challenge B · Sensing</p>
+                    <h3>Stop before the wall</h3>
+                    <p>Drive toward a wall or box and stop using a distance sensor — no timed drive. Print the measured distance when the robot halts.</p>
+                </article>
+                <article class="challenge">
+                    <p class="challenge__level">Challenge C · Structure</p>
+                    <h3>Controller arcade drive</h3>
+                    <p>Map joystick axes to drivetrain velocity (Blocks or text). Add a bumper that stops all motors when pressed — a safety habit worth keeping.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="resources">
+            <div class="section reveal-on-scroll">
+                <p class="section__label">Keep going</p>
+                <h2 class="section__title" style="color:#fff; max-width:16ch;">Official docs, examples, and the next build.</h2>
+                <p class="section__text">VEXcode ships with example projects. Open one, change a single value, download, and observe. That loop is how every competition team learns.</p>
+                <ul class="resource-links">
+                    <li>
+                        <a href="https://www.vexrobotics.com/vexcode" rel="noopener noreferrer" target="_blank">
+                            Download VEXcode
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://education.vex.com/" rel="noopener noreferrer" target="_blank">
+                            VEX Education lessons &amp; STEM Labs
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vex-robotics-base-bot-ocn-level2-presentation.html">
+                            Classroom presentation: VEX Base Bot
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html">
+                            Back to all presentations
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Tutorial for VEXcode from VEX Robotics · OCN NI classroom resource</p>
+        <a href="index.html">Presentations home</a>
+    </footer>
+
+    <script>
+        (function () {
+            var nodes = document.querySelectorAll('.reveal-on-scroll');
+            if (!('IntersectionObserver' in window)) {
+                nodes.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            nodes.forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+</html>
