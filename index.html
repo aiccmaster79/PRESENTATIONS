@@ -326,17 +326,62 @@
         }
 
         .badge-list-wrap.is-hidden,
+        .recent-wrap.is-hidden,
         .presentation-link.is-hidden,
         .section-label.is-hidden,
         .contents.is-hidden { display: none !important; }
 
         body.sort-by-badge .page > .section-label,
-        body.sort-by-badge .page > .contents {
+        body.sort-by-badge .page > .contents,
+        body.sort-by-badge .recent-wrap {
             display: none !important;
         }
 
         body.sort-by-badge .badge-list-wrap {
             display: block;
+        }
+
+        .recent-wrap {
+            margin-top: 0.5rem;
+            animation: fadeUp 0.55s ease both;
+        }
+
+        .recent-wrap .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+            color: var(--brand-orange);
+        }
+
+        .recent-window {
+            display: inline-block;
+            letter-spacing: 0.04em;
+            text-transform: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(247, 147, 30, 0.35);
+            background: rgba(247, 147, 30, 0.12);
+            border-radius: 999px;
+            padding: 0.2rem 0.65rem;
+        }
+
+        .presentation-link .recent-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin: 0.35rem 0 0.15rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--brand-orange);
+        }
+
+        .presentation-link .recent-pill i {
+            font-size: 0.7rem;
         }
 
         .badge-list-wrap {
@@ -507,44 +552,52 @@
             </div>
         </div>
 
+        <div class="recent-wrap is-hidden" id="recent-wrap">
+            <p class="section-label" id="recent-label">
+                Recently added
+                <span class="recent-window">Last 5 days</span>
+            </p>
+            <section class="contents" id="recent-list" aria-label="Presentations added or updated in the last 5 days"></section>
+        </div>
+
         <p class="section-label">IT Fundamentals — Demos</p>
         <section class="contents" aria-label="IT Fundamentals demo presentations">
-            <a class="presentation-link" href="safe-working-esd-ocn-level2-presentation.html">
+            <a class="presentation-link" href="safe-working-esd-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-bolt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#1</span><span>·</span><span>Level 2</span></span>
                 <h2>Safe Working &amp; ESD</h2>
                 <p>Protect people, equipment and data; ESD kit habits.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="inside-a-laptop-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="inside-a-laptop-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-laptop icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#2</span><span>·</span><span>Level 2</span></span>
                 <h2>Inside a Laptop</h2>
                 <p>Open a serviceable laptop and identify key parts.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="bios-uefi-setup-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="bios-uefi-setup-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-microchip icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#3</span><span>·</span><span>Level 2</span></span>
                 <h2>BIOS / UEFI Setup</h2>
                 <p>Firmware menus, boot order and safe changes.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="installing-an-os-ocn-level2-presentation.html">
+            <a class="presentation-link" href="installing-an-os-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-compact-disc icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#4</span><span>·</span><span>Level 2</span></span>
                 <h2>Installing an OS</h2>
                 <p>Clean install stages on a PC or virtual machine.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="drivers-device-manager-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="drivers-device-manager-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-tasks icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#5</span><span>·</span><span>Level 2</span></span>
                 <h2>Drivers &amp; Device Manager</h2>
                 <p>Diagnose, update and roll back device drivers.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="storage-comparison-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="storage-comparison-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-hdd icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#6</span><span>·</span><span>Level 2</span></span>
                 <h2>Storage Comparison</h2>
@@ -555,77 +608,77 @@
 
         <p class="section-label">IT Support / Service Delivery — Demos</p>
         <section class="contents" aria-label="IT Support demo presentations">
-            <a class="presentation-link purple" href="printer-setup-troubleshooting-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="printer-setup-troubleshooting-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-print icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#7</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Printer Setup &amp; Troubleshooting</h2>
                 <p>Install, test pages and fix common printer faults.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="imaging-and-deployment-ocn-level2-presentation.html">
+            <a class="presentation-link" href="imaging-and-deployment-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-clone icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#8</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Imaging &amp; Deployment</h2>
                 <p>Why gold images beat building every PC by hand.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="remote-support-tools-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="remote-support-tools-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-headset icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#9</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Remote Support Tools</h2>
                 <p>How remote help works and why consent matters.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="helpdesk-ticket-lifecycle-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="helpdesk-ticket-lifecycle-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-ticket-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#10</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Helpdesk Ticket Lifecycle</h2>
                 <p>One request from first report through to closure.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="backup-and-restore-ocn-level2-presentation.html">
+            <a class="presentation-link" href="backup-and-restore-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-save icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#11</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Backup &amp; Restore</h2>
                 <p>Prove backups work by restoring test files.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="software-updating-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="software-updating-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-sync-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#89</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Software Updating</h2>
                 <p>Patch safely — OS, apps, drivers and firmware.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="performance-monitoring-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="performance-monitoring-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-tachometer-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#12</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Performance Monitoring</h2>
                 <p>Find CPU, RAM, disk and network bottlenecks.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="account-permissions-ocn-level2-presentation.html">
+            <a class="presentation-link" href="account-permissions-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-user-lock icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#13</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Account Permissions</h2>
                 <p>How accounts and folder rights protect files.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="service-catalogue-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="service-catalogue-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-book icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#76</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Service Catalogue</h2>
                 <p>Build a mini IT service catalogue users can request from.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="sla-response-times-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="sla-response-times-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-clock icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#77</span><span>·</span><span>Level 2–3</span></span>
                 <h2>SLA Response Times</h2>
                 <p>How service levels shape support priorities.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="asset-tagging-ocn-level2-presentation.html">
+            <a class="presentation-link" href="asset-tagging-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-tags icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#78</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Asset Tagging</h2>
@@ -636,49 +689,49 @@
 
         <p class="section-label">Intro to Networking — Demos</p>
         <section class="contents" aria-label="Intro to networking demo presentations">
-            <a class="presentation-link" href="cable-crimping-ocn-level2-presentation.html">
+            <a class="presentation-link" href="cable-crimping-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-cut icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#14</span><span>·</span><span>Level 2</span></span>
                 <h2>Cable Crimping</h2>
                 <p>Terminate Ethernet, follow T568B and test.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="switch-vs-router-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="switch-vs-router-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-random icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#15</span><span>·</span><span>Level 2</span></span>
                 <h2>Switch vs Router</h2>
                 <p>LAN switching versus routing between networks.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="dhcp-ip-addressing-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="dhcp-ip-addressing-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-file-contract icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#16</span><span>·</span><span>Level 2</span></span>
                 <h2>DHCP &amp; IP Addressing</h2>
                 <p>Automatic leases, static use cases and APIPA clues.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="dns-in-action-ocn-level2-presentation.html">
+            <a class="presentation-link" href="dns-in-action-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-search icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#17</span><span>·</span><span>Level 2</span></span>
                 <h2>DNS in Action</h2>
                 <p>How names become IPs — and how to test failures.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="vlans-segmentation-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="vlans-segmentation-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-object-group icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#18</span><span>·</span><span>Level 2</span></span>
                 <h2>VLANs &amp; Segmentation</h2>
                 <p>Why networks are split for security and control.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="wifi-signal-channels-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="wifi-signal-channels-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-wifi icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#19</span><span>·</span><span>Level 2</span></span>
                 <h2>Wi‑Fi Signal &amp; Channels</h2>
                 <p>Range, obstacles, bands and congestion walks.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="network-diagram-ocn-level2-presentation.html">
+            <a class="presentation-link" href="network-diagram-ocn-level2-presentation.html" data-updated="2026-07-24">
                 <i class="fas fa-diagram-project icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#142</span><span>·</span><span>Level 2</span></span>
                 <h2>Network Diagram</h2>
@@ -689,21 +742,21 @@
 
         <p class="section-label">Virtualisation — Demos</p>
         <section class="contents" aria-label="Virtualisation demo presentations">
-            <a class="presentation-link teal" href="type1-vs-type2-hypervisors-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="type1-vs-type2-hypervisors-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-cube icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#20</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Type 1 vs Type 2 Hypervisors</h2>
                 <p>Bare-metal versus hosted virtualisation platforms.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="vm-snapshots-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="vm-snapshots-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-camera icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#21</span><span>·</span><span>Level 2–3</span></span>
                 <h2>VM Snapshots</h2>
                 <p>Safe testing with create, change and restore.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="virtual-networks-ocn-level2-presentation.html">
+            <a class="presentation-link" href="virtual-networks-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-project-diagram icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#22</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Virtual Networks</h2>
@@ -714,28 +767,28 @@
 
         <p class="section-label">Databases — Demos</p>
         <section class="contents" aria-label="Databases demo presentations">
-            <a class="presentation-link" href="sql-query-builder-ocn-level2-presentation.html">
+            <a class="presentation-link" href="sql-query-builder-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-database icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#41</span><span>·</span><span>Level 2–3</span></span>
                 <h2>SQL Query Builder</h2>
                 <p>Build SQL queries step by step from SELECT to JOIN.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="database-validation-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="database-validation-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-check-double icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#42</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Database Validation</h2>
                 <p>How validation rules reduce bad data entry.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="referential-integrity-failure-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="referential-integrity-failure-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-link icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#43</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Referential Integrity Failure</h2>
                 <p>Why relational databases protect linked records.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="import-csv-to-database-ocn-level2-presentation.html">
+            <a class="presentation-link" href="import-csv-to-database-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-file-csv icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#44</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Import CSV To Database</h2>
@@ -746,70 +799,70 @@
 
         <p class="section-label">Data Modelling / Analytics — Demos</p>
         <section class="contents" aria-label="Data modelling and analytics demo presentations">
-            <a class="presentation-link teal" href="absolute-vs-relative-references-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="absolute-vs-relative-references-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-anchor icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#45</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Absolute Vs Relative References</h2>
                 <p>Why some spreadsheet formulas move and others stay fixed.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="lookup-functions-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="lookup-functions-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-search icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#46</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Lookup Functions</h2>
                 <p>Retrieve related data with VLOOKUP / XLOOKUP patterns.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="what-if-modelling-ocn-level2-presentation.html">
+            <a class="presentation-link" href="what-if-modelling-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-random icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#47</span><span>·</span><span>Level 2–3</span></span>
                 <h2>What-If Modelling</h2>
                 <p>Test alternatives in a spreadsheet to support decisions.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="goal-seek-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="goal-seek-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-bullseye icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#48</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Goal Seek</h2>
                 <p>Work backwards from a target using Goal Seek.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="data-validation-and-protection-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="data-validation-and-protection-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-user-shield icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#49</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Data Validation And Protection</h2>
                 <p>Protect a spreadsheet model from user error.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="macro-recording-ocn-level2-presentation.html">
+            <a class="presentation-link" href="macro-recording-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-magic icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#50</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Macro Recording</h2>
                 <p>Record a simple macro to automate a repeated task.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="cleaning-messy-data-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="cleaning-messy-data-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-broom icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#79</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Cleaning Messy Data</h2>
                 <p>Clean a dataset before analysis — duplicates, blanks, formats.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="pivot-table-analysis-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="pivot-table-analysis-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-chart-pie icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#80</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Pivot Table Analysis</h2>
                 <p>Turn raw data into a useful summary with a pivot table.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="correlation-warning-ocn-level2-presentation.html">
+            <a class="presentation-link" href="correlation-warning-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-exclamation-triangle icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#81</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Correlation Warning</h2>
                 <p>Why correlation is not the same as causation.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="power-bi-dashboard-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="power-bi-dashboard-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-desktop icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#82</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Power BI Dashboard</h2>
@@ -820,77 +873,77 @@
 
         <p class="section-label">Core IT</p>
         <section class="contents" aria-label="Core IT presentations">
-            <a class="presentation-link purple" href="virtualisation-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="virtualisation-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-cloud icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#90</span><span>·</span><span>Level 2</span></span>
                 <h2>Virtualisation</h2>
                 <p>VMs, hypervisors, cloud models, benefits and VPNs.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="building-networks-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="building-networks-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-network-wired icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#91</span><span>·</span><span>Level 2</span></span>
                 <h2>Building Networks</h2>
                 <p>PAN/LAN/WAN, hardware, IP basics and small-office design.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="making-568b-network-cables-ocn-level2-presentation.html">
+            <a class="presentation-link" href="making-568b-network-cables-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-ethernet icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#92</span><span>·</span><span>Level 2</span></span>
                 <h2>Making 568B Cables</h2>
                 <p>T568B colour order, crimping steps, testing and faults.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="building-computers-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="building-computers-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-microchip icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#93</span><span>·</span><span>Level 2</span></span>
                 <h2>Building Computers</h2>
                 <p>Parts, compatibility, assembly sequence and first boot.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="inside-the-pc-components-ocn-level2-presentation.html">
+            <a class="presentation-link" href="inside-the-pc-components-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-shield-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#94</span><span>·</span><span>Level 2</span></span>
                 <h2>Inside the PC</h2>
                 <p>Identify and safely handle components, ESD awareness.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="storage-showdown-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="storage-showdown-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-hdd icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#95</span><span>·</span><span>Level 2</span></span>
                 <h2>Storage Showdown</h2>
                 <p>HDD vs SSD vs cloud vs USB — speed, cost, use cases.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="os-face-off-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="os-face-off-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fab fa-windows icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#96</span><span>·</span><span>Level 2</span></span>
                 <h2>Operating Systems Face-Off</h2>
                 <p>Windows vs macOS vs Linux vs ChromeOS, choosing an OS.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="workstation-health-safety-ocn-level2-presentation.html">
+            <a class="presentation-link" href="workstation-health-safety-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-chair icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#97</span><span>·</span><span>Level 2</span></span>
                 <h2>Workstation Health &amp; Safety</h2>
                 <p>Ergonomics, posture, cable safety and eye strain.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="troubleshooting-method-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="troubleshooting-method-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-stethoscope icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#98</span><span>·</span><span>Level 2</span></span>
                 <h2>Troubleshooting Like a Technician</h2>
                 <p>Logical fault-finding method and common PC faults.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="backups-data-recovery-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="backups-data-recovery-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-cloud-upload-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#99</span><span>·</span><span>Level 2</span></span>
                 <h2>Backups &amp; Data Recovery</h2>
                 <p>The 3-2-1 rule, backup types and restoring data.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="parallels-virtualisation-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="parallels-virtualisation-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-cloud icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#100</span><span>·</span><span>Level 2</span></span>
                 <h2>Parallels Desktop</h2>
@@ -901,56 +954,56 @@
 
         <p class="section-label">Cyber Security — Demos</p>
         <section class="contents" aria-label="Cyber security demo presentations">
-            <a class="presentation-link" href="wireshark-packet-capture-ocn-level2-presentation.html">
+            <a class="presentation-link" href="wireshark-packet-capture-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-search icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#23</span><span>·</span><span>Level 5</span></span>
                 <h2>Wireshark Packet Capture</h2>
                 <p>What authorised captures reveal about traffic.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="firewall-rules-demo-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="firewall-rules-demo-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-shield-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#24</span><span>·</span><span>Level 5</span></span>
                 <h2>Firewall Rules</h2>
                 <p>Allow and block lab traffic with evidence.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="port-scanning-safely-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="port-scanning-safely-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-crosshairs icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#25</span><span>·</span><span>Level 5</span></span>
                 <h2>Port Scanning Safely</h2>
                 <p>Scoped Nmap discovery in an isolated lab.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="password-cracking-concepts-ocn-level2-presentation.html">
+            <a class="presentation-link" href="password-cracking-concepts-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-key icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#26</span><span>·</span><span>Level 5</span></span>
                 <h2>Password Cracking Concepts</h2>
                 <p>Strength, hashes and defence — offline examples.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="phishing-anatomy-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="phishing-anatomy-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-envelope-open-text icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#27</span><span>·</span><span>Level 5</span></span>
                 <h2>Phishing Anatomy</h2>
                 <p>Dissect safe fake emails and report correctly.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="mfa-authenticator-apps-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="mfa-authenticator-apps-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-mobile-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#28</span><span>·</span><span>Level 5</span></span>
                 <h2>MFA &amp; Authenticator Apps</h2>
                 <p>Password-only versus multi-factor sign-in.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="usb-attack-awareness-demo-ocn-level2-presentation.html">
+            <a class="presentation-link" href="usb-attack-awareness-demo-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-plug icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#29</span><span>·</span><span>Level 5</span></span>
                 <h2>USB Attack Awareness (Demo)</h2>
                 <p>Unknown USBs, HID risks and policy — no payloads.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="flipper-zero-awareness-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="flipper-zero-awareness-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-mobile-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#30</span><span>·</span><span>Level 5</span></span>
                 <h2>Flipper Zero Awareness</h2>
@@ -961,14 +1014,14 @@
 
         <p class="section-label">Cyber Security</p>
         <section class="contents" aria-label="Cyber security presentations">
-            <a class="presentation-link" href="firewalls-ocn-level2-presentation.html">
+            <a class="presentation-link" href="firewalls-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-shield-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#101</span><span>·</span><span>Level 2</span></span>
                 <h2>Firewalls</h2>
                 <p>Types, rules, ports, placement and business security.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="pfsense-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="pfsense-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-server icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#102</span><span>·</span><span>Level 2</span></span>
                 <h2>pfSense</h2>
@@ -979,84 +1032,84 @@
 
         <p class="section-label">Offensive Cyber Security</p>
         <section class="contents" aria-label="Offensive cyber security presentations">
-            <a class="presentation-link teal" href="hak5-rubber-ducky-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="hak5-rubber-ducky-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-plug icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#103</span><span>·</span><span>Level 2</span></span>
                 <h2>USB Attack Awareness</h2>
                 <p>Rubber Ducky concepts, ethics, and defensive controls.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="metasploit-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="metasploit-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-toolbox icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#104</span><span>·</span><span>Level 2</span></span>
                 <h2>Metasploit</h2>
                 <p>What it is, authorised use, testing stages and ethics.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="password-security-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="password-security-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-key icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#105</span><span>·</span><span>Level 2</span></span>
                 <h2>Password Power</h2>
                 <p>Strong passwords, passphrases, password managers and 2FA.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="spot-the-phish-ocn-level2-presentation.html">
+            <a class="presentation-link" href="spot-the-phish-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-envelope-open-text icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#106</span><span>·</span><span>Level 2</span></span>
                 <h2>Spot the Phish</h2>
                 <p>Email/message scam clinic — red flags and safe responses.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="digital-footprint-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="digital-footprint-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-user-secret icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#107</span><span>·</span><span>Level 2</span></span>
                 <h2>Digital Footprint</h2>
                 <p>What strangers can find, privacy settings and safety.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="malware-museum-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="malware-museum-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-bug icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#108</span><span>·</span><span>Level 2</span></span>
                 <h2>Malware Museum</h2>
                 <p>Viruses, ransomware, worms and trojans — and defences.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="wifi-security-ocn-level2-presentation.html">
+            <a class="presentation-link" href="wifi-security-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-wifi icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#109</span><span>·</span><span>Level 2</span></span>
                 <h2>Wi-Fi Security</h2>
                 <p>Hardening a home or small-office router step by step.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="encryption-basics-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="encryption-basics-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-lock icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#110</span><span>·</span><span>Level 2</span></span>
                 <h2>Encryption Made Simple</h2>
                 <p>Ciphers, HTTPS and why encryption protects your data.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="staying-legal-data-protection-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="staying-legal-data-protection-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-gavel icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#111</span><span>·</span><span>Level 2</span></span>
                 <h2>Staying Legal</h2>
                 <p>Data protection, copyright and acceptable use in practice.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="omg-cable-ocn-level2-presentation.html">
+            <a class="presentation-link" href="omg-cable-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-usb icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#112</span><span>·</span><span>Level 2</span></span>
                 <h2>O.MG Cable</h2>
                 <p>Covert USB implant cables, capabilities and defences.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="flipper-zero-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="flipper-zero-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-microchip icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#113</span><span>·</span><span>Level 2</span></span>
                 <h2>Flipper Zero</h2>
                 <p>Sub-GHz, RFID/NFC, IR and BadUSB multi-tool testing.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="wifi-pineapple-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="wifi-pineapple-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-wifi icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#114</span><span>·</span><span>Level 2</span></span>
                 <h2>WiFi Pineapple</h2>
@@ -1067,28 +1120,28 @@
 
         <p class="section-label">Cyber Security — Level 5 Demos</p>
         <section class="contents" aria-label="Level 5 cyber security demo presentations">
-            <a class="presentation-link" href="vulnerable-web-app-walkthrough-ocn-level5-presentation.html">
+            <a class="presentation-link" href="vulnerable-web-app-walkthrough-ocn-level5-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-bug icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#31</span><span>·</span><span>Level 5</span></span>
                 <h2>Vulnerable Web App Walkthrough</h2>
                 <p>DVWA/Juice Shop — common web risks in an isolated lab.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="incident-response-mini-demo-ocn-level5-presentation.html">
+            <a class="presentation-link teal" href="incident-response-mini-demo-ocn-level5-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-bell icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#32</span><span>·</span><span>Level 5</span></span>
                 <h2>Incident Response Mini-Demo</h2>
                 <p>First response to a mock alert — triage, contain, document.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="log-analysis-ocn-level5-presentation.html">
+            <a class="presentation-link purple" href="log-analysis-ocn-level5-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-file-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#33</span><span>·</span><span>Level 5</span></span>
                 <h2>Log Analysis</h2>
                 <p>Windows and firewall logs that reveal what happened.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="disk-encryption-ocn-level5-presentation.html">
+            <a class="presentation-link" href="disk-encryption-ocn-level5-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-lock icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#34</span><span>·</span><span>Level 5</span></span>
                 <h2>Disk Encryption</h2>
@@ -1099,105 +1152,105 @@
 
         <p class="section-label">Emerging Technology (A/651/0447)</p>
         <section class="contents" aria-label="Emerging technology presentations">
-            <a class="presentation-link purple" href="emerging-technology-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="emerging-technology-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-rocket icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#115</span><span>·</span><span>Level 2</span></span>
                 <h2>Emerging Technology Overview</h2>
                 <p>Adoption factors, society and business impact, assessment tips.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="ai-ml-ocn-level2-presentation.html">
+            <a class="presentation-link" href="ai-ml-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-robot icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#116</span><span>·</span><span>Level 2</span></span>
                 <h2>AI &amp; Machine Learning</h2>
                 <p>How ML learns, use cases, benefits, risks and ethics.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="5g-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="5g-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-signal icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#117</span><span>·</span><span>Level 2</span></span>
                 <h2>5G Technology</h2>
                 <p>Speed, latency, capacity, smart cities and challenges.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="blockchain-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="blockchain-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-link icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#118</span><span>·</span><span>Level 2</span></span>
                 <h2>Blockchain</h2>
                 <p>Ledgers, features, supply-chain uses and limitations.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="iot-ocn-level2-presentation.html">
+            <a class="presentation-link" href="iot-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-wifi icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#119</span><span>·</span><span>Level 2</span></span>
                 <h2>Internet of Things</h2>
                 <p>Sensors, networks, business value and security risks.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="quantum-computing-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="quantum-computing-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-atom icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#120</span><span>·</span><span>Level 2</span></span>
                 <h2>Quantum Computing</h2>
                 <p>Qubits, applications, limitations and cyber implications.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="ar-vr-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="ar-vr-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-vr-cardboard icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#121</span><span>·</span><span>Level 2</span></span>
                 <h2>AR &amp; VR</h2>
                 <p>Immersive tech for training, retail, health and design.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="meta-quest-3-xr-ocn-level2-presentation.html">
+            <a class="presentation-link" href="meta-quest-3-xr-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-headphones icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#122</span><span>·</span><span>Level 2</span></span>
                 <h2>Meta Quest 3 &amp; XR</h2>
                 <p>Headset features, classroom setup, safety and XR careers.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="biotech-crispr-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="biotech-crispr-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-dna icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#123</span><span>·</span><span>Level 2</span></span>
                 <h2>Biotechnology &amp; CRISPR</h2>
                 <p>Gene editing, IT links, ethics and society impact.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="ai-prompting-ocn-level2-presentation.html">
+            <a class="presentation-link" href="ai-prompting-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-comment-dots icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#124</span><span>·</span><span>Level 2</span></span>
                 <h2>AI in Your Pocket</h2>
                 <p>Prompting a chatbot effectively and spotting hallucinations.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="smart-home-iot-design-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="smart-home-iot-design-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-house-signal icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#125</span><span>·</span><span>Level 2</span></span>
                 <h2>Smart Home Build</h2>
                 <p>Design an IoT room — sensors, network and security.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="deepfakes-misinformation-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="deepfakes-misinformation-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-video icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#126</span><span>·</span><span>Level 2</span></span>
                 <h2>Deepfakes &amp; Misinformation</h2>
                 <p>Can you trust what you see? Verifying online content.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="wearables-health-tech-ocn-level2-presentation.html">
+            <a class="presentation-link" href="wearables-health-tech-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-heart-pulse icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#127</span><span>·</span><span>Level 2</span></span>
                 <h2>Wearables &amp; Health Tech</h2>
                 <p>Smartwatch data flow and who owns your health data.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="robots-automation-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="robots-automation-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-robot icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#128</span><span>·</span><span>Level 2</span></span>
                 <h2>Robots &amp; Automation</h2>
                 <p>Which jobs change, and which new jobs are created?</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="green-it-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="green-it-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-leaf icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#129</span><span>·</span><span>Level 2</span></span>
                 <h2>Green IT</h2>
@@ -1208,42 +1261,42 @@
 
         <p class="section-label">Digital Skills &amp; Employability</p>
         <section class="contents" aria-label="Digital skills and employability presentations">
-            <a class="presentation-link" href="cv-writing-ocn-level2-presentation.html">
+            <a class="presentation-link" href="cv-writing-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-file-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#130</span><span>·</span><span>Level 2</span></span>
                 <h2>Build Your First CV</h2>
                 <p>Structure, formatting and exporting a one-page CV.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="spreadsheets-budgets-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="spreadsheets-budgets-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-table icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#131</span><span>·</span><span>Level 2</span></span>
                 <h2>Spreadsheets That Work</h2>
                 <p>Budgets, formulas, charts and conditional formatting.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="poster-design-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="poster-design-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-palette icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#132</span><span>·</span><span>Level 2</span></span>
                 <h2>Design a Poster / Flyer</h2>
                 <p>Visual communication — briefs, layout and feedback.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="email-workplace-etiquette-ocn-level2-presentation.html">
+            <a class="presentation-link" href="email-workplace-etiquette-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-envelope icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#133</span><span>·</span><span>Level 2</span></span>
                 <h2>Email &amp; Online Etiquette</h2>
                 <p>Professional tone, CC/BCC and safe attachments.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="cloud-collaboration-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="cloud-collaboration-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-cloud icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#134</span><span>·</span><span>Level 2</span></span>
                 <h2>Cloud Collaboration</h2>
                 <p>Shared docs, comments, version history and permissions.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="it-careers-northern-ireland-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="it-careers-northern-ireland-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-briefcase icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#135</span><span>·</span><span>Level 2</span></span>
                 <h2>IT Careers &amp; Pathways in NI</h2>
@@ -1254,42 +1307,42 @@
 
         <p class="section-label">Cloud / Collaboration — Demos</p>
         <section class="contents" aria-label="Cloud collaboration demo presentations">
-            <a class="presentation-link" href="onedrive-sharepoint-permissions-ocn-level2-presentation.html">
+            <a class="presentation-link" href="onedrive-sharepoint-permissions-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-share-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#35</span><span>·</span><span>Level 2–3</span></span>
                 <h2>OneDrive / SharePoint Permissions</h2>
                 <p>How cloud sharing permissions control who can access files.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="version-history-restore-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="version-history-restore-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-history icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#36</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Version History Restore</h2>
                 <p>Recover from mistakes using cloud version history.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="saas-paas-iaas-comparison-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="saas-paas-iaas-comparison-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-layer-group icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#72</span><span>·</span><span>Level 2–3</span></span>
                 <h2>SaaS/PaaS/IaaS Comparison</h2>
                 <p>Classify cloud services and compare control vs convenience.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="sharepoint-teams-setup-ocn-level2-presentation.html">
+            <a class="presentation-link" href="sharepoint-teams-setup-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-users icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#73</span><span>·</span><span>Level 2–3</span></span>
                 <h2>SharePoint/Teams Setup</h2>
                 <p>Create a basic cloud collaboration space for a project.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="cloud-sync-conflict-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="cloud-sync-conflict-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-code-branch icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#74</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Cloud Sync Conflict</h2>
                 <p>What happens when two users edit the same cloud file.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="storage-quota-management-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="storage-quota-management-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-chart-pie icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#75</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Storage Quota Management</h2>
@@ -1300,49 +1353,49 @@
 
         <p class="section-label">IoT — Demos</p>
         <section class="contents" aria-label="IoT demo presentations">
-            <a class="presentation-link purple" href="iot-sensor-demo-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="iot-sensor-demo-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-thermometer-half icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#37</span><span>·</span><span>Level 2–3</span></span>
                 <h2>IoT Sensor Demo</h2>
                 <p>Sensor to dashboard — live readings on micro:bit/Arduino/Pi.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="smart-device-network-isolation-ocn-level2-presentation.html">
+            <a class="presentation-link" href="smart-device-network-isolation-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-house-user icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#38</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Smart Device Network Isolation</h2>
                 <p>Why smart devices belong on a guest SSID or VLAN.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="microbit-sensor-demo-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="microbit-sensor-demo-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-microchip icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#83</span><span>·</span><span>Level 2–3</span></span>
                 <h2>micro:bit Sensor Demo</h2>
                 <p>Collect simple sensor data on a micro:bit and log samples.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="node-red-flow-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="node-red-flow-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-project-diagram icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#84</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Node-RED Flow</h2>
                 <p>Wire inputs, logic and outputs in a visual IoT flow.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="mqtt-messaging-ocn-level2-presentation.html">
+            <a class="presentation-link" href="mqtt-messaging-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-satellite-dish icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#85</span><span>·</span><span>Level 2–3</span></span>
                 <h2>MQTT Messaging</h2>
                 <p>Publish and subscribe messaging with a local broker.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="iot-security-teardown-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="iot-security-teardown-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-shield-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#86</span><span>·</span><span>Level 2–3</span></span>
                 <h2>IoT Security Teardown</h2>
                 <p>Review common IoT weaknesses and hardening steps.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="packet-tracer-smart-home-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="packet-tracer-smart-home-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-home icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#87</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Packet Tracer Smart Home</h2>
@@ -1353,14 +1406,14 @@
 
         <p class="section-label">Databases — Demos</p>
         <section class="contents" aria-label="Database demo presentations">
-            <a class="presentation-link teal" href="erd-to-working-database-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="erd-to-working-database-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-project-diagram icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#39</span><span>·</span><span>Level 2–3</span></span>
                 <h2>ERD to Working Database</h2>
                 <p>Turn a simple ERD into real tables with sample data.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="normalisation-live-fix-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="normalisation-live-fix-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-broom icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#40</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Normalisation Live Fix</h2>
@@ -1371,42 +1424,42 @@
 
         <p class="section-label">Project &amp; Maker</p>
         <section class="contents" aria-label="Project and maker presentations">
-            <a class="presentation-link" href="html-css-first-website-ocn-level2-presentation.html">
+            <a class="presentation-link" href="html-css-first-website-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-code icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#136</span><span>·</span><span>Level 2</span></span>
                 <h2>Build a One-Page Website</h2>
                 <p>Hand-code an "About Me" page with HTML &amp; CSS.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="scratch-coding-game-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="scratch-coding-game-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-gamepad icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#137</span><span>·</span><span>Level 2</span></span>
                 <h2>Block Coding a Game or Quiz</h2>
                 <p>Sprites, events, loops and variables in Scratch.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="microbit-mini-project-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="microbit-mini-project-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-microchip icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#138</span><span>·</span><span>Level 2</span></span>
                 <h2>micro:bit Mini-Project</h2>
                 <p>Sensor to action — program, flash and demo a build.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="small-office-network-design-ocn-level2-presentation.html">
+            <a class="presentation-link" href="small-office-network-design-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-sitemap icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#139</span><span>·</span><span>Level 2</span></span>
                 <h2>Plan a Small-Office Network</h2>
                 <p>Design and pitch a network for a 6-person business.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="cable-to-cloud-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="cable-to-cloud-ocn-level2-presentation.html" data-updated="2025-11-28">
                 <i class="fas fa-route icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#140</span><span>·</span><span>Level 2</span></span>
                 <h2>Cable to Cloud</h2>
                 <p>End-to-end relay: crimp a cable to loading a webpage.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="vex-robotics-base-bot-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="vex-robotics-base-bot-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-robot icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#141</span><span>·</span><span>Level 2</span></span>
                 <h2>VEX Robotics &amp; Base Bot</h2>
@@ -1417,49 +1470,49 @@
 
         <p class="section-label">Programming — Demos</p>
         <section class="contents" aria-label="Programming demo presentations">
-            <a class="presentation-link teal" href="debugger-walkthrough-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="debugger-walkthrough-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-bug icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#51</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Debugger Walkthrough</h2>
                 <p>Use breakpoints and step-through to find program faults.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="trace-table-demo-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="trace-table-demo-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-table icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#52</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Trace Table Demo</h2>
                 <p>Dry-run code on paper to predict what it will do.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="file-handling-ocn-level2-presentation.html">
+            <a class="presentation-link" href="file-handling-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-folder-open icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#53</span><span>·</span><span>Level 2–3</span></span>
                 <h2>File Handling</h2>
                 <p>Programs that read and write text files safely.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="input-validation-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="input-validation-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-check-double icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#54</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Input Validation</h2>
                 <p>Normal, extreme and erroneous input — test and reject safely.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="refactoring-bad-code-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="refactoring-bad-code-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-sync-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#55</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Refactoring Bad Code</h2>
                 <p>Improve messy code without changing its behaviour.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="git-version-control-basics-ocn-level2-presentation.html">
+            <a class="presentation-link" href="git-version-control-basics-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fab fa-git-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#56</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Git Version Control Basics</h2>
                 <p>Init, status, add, commit — how Git records changes.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="github-cicd-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="github-cicd-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fab fa-github icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#88</span><span>·</span><span>Level 2–3</span></span>
                 <h2>GitHub &amp; CI/CD</h2>
@@ -1470,42 +1523,42 @@
 
         <p class="section-label">Website Development — Demos</p>
         <section class="contents" aria-label="Website development demo presentations">
-            <a class="presentation-link teal" href="browser-devtools-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="browser-devtools-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-wrench icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#57</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Browser DevTools</h2>
                 <p>Inspect HTML, CSS, Console and Network on a live page.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="responsive-design-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="responsive-design-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-mobile-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#58</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Responsive Design</h2>
                 <p>Fluid layouts and media queries that adapt to screen size.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="accessibility-audit-ocn-level2-presentation.html">
+            <a class="presentation-link" href="accessibility-audit-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-universal-access icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#59</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Accessibility Audit</h2>
                 <p>Checklist and tools to find and fix accessibility issues.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="form-validation-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="form-validation-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-clipboard-check icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#60</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Form Validation</h2>
                 <p>Compare HTML5 attributes with JavaScript form checks.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="w3c-validation-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="w3c-validation-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-check-double icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#61</span><span>·</span><span>Level 2–3</span></span>
                 <h2>W3C Validation</h2>
                 <p>Validate HTML against web standards and fix common errors.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="website-hosting-ocn-level2-presentation.html">
+            <a class="presentation-link" href="website-hosting-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-cloud-upload-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#62</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Website Hosting</h2>
@@ -1516,28 +1569,28 @@
 
         <p class="section-label">Mobile Apps — Demos</p>
         <section class="contents" aria-label="Mobile apps demo presentations">
-            <a class="presentation-link teal" href="android-emulator-setup-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="android-emulator-setup-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-mobile-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#63</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Android Emulator Setup</h2>
                 <p>Create an AVD and run a demo app for testing.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="app-permissions-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="app-permissions-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-user-shield icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#64</span><span>·</span><span>Level 2–3</span></span>
                 <h2>App Permissions</h2>
                 <p>OS permission prompts, deny/allow, and least privilege.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="sensor-input-ocn-level2-presentation.html">
+            <a class="presentation-link" href="sensor-input-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-compass icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#65</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Sensor Input</h2>
                 <p>Use tilt, shake, light or GPS as app input.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="native-vs-web-vs-hybrid-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="native-vs-web-vs-hybrid-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-layer-group icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#66</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Native Vs Web Vs Hybrid</h2>
@@ -1548,35 +1601,35 @@
 
         <p class="section-label">Software Testing — Demos</p>
         <section class="contents" aria-label="Software testing demo presentations">
-            <a class="presentation-link purple" href="good-bug-report-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="good-bug-report-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-bug icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#67</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Good Bug Report</h2>
                 <p>Turn a discovered fault into clear, reproducible steps.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="regression-testing-ocn-level2-presentation.html">
+            <a class="presentation-link" href="regression-testing-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-redo icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#68</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Regression Testing</h2>
                 <p>Rerun old checks after a fix to catch breakages.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link teal" href="unit-test-runner-ocn-level2-presentation.html">
+            <a class="presentation-link teal" href="unit-test-runner-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-vial icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#69</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Unit Test Runner</h2>
                 <p>Run automated unit tests and read pass/fail output.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link purple" href="usability-test-observation-ocn-level2-presentation.html">
+            <a class="presentation-link purple" href="usability-test-observation-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-eye icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#70</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Usability Test Observation</h2>
                 <p>Watch a user complete tasks without coaching.</p>
                 <span class="cta">Open presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="presentation-link" href="load-stress-concept-ocn-level2-presentation.html">
+            <a class="presentation-link" href="load-stress-concept-ocn-level2-presentation.html" data-updated="2026-07-23">
                 <i class="fas fa-tachometer-alt icon" aria-hidden="true"></i>
                 <span class="card-meta"><span class="num">#71</span><span>·</span><span>Level 2–3</span></span>
                 <h2>Load/Stress Concept</h2>
@@ -1633,6 +1686,7 @@
         // ====== SEARCH + SORT ======
         (function () {
             var SORT_KEY = 'presentations-index-sort';
+            var RECENT_DAYS = 5;
             var searchInput = document.getElementById('search-input');
             var searchWrap = document.getElementById('search-wrap');
             var searchClear = document.getElementById('search-clear');
@@ -1643,6 +1697,9 @@
             var badgeList = document.getElementById('badge-list');
             var badgeOtherList = document.getElementById('badge-other-list');
             var badgeOtherLabel = document.getElementById('badge-other-label');
+            var recentWrap = document.getElementById('recent-wrap');
+            var recentList = document.getElementById('recent-list');
+            var recentLabel = document.getElementById('recent-label');
             var sections = Array.prototype.slice.call(document.querySelectorAll('.page > .contents'));
 
             // Capture each section, its heading label, and its cards in original order.
@@ -1656,6 +1713,67 @@
             var allCards = sectionData.reduce(function (acc, data) {
                 return acc.concat(data.original);
             }, []);
+
+            function parseDateOnly(value) {
+                if (!value) return null;
+                var parts = String(value).split('-');
+                if (parts.length !== 3) return null;
+                var y = parseInt(parts[0], 10);
+                var m = parseInt(parts[1], 10);
+                var d = parseInt(parts[2], 10);
+                if (!y || !m || !d) return null;
+                return new Date(y, m - 1, d);
+            }
+
+            function formatRecentDate(date) {
+                try {
+                    return date.toLocaleDateString(undefined, {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                    });
+                } catch (e) {
+                    return date.toISOString().slice(0, 10);
+                }
+            }
+
+            function buildRecentSection() {
+                if (!recentWrap || !recentList) return;
+
+                var cutoff = new Date();
+                cutoff.setHours(0, 0, 0, 0);
+                cutoff.setDate(cutoff.getDate() - (RECENT_DAYS - 1));
+
+                var recent = allCards.filter(function (card) {
+                    var updated = parseDateOnly(card.getAttribute('data-updated'));
+                    return updated && updated >= cutoff;
+                }).sort(function (a, b) {
+                    var da = parseDateOnly(a.getAttribute('data-updated'));
+                    var db = parseDateOnly(b.getAttribute('data-updated'));
+                    if (db - da !== 0) return db - da;
+                    return titleOf(a).localeCompare(titleOf(b));
+                });
+
+                recentList.innerHTML = '';
+                recent.forEach(function (card) {
+                    var clone = card.cloneNode(true);
+                    clone.removeAttribute('id');
+                    var updated = parseDateOnly(card.getAttribute('data-updated'));
+                    var pill = document.createElement('span');
+                    pill.className = 'recent-pill';
+                    pill.innerHTML = '<i class="fas fa-clock-rotate-left" aria-hidden="true"></i>' +
+                        formatRecentDate(updated);
+                    var meta = clone.querySelector('.card-meta');
+                    if (meta && meta.nextSibling) {
+                        clone.insertBefore(pill, meta.nextSibling);
+                    } else {
+                        clone.insertBefore(pill, clone.querySelector('h2'));
+                    }
+                    recentList.appendChild(clone);
+                });
+
+                recentWrap.classList.toggle('is-hidden', recent.length === 0);
+            }
 
             var currentSort = 'default';
 
@@ -1769,6 +1887,21 @@
                 applySearch(searchInput ? searchInput.value : '');
             }
 
+            function filterRecentClones(query) {
+                if (!recentWrap || !recentList || recentWrap.classList.contains('is-hidden')) return 0;
+                if (currentSort === 'badge') return 0;
+                var shown = 0;
+                Array.prototype.forEach.call(recentList.querySelectorAll('.presentation-link'), function (card) {
+                    var match = !query || textOf(card).indexOf(query) !== -1;
+                    card.classList.toggle('is-hidden', !match);
+                    if (match) shown++;
+                });
+                var empty = shown === 0;
+                recentList.classList.toggle('is-hidden', empty);
+                if (recentLabel) recentLabel.classList.toggle('is-hidden', empty);
+                return shown;
+            }
+
             function applySearch(rawQuery) {
                 var query = (rawQuery || '').trim().toLowerCase();
                 var anyVisible = false;
@@ -1806,6 +1939,7 @@
                         if (data.label) data.label.classList.toggle('is-hidden', empty);
                         if (!empty) anyVisible = true;
                     });
+                    if (filterRecentClones(query) > 0) anyVisible = true;
                 }
 
                 if (searchWrap) searchWrap.classList.toggle('has-value', query.length > 0);
@@ -1815,6 +1949,8 @@
                     noResults.classList.toggle('is-visible', noneFound);
                 }
             }
+
+            buildRecentSection();
 
             sortButtons.forEach(function (btn) {
                 btn.addEventListener('click', function () { applySort(btn.dataset.sort); });
