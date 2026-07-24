@@ -593,15 +593,15 @@ a mandate — swap them if something fits the topic better.
 
 ### Software Testing — Demos
 
-- [ ] **#67 Good Bug Report** — `good-bug-report-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#67 Good Bug Report** — `good-bug-report-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-software-testing-demos-c2f4`
   - Report builder with rubric scoring, bad vs good compare, repro step ordering
-- [ ] **#68 Regression Testing** — `regression-testing-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#68 Regression Testing** — `regression-testing-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-software-testing-demos-c2f4`
   - Suite runner simulator (change code → see which tests break), regression pack builder
-- [ ] **#69 Unit Test Runner** — `unit-test-runner-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#69 Unit Test Runner** — `unit-test-runner-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-software-testing-demos-c2f4`
   - Pass/fail output reader, write-the-assertion exercise, red-green cycle animation
-- [ ] **#70 Usability Test Observation** — `usability-test-observation-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#70 Usability Test Observation** — `usability-test-observation-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-software-testing-demos-c2f4`
   - Note-taking simulator, coaching-vs-observing judge, findings severity ranking
-- [ ] **#71 Load/Stress Concept** — `load-stress-concept-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#71 Load/Stress Concept** — `load-stress-concept-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-software-testing-demos-c2f4`
   - Load ramp simulator with response time chart, breaking point finder, safe lab rules
 
 ---
