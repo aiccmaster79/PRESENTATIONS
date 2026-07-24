@@ -634,9 +634,542 @@
             white-space: nowrap;
         }
 
+        /* ====== FLIP CARDS ====== */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 160px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.98));
+        }
+
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.15), rgba(20, 20, 40, 0.98));
+            transform: rotateY(180deg);
+            border-color: var(--brand-teal);
+        }
+
+        .flip-card-front i { font-size: 2em; margin-bottom: 8px; }
+        .flip-card-front h4 { font-size: 1em; margin: 0; color: #fff; }
+        .flip-card-back p { font-size: 0.75em; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.5; }
+
+        /* ====== MOTHERBOARD HOTSPOTS ====== */
+        .mb-tour {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            align-items: start;
+            margin-top: 15px;
+        }
+
+        .mb-svg-wrap {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mb-svg-wrap svg { width: 100%; height: auto; display: block; }
+
+        .hotspot {
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .hotspot circle { fill: var(--brand-orange); opacity: 0.85; transition: all 0.25s; }
+        .hotspot text { fill: #fff; font-size: 11px; font-weight: 700; pointer-events: none; }
+        .hotspot:hover circle, .hotspot.active circle { fill: var(--brand-teal); opacity: 1; r: 14; }
+        .hotspot:focus { outline: none; }
+        .hotspot:focus circle { stroke: #fff; stroke-width: 2; }
+
+        .mb-info-panel {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 22px;
+            border-left: 4px solid var(--brand-teal);
+            min-height: 200px;
+        }
+
+        .mb-info-panel h4 { color: var(--brand-teal); margin: 0 0 10px; font-size: 1.1em; }
+        .mb-info-panel p { font-size: 0.82em; color: rgba(255,255,255,0.8); margin: 0 0 8px; }
+        .mb-info-panel .hint { font-size: 0.72em; color: rgba(255,255,255,0.5); font-style: italic; }
+
+        .mb-mode-toggle {
+            display: inline-flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .mb-mode-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .mb-mode-btn.active, .mb-mode-btn:hover {
+            background: rgba(0, 189, 165, 0.25);
+            border-color: var(--brand-teal);
+        }
+
+        /* ====== DRAG AND DROP ====== */
+        .dnd-board {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .dnd-pool {
+            background: var(--glass-bg);
+            border-radius: 14px;
+            padding: 16px;
+            border: 2px dashed rgba(255,255,255,0.15);
+            min-height: 280px;
+        }
+
+        .dnd-pool h4 { font-size: 0.85em; color: var(--brand-orange); margin: 0 0 12px; }
+
+        .dnd-bins {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .dnd-bin {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 12px;
+            border: 2px solid rgba(255,255,255,0.1);
+            min-height: 120px;
+            transition: all 0.25s;
+        }
+
+        .dnd-bin.drag-over { border-color: var(--brand-teal); background: rgba(0,189,165,0.1); }
+        .dnd-bin.correct-bin { border-color: #22c55e; }
+        .dnd-bin h4 { font-size: 0.78em; margin: 0 0 8px; text-align: center; }
+        .dnd-bin[data-cat="input"] h4 { color: var(--brand-orange); }
+        .dnd-bin[data-cat="output"] h4 { color: var(--brand-purple); }
+        .dnd-bin[data-cat="storage"] h4 { color: #78BE20; }
+        .dnd-bin[data-cat="processing"] h4 { color: var(--brand-teal); }
+
+        .dnd-chip {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(138,43,226,0.4), rgba(0,189,165,0.3));
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 4px;
+            font-size: 0.75em;
+            cursor: grab;
+            user-select: none;
+            transition: all 0.2s;
+            touch-action: none;
+        }
+
+        .dnd-chip:active { cursor: grabbing; }
+        .dnd-chip.selected { outline: 2px solid var(--brand-orange); transform: scale(1.05); }
+        .dnd-chip.correct { background: rgba(34,197,94,0.3); border-color: #22c55e; }
+        .dnd-chip.incorrect { background: rgba(239,68,68,0.3); border-color: #ef4444; animation: shake 0.4s; }
+        .dnd-chip.placed { cursor: default; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .dnd-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dnd-btn {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .dnd-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .dnd-btn.secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+
+        .timer-display {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--brand-orange);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .timer-display.warning { color: #ef4444; animation: pulse 1s infinite; }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+        .best-time { font-size: 0.75em; color: rgba(255,255,255,0.5); }
+
+        /* ====== SCORE BAR ====== */
+        .score-bar-wrap {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            height: 12px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .score-label { font-size: 0.8em; color: rgba(255,255,255,0.6); text-align: center; }
+
+        .quiz-progress {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(20,20,40,0.88);
+            border: 1px solid rgba(0,189,165,0.45);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--brand-teal);
+            display: none;
+        }
+
+        .quiz-progress.visible { display: block; }
+
+        .results-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .results-grade {
+            font-size: 4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ====== GLOSSARY ====== */
+        .glossary-search {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: var(--glass-bg);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9em;
+            margin-bottom: 18px;
+        }
+
+        .glossary-search:focus { outline: none; border-color: var(--brand-teal); }
+
+        .glossary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .glossary-item {
+            background: var(--glass-bg);
+            border-radius: 10px;
+            padding: 12px 16px;
+            border-left: 3px solid var(--brand-purple);
+        }
+
+        .glossary-item.hidden { display: none; }
+        .glossary-item dt { font-weight: 600; color: var(--brand-teal); font-size: 0.85em; margin-bottom: 4px; }
+        .glossary-item dd { font-size: 0.75em; color: rgba(255,255,255,0.7); margin: 0; }
+
+        /* ====== FAULT TABLE ====== */
+        .fault-table { width: 100%; border-collapse: collapse; font-size: 0.78em; margin-top: 15px; }
+        .fault-table th, .fault-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .fault-table th { background: rgba(138,43,226,0.25); color: var(--brand-teal); font-weight: 600; }
+        .fault-table tr:hover td { background: rgba(0,189,165,0.08); }
+        .fault-symptom { color: var(--brand-orange); font-weight: 600; }
+        .fault-part { color: var(--brand-purple); }
+
+        /* ====== SPEC DECODER ====== */
+        .spec-decoder {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 24px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+            line-height: 2;
+            margin-top: 15px;
+        }
+
+        .spec-highlight { padding: 2px 8px; border-radius: 4px; cursor: default; }
+        .spec-cpu { background: rgba(247,147,30,0.3); color: var(--brand-orange-light); }
+        .spec-ram { background: rgba(0,189,165,0.3); color: var(--brand-teal-light); }
+        .spec-storage { background: rgba(120,190,32,0.3); color: #a8e063; }
+        .spec-gpu { background: rgba(138,43,226,0.3); color: var(--brand-purple-light); }
+
+        /* ====== FORM FACTOR ====== */
+        .form-factor-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .form-factor-box {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .form-factor-box:hover { transform: translateY(-5px); }
+
+        .form-factor-shape {
+            background: linear-gradient(180deg, #2a2a4a, #1a1a2e);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+
+        .form-factor-shape::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 4px;
+            background: var(--brand-teal);
+            border-radius: 2px;
+        }
+
+        .ff-atx { width: 120px; height: 140px; }
+        .ff-matx { width: 96px; height: 96px; }
+        .ff-itx { width: 96px; height: 72px; }
+
+        .form-factor-box h4 { font-size: 0.9em; margin: 0 0 4px; color: #fff; }
+        .form-factor-box p { font-size: 0.7em; color: rgba(255,255,255,0.5); margin: 0; }
+
+        /* ====== AIRFLOW DIAGRAM ====== */
+        .airflow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin: 25px 0;
+        }
+
+        .airflow-case {
+            width: 200px;
+            height: 280px;
+            background: linear-gradient(180deg, #1a1a2e, #0f0f1a);
+            border: 3px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .airflow-in, .airflow-out {
+            position: absolute;
+            font-size: 0.65em;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .airflow-in { bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,189,165,0.3); color: var(--brand-teal); }
+        .airflow-out { top: 10px; left: 50%; transform: translateX(-50%); background: rgba(247,147,30,0.3); color: var(--brand-orange); }
+
+        .airflow-arrow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--brand-teal);
+            font-size: 1.2em;
+            animation: airflowUp 2s ease-in-out infinite;
+        }
+
+        @keyframes airflowUp {
+            0% { bottom: 30px; opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { bottom: 220px; opacity: 0.3; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .airflow-arrow { animation: none; bottom: 120px; opacity: 0.8; }
+            .animated-gradient { animation: none; }
+        }
+
+        /* ====== DECK MAP ====== */
+        .deck-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .deck-link {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.25s;
+            text-align: center;
+        }
+
+        .deck-link:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
+        .deck-link i { font-size: 1.8em; color: var(--brand-teal); display: block; margin-bottom: 8px; }
+        .deck-link h4 { font-size: 0.82em; margin: 0 0 4px; }
+        .deck-link p { font-size: 0.68em; color: rgba(255,255,255,0.5); margin: 0; }
+        .deck-link.current { border-color: var(--brand-orange); background: rgba(247,147,30,0.1); }
+
+        /* ====== FRAGILITY MATRIX ====== */
+        .fragility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .fragility-col {
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .fragility-col.rugged { background: rgba(34,197,94,0.12); border: 2px solid #22c55e; }
+        .fragility-col.delicate { background: rgba(247,147,30,0.12); border: 2px solid var(--brand-orange); }
+        .fragility-col.never { background: rgba(239,68,68,0.12); border: 2px solid #ef4444; }
+
+        .fragility-col h4 { font-size: 0.9em; margin: 0 0 12px; }
+        .fragility-col.rugged h4 { color: #22c55e; }
+        .fragility-col.delicate h4 { color: var(--brand-orange); }
+        .fragility-col.never h4 { color: #ef4444; }
+        .fragility-col ul { list-style: none; padding: 0; margin: 0; font-size: 0.78em; color: rgba(255,255,255,0.75); }
+        .fragility-col li { padding: 4px 0; }
+
+        /* ====== KEYBOARD HINT ====== */
+        .kbd-hint {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .kbd-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .kbd-item kbd {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: var(--brand-teal);
+        }
+
+        /* ====== CANVAS BG ====== */
+        #circuit-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ====== SECTION BADGE ====== */
+        .section-badge {
+            display: inline-block;
+            background: rgba(138,43,226,0.3);
+            color: var(--brand-purple-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ====== RESPONSIVE EXTENSIONS ====== */
+        @media (max-width: 768px) {
+            .flip-grid, .deck-map, .fragility-grid { grid-template-columns: 1fr; }
+            .mb-tour, .dnd-board { grid-template-columns: 1fr; }
+            .glossary-list { grid-template-columns: 1fr; }
+            .form-factor-row { flex-direction: column; align-items: center; }
+            .dnd-bins { grid-template-columns: 1fr; }
+        }
+
     </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
     <a class="back-to-index" href="index.html" aria-label="Back to index">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>Back to index</span>
@@ -644,30 +1177,59 @@
     <div class="reveal">
         <div class="slides">
 
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <!-- SLIDE 1: Title -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
                     <h1 class="animated-gradient">Inside the PC</h1>
                     <p class="subtitle">Identify, categorise and safely handle every major component</p>
                     <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                 </div>
+                <aside class="notes">Welcome learners. This is a hands-on session — they'll handle real parts later. Set the tone: curiosity, not fear. Mention the pass-round task coming up. ~1 min.</aside>
             </section>
 
+            <!-- SLIDE 2: Learning Objectives -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
                 <ul class="objectives-list">
                     <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> the major components inside a desktop PC by sight</span></li>
                     <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> what each component does in plain English</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Navigate</strong> a motherboard and recognise key connectors and slots</span></li>
                     <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Categorise</strong> components as input, output, storage or processing</span></li>
                     <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> anti-static (ESD) handling rules when touching hardware</span></li>
                     <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Sort</strong> a mixed box of parts correctly and safely</span></li>
                 </ul>
+                <aside class="notes">Read through objectives. Emphasise "navigate a motherboard" as new today. Ask: who has opened a PC case before? ~2 min.</aside>
             </section>
 
+            <!-- SLIDE 3: Keyboard Shortcuts -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard"></i> Presentation Controls</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">This deck is interactive — use these shortcuts anytime:</p>
+                <div class="kbd-hint">
+                    <div class="kbd-item"><kbd>→</kbd> Next slide</div>
+                    <div class="kbd-item"><kbd>←</kbd> Previous slide</div>
+                    <div class="kbd-item"><kbd>S</kbd> Speaker notes</div>
+                    <div class="kbd-item"><kbd>F</kbd> Fullscreen</div>
+                    <div class="kbd-item"><kbd>O</kbd> Slide overview</div>
+                    <div class="kbd-item"><kbd>Esc</kbd> Exit overview</div>
+                </div>
+                <div class="highlight-box fragment fade-up" style="margin-top: 30px; text-align: center;">
+                    <p style="margin:0;"><i class="fas fa-hand-pointer"></i> <strong>Click</strong> flip cards to reveal details · <strong>Drag</strong> chips to sort components · <strong>Click</strong> motherboard hotspots to explore</p>
+                </div>
+                <aside class="notes">Quick orientation. Tell learners they can click things on slides. Press S yourself to show speaker view if demoing. ~1 min.</aside>
+            </section>
+
+            <!-- SLIDE 4: Why Component ID Matters -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-box-open"></i> Why Component ID Matters</h2>
                 <div class="glass-card fragment fade-up">
                     <p>Every IT support role starts with knowing what you're looking at inside a case. Confusing a stick of RAM with a graphics card, or grabbing a chip by its pins, costs time, money and sometimes a working PC.</p>
+                </div>
+                <div class="stats-bar fragment fade-up">
+                    <div class="stat-item"><span class="stat-number">73%</span><span class="stat-label">Of helpdesk tickets involve hardware</span></div>
+                    <div class="stat-item"><span class="stat-number">Day 1</span><span class="stat-label">Skill employers test</span></div>
+                    <div class="stat-item"><span class="stat-number">30V</span><span class="stat-label">Static can kill a CPU</span></div>
                 </div>
                 <div class="feature-grid">
                     <div class="feature-card orange fragment fade-up"><i class="fas fa-eye"></i><h3>Fast Diagnosis</h3><p>Spot a missing or failed part at a glance</p></div>
@@ -675,61 +1237,269 @@
                     <div class="feature-card teal fragment fade-up"><i class="fas fa-hand-paper"></i><h3>Safe Handling</h3><p>Know what's fragile and what's rugged</p></div>
                     <div class="feature-card orange fragment fade-up"><i class="fas fa-briefcase"></i><h3>Interview Ready</h3><p>Component ID is a Level 2 core skill</p></div>
                 </div>
+                <aside class="notes">Use the stats to hook interest. Ask: "What happens if you order the wrong RAM type?" Real-world relevance. ~3 min.</aside>
             </section>
 
+            <!-- SLIDE 5: Core Components Flip Cards -->
             <section data-auto-animate>
+                <span class="section-badge">Core Hardware</span>
                 <h2 class="animated-gradient"><i class="fas fa-microchip"></i> The Core Components</h2>
-                <div class="software-grid">
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-microchip" style="color: var(--brand-orange);"></i>
-                        <span class="type-badge type2">Processing</span>
-                        <h4>CPU</h4>
-                        <p>Executes instructions — the "brain"</p>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em; margin-bottom: 10px;"><i class="fas fa-hand-pointer"></i> Click any card to flip and learn more</p>
+                <div class="flip-grid" id="component-flip-cards">
+                    <div class="flip-card" tabindex="0" role="button" aria-label="CPU - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-microchip" style="color: var(--brand-orange);"></i><h4>CPU</h4></div>
+                            <div class="flip-card-back"><p>Central Processing Unit — executes billions of instructions per second. Sits in the CPU socket on the motherboard. Never touch the pins underneath!</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-memory" style="color: var(--brand-teal);"></i>
-                        <span class="type-badge type2">Processing</span>
-                        <h4>RAM</h4>
-                        <p>Temporary fast working memory</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="RAM - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-memory" style="color: var(--brand-teal);"></i><h4>RAM</h4></div>
+                            <div class="flip-card-back"><p>Random Access Memory — fast, temporary workspace. Data is lost when power is off. Slots into DIMM slots. Hold by the edges only.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-hdd" style="color: #78BE20;"></i>
-                        <span class="type-badge type1">Storage</span>
-                        <h4>HDD</h4>
-                        <p>Spinning-disk long-term storage</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="HDD - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-hdd" style="color: #78BE20;"></i><h4>HDD</h4></div>
+                            <div class="flip-card-back"><p>Hard Disk Drive — spinning magnetic platters for long-term storage. Slower but cheaper per GB. Connects via SATA cable and SATA power.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-save" style="color: #FCC624;"></i>
-                        <span class="type-badge type1">Storage</span>
-                        <h4>SSD</h4>
-                        <p>Chip-based long-term storage</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="SSD - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-save" style="color: #FCC624;"></i><h4>SSD</h4></div>
+                            <div class="flip-card-back"><p>Solid State Drive — chip-based storage with no moving parts. Much faster boot and load times. Comes as 2.5" SATA or M.2 NVMe form factor.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-tv" style="color: #FF6600;"></i>
-                        <span class="type-badge type2">Processing</span>
-                        <h4>GPU</h4>
-                        <p>Renders images and video</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="GPU - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-tv" style="color: #FF6600;"></i><h4>GPU</h4></div>
+                            <div class="flip-card-back"><p>Graphics Processing Unit — renders images, video and 3D graphics. Plugs into the PCIe x16 slot. May need its own power cable from the PSU.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-bolt" style="color: var(--brand-purple);"></i>
-                        <span class="type-badge type1">Support</span>
-                        <h4>PSU</h4>
-                        <p>Converts mains power for every part</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="PSU - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-bolt" style="color: var(--brand-purple);"></i><h4>PSU</h4></div>
+                            <div class="flip-card-back"><p>Power Supply Unit — converts 230V mains AC to 3.3V, 5V and 12V DC for every component. Never open a PSU — capacitors hold lethal charge.</p></div>
+                        </div>
                     </div>
                 </div>
+                <aside class="notes">Have learners flip each card. Ask one learner to read the back of CPU aloud. Physically show each part if available. ~5 min.</aside>
             </section>
 
+            <!-- SLIDE 6: Motherboard Intro -->
+            <section data-auto-animate>
+                <span class="section-badge">Motherboard</span>
+                <h2 class="animated-gradient"><i class="fas fa-project-diagram"></i> The Motherboard: Everything Connects Here</h2>
+                <div class="glass-card fragment fade-up">
+                    <p>The motherboard is the <strong>main circuit board</strong> — every component plugs into it. Think of it as the city's road network: the CPU is city hall, RAM is the short-term car park, and PCIe slots are industrial estates for add-on cards.</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-plug"></i><h3>Sockets &amp; Slots</h3><p>CPU socket, DIMM slots, PCIe slots, M.2</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-ethernet"></i><h3>Headers &amp; Ports</h3><p>SATA, USB headers, front panel, 24-pin power</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-microchip"></i><h3>Chipset</h3><p>Controls communication between CPU, RAM and peripherals</p></div>
+                </div>
+                <aside class="notes">Hold up a motherboard if available. Point out it's the biggest board in the case. Next slide is interactive — let them explore. ~2 min.</aside>
+            </section>
+
+            <!-- SLIDE 7: Interactive Motherboard SVG -->
+            <section data-auto-animate id="slide-motherboard">
+                <h2 class="animated-gradient"><i class="fas fa-map-marked-alt"></i> Explore the Motherboard</h2>
+                <div class="mb-mode-toggle">
+                    <button class="mb-mode-btn active" data-mode="explore" type="button">Explore Mode</button>
+                    <button class="mb-mode-btn" data-mode="quiz" type="button">Label Quiz Mode</button>
+                </div>
+                <div class="mb-tour">
+                    <div class="mb-svg-wrap">
+                        <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Motherboard diagram with numbered hotspots">
+                            <rect x="10" y="10" width="480" height="360" rx="8" fill="#1a1a2e" stroke="#444" stroke-width="2"/>
+                            <rect x="30" y="30" width="200" height="200" rx="4" fill="#222" stroke="#555" stroke-width="1"/>
+                            <text x="130" y="125" fill="#666" font-size="10" text-anchor="middle">CPU Socket</text>
+                            <rect x="250" y="30" width="220" height="30" rx="2" fill="#2a2a4a" stroke="#555"/>
+                            <rect x="250" y="70" width="220" height="30" rx="2" fill="#2a2a4a" stroke="#555"/>
+                            <rect x="250" y="110" width="220" height="30" rx="2" fill="#2a2a4a" stroke="#555"/>
+                            <rect x="250" y="150" width="220" height="30" rx="2" fill="#2a2a4a" stroke="#555"/>
+                            <rect x="30" y="250" width="120" height="80" rx="2" fill="#2a2a4a" stroke="#555"/>
+                            <rect x="170" y="280" width="80" height="15" rx="2" fill="#333" stroke="#666"/>
+                            <rect x="170" y="305" width="80" height="15" rx="2" fill="#333" stroke="#666"/>
+                            <rect x="170" y="330" width="80" height="15" rx="2" fill="#333" stroke="#666"/>
+                            <rect x="350" y="250" width="120" height="60" rx="2" fill="#2a2a4a" stroke="#555"/>
+                            <rect x="30" y="340" width="60" height="20" rx="2" fill="#333" stroke="#666"/>
+                            <g class="hotspot" data-id="cpu" tabindex="0" role="button" aria-label="CPU Socket">
+                                <circle cx="130" cy="130" r="12"/><text x="130" y="134" text-anchor="middle">1</text>
+                            </g>
+                            <g class="hotspot" data-id="ram" tabindex="0" role="button" aria-label="RAM DIMM Slots">
+                                <circle cx="360" cy="45" r="12"/><text x="360" y="49" text-anchor="middle">2</text>
+                            </g>
+                            <g class="hotspot" data-id="pcie" tabindex="0" role="button" aria-label="PCIe x16 Slot">
+                                <circle cx="90" cy="290" r="12"/><text x="90" y="294" text-anchor="middle">3</text>
+                            </g>
+                            <g class="hotspot" data-id="m2" tabindex="0" role="button" aria-label="M.2 Slot">
+                                <circle cx="410" cy="280" r="12"/><text x="410" y="284" text-anchor="middle">4</text>
+                            </g>
+                            <g class="hotspot" data-id="sata" tabindex="0" role="button" aria-label="SATA Ports">
+                                <circle cx="210" cy="310" r="12"/><text x="210" y="314" text-anchor="middle">5</text>
+                            </g>
+                            <g class="hotspot" data-id="power24" tabindex="0" role="button" aria-label="24-pin ATX Power">
+                                <circle cx="60" cy="350" r="12"/><text x="60" y="354" text-anchor="middle">6</text>
+                            </g>
+                            <g class="hotspot" data-id="eps8" tabindex="0" role="button" aria-label="8-pin EPS CPU Power">
+                                <circle cx="200" cy="60" r="12"/><text x="200" y="64" text-anchor="middle">7</text>
+                            </g>
+                            <g class="hotspot" data-id="chipset" tabindex="0" role="button" aria-label="Chipset">
+                                <circle cx="410" cy="330" r="12"/><text x="410" y="334" text-anchor="middle">8</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="mb-info-panel" id="mb-info-panel">
+                        <h4>Click a numbered hotspot</h4>
+                        <p>Select any numbered circle on the motherboard diagram to learn what that area does.</p>
+                        <p class="hint">Try Label Quiz Mode to test yourself!</p>
+                    </div>
+                </div>
+                <aside class="notes">Let learners click hotspots. In quiz mode, ask "What is number 3?" before they click. Walk through all 8 if time allows. ~5 min.</aside>
+            </section>
+
+            <!-- SLIDE 8: Categories -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-sitemap"></i> Input, Output, Storage, Processing</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 10px;">Every piece of IT kit fits one (or more) of these categories:</p>
                 <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-keyboard"></i><h3>Input</h3><p>Keyboard, mouse, scanner, webcam</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-desktop"></i><h3>Output</h3><p>Monitor, printer, speakers, GPU signal</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-hdd"></i><h3>Storage</h3><p>HDD, SSD, USB stick, memory card</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-keyboard"></i><h3>Input</h3><p>Keyboard, mouse, scanner, webcam, microphone</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-desktop"></i><h3>Output</h3><p>Monitor, printer, speakers, GPU video signal</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-hdd"></i><h3>Storage</h3><p>HDD, SSD, USB stick, M.2 drive, memory card</p></div>
                     <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip"></i><h3>Processing</h3><p>CPU, GPU, RAM, motherboard chipset</p></div>
                 </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-lightbulb"></i> Tricky ones</h4>
+                    <p style="margin:0;">A touchscreen is <strong>both</strong> input and output. A GPU is processing <em>and</em> produces video output. USB ports can be input or output depending what's plugged in.</p>
+                </div>
+                <aside class="notes">Quick categorisation drill: call out "webcam" — input. "SSD" — storage. "CPU" — processing. Mention edge cases. ~3 min.</aside>
             </section>
 
+            <!-- SLIDE 9: Connectors Flip Cards -->
+            <section data-auto-animate>
+                <span class="section-badge">Connectors</span>
+                <h2 class="animated-gradient"><i class="fas fa-plug"></i> Connectors &amp; Cables You Must Recognise</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em;"><i class="fas fa-hand-pointer"></i> Click to flip — learn what each connector looks like and where it goes</p>
+                <div class="flip-grid">
+                    <div class="flip-card" tabindex="0" role="button"><div class="flip-card-inner">
+                        <div class="flip-card-front"><i class="fas fa-ethernet" style="color: var(--brand-teal);"></i><h4>SATA Data</h4></div>
+                        <div class="flip-card-back"><p>L-shaped 7-pin connector. Plugs HDD/SSD to motherboard SATA port. One cable per drive.</p></div>
+                    </div></div>
+                    <div class="flip-card" tabindex="0" role="button"><div class="flip-card-inner">
+                        <div class="flip-card-front"><i class="fas fa-bolt" style="color: #FCC624;"></i><h4>SATA Power</h4></div>
+                        <div class="flip-card-back"><p>15-pin flat connector from PSU. Powers HDDs, SSDs and some fans. Do not force — keyed to fit one way.</p></div>
+                    </div></div>
+                    <div class="flip-card" tabindex="0" role="button"><div class="flip-card-inner">
+                        <div class="flip-card-front"><i class="fas fa-plug" style="color: var(--brand-orange);"></i><h4>24-pin ATX</h4></div>
+                        <div class="flip-card-back"><p>Main motherboard power from PSU. Largest connector on the board. Must click firmly until it locks.</p></div>
+                    </div></div>
+                    <div class="flip-card" tabindex="0" role="button"><div class="flip-card-inner">
+                        <div class="flip-card-front"><i class="fas fa-plug" style="color: var(--brand-purple);"></i><h4>8-pin EPS</h4></div>
+                        <div class="flip-card-back"><p>CPU power connector near the socket. Often 4+4 pin split. High-end CPUs need both 8-pin connectors.</p></div>
+                    </div></div>
+                    <div class="flip-card" tabindex="0" role="button"><div class="flip-card-inner">
+                        <div class="flip-card-front"><i class="fas fa-memory" style="color: var(--brand-teal);"></i><h4>DIMM vs SO-DIMM</h4></div>
+                        <div class="flip-card-back"><p>Desktop RAM (DIMM) is longer with one offset notch. Laptop RAM (SO-DIMM) is shorter. Notch position prevents wrong insertion.</p></div>
+                    </div></div>
+                    <div class="flip-card" tabindex="0" role="button"><div class="flip-card-inner">
+                        <div class="flip-card-front"><i class="fas fa-tv" style="color: #FF6600;"></i><h4>PCIe Power</h4></div>
+                        <div class="flip-card-back"><p>6-pin or 8-pin from PSU to graphics card. High-power GPUs may need two connectors. Never use adapters carelessly.</p></div>
+                    </div></div>
+                </div>
+                <aside class="notes">Show real cables if available. Pass around a SATA cable. Emphasise keyed connectors — they only fit one way. ~4 min.</aside>
+            </section>
+
+            <!-- SLIDE 10: Form Factors -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-ruler-combined"></i> Form Factors at a Glance</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Motherboards and cases come in standard sizes — you need to match them</p>
+                <div class="form-factor-row">
+                    <div class="form-factor-box fragment fade-up">
+                        <div class="form-factor-shape ff-atx"></div>
+                        <h4>ATX</h4>
+                        <p>305 × 244 mm<br>Full-size, most expansion slots</p>
+                    </div>
+                    <div class="form-factor-box fragment fade-up">
+                        <div class="form-factor-shape ff-matx"></div>
+                        <h4>microATX</h4>
+                        <p>244 × 244 mm<br>Compact, fewer slots</p>
+                    </div>
+                    <div class="form-factor-box fragment fade-up">
+                        <div class="form-factor-shape ff-itx"></div>
+                        <h4>mini-ITX</h4>
+                        <p>170 × 170 mm<br>Tiny, 1 PCIe slot</p>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up" style="margin-top: 20px;">
+                    <p style="margin:0;"><i class="fas fa-info-circle"></i> A microATX board fits in an ATX case, but not vice versa. Compatibility details are covered in the <strong>Building Computers</strong> deck.</p>
+                </div>
+                <aside class="notes">Compare sizes visually. Ask: "Which would you choose for a gaming PC? For a media centre?" Keep it identification-only. ~2 min.</aside>
+            </section>
+
+            <!-- SLIDE 11: Cooling -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-fan"></i> Cooling &amp; Airflow</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>Cooling Parts</h3>
+                        <ul>
+                            <li>CPU heatsink + fan (or AIO liquid cooler)</li>
+                            <li>Case fans (intake &amp; exhaust)</li>
+                            <li>Thermal paste between CPU and heatsink</li>
+                            <li>Fan headers on motherboard (3-pin / 4-pin PWM)</li>
+                            <li>GPU has its own onboard fans</li>
+                        </ul>
+                    </div>
+                    <div class="fragment fade-up">
+                        <div class="airflow-diagram">
+                            <div class="airflow-case">
+                                <span class="airflow-out"><i class="fas fa-arrow-up"></i> HOT AIR OUT</span>
+                                <span class="airflow-arrow"><i class="fas fa-arrow-up"></i></span>
+                                <span class="airflow-in"><i class="fas fa-arrow-down"></i> COOL AIR IN</span>
+                            </div>
+                        </div>
+                        <p style="text-align:center; font-size:0.78em; color:rgba(255,255,255,0.6);">Front/bottom = intake · Rear/top = exhaust</p>
+                    </div>
+                </div>
+                <aside class="notes">Demonstrate airflow with a case fan if available. Mention thermal paste is a one-time application. Overheating = throttling or shutdown. ~3 min.</aside>
+            </section>
+
+            <!-- SLIDE 12: Power Delivery -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-bolt"></i> Power Delivery &amp; the PSU</h2>
+                <div class="glass-card fragment fade-up">
+                    <p>The PSU label tells you everything: <strong>wattage</strong> (e.g. 650W), <strong>efficiency rating</strong> (80 Plus Bronze/Silver/Gold/Platinum), and <strong>rail voltages</strong> (+12V, +5V, +3.3V).</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-calculator"></i><div><h4>Rule of thumb</h4><p>Add up component wattage + 20% headroom. A mid-range gaming PC needs ~550–650W.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-leaf"></i><div><h4>Efficiency matters</h4><p>80 Plus Gold wastes less energy as heat — quieter and cheaper to run.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-skull-crossbones"></i><div><h4>Never open a PSU</h4><p>Capacitors hold lethal charge even when unplugged. If it fails, replace the whole unit.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-link"></i><div><h4>Modular vs fixed</h4><p>Modular PSUs let you attach only the cables you need — cleaner builds, better airflow.</p></div></div>
+                </div>
+                <aside class="notes">Show a PSU label if possible. Stress NEVER open a PSU. Cross-link to Safe Working &amp; ESD deck. ~3 min.</aside>
+            </section>
+
+            <!-- SLIDE 13: Spec Decoder -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-file-alt"></i> Reading a Spec Sheet</h2>
+                <p style="color: rgba(255,255,255,0.7);">Can you decode this PC specification?</p>
+                <div class="spec-decoder fragment fade-up">
+                    <span class="spec-highlight spec-cpu" title="CPU — 12th gen Intel Core i5, no integrated graphics">Intel Core i5-12400F</span> ·
+                    <span class="spec-highlight spec-ram" title="RAM — 16 gigabytes DDR4 at 3200 MHz">16GB DDR4-3200</span> ·
+                    <span class="spec-highlight spec-storage" title="Storage — 512GB NVMe SSD (M.2)">512GB NVMe SSD</span> ·
+                    <span class="spec-highlight spec-gpu" title="GPU — NVIDIA GeForce RTX 3060 graphics card">NVIDIA RTX 3060</span> ·
+                    <span class="spec-highlight" style="background:rgba(138,43,226,0.3);color:var(--brand-purple-light);" title="PSU — 650 watt power supply">650W PSU</span>
+                </div>
+                <div class="feature-grid fragment fade-up" style="margin-top:20px;">
+                    <div class="feature-card orange"><i class="fas fa-microchip"></i><h3>i5-12400F</h3><p>Mid-range 6-core CPU. "F" = no built-in graphics — needs a dedicated GPU.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-memory"></i><h3>16GB DDR4-3200</h3><p>16GB RAM, DDR4 type, running at 3200 MHz. Good for gaming and multitasking.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-save"></i><h3>512GB NVMe</h3><p>Fast M.2 SSD. NVMe is much quicker than SATA. 512GB is moderate capacity.</p></div>
+                </div>
+                <aside class="notes">Walk through each highlighted term. Ask learners to identify the component type for each. This is how they'd read a Currys or Amazon listing. ~4 min.</aside>
+            </section>
+
+            <!-- SLIDE 14: ESD -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-shield-alt"></i> Anti-Static (ESD) Safe Handling</h2>
                 <div class="highlight-box fragment fade-up">
@@ -737,13 +1507,53 @@
                     <p>A static shock you can't even feel (as low as 30V) can silently destroy a CPU, RAM stick or motherboard. Damage is often invisible until the PC won't boot.</p>
                 </div>
                 <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-hand-sparkles"></i><div><h4>Wear a wrist strap</h4><p>Clip it to bare metal on the case</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-hand-sparkles"></i><div><h4>Wear a wrist strap</h4><p>Clip it to bare metal on the case — always, every time</p></div></div>
                     <div class="benefit-item fragment fade-up"><i class="fas fa-th"></i><div><h4>Use an anti-static mat</h4><p>Work on a grounded, static-safe surface</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-hand"></i><div><h4>Hold parts by the edges</h4><p>Never touch gold pins or chip contacts</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-box"></i><div><h4>Store in anti-static bags</h4><p>Keep spares in the bag they came in</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-hand"></i><div><h4>Hold parts by the edges</h4><p>Never touch gold pins, contacts or chip surfaces</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-box"></i><div><h4>Store in anti-static bags</h4><p>Pink or silver bags — keep spares sealed until needed</p></div></div>
                 </div>
+                <aside class="notes">Demonstrate wrist strap clipping. Full ESD theory is in the Safe Working &amp; ESD deck — mention cross-link. Make strapping up a habit. ~3 min.</aside>
             </section>
 
+            <!-- SLIDE 15: Fragility Matrix -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-heart-broken"></i> Fragility Matrix</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Not all parts are equal — know what's rugged and what's delicate</p>
+                <div class="fragility-grid">
+                    <div class="fragility-col rugged fragment fade-up">
+                        <h4><i class="fas fa-shield-alt"></i> Rugged</h4>
+                        <ul><li>PC case panels</li><li>PSU (external only)</li><li>Case fans</li><li>Cables</li><li>Heatsink (no paste)</li></ul>
+                    </div>
+                    <div class="fragility-col delicate fragment fade-up">
+                        <h4><i class="fas fa-exclamation"></i> Handle with Care</h4>
+                        <ul><li>RAM sticks</li><li>SSD / HDD</li><li>GPU</li><li>Motherboard</li><li>M.2 drives</li></ul>
+                    </div>
+                    <div class="fragility-col never fragment fade-up">
+                        <h4><i class="fas fa-ban"></i> Never Touch</h4>
+                        <ul><li>CPU pins / contacts</li><li>Capacitors on board</li><li>Inside a PSU</li><li>Gold finger contacts</li><li>Thermal paste surface</li></ul>
+                    </div>
+                </div>
+                <aside class="notes">Quiz: "Where would you put the CPU?" (Never touch column). "Can you carry a case panel under your arm?" (Rugged). ~2 min.</aside>
+            </section>
+
+            <!-- SLIDE 16: Fault Table -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-stethoscope"></i> Symptom → Likely Component</h2>
+                <table class="fault-table fragment fade-up">
+                    <thead><tr><th>Symptom</th><th>Likely Component</th><th>First Check</th></tr></thead>
+                    <tbody>
+                        <tr><td class="fault-symptom">No power at all</td><td class="fault-part">PSU / power cable</td><td>Is PSU switch on? Cable seated?</td></tr>
+                        <tr><td class="fault-symptom">Fans spin, no display</td><td class="fault-part">RAM / GPU / monitor cable</td><td>Reseat RAM, check GPU power</td></tr>
+                        <tr><td class="fault-symptom">Loud clicking noise</td><td class="fault-part">HDD (failing)</td><td>Back up data immediately</td></tr>
+                        <tr><td class="fault-symptom">Random reboots / BSOD</td><td class="fault-part">RAM / overheating</td><td>Check temps, test RAM</td></tr>
+                        <tr><td class="fault-symptom">Very slow boot</td><td class="fault-part">Storage (failing HDD)</td><td>Check SMART status, consider SSD</td></tr>
+                        <tr><td class="fault-symptom">Burning smell</td><td class="fault-part">PSU / motherboard</td><td>Power off immediately, do not retry</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Walk through 2-3 rows. Ask: "A PC clicks and won't boot — what do you check first?" This builds diagnostic thinking. ~3 min.</aside>
+            </section>
+
+            <!-- SLIDE 17: Practical Task -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-tasks"></i> Practical Task</h2>
                 <div class="glass-card fragment fade-up">
@@ -756,54 +1566,225 @@
                     <div class="benefit-item fragment fade-up"><i class="fas fa-shield-alt"></i><div><h4>3. Handle safely</h4><p>Demonstrate correct anti-static handling for each part</p></div></div>
                     <div class="benefit-item fragment fade-up"><i class="fas fa-comments"></i><div><h4>4. Explain</h4><p>Tell your group what each part does in one sentence</p></div></div>
                 </div>
+                <aside class="notes">Transition to hands-on. Ensure wrist straps are available. Set a 15-minute timer for the group activity. Circulate and check handling technique. ~15 min activity.</aside>
             </section>
 
+            <!-- SLIDE 18: Drag and Drop Game -->
+            <section data-auto-animate id="slide-dnd">
+                <h2 class="animated-gradient"><i class="fas fa-gamepad"></i> Component Sort Challenge</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em;">Drag each component chip into the correct category bin</p>
+                <div class="dnd-board" id="dnd-board">
+                    <div class="dnd-pool" id="dnd-pool">
+                        <h4><i class="fas fa-box"></i> Components</h4>
+                        <div id="dnd-chips"></div>
+                    </div>
+                    <div class="dnd-bins" id="dnd-bins">
+                        <div class="dnd-bin" data-cat="input"><h4><i class="fas fa-keyboard"></i> Input</h4></div>
+                        <div class="dnd-bin" data-cat="output"><h4><i class="fas fa-desktop"></i> Output</h4></div>
+                        <div class="dnd-bin" data-cat="storage"><h4><i class="fas fa-hdd"></i> Storage</h4></div>
+                        <div class="dnd-bin" data-cat="processing"><h4><i class="fas fa-microchip"></i> Processing</h4></div>
+                    </div>
+                </div>
+                <div class="dnd-controls">
+                    <button class="dnd-btn secondary" id="dnd-reset" type="button"><i class="fas fa-redo"></i> Reset</button>
+                    <span id="dnd-score" style="font-size:0.85em; color:var(--brand-teal);"></span>
+                </div>
+                <aside class="notes">Let learners play the drag-and-drop game. On touch devices, tap a chip then tap a bin. Celebrate when all correct. ~5 min.</aside>
+            </section>
+
+            <!-- SLIDE 19: Timed Challenge -->
+            <section data-auto-animate id="slide-timed">
+                <h2 class="animated-gradient"><i class="fas fa-stopwatch"></i> Beat the Clock!</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Sort all 10 components before time runs out</p>
+                <div style="text-align:center; margin: 20px 0;">
+                    <span class="timer-display" id="timer-display">60</span>
+                    <span style="font-size:0.8em; color:rgba(255,255,255,0.5);"> seconds</span>
+                    <p class="best-time" id="best-time-display"></p>
+                </div>
+                <div class="dnd-board" id="timed-dnd-board">
+                    <div class="dnd-pool" id="timed-dnd-pool">
+                        <h4><i class="fas fa-box"></i> Components</h4>
+                        <div id="timed-dnd-chips"></div>
+                    </div>
+                    <div class="dnd-bins" id="timed-dnd-bins">
+                        <div class="dnd-bin" data-cat="input"><h4><i class="fas fa-keyboard"></i> Input</h4></div>
+                        <div class="dnd-bin" data-cat="output"><h4><i class="fas fa-desktop"></i> Output</h4></div>
+                        <div class="dnd-bin" data-cat="storage"><h4><i class="fas fa-hdd"></i> Storage</h4></div>
+                        <div class="dnd-bin" data-cat="processing"><h4><i class="fas fa-microchip"></i> Processing</h4></div>
+                    </div>
+                </div>
+                <div class="dnd-controls">
+                    <button class="dnd-btn" id="timed-start" type="button"><i class="fas fa-play"></i> Start Timer</button>
+                    <button class="dnd-btn secondary" id="timed-reset" type="button"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+                <aside class="notes">Competitive element — who can sort fastest? Best time saved in browser. Good energiser after practical task. ~5 min.</aside>
+            </section>
+
+            <!-- SLIDE 20: Glossary -->
+            <section data-auto-animate id="slide-glossary">
+                <h2 class="animated-gradient"><i class="fas fa-book"></i> Jargon Buster</h2>
+                <input type="text" class="glossary-search" id="glossary-search" placeholder="Type to filter terms..." aria-label="Filter glossary terms">
+                <dl class="glossary-list" id="glossary-list">
+                    <div class="glossary-item" data-terms="cpu central processing unit processor brain"><dt>CPU</dt><dd>Central Processing Unit — executes program instructions</dd></div>
+                    <div class="glossary-item" data-terms="ram memory dimm sodimm"><dt>RAM</dt><dd>Random Access Memory — fast temporary storage while powered on</dd></div>
+                    <div class="glossary-item" data-terms="gpu graphics card video"><dt>GPU</dt><dd>Graphics Processing Unit — renders images and video</dd></div>
+                    <div class="glossary-item" data-terms="psu power supply wattage"><dt>PSU</dt><dd>Power Supply Unit — converts mains AC to DC for components</dd></div>
+                    <div class="glossary-item" data-terms="hdd hard disk drive spinning"><dt>HDD</dt><dd>Hard Disk Drive — magnetic spinning-platter storage</dd></div>
+                    <div class="glossary-item" data-terms="ssd solid state nvme sata"><dt>SSD</dt><dd>Solid State Drive — chip-based storage, no moving parts</dd></div>
+                    <div class="glossary-item" data-terms="motherboard mainboard mobo"><dt>Motherboard</dt><dd>Main circuit board connecting all components</dd></div>
+                    <div class="glossary-item" data-terms="pcie expansion slot graphics"><dt>PCIe</dt><dd>Peripheral Component Interconnect Express — high-speed expansion slot</dd></div>
+                    <div class="glossary-item" data-terms="sata storage connector"><dt>SATA</dt><dd>Serial ATA — standard connector for HDDs and SSDs</dd></div>
+                    <div class="glossary-item" data-terms="m2 nvme ssd slot"><dt>M.2</dt><dd>Small form-factor slot for NVMe SSDs directly on the motherboard</dd></div>
+                    <div class="glossary-item" data-terms="dimm sodimm ram slot"><dt>DIMM / SO-DIMM</dt><dd>Desktop and laptop RAM module form factors</dd></div>
+                    <div class="glossary-item" data-terms="esd electrostatic discharge static"><dt>ESD</dt><dd>Electrostatic Discharge — static shock that can damage electronics</dd></div>
+                    <div class="glossary-item" data-terms="atx form factor motherboard size"><dt>ATX</dt><dd>Standard full-size motherboard and case form factor (305×244mm)</dd></div>
+                    <div class="glossary-item" data-terms="chipset motherboard controller"><dt>Chipset</dt><dd>Motherboard chip managing data flow between CPU, RAM and peripherals</dd></div>
+                    <div class="glossary-item" data-terms="thermal paste heatsink cooling"><dt>Thermal Paste</dt><dd>Heat-conductive compound between CPU and heatsink</dd></div>
+                    <div class="glossary-item" data-terms="post power on self test boot"><dt>POST</dt><dd>Power-On Self-Test — firmware check before OS loads</dd></div>
+                    <div class="glossary-item" data-terms="bios uefi firmware"><dt>BIOS / UEFI</dt><dd>Firmware that initialises hardware at startup</dd></div>
+                    <div class="glossary-item" data-terms="header front panel usb"><dt>Header</dt><dd>Pin connector on motherboard for case buttons, LEDs and front USB</dd></div>
+                    <div class="glossary-item" data-terms="form factor size atx matx itx"><dt>Form Factor</dt><dd>Physical size standard for motherboards and cases</dd></div>
+                    <div class="glossary-item" data-terms="nvme storage fast m2"><dt>NVMe</dt><dd>Non-Volatile Memory Express — fast protocol for M.2 SSDs</dd></div>
+                </dl>
+                <aside class="notes">Reference slide — learners can revisit anytime. Try filtering "ESD" or "PCIe". Good for revision before assessment. ~2 min or self-paced.</aside>
+            </section>
+
+            <!-- SLIDE 21: Deck Map -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-map"></i> Where This Fits</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">This deck is part of a hardware learning pathway — here's what comes next</p>
+                <div class="deck-map">
+                    <a class="deck-link" href="safe-working-esd-ocn-level2-presentation.html"><i class="fas fa-shield-alt"></i><h4>Safe Working &amp; ESD</h4><p>Workshop safety fundamentals</p></a>
+                    <a class="deck-link current" href="inside-the-pc-components-ocn-level2-presentation.html"><i class="fas fa-microchip"></i><h4>Inside the PC</h4><p>You are here</p></a>
+                    <a class="deck-link" href="building-computers-ocn-level2-presentation.html"><i class="fas fa-tools"></i><h4>Building Computers</h4><p>Assembly &amp; compatibility</p></a>
+                    <a class="deck-link" href="storage-showdown-ocn-level2-presentation.html"><i class="fas fa-hdd"></i><h4>Storage Showdown</h4><p>HDD vs SSD vs Cloud</p></a>
+                    <a class="deck-link" href="bios-uefi-setup-ocn-level2-presentation.html"><i class="fas fa-cog"></i><h4>BIOS / UEFI Setup</h4><p>Firmware &amp; boot order</p></a>
+                    <a class="deck-link" href="installing-an-os-ocn-level2-presentation.html"><i class="fas fa-download"></i><h4>Installing an OS</h4><p>Windows deployment</p></a>
+                </div>
+                <aside class="notes">Show the learning pathway. Recommend Storage Showdown as immediate next step. Building Computers for those who want to assemble. ~1 min.</aside>
+            </section>
+
+            <!-- SLIDE 22: Quiz Intro -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about PC components</p>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">6 questions — your score is tracked across slides</p>
+                <div class="score-bar-wrap"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                <p class="score-label" id="quiz-score-label">Score: 0 / 6</p>
                 <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
+                <aside class="notes">Build anticipation. Tell them score is tracked — aim for 5/6 or higher. ~1 min.</aside>
             </section>
 
-            <section>
+            <!-- SLIDE 23-28: Quiz Questions -->
+            <section data-quiz="1">
                 <div class="quiz-container">
                     <p class="quiz-question">Q1: Which component is often called the "brain" of the computer?</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>PSU</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>CPU</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>USB port</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Case fan</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>A</span>PSU</div>
+                        <div class="quiz-option fragment" data-correct="true"><span>B</span>CPU</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>C</span>USB port</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>D</span>Case fan</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — The CPU processes instructions and carries out calculations.</div>
+                    <div class="fragment quiz-feedback" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — The CPU processes instructions and carries out calculations.</div>
                 </div>
+                <aside class="notes">Q1 — should be easy. If many get it wrong, revisit the CPU flip card. ~1 min.</aside>
             </section>
 
-            <section>
+            <section data-quiz="2">
                 <div class="quiz-container">
                     <p class="quiz-question">Q2: Which category does a monitor belong to?</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Output</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Storage</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Processing</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Input</div>
+                        <div class="quiz-option fragment" data-correct="true"><span>A</span>Output</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>B</span>Storage</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>C</span>Processing</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>D</span>Input</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — A monitor displays information produced by the computer, so it's an output device.</div>
+                    <div class="fragment quiz-feedback" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — A monitor displays information produced by the computer, so it's an output device.</div>
                 </div>
+                <aside class="notes">Q2 — categorisation. Mention GPU also produces video output. ~1 min.</aside>
             </section>
 
-            <section>
+            <section data-quiz="3">
                 <div class="quiz-container">
                     <p class="quiz-question">Q3: What should you do before touching internal PC components?</p>
                     <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Rub your feet on the carpet</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Ground yourself with an anti-static wrist strap</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Wear woolly gloves</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Nothing — it's not necessary</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>A</span>Rub your feet on the carpet</div>
+                        <div class="quiz-option fragment" data-correct="true"><span>B</span>Ground yourself with an anti-static wrist strap</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>C</span>Wear woolly gloves</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>D</span>Nothing — it's not necessary</div>
                     </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Grounding yourself discharges static that could silently damage sensitive components.</div>
+                    <div class="fragment quiz-feedback" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Grounding yourself discharges static that could silently damage sensitive components.</div>
                 </div>
+                <aside class="notes">Q3 — ESD safety. Option A is a trick (carpet builds static!). ~1 min.</aside>
             </section>
 
+            <section data-quiz="4">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q4: Which connector provides main power to the motherboard?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option fragment" data-correct="false"><span>A</span>SATA data cable</div>
+                        <div class="quiz-option fragment" data-correct="true"><span>B</span>24-pin ATX connector</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>C</span>HDMI cable</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>D</span>USB header</div>
+                    </div>
+                    <div class="fragment quiz-feedback" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — The 24-pin ATX connector is the largest power connector on the motherboard.</div>
+                </div>
+                <aside class="notes">Q4 — connectors. Refer back to flip cards if needed. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q5: A PC makes a loud clicking noise and won't boot. Which component is most likely failing?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option fragment" data-correct="false"><span>A</span>RAM</div>
+                        <div class="quiz-option fragment" data-correct="true"><span>B</span>HDD</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>C</span>CPU</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>D</span>Monitor</div>
+                    </div>
+                    <div class="fragment quiz-feedback" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Clicking sounds from a hard drive usually mean the mechanical heads are failing. Back up data immediately!</div>
+                </div>
+                <aside class="notes">Q5 — fault diagnosis. Refer to symptom table. Emphasise backup urgency. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q6: What does "F" mean in a CPU name like "i5-12400F"?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option fragment" data-correct="false"><span>A</span>Fastest model</div>
+                        <div class="quiz-option fragment" data-correct="true"><span>B</span>No integrated graphics — needs a dedicated GPU</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>C</span>Designed for laptops only</div>
+                        <div class="quiz-option fragment" data-correct="false"><span>D</span>Factory overclocked</div>
+                    </div>
+                    <div class="fragment quiz-feedback" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Intel uses "F" to indicate the CPU has no built-in graphics and requires a separate GPU.</div>
+                </div>
+                <aside class="notes">Q6 — spec decoding. Hardest question. Refer to spec decoder slide. ~1 min.</aside>
+            </section>
+
+            <!-- SLIDE 29: Quiz Results -->
+            <section data-auto-animate id="slide-quiz-results">
+                <h2 class="animated-gradient"><i class="fas fa-trophy"></i> Your Results</h2>
+                <div class="results-card glass-card">
+                    <div class="results-grade" id="results-grade">—</div>
+                    <p id="results-message" style="font-size: 1.1em; color: rgba(255,255,255,0.8); margin: 15px 0;">Complete the quiz to see your score</p>
+                    <div class="score-bar-wrap" style="max-width:400px; margin: 20px auto;"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <p class="score-label" id="results-score-label">0 / 6</p>
+                    <button class="dnd-btn" id="quiz-retry" type="button" style="margin-top: 20px;"><i class="fas fa-redo"></i> Retry Quiz</button>
+                </div>
+                <aside class="notes">Reveal results with enthusiasm. 6/6 = Distinction level. 4-5 = Pass. Below 4 = revisit glossary and flip cards. ~2 min.</aside>
+            </section>
+
+            <!-- SLIDE 30: Key Takeaways -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip"></i><h3>Know each part</h3><p>CPU, RAM, storage, GPU, PSU, motherboard</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-sitemap"></i><h3>Categorise correctly</h3><p>Input, output, storage, processing</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Handle safely</h3><p>ESD straps, mats, edge-only grip</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-tools"></i><h3>Practise it</h3><p>Confidence comes from hands-on repetition</p></div>
-            </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip"></i><h3>Know each part</h3><p>CPU, RAM, storage, GPU, PSU, motherboard — and their connectors</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-sitemap"></i><h3>Categorise correctly</h3><p>Input, output, storage, processing — every device fits a category</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-shield-alt"></i><h3>Handle safely</h3><p>ESD straps, mats, edge-only grip — know what's fragile</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-stethoscope"></i><h3>Diagnose symptoms</h3><p>Clicking HDD, no display, burning smell — map to components</p></div>
+                </div>
+                <aside class="notes">Recap the four pillars. Ask one learner to summarise in a sentence. ~2 min.</aside>
             </section>
 
+            <!-- SLIDE 31: Career Pathways -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
                 <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Component knowledge is the foundation of every hardware career</p>
@@ -812,23 +1793,32 @@
                     <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Hardware / Repair Technician</p></div>
                     <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Field Service Engineer</p></div>
                 </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">A+</span><span class="stat-label">CompTIA Path</span></div><div class="stat-item"><span class="stat-number">Day 1</span><span class="stat-label">Skill Employers Test</span></div><div class="stat-item"><span class="stat-number">£20-45K</span><span class="stat-label">Early Range</span></div></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;">
+                    <div class="stat-item"><span class="stat-number">A+</span><span class="stat-label">CompTIA Path</span></div>
+                    <div class="stat-item"><span class="stat-number">Day 1</span><span class="stat-label">Skill Employers Test</span></div>
+                    <div class="stat-item"><span class="stat-number">£20-45K</span><span class="stat-label">Early Range (NI)</span></div>
+                </div>
+                <aside class="notes">Inspire — this is a real career path in Northern Ireland. Mention local employers if you know them. ~2 min.</aside>
             </section>
 
+            <!-- SLIDE 32: Next Steps -->
             <section data-auto-animate>
                 <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
                 <div class="glass-card fragment fade-up">
                     <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
                     <ul style="list-style: none; padding: 0;">
                         <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-camera" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Photo log</strong> — Photograph and label 6 components for your portfolio</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-boxes" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Sort challenge</strong> — Re-sort the parts box against the clock</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-gamepad" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Beat your best time</strong> — Replay the timed sort challenge until you nail it</li>
                         <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-hdd" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Go deeper</strong> — Move on to the Storage Showdown deck</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-shield-alt" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Habit</strong> — Always strap up before opening a case, every time</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Revise</strong> — Use the Jargon Buster glossary before your assessment</li>
+                        <li style="padding: 12px 0;"><i class="fas fa-shield-alt" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Habit</strong> — Always strap up before opening a case, every time</li>
                     </ul>
                 </div>
+                <aside class="notes">Assign photo log as portfolio evidence. Point to Storage Showdown deck. Remind about ESD habit. ~2 min.</aside>
             </section>
 
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <!-- SLIDE 33: Thank You -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
                     <h1 class="animated-gradient">Thank You!</h1>
                     <p class="subtitle">Questions? Let's discuss!</p>
@@ -836,8 +1826,13 @@
                         <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Essentials / IT Systems — Hardware</p>
                         <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-microchip" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-shield-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-hdd" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;">
+                        <i class="fas fa-microchip" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i>
+                        <i class="fas fa-shield-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i>
+                        <i class="fas fa-hdd" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i>
+                    </div>
                 </div>
+                <aside class="notes">Open floor for questions. Thank learners for participating. Remind about portfolio photo log. ~3 min.</aside>
             </section>
 
         </div>
@@ -854,12 +1849,429 @@
             autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
             plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        /* ====== STATE ====== */
+        const AppState = {
+            quizScore: 0,
+            quizAnswered: {},
+            mbMode: 'explore',
+            timerInterval: null,
+            timerSeconds: 60,
+            selectedChip: null,
+            dndInitialized: false,
+            timedInitialized: false
+        };
+
+        const DND_ITEMS = [
+            { name: 'Keyboard', cat: 'input' },
+            { name: 'Monitor', cat: 'output' },
+            { name: 'HDD', cat: 'storage' },
+            { name: 'CPU', cat: 'processing' },
+            { name: 'Webcam', cat: 'input' },
+            { name: 'Printer', cat: 'output' },
+            { name: 'SSD', cat: 'storage' },
+            { name: 'RAM', cat: 'processing' },
+            { name: 'Mouse', cat: 'input' },
+            { name: 'GPU', cat: 'processing' }
+        ];
+
+        const MB_INFO = {
+            cpu: { title: '1. CPU Socket', desc: 'Where the processor sits. Match the socket type (e.g. LGA 1700 for Intel 12th/13th gen). The lever beside it locks the CPU in place. Never touch the pins on the underside of the CPU.' },
+            ram: { title: '2. DIMM Slots (RAM)', desc: 'Usually 2 or 4 slots for RAM sticks. Push down until the clips click. Install in pairs for dual-channel performance. Hold RAM by the edges only.' },
+            pcie: { title: '3. PCIe x16 Slot', desc: 'The longest PCIe slot — used for graphics cards. Also accepts other expansion cards. The clip at the end locks the card in place.' },
+            m2: { title: '4. M.2 Slot', desc: 'Small slot for NVMe SSDs directly on the board. Screws in at one end. Much faster than SATA. Check the manual for which M.2 slots share bandwidth with SATA.' },
+            sata: { title: '5. SATA Ports', desc: 'Connect SATA data cables to HDDs and 2.5" SSDs. Each port supports one drive. L-shaped connector prevents wrong insertion.' },
+            power24: { title: '6. 24-pin ATX Power', desc: 'Main motherboard power connector from the PSU. The largest connector on the board. Must click firmly into place — you should feel it lock.' },
+            eps8: { title: '7. 8-pin EPS (CPU Power)', desc: 'Dedicated power for the CPU, located near the socket. Often a 4+4 pin connector. High-end CPUs may need two 8-pin connectors.' },
+            chipset: { title: '8. Chipset', desc: 'The motherboard\'s traffic controller. Manages communication between CPU, RAM, storage and peripherals. Covered by a heatsink on modern boards.' }
+        };
+
+        /* ====== FLIP CARDS ====== */
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                if (card.dataset.bound) return;
+                card.dataset.bound = 'true';
+                const toggle = () => card.classList.toggle('flipped');
+                card.addEventListener('click', toggle);
+                card.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
             });
+        }
+
+        /* ====== MOTHERBOARD HOTSPOTS ====== */
+        function initMotherboard() {
+            const panel = document.getElementById('mb-info-panel');
+            if (!panel || panel.dataset.bound) return;
+            panel.dataset.bound = 'true';
+
+            document.querySelectorAll('.mb-mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.mb-mode-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    AppState.mbMode = btn.dataset.mode;
+                    if (AppState.mbMode === 'quiz') {
+                        panel.innerHTML = '<h4>Label Quiz Mode</h4><p>Click a hotspot, then try to name the component before the answer appears!</p><p class="hint">Test yourself on all 8 areas.</p>';
+                    } else {
+                        panel.innerHTML = '<h4>Click a numbered hotspot</h4><p>Select any numbered circle on the motherboard diagram to learn what that area does.</p><p class="hint">Try Label Quiz Mode to test yourself!</p>';
+                    }
+                    document.querySelectorAll('.hotspot').forEach(h => h.classList.remove('active'));
+                });
+            });
+
+            document.querySelectorAll('.hotspot').forEach(hotspot => {
+                const show = () => {
+                    document.querySelectorAll('.hotspot').forEach(h => h.classList.remove('active'));
+                    hotspot.classList.add('active');
+                    const info = MB_INFO[hotspot.dataset.id];
+                    if (!info) return;
+                    if (AppState.mbMode === 'quiz') {
+                        panel.innerHTML = '<h4>?</h4><p style="font-style:italic;color:rgba(255,255,255,0.5);">What is this component?</p>';
+                        setTimeout(() => {
+                            panel.innerHTML = '<h4>' + info.title + '</h4><p>' + info.desc + '</p>';
+                        }, 1500);
+                    } else {
+                        panel.innerHTML = '<h4>' + info.title + '</h4><p>' + info.desc + '</p>';
+                    }
+                };
+                hotspot.addEventListener('click', show);
+                hotspot.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); }
+                });
+            });
+        }
+
+        /* ====== DRAG AND DROP ====== */
+        function createChips(container, items) {
+            container.innerHTML = '';
+            const shuffled = [...items].sort(() => Math.random() - 0.5);
+            shuffled.forEach(item => {
+                const chip = document.createElement('span');
+                chip.className = 'dnd-chip';
+                chip.textContent = item.name;
+                chip.dataset.cat = item.cat;
+                chip.draggable = true;
+                container.appendChild(chip);
+            });
+        }
+
+        function initDnD(poolId, binsId, chipsId, scoreId) {
+            const pool = document.getElementById(poolId);
+            const binsContainer = document.getElementById(binsId);
+            const chipsContainer = document.getElementById(chipsId);
+            if (!pool || !binsContainer || !chipsContainer) return;
+
+            createChips(chipsContainer, DND_ITEMS);
+            binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
+                bin.querySelectorAll('.dnd-chip').forEach(c => c.remove());
+            });
+
+            let correctCount = 0;
+
+            function updateScore() {
+                if (scoreId) {
+                    const el = document.getElementById(scoreId);
+                    if (el) el.textContent = correctCount + ' / ' + DND_ITEMS.length + ' correct';
+                }
+            }
+
+            function handleDrop(bin, chip) {
+                const chipCat = chip.dataset.cat;
+                const binCat = bin.dataset.cat;
+                if (chipCat === binCat) {
+                    chip.classList.add('correct', 'placed');
+                    chip.classList.remove('incorrect', 'selected');
+                    bin.appendChild(chip);
+                    correctCount++;
+                    updateScore();
+                    if (correctCount === DND_ITEMS.length && poolId === 'timed-dnd-pool') {
+                        stopTimer(true);
+                    }
+                } else {
+                    chip.classList.add('incorrect');
+                    setTimeout(() => chip.classList.remove('incorrect'), 600);
+                }
+                AppState.selectedChip = null;
+            }
+
+            chipsContainer.addEventListener('dragstart', e => {
+                if (e.target.classList.contains('dnd-chip') && !e.target.classList.contains('placed')) {
+                    draggedChip = e.target;
+                    e.dataTransfer.setData('text/plain', e.target.dataset.cat);
+                    e.dataTransfer.effectAllowed = 'move';
+                }
+            });
+
+            chipsContainer.addEventListener('dragend', () => { draggedChip = null; });
+
+            binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
+                bin.addEventListener('dragover', e => { e.preventDefault(); bin.classList.add('drag-over'); });
+                bin.addEventListener('dragleave', () => bin.classList.remove('drag-over'));
+                bin.addEventListener('drop', e => {
+                    e.preventDefault();
+                    bin.classList.remove('drag-over');
+                    const chip = draggedChip || AppState.selectedChip;
+                    if (chip && !chip.classList.contains('placed')) handleDrop(bin, chip);
+                    draggedChip = null;
+                });
+                bin.addEventListener('click', () => {
+                    if (AppState.selectedChip && !AppState.selectedChip.classList.contains('placed')) {
+                        handleDrop(bin, AppState.selectedChip);
+                    }
+                });
+            });
+
+            pool.addEventListener('click', e => {
+                const chip = e.target.closest('.dnd-chip');
+                if (!chip || chip.classList.contains('placed')) return;
+                document.querySelectorAll('.dnd-chip').forEach(c => c.classList.remove('selected'));
+                chip.classList.add('selected');
+                AppState.selectedChip = chip;
+            });
+
+            return { reset: () => {
+                correctCount = 0;
+                createChips(chipsContainer, DND_ITEMS);
+                binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
+                    bin.querySelectorAll('.dnd-chip').forEach(c => c.remove());
+                });
+                updateScore();
+            }};
+        }
+
+        let dndGame = null;
+        let timedGame = null;
+        let draggedChip = null;
+
+        function initDnDGames() {
+            if (!AppState.dndInitialized) {
+                dndGame = initDnD('dnd-pool', 'dnd-bins', 'dnd-chips', 'dnd-score');
+                const resetBtn = document.getElementById('dnd-reset');
+                if (resetBtn && !resetBtn.dataset.bound) {
+                    resetBtn.dataset.bound = 'true';
+                    resetBtn.addEventListener('click', () => { if (dndGame) dndGame.reset(); });
+                }
+                AppState.dndInitialized = true;
+            }
+            if (!AppState.timedInitialized) {
+                timedGame = initDnD('timed-dnd-pool', 'timed-dnd-bins', 'timed-dnd-chips', null);
+                const startBtn = document.getElementById('timed-start');
+                const resetBtn = document.getElementById('timed-reset');
+                if (startBtn && !startBtn.dataset.bound) {
+                    startBtn.dataset.bound = 'true';
+                    startBtn.addEventListener('click', startTimer);
+                }
+                if (resetBtn && !resetBtn.dataset.bound) {
+                    resetBtn.dataset.bound = 'true';
+                    resetBtn.addEventListener('click', () => {
+                        stopTimer(false);
+                        if (timedGame) timedGame.reset();
+                        document.getElementById('timer-display').textContent = '60';
+                        document.getElementById('timer-display').classList.remove('warning');
+                    });
+                }
+                const bestEl = document.getElementById('best-time-display');
+                const best = localStorage.getItem('pc-dnd-best-time');
+                if (best && bestEl) bestEl.textContent = 'Best time: ' + best + 's';
+                AppState.timedInitialized = true;
+            }
+        }
+
+        function startTimer() {
+            stopTimer(false);
+            if (timedGame) timedGame.reset();
+            AppState.timerSeconds = 60;
+            const display = document.getElementById('timer-display');
+            display.textContent = '60';
+            display.classList.remove('warning');
+            AppState.timerInterval = setInterval(() => {
+                AppState.timerSeconds--;
+                display.textContent = AppState.timerSeconds;
+                if (AppState.timerSeconds <= 10) display.classList.add('warning');
+                if (AppState.timerSeconds <= 0) stopTimer(false);
+            }, 1000);
+        }
+
+        function stopTimer(success) {
+            if (AppState.timerInterval) {
+                clearInterval(AppState.timerInterval);
+                AppState.timerInterval = null;
+            }
+            if (success) {
+                const elapsed = 60 - AppState.timerSeconds;
+                const bestEl = document.getElementById('best-time-display');
+                const prev = parseInt(localStorage.getItem('pc-dnd-best-time') || '999');
+                if (elapsed < prev) {
+                    localStorage.setItem('pc-dnd-best-time', elapsed);
+                    if (bestEl) bestEl.textContent = 'New best time: ' + elapsed + 's!';
+                }
+            }
+        }
+
+        /* ====== GLOSSARY ====== */
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        /* ====== QUIZ SCORING ====== */
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            ['quiz-score-label', 'quiz-progress'].forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = i === 1 ? 'Score: ' + AppState.quizScore + ' / 6' : 'Score: ' + AppState.quizScore + ' / 6';
+            });
+            const progress = document.getElementById('quiz-progress');
+            if (progress) progress.classList.toggle('visible', AppState.quizScore > 0);
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s === 6) { grade.textContent = 'A+'; msg.textContent = 'Outstanding! You know your PC components inside out.'; }
+            else if (s >= 5) { grade.textContent = 'A'; msg.textContent = 'Excellent work! Just one to review.'; }
+            else if (s >= 4) { grade.textContent = 'B'; msg.textContent = 'Good effort — revisit the glossary and flip cards.'; }
+            else if (s >= 2) { grade.textContent = 'C'; msg.textContent = 'Keep practising — try the sort challenge again.'; }
+            else { grade.textContent = 'D'; msg.textContent = 'Let\'s revisit the core components slide together.'; }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            document.addEventListener('click', e => {
+                const option = e.target.closest('.quiz-option');
+                if (!option) return;
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            });
+
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.style.pointerEvents = '';
+                    });
+                    updateQuizUI();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h, Reveal.getIndices(firstQuiz).v);
+                });
+            }
+        }
+
+        /* ====== CIRCUIT CANVAS BACKGROUND ====== */
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+
+                if (!showCanvas || reducedMotion) return requestAnimationFrame(draw);
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        /* ====== SLIDE CHANGED ====== */
+        Reveal.on('slidechanged', event => {
+            initFlipCards();
+            initMotherboard();
+            initDnDGames();
+            initGlossary();
+
+            const slide = event.currentSlide;
+            if (slide && slide.id === 'slide-quiz-results') showResults();
+        });
+
+        /* ====== INIT ====== */
+        Reveal.on('ready', () => {
+            initFlipCards();
+            initMotherboard();
+            initDnDGames();
+            initGlossary();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
         });
     </script>
     <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
