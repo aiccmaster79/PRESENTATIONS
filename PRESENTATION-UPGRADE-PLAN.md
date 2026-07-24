@@ -550,7 +550,7 @@ a mandate — swap them if something fits the topic better.
 
 ### Programming — Demos
 
-- [~] **#51 Debugger Walkthrough** — `debugger-walkthrough-ocn-level2-presentation.html` · small · 15 → 28 · `cursor/upgrade-programming-small-b631`
+- [x] **#51 Debugger Walkthrough** — `debugger-walkthrough-ocn-level2-presentation.html` · small · 15 → 28 · `cursor/upgrade-programming-small-b631`
   - Step-through debugger simulator with breakpoints and a watch panel
 - [~] **#52 Trace Table Demo** — `trace-table-demo-ocn-level2-presentation.html` · small · 15 → 28 · `cursor/upgrade-programming-small-b631`
   - Fillable, validated trace table, dry-run race
