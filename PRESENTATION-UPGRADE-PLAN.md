@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 1 / 143 presentations complete**
+**Progress: 2 / 143 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
