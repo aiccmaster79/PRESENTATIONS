@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 1 / 143 presentations complete**
+**Progress: 7 / 143 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -550,17 +550,17 @@ a mandate — swap them if something fits the topic better.
 
 ### Programming — Demos
 
-- [ ] **#51 Debugger Walkthrough** — `debugger-walkthrough-ocn-level2-presentation.html` · small · 15 → 28
+- [x] **#51 Debugger Walkthrough** — `debugger-walkthrough-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Step-through debugger simulator with breakpoints and a watch panel
-- [ ] **#52 Trace Table Demo** — `trace-table-demo-ocn-level2-presentation.html` · small · 15 → 28
+- [x] **#52 Trace Table Demo** — `trace-table-demo-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Fillable, validated trace table, dry-run race
-- [ ] **#53 File Handling** — `file-handling-ocn-level2-presentation.html` · small · 15 → 28
+- [x] **#53 File Handling** — `file-handling-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Read/write simulator with modes, missing-file error scenarios, CSV vs txt
-- [ ] **#54 Input Validation** — `input-validation-ocn-level2-presentation.html` · small · 15 → 28
+- [x] **#54 Input Validation** — `input-validation-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Live validator sandbox for normal, extreme and erroneous input, test plan builder, message writing
-- [ ] **#55 Refactoring Bad Code** — `refactoring-bad-code-ocn-level2-presentation.html` · small · 15 → 28
+- [x] **#55 Refactoring Bad Code** — `refactoring-bad-code-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Before/after diff slider, code smell spotter, behaviour-preservation check
-- [ ] **#56 Git Version Control Basics** — `git-version-control-basics-ocn-level2-presentation.html` · small · 15 → 28
+- [x] **#56 Git Version Control Basics** — `git-version-control-basics-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Command → repo state simulator, staging area animation, log timeline
 - [ ] **#88 GitHub & CI/CD** — `github-cicd-ocn-level2-presentation.html` · small · 16 → 30
   - PR review simulator, workflow builder, pipeline status animation, branch protection
