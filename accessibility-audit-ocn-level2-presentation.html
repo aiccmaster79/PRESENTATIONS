@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#59 | Level 2–3 | Accessibility Audit | OCN NI</title>
+    <title>Accessibility Audit | Check a webpage for accessibility issues | #59 Level 2&ndash;3 Website development</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
         :root {
             --brand-orange: #F7931E;
             --brand-purple: #8A2BE2;
@@ -23,186 +24,377 @@
             --dark-bg: #0a0a1a;
             --glass-bg: rgba(20, 20, 40, 0.85);
         }
-        .reveal { font-family: 'Poppins', sans-serif; }
-        .reveal .slides { text-align: left; }
-        .reveal .slides section { height: 100%; padding: 20px 40px; }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif; font-weight: 700;
-            text-transform: none; letter-spacing: -0.02em;
+
+        .reveal {
+            font-family: 'Poppins', sans-serif;
         }
-        .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.4em; }
-        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .slides section {
+            height: 100%;
+            padding: 20px 40px;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal h1 {
+            font-size: 2.8em;
+        }
+
+        .reveal h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal h3 {
+            font-size: 1.4em;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
         .animated-gradient {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
             background-size: 400% 400%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; animation: gradientShift 8s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
         }
+
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
+
         .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
+
         .glass-card-small {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
+
         .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
+
         .feature-card {
             background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .feature-card:hover {
-            transform: translateY(-8px); border-color: var(--brand-teal);
+
+        .feature-card:hover,
+        .feature-card:focus-within {
+            transform: translateY(-8px);
+            border-color: var(--brand-teal);
             box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
         }
-        .feature-card i { font-size: 2.5em; margin-bottom: 15px; display: block; }
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-        .feature-card h3 { font-size: 1.2em; margin-bottom: 10px; color: #fff; }
-        .feature-card p { font-size: 0.85em; color: rgba(255, 255, 255, 0.7); margin: 0; }
-        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 25px; border: 2px solid; }
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-        .comparison-box h3 { text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .comparison-box.type1 h3 { color: var(--brand-purple); }
-        .comparison-box.type2 h3 { color: var(--brand-teal); }
-        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
-        .comparison-box li { padding: 8px 0; padding-left: 25px; position: relative; font-size: 0.85em; }
-        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
-        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
-        .benefit-item {
-            display: flex; gap: 15px; align-items: flex-start; background: var(--glass-bg);
-            border-radius: 12px; padding: 18px; border: 1px solid rgba(255,255,255,0.08);
+
+        .feature-card i {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
         }
-        .benefit-item i { font-size: 1.8em; color: var(--brand-teal); margin-top: 4px; }
-        .benefit-item h4 { margin: 0 0 6px 0; font-size: 1em; }
-        .benefit-item p { margin: 0; font-size: 0.8em; color: rgba(255,255,255,0.7); }
-        .software-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
-        .software-item {
-            background: var(--glass-bg); border-radius: 14px; padding: 20px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
+
+        .feature-card.orange i {
+            color: var(--brand-orange);
         }
-        .software-item i { font-size: 2em; display: block; margin-bottom: 10px; }
-        .software-item h4 { font-size: 0.95em; margin: 8px 0; }
-        .software-item p { font-size: 0.75em; color: rgba(255,255,255,0.65); margin: 0; }
-        .type-badge {
-            display: inline-block; font-size: 0.65em; padding: 3px 10px; border-radius: 20px;
-            font-weight: 600; margin-bottom: 6px;
+
+        .feature-card.purple i {
+            color: var(--brand-purple);
         }
-        .type-badge.type1 { background: rgba(138,43,226,0.3); color: var(--brand-purple-light); }
-        .type-badge.type2 { background: rgba(0,189,165,0.3); color: var(--brand-teal-light); }
-        .quiz-container { max-width: 900px; margin: 0 auto; }
-        .quiz-question { font-size: 1.3em; font-weight: 600; margin-bottom: 25px; text-align: center; }
-        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .quiz-option {
-            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;
-            display: flex; align-items: center; gap: 12px;
+
+        .feature-card.teal i {
+            color: var(--brand-teal);
         }
-        .quiz-option span {
-            background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
+
+        .feature-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #fff;
         }
-        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
-        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
-        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
+
+        .feature-card p {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .comparison-box {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 2px solid;
+        }
+
+        .comparison-box.type1 {
+            border-color: var(--brand-purple);
+        }
+
+        .comparison-box.type2 {
+            border-color: var(--brand-teal);
+        }
+
+        .comparison-box h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-box.type1 h3 {
+            color: var(--brand-purple);
+        }
+
+        .comparison-box.type2 h3 {
+            color: var(--brand-teal);
+        }
+
+        .comparison-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.85em;
+        }
+
+        .comparison-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+
         .stats-bar {
-            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-            background: var(--glass-bg); border-radius: 16px; padding: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 25px;
         }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 1.5em; font-weight: 700; color: var(--brand-teal); }
-        .stat-label { font-size: 0.75em; color: rgba(255,255,255,0.6); }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--brand-teal);
+        }
+
+        .stat-label {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
         .career-path {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 30px; position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            position: relative;
         }
+
         .career-path::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
             background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
             z-index: 0;
         }
+
         .career-step {
-            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
-            z-index: 1; min-width: 150px; border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            min-width: 150px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
-        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
-        .career-step:nth-child(1) i { color: var(--brand-orange); }
-        .career-step:nth-child(2) i { color: var(--brand-purple); }
-        .career-step:nth-child(3) i { color: var(--brand-teal); }
-        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
-        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
-        .title-slide {
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; height: 100%;
+
+        .career-step:hover,
+        .career-step:focus-within {
+            transform: translateY(-10px);
+            border-color: var(--brand-teal);
         }
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
+
+        .career-step i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .career-step:nth-child(1) i {
+            color: var(--brand-orange);
+        }
+
+        .career-step:nth-child(2) i {
+            color: var(--brand-purple);
+        }
+
+        .career-step:nth-child(3) i {
+            color: var(--brand-teal);
+        }
+
+        .career-step h4 {
+            font-size: 0.9em;
+            margin: 0 0 5px 0;
+        }
+
+        .career-step p {
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .title-slide h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.4em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
         .title-slide .qualification {
             display: inline-block;
             background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
-        }
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
-        .objectives-list li {
-            display: flex; align-items: flex-start; gap: 15px; padding: 15px;
-            margin-bottom: 10px; background: var(--glass-bg); border-radius: 10px;
-            border-left: 4px solid var(--brand-orange);
-        }
-        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 20px; margin: 20px 0;
-        }
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-        .rule-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85em; }
-        .rule-table th, .rule-table td {
-            padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal); font-weight: 600; }
-        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.1); }
-        code, .code-inline {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.4);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--brand-teal-light);
-        }
-        pre.code-block {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 22px; font-size: 0.75em; line-height: 1.55; overflow-x: auto;
-            color: #e2e8f0; margin: 15px 0;
-        }
-        @media (max-width: 768px) {
-            .feature-grid, .software-grid { grid-template-columns: 1fr; }
-            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .career-path { flex-direction: column; gap: 20px; }
-            .career-path::before { display: none; }
-        }
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
-        }
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0); opacity: 1;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            font-weight: 600;
         }
 
-        /* ====== DEMO META BADGE ====== */
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+
+        .objectives-list li i {
+            color: var(--brand-teal);
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--brand-orange);
+            margin: 0 0 10px 0;
+        }
+
+        code,
+        .code-inline {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--brand-teal-light);
+        }
+
+        pre.code-block {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 0.75em;
+            line-height: 1.55;
+            overflow-x: auto;
+            color: #e2e8f0;
+            margin: 15px 0;
+        }
+
         .demo-meta {
             display: inline-flex;
             align-items: center;
@@ -230,117 +422,1427 @@
             opacity: 0.45;
         }
 
+        .section-badge {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.3);
+            color: var(--brand-purple-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .reveal .slides section .fragment.fade-up.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .back-to-index {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+        }
+
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #fff;
+        }
+
+        .back-to-index i {
+            color: #00BDA5;
+            font-size: 0.9rem;
+        }
+
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 160px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.98));
+        }
+
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.15), rgba(20, 20, 40, 0.98));
+            transform: rotateY(180deg);
+            border-color: var(--brand-teal);
+        }
+
+        .flip-card-front i {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-front h4 {
+            font-size: 1em;
+            margin: 0;
+            color: #fff;
+        }
+
+        .flip-card-back p {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .widget-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 20px;
+            margin-top: 12px;
+        }
+
+        .widget-panel {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px;
+        }
+
+        .widget-panel h3,
+        .widget-panel h4 {
+            margin-top: 0;
+            color: var(--brand-teal);
+        }
+
+        .sim-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 14px;
+        }
+
+        .sim-btn,
+        .tool-btn,
+        .mode-toggle,
+        .swatch-btn,
+        .check-item,
+        .judge-option {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.78em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: opacity 0.2s, transform 0.2s, border-color 0.2s;
+        }
+
+        .sim-btn:hover,
+        .tool-btn:hover,
+        .mode-toggle:hover,
+        .swatch-btn:hover,
+        .check-item:hover,
+        .judge-option:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .sim-btn:disabled,
+        .tool-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .sim-btn.secondary,
+        .tool-btn.secondary,
+        .mode-toggle,
+        .swatch-btn,
+        .check-item,
+        .judge-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sim-btn:focus-visible,
+        .tool-btn:focus-visible,
+        .mode-toggle:focus-visible,
+        .swatch-btn:focus-visible,
+        .check-item:focus-visible,
+        .judge-option:focus-visible,
+        .flip-card:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            font-size: 0.8em;
+        }
+
+        .metric-row strong {
+            color: var(--brand-orange-light);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 92px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 0.72em;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .status-pill.pass {
+            color: #bbf7d0;
+            background: rgba(34, 197, 94, 0.18);
+            border-color: rgba(34, 197, 94, 0.45);
+        }
+
+        .status-pill.fail {
+            color: #fecaca;
+            background: rgba(239, 68, 68, 0.18);
+            border-color: rgba(239, 68, 68, 0.45);
+        }
+
+        .colour-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .colour-inputs label,
+        .field-stack label {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.78em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .colour-inputs input[type='color'] {
+            width: 100%;
+            height: 52px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+        }
+
+        .swatch-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .sample-card {
+            border-radius: 14px;
+            padding: 20px;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .sample-card .sample-heading {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 6px;
+        }
+
+        .checklist-stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .check-item {
+            text-align: left;
+            border-radius: 12px;
+            padding: 11px 14px;
+        }
+
+        .check-item.selected {
+            border-color: var(--brand-teal);
+            background: rgba(0, 189, 165, 0.18);
+        }
+
+        .check-score {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--brand-teal);
+            text-align: center;
+        }
+
+        .bad-page-card {
+            background: #f1f1f1;
+            color: #5f5f5f;
+            border-radius: 14px;
+            padding: 18px;
+            font-family: Arial, sans-serif;
+            box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.08);
+        }
+
+        .bad-page-card h3 {
+            color: #333;
+            font-size: 1.2em;
+            margin: 0 0 8px;
+        }
+
+        .bad-page-card .bad-button {
+            display: inline-block;
+            color: #777;
+            background: #8b8b8b;
+            padding: 8px 14px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        .bad-page-card input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .sandbox-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .sandbox-form input {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 11px 12px;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .sandbox-form input:focus {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .mode-toggle.active {
+            border-color: var(--brand-orange);
+            background: rgba(247, 147, 30, 0.18);
+        }
+
+        .validation-output {
+            min-height: 92px;
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 12px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.78em;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .validation-output ul {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+
+        .validation-output.pass {
+            border-color: rgba(34, 197, 94, 0.45);
+            background: rgba(34, 197, 94, 0.12);
+        }
+
+        .validation-output.fail {
+            border-color: rgba(239, 68, 68, 0.45);
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        .judge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .judge-option {
+            min-height: 80px;
+            border-radius: 14px;
+            text-align: left;
+        }
+
+        .judge-option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.18);
+        }
+
+        .judge-option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.18);
+        }
+
+        .scenario-feedback {
+            min-height: 1.6em;
+            margin-top: 12px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.82em;
+        }
+
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: var(--glass-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quiz-option span {
+            background: var(--brand-purple);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--brand-teal);
+            transform: translateY(-3px);
+        }
+
+        .quiz-option:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .quiz-option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .score-bar-wrap {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            height: 12px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .score-label {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+        }
+
+        .quiz-progress {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--brand-teal);
+            display: none;
+        }
+
+        .quiz-progress.visible {
+            display: block;
+        }
+
+        .results-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .results-grade {
+            font-size: 4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glossary-search {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--glass-bg);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9em;
+            margin-bottom: 18px;
+        }
+
+        .glossary-search:focus {
+            outline: none;
+            border-color: var(--brand-teal);
+        }
+
+        .glossary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .glossary-item {
+            background: var(--glass-bg);
+            border-radius: 10px;
+            padding: 12px 16px;
+            border-left: 3px solid var(--brand-purple);
+        }
+
+        .glossary-item.hidden {
+            display: none;
+        }
+
+        .glossary-item dt {
+            font-weight: 600;
+            color: var(--brand-teal);
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+
+        .glossary-item dd {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .fault-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78em;
+            margin-top: 15px;
+        }
+
+        .fault-table th,
+        .fault-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fault-table th {
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-teal);
+            font-weight: 600;
+        }
+
+        .fault-table tr:hover td {
+            background: rgba(0, 189, 165, 0.08);
+        }
+
+        .fault-symptom {
+            color: var(--brand-orange);
+            font-weight: 600;
+        }
+
+        .deck-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .deck-link {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s;
+            text-align: center;
+        }
+
+        .deck-link:hover,
+        .deck-link:focus-visible {
+            border-color: var(--brand-teal);
+            transform: translateY(-3px);
+            outline: none;
+        }
+
+        .deck-link i {
+            font-size: 1.8em;
+            color: var(--brand-teal);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .deck-link h4 {
+            font-size: 0.82em;
+            margin: 0 0 4px;
+        }
+
+        .deck-link p {
+            font-size: 0.68em;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .deck-link.current {
+            border-color: var(--brand-orange);
+            background: rgba(247, 147, 30, 0.1);
+        }
+
+        .kbd-hint {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .kbd-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .kbd-item kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: var(--brand-teal);
+        }
+
+        .criteria-list,
+        .evidence-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        .criteria-list li,
+        .evidence-list li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 0.82em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .criteria-list li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--brand-teal);
+        }
+
+        .evidence-list li::before {
+            content: '☑';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0 18px;
+        }
+
+        .case-pill {
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-purple-light);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.72em;
+            font-weight: 600;
+        }
+
+        #circuit-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient {
+                animation: none;
+            }
+
+            .flip-card-inner {
+                transition: none;
+            }
+
+            .feature-card,
+            .career-step,
+            .deck-link,
+            .quiz-option,
+            .check-item,
+            .judge-option,
+            .swatch-btn {
+                transition: none;
+            }
+
+            .score-bar-fill {
+                transition: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid,
+            .flip-grid,
+            .deck-map,
+            .glossary-list,
+            .judge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-container,
+            .quiz-options,
+            .widget-grid,
+            .two-col,
+            .colour-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .career-path {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .career-path::before {
+                display: none;
+            }
+
+            .title-slide h1 {
+                font-size: 2.2em;
+            }
+        }
     </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to index</span>
+    </a>
     <div class="reveal">
         <div class="slides">
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+
+            <!-- 1 Title -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
-                    <span class="demo-meta"><span class="demo-number">#59</span><span class="sep">·</span><span class="demo-level">Level 2–3</span><span class="sep">·</span><span class="demo-level">Website development</span></span>
+                    <span class="demo-meta"><span class="demo-number">#59</span><span class="sep">&middot;</span><span class="demo-level">Level 2&ndash;3</span><span class="sep">&middot;</span><span class="demo-level">Website development</span></span>
                     <h1 class="animated-gradient">Accessibility Audit</h1>
                     <p class="subtitle">Check a webpage for accessibility issues</p>
-                    <span class="qualification">OCN NI Level 2–3 — Website development</span>
+                    <span class="qualification">OCN NI Level 2&ndash;3 - Website development</span>
                 </div>
+                <aside class="notes">Welcome learners. Explain that accessibility is a practical quality check, not a legal scare story. Timing: ~2 min.</aside>
             </section>
+
+            <!-- 2 Objectives -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list"><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> why accessibility matters (users, law, quality)</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Run</strong> a basic audit using browser tools and a checklist</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> issues: contrast, alt text, headings, focus, labels</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Fix</strong> at least two issues in the demo site files</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Retest</strong> to show improvement</span></li></ul>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Explain</strong> why accessibility matters for real users and legal/ethical awareness</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Run</strong> a basic automated and manual accessibility audit</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Identify</strong> issues with contrast, alt text, headings, focus, labels, and link text</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Fix</strong> at least two accessibility issues in HTML or CSS</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Retest</strong> and capture evidence for a portfolio or assessment</span></li>
+                </ul>
+                <aside class="notes">Read objectives aloud and ask learners to name one barrier they have seen on a website. Timing: ~3 min.</aside>
             </section>
+
+            <!-- 3 How to use -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-universal-access"></i> Access Is a Feature</h2>
-                <div class="glass-card fragment fade-up">
-                    <p><strong>Accessibility (a11y)</strong> means people with diverse abilities can perceive, operate and understand your site — keyboard users, screen reader users, low vision, and more.</p>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to Use This Deck</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Interactive slides - click, tap, or use the keyboard:</p>
+                <div class="kbd-hint">
+                    <div class="kbd-item"><kbd>&rarr;</kbd> Next slide</div>
+                    <div class="kbd-item"><kbd>&larr;</kbd> Previous slide</div>
+                    <div class="kbd-item"><kbd>S</kbd> Speaker notes</div>
+                    <div class="kbd-item"><kbd>F</kbd> Fullscreen</div>
+                    <div class="kbd-item"><kbd>O</kbd> Slide overview</div>
+                    <div class="kbd-item"><kbd>Esc</kbd> Exit overview</div>
                 </div>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-heading"></i><h3>Headings</h3><p>Logical h1 → h2 structure</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-image"></i><h3>Alt text</h3><p>Describe meaningful images</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-adjust"></i><h3>Contrast</h3><p>Text readable against backgrounds</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-keyboard"></i><h3>Keyboard</h3><p>Tab order and visible focus</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-tags"></i><h3>Labels</h3><p>Inputs need associated labels</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-link"></i><h3>Link text</h3><p>Avoid “click here” alone</p></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-clipboard-list"></i> Mini Audit Checklist</h2>
-                <div class="glass-card fragment fade-up">
-                    <table class="rule-table">
-                        <thead><tr><th>Check</th><th>Pass looks like…</th><th>Fail looks like…</th></tr></thead>
-                        <tbody>
-                            <tr class="fragment"><td>Alt text</td><td>Meaningful description</td><td>Missing or empty on content images</td></tr>
-                            <tr class="fragment"><td>Contrast</td><td>Clear text</td><td>Grey on grey / orange on orange</td></tr>
-                            <tr class="fragment"><td>Headings</td><td>One h1, ordered levels</td><td>Skipped levels / all bold paragraphs</td></tr>
-                            <tr class="fragment"><td>Forms</td><td>&lt;label for&gt; linked</td><td>Placeholder-only fields</td></tr>
-                            <tr class="fragment"><td>Keyboard</td><td>Reach all controls</td><td>Focus trapped / invisible</td></tr>
-                        </tbody>
-                    </table>
+                <div class="highlight-box fragment fade-up" style="margin-top: 28px; text-align: center;">
+                    <p style="margin:0;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> <strong>Click</strong> flip cards - <strong>try</strong> the live widget - <strong>complete</strong> the scored quiz. All custom controls support keyboard focus.</p>
                 </div>
+                <aside class="notes">Orient learners to keyboard controls and interactive slides. Mention colour pickers and toggles are keyboard accessible. Timing: ~2 min.</aside>
             </section>
+
+            <!-- 4 Why it matters -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Demo Sequence</h2>
+                <h2 class="animated-gradient"><i class="fas fa-universal-access" aria-hidden="true"></i> Why Accessibility Matters</h2>
                 <div class="glass-card fragment fade-up">
-                    <ol style="font-size:0.9em; line-height:1.7;"><li class="fragment">Open a demo page seeded with accessibility issues</li><li class="fragment">Walk the checklist manually (headings, alt, labels)</li><li class="fragment">Use DevTools Accessibility / contrast helpers or Lighthouse Accessibility score as a guide</li><li class="fragment">Tab through the page with the keyboard — note focus problems</li><li class="fragment">Fix two issues live in VS Code (alt text + label or contrast)</li><li class="fragment">Reload and re-audit — show the before/after</li></ol>
+                    <p>A website is only successful when people can actually use it. Accessibility checks help visitors who use screen readers, keyboard navigation, captions, zoom, high contrast settings, or alternative input devices.</p>
+                    <p>For coursework, you need to show a practical cycle: <strong>audit</strong>, <strong>fix</strong>, and <strong>retest</strong> with evidence. This also supports awareness of the Equality Act and inclusive service design.</p>
                 </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-code"></i><h3>VS Code</h3><p>Edit demo site files</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-globe"></i><h3>Browser DevTools</h3><p>Accessibility pane / Lighthouse</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-folder-open"></i><h3>Demo site with issues</h3><p>Intentional faults for the audit</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-check"></i><h3>Printed checklist</h3><p>For pairs to score the page</p></div></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 22px;">
+                    <div class="stat-item"><span class="stat-number">1 in 5</span><span class="stat-label">People may experience disability</span></div>
+                    <div class="stat-item"><span class="stat-number">4.5:1</span><span class="stat-label">AA contrast for normal text</span></div>
+                    <div class="stat-item"><span class="stat-number">Tab</span><span class="stat-label">Keyboard path must work</span></div>
+                </div>
                 <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4>
-                    <p>Emphasise people and inclusion, not just a score. Automated tools miss issues — manual checks still matter.</p>
+                    <h4><i class="fas fa-lightbulb" aria-hidden="true"></i> Classroom rule</h4>
+                    <p style="margin:0;">Do not just say "Lighthouse score is low". Identify the barrier, explain who it affects, fix it, then retest.</p>
                 </div>
+                <aside class="notes">Use a relatable hook: a learner trying to apply for an open day with a keyboard or screen reader. Timing: ~4 min.</aside>
             </section>
+
+            <!-- 5 Flip toolkit -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about accessibility</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: Alt text is mainly for…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Decorating CSS</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Describing meaningful images when they can’t be seen</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Speeding up Wi‑Fi</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Encrypting passwords</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Screen readers and text-only contexts use alt text.</div>
+                <span class="section-badge">Toolkit</span>
+                <h2 class="animated-gradient"><i class="fas fa-tools" aria-hidden="true"></i> Accessibility Audit Toolkit</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em; margin-bottom: 6px;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click or press Enter/Space to flip each card</p>
+                <div class="flip-grid">
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Alt text - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-image" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>Alt text</h4></div>
+                            <div class="flip-card-back"><p>Describe the purpose of meaningful images. Decorative images can use empty alt text so they are skipped.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Contrast - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-adjust" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Contrast</h4></div>
+                            <div class="flip-card-back"><p>Text must stand out from the background. WCAG AA normal text target is 4.5:1.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Headings - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-heading" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>Headings</h4></div>
+                            <div class="flip-card-back"><p>Use one logical outline. Do not skip from h1 to h4 just for visual size.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Keyboard focus - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-keyboard" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>Keyboard focus</h4></div>
+                            <div class="flip-card-back"><p>Every interactive control must be reachable and show a visible focus indicator.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Labels - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-tag" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Labels</h4></div>
+                            <div class="flip-card-back"><p>Inputs need programmatic labels. Placeholder text is not a reliable label.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Link text - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-link" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>Link text</h4></div>
+                            <div class="flip-card-back"><p>Links should make sense out of context. Replace "click here" with a meaningful action.</p></div>
+                        </div>
+                    </div>
                 </div>
+                <aside class="notes">Have pairs flip all six cards, then explain one card back to the room. Timing: ~6 min.</aside>
             </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: Poor colour contrast hurts…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Only printers</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Users with low vision (and many others)</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Only servers</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Only Git commits</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Text must be readable against its background.</div>
-                </div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: A labelled form input helps…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Screen reader and all users understand the field</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>The CPU run cooler</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Macros record faster</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>VLANs route better</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — Labels programmatically describe inputs.</div>
-                </div>
-            </section>
+
+            <!-- 6 Concept -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-universal-access"></i><h3>Design for everyone</h3><p>Access is quality, not optional</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-clipboard-list"></i><h3>Checklist + tools</h3><p>Manual and automated together</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-keyboard"></i><h3>Keyboard path</h3><p>If you can’t tab it, fix it</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-sync"></i><h3>Fix and retest</h3><p>Evidence of improvement</p></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
-                <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Junior Web Developer</p></div>
-                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Front-End / UX Developer</p></div>
-                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Accessibility Specialist</p></div>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Audit = Evidence + Judgement</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3><i class="fas fa-robot" aria-hidden="true"></i> Automated checks</h3>
+                        <ul>
+                            <li>Fast scan for missing alt attributes</li>
+                            <li>Flags many colour contrast failures</li>
+                            <li>Finds empty links or form label problems</li>
+                            <li>Generates repeatable scores for evidence</li>
+                            <li>Cannot understand image purpose or content quality</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3><i class="fas fa-user-check" aria-hidden="true"></i> Manual checks</h3>
+                        <ul>
+                            <li>Tab through the page without a mouse</li>
+                            <li>Read headings as an outline</li>
+                            <li>Judge whether alt text is useful</li>
+                            <li>Check error messages and labels make sense</li>
+                            <li>Confirm fixes after changing the code</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Audit</span><span class="stat-label">Find</span></div><div class="stat-item"><span class="stat-number">Fix</span><span class="stat-label">Code</span></div><div class="stat-item"><span class="stat-number">Retest</span><span class="stat-label">Prove</span></div></div>
+                <div class="highlight-box fragment fade-up">
+                    <p style="margin:0;"><strong>Portfolio wording:</strong> "The audit identified a contrast failure on the CTA. I changed the colours, retested, and recorded the new ratio."</p>
+                </div>
+                <aside class="notes">Stress that WCAG is evidence-led: state the issue, impact, and fix. Timing: ~4 min.</aside>
             </section>
+
+            <!-- 7 Applied -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
+                <h2 class="animated-gradient"><i class="fas fa-search" aria-hidden="true"></i> Applied Audit: Seeded Bad Page</h2>
+                <div class="widget-grid">
+                    <div class="bad-page-card fragment fade-up" aria-label="Seeded college open day page summary">
+                        <h3>Open Day 2026</h3>
+                        <p>Join us for campus tours, subject talks, and application support. The main button uses grey text on a grey background.</p>
+                        <span class="bad-button">Apply now</span>
+                        <p><strong>Image:</strong> college-logo.png appears above the title but has no alt attribute.</p>
+                        <input type="text" placeholder="Your name">
+                        <p><a href="#">click here</a> for travel details.</p>
+                    </div>
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="color: var(--brand-teal); font-size: 1em; margin-top:0;">What to record</h3>
+                        <ul class="criteria-list">
+                            <li>Element or page area with the issue</li>
+                            <li>Which user group may be affected</li>
+                            <li>Suggested code or design fix</li>
+                            <li>Evidence before and after retesting</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Walk through the bad page summary. Ask which issues a tool could catch and which need human judgement. Timing: ~4 min.</aside>
+            </section>
+
+            <!-- 8 Signature interactive -->
+            <section data-auto-animate>
+                <span class="section-badge">Doing</span>
+                <h2 class="animated-gradient"><i class="fas fa-eye-dropper" aria-hidden="true"></i> Live Contrast Checker</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.78em; margin: 0 0 8px;">Change text/background colours or use presets. WCAG AA normal text target: <strong>4.5:1</strong>.</p>
+                <div class="widget-grid" id="contrast-checker" role="region" aria-label="Live contrast checker">
+                    <div class="widget-panel">
+                        <h3><i class="fas fa-sliders" aria-hidden="true"></i> Pick colours</h3>
+                        <div class="colour-inputs">
+                            <label>Text colour<input type="color" id="contrast-text" value="#5f5f5f"></label>
+                            <label>Background colour<input type="color" id="contrast-bg" value="#8b8b8b"></label>
+                        </div>
+                        <div class="swatch-row" aria-label="Preset contrast pairs">
+                            <button type="button" class="swatch-btn" data-text="#5f5f5f" data-bg="#8b8b8b">Bad grey CTA</button>
+                            <button type="button" class="swatch-btn" data-text="#ffffff" data-bg="#8A2BE2">Purple pass</button>
+                            <button type="button" class="swatch-btn" data-text="#0a0a1a" data-bg="#00BDA5">Teal pass</button>
+                            <button type="button" class="swatch-btn" data-text="#F7931E" data-bg="#ffffff">Orange fail</button>
+                        </div>
+                        <div class="metric-row" style="margin-top:14px;"><strong>Contrast ratio</strong><span id="contrast-ratio">-</span></div>
+                        <div class="metric-row"><strong>WCAG AA</strong><span id="contrast-status" class="status-pill fail">AA fail</span></div>
+                        <div class="metric-row"><strong>Text sizes</strong><span id="contrast-normal" class="status-pill fail">Normal text: fail</span><span id="contrast-large" class="status-pill fail">Large text: fail</span></div>
+                    </div>
+                    <div class="widget-panel">
+                        <h3><i class="fas fa-desktop" aria-hidden="true"></i> Sample CTA</h3>
+                        <div class="sample-card" id="contrast-sample">
+                            <div class="sample-heading">Apply for Open Day</div>
+                            <p style="margin:0;">Can you read this call-to-action quickly and comfortably?</p>
+                        </div>
+                        <p style="font-size:0.75em; color:rgba(255,255,255,0.65);">If normal text fails, change foreground or background and record the improved ratio in your evidence.</p>
+                    </div>
+                </div>
+                <aside class="notes">Demonstrate changing colours live and ask learners to predict pass/fail before the ratio updates. Timing: ~8 min.</aside>
+            </section>
+
+            <!-- 9 Demo/sequence -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-list-ol" aria-hidden="true"></i> Demo Sequence: Basic Audit</h2>
                 <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
-                    <ul style="list-style: none; padding: 0;"><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Build</strong> — Score the demo page with the checklist and list top 3 issues</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Practice</strong> — Fix alt text and one form label in source</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Reflect</strong> — Re-run the audit and note the improvement</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Form Validation</li></ul>
+                    <ol style="font-size:0.9em; line-height:1.7; margin:0; padding-left:1.2em;">
+                        <li class="fragment">Open the demo page and run an automated scan such as Lighthouse or WAVE</li>
+                        <li class="fragment">Record the initial score and top issues in a short audit table</li>
+                        <li class="fragment">Tab through the page and check visible focus order manually</li>
+                        <li class="fragment">Inspect images, headings, labels, link text, and colour contrast</li>
+                        <li class="fragment">Fix two high-impact issues in the HTML/CSS</li>
+                        <li class="fragment">Retest and save before/after screenshots for portfolio evidence</li>
+                    </ol>
                 </div>
+                <div class="highlight-box fragment fade-up">
+                    <p style="margin:0;"><strong>Evidence phrase:</strong> "Before: grey CTA ratio 2.02:1. After: white on purple ratio passes AA for normal text."</p>
+                </div>
+                <aside class="notes">Use this as the audit sequence learners will follow in the practical. Timing: ~6 min.</aside>
             </section>
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+
+            <!-- 10 Case study -->
+            <section data-auto-animate>
+                <span class="section-badge">Case study</span>
+                <h2 class="animated-gradient"><i class="fas fa-user-graduate" aria-hidden="true"></i> Case Study: College Open-Day Page</h2>
+                <div class="case-meta">
+                    <span class="case-pill">Further education college</span>
+                    <span class="case-pill">Open-day recruitment page</span>
+                    <span class="case-pill">Equality Act awareness</span>
+                </div>
+                <div class="glass-card fragment fade-up">
+                    <p style="margin-top:0;">A college open-day page looked modern, but applicants reported that the <strong>Apply now</strong> button was hard to read, a screen reader announced the logo as "image", and the enquiry form relied on placeholder text only.</p>
+                    <p>The web team audited the page, changed the CTA colours to pass contrast, added purposeful alt text to the logo link, paired each input with a visible label, and retested. The final evidence pack showed the original issue, the fix, and the new audit result.</p>
+                </div>
+                <div class="feature-grid" style="margin-top: 18px;">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i><h3>Barrier</h3><p>Low contrast, missing alt, and placeholder-only form</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-search" aria-hidden="true"></i><h3>Audit move</h3><p>Automated scan plus manual tab and label checks</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-wrench" aria-hidden="true"></i><h3>Fix</h3><p>Update CSS, alt text, labels, and retest with screenshots</p></div>
+                </div>
+                <aside class="notes">Invite learners to role-play tutor, applicant, and web developer perspectives. Timing: ~5 min.</aside>
+            </section>
+
+            <!-- 11 Faults -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-table" aria-hidden="true"></i> Common Accessibility Faults</h2>
+                <table class="fault-table">
+                    <thead>
+                        <tr><th>Fault</th><th>Impact</th><th>Fix</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="fault-symptom">Missing alt</td><td>Screen reader users miss the image purpose</td><td>Add useful alt, or empty alt for decorative images</td></tr>
+                        <tr><td class="fault-symptom">Poor contrast</td><td>Text is hard to read for low vision or bright-light users</td><td>Change colours until normal text reaches 4.5:1</td></tr>
+                        <tr><td class="fault-symptom">Skipped heading levels</td><td>Page outline becomes confusing</td><td>Use headings in logical order; style with CSS</td></tr>
+                        <tr><td class="fault-symptom">Invisible focus</td><td>Keyboard users lose their place</td><td>Provide a clear <code>:focus-visible</code> style</td></tr>
+                        <tr><td class="fault-symptom">Placeholder-only inputs</td><td>Label disappears and may not be announced correctly</td><td>Use <code>&lt;label for="..."&gt;</code> tied to input id</td></tr>
+                        <tr><td class="fault-symptom">"Click here" links</td><td>Link purpose is unclear out of context</td><td>Write descriptive link text such as "Download travel map"</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Keep this table visible during independent work as a fault triage sheet. Timing: ~4 min.</aside>
+            </section>
+
+            <!-- 12 Challenge widget -->
+            <section data-auto-animate>
+                <span class="section-badge">Challenge</span>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Scored WCAG Checklist</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em;">Toggle the issues evidenced by the seeded page summary. Score updates live.</p>
+                <div class="widget-grid" id="wcag-checklist" role="region" aria-label="Scored accessibility checklist">
+                    <div class="widget-panel">
+                        <h3><i class="fas fa-file-alt" aria-hidden="true"></i> Seeded page summary</h3>
+                        <p>Open-day page: grey text on grey CTA; logo image has no alt; form inputs show only placeholders; heading jumps from h1 to h4; focus ring removed in CSS; travel link says "click here".</p>
+                        <div class="check-score" id="checklist-score">0 / 6</div>
+                        <p id="checklist-feedback" style="font-size:0.78em; color:rgba(255,255,255,0.7); text-align:center;">Toggle the issues you would record.</p>
+                    </div>
+                    <div class="widget-panel">
+                        <div class="checklist-stack">
+                            <button type="button" class="check-item" data-id="alt" data-correct="true">Missing alt text for logo</button>
+                            <button type="button" class="check-item" data-id="contrast" data-correct="true">Poor CTA colour contrast</button>
+                            <button type="button" class="check-item" data-id="headings" data-correct="true">Skipped heading levels</button>
+                            <button type="button" class="check-item" data-id="focus" data-correct="true">Invisible keyboard focus</button>
+                            <button type="button" class="check-item" data-id="labels" data-correct="true">Placeholder-only inputs</button>
+                            <button type="button" class="check-item" data-id="links" data-correct="true">Unclear "click here" link text</button>
+                            <button type="button" class="check-item" data-id="server" data-correct="false">Server is offline</button>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">Ask learners to toggle only issues evidenced by the page summary, not guesses. Timing: ~5 min.</aside>
+            </section>
+
+            <!-- 13 Practical -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-laptop-code" aria-hidden="true"></i> Practical Task</h2>
+                <div class="glass-card fragment fade-up" style="padding: 22px;">
+                    <p style="margin-top:0;"><strong>Brief:</strong> Score the demo page, fix two accessibility issues, and re-audit. Choose <strong>alt + label</strong> or <strong>contrast + focus</strong> if you need a tight scope.</p>
+                </div>
+                <div class="two-col">
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="color: var(--brand-teal); font-size: 1em; margin: 0 0 8px;"><i class="fas fa-bullseye" aria-hidden="true"></i> Success criteria</h3>
+                        <ul class="criteria-list">
+                            <li>Initial audit score or issue list recorded</li>
+                            <li>At least two issues fixed in HTML/CSS</li>
+                            <li>Fixes match the user impact described</li>
+                            <li>Retest completed after saving changes</li>
+                            <li>Evidence clearly shows before and after</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="color: var(--brand-orange); font-size: 1em; margin: 0 0 8px;"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Evidence checklist</h3>
+                        <ul class="evidence-list">
+                            <li>Screenshot: original audit result or issue</li>
+                            <li>Code snippet: changed alt, label, CSS, or focus style</li>
+                            <li>Screenshot: retest result after fix</li>
+                            <li>One paragraph: why the fix improves accessibility</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Circulate and coach evidence capture: screenshot, note, fix, retest. Timing: ~15-20 min.</aside>
+            </section>
+
+            <!-- 14 Glossary -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Jargon Buster</h2>
+                <input type="search" class="glossary-search" id="glossary-search" placeholder="Search terms..." aria-label="Search glossary terms">
+                <dl class="glossary-list" id="glossary-list">
+                    <div class="glossary-item" data-terms="a11y inclusive access disability"><dt>Accessibility</dt><dd>Designing and building so people with different needs can use the site.</dd></div>
+                    <div class="glossary-item" data-terms="web content accessibility guidelines"><dt>WCAG</dt><dd>International guidelines used to judge accessible web content.</dd></div>
+                    <div class="glossary-item" data-terms="image alternative screen reader"><dt>Alt text</dt><dd>Text alternative that explains the purpose of meaningful images.</dd></div>
+                    <div class="glossary-item" data-terms="colour color luminance 4.5"><dt>Contrast ratio</dt><dd>Numerical comparison between text and background brightness.</dd></div>
+                    <div class="glossary-item" data-terms="wcag level pass"><dt>AA</dt><dd>Common WCAG conformance level; normal text contrast needs 4.5:1.</dd></div>
+                    <div class="glossary-item" data-terms="tab outline focus visible"><dt>Keyboard focus</dt><dd>The visible position of keyboard navigation on an interactive element.</dd></div>
+                    <div class="glossary-item" data-terms="form input for id"><dt>Label</dt><dd>Programmatic name for an input, often connected with for and id attributes.</dd></div>
+                    <div class="glossary-item" data-terms="input hint temporary"><dt>Placeholder</dt><dd>Hint text inside an input; it should not replace a label.</dd></div>
+                    <div class="glossary-item" data-terms="h1 h2 outline levels"><dt>Heading hierarchy</dt><dd>Logical order of headings that structures the page.</dd></div>
+                    <div class="glossary-item" data-terms="assistive technology announce"><dt>Screen reader</dt><dd>Software that reads page content and controls aloud or via braille.</dd></div>
+                    <div class="glossary-item" data-terms="accessible rich internet applications attributes"><dt>ARIA</dt><dd>Extra attributes for accessibility when native HTML is not enough.</dd></div>
+                    <div class="glossary-item" data-terms="keyboard stuck modal"><dt>Focus trap</dt><dd>A bug where keyboard users cannot leave or navigate a component correctly.</dd></div>
+                    <div class="glossary-item" data-terms="lighthouse wave axe scan"><dt>Automated audit</dt><dd>Tool-based scan that flags common issues quickly.</dd></div>
+                    <div class="glossary-item" data-terms="human judgement keyboard test"><dt>Manual audit</dt><dd>Human checks such as keyboard testing and judging alt text quality.</dd></div>
+                    <div class="glossary-item" data-terms="meaning elements native"><dt>Semantic HTML</dt><dd>Using elements for their meaning, such as button, nav, main, and label.</dd></div>
+                    <div class="glossary-item" data-terms="portfolio before after retest"><dt>Evidence</dt><dd>Screenshots, notes, and code proving the issue was fixed and retested.</dd></div>
+                </dl>
+                <aside class="notes">Learners can search this glossary during the quiz and practical. Timing: ~3 min.</aside>
+            </section>
+
+            <!-- 15 Pathway -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-project-diagram" aria-hidden="true"></i> Website Development Pathway</h2>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.85em;">This deck sits between responsive design checks and form validation.</p>
+                <div class="deck-map">
+                    <a class="deck-link" href="browser-devtools-ocn-level2-presentation.html">
+                        <i class="fas fa-window-maximize" aria-hidden="true"></i>
+                        <h4>Browser DevTools</h4>
+                        <p>Inspect, edit, and debug pages</p>
+                    </a>
+                    <a class="deck-link" href="responsive-design-ocn-level2-presentation.html">
+                        <i class="fas fa-mobile-screen-button" aria-hidden="true"></i>
+                        <h4>Responsive Design</h4>
+                        <p>Adapt layout across devices</p>
+                    </a>
+                    <a class="deck-link current" href="accessibility-audit-ocn-level2-presentation.html" aria-current="page">
+                        <i class="fas fa-universal-access" aria-hidden="true"></i>
+                        <h4>Accessibility Audit</h4>
+                        <p>You are here - Check inclusive web access</p>
+                    </a>
+                    <a class="deck-link" href="form-validation-ocn-level2-presentation.html">
+                        <i class="fas fa-list-check" aria-hidden="true"></i>
+                        <h4>Form Validation</h4>
+                        <p>Stop bad input early</p>
+                    </a>
+                    <a class="deck-link" href="w3c-validation-ocn-level2-presentation.html">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                        <h4>W3C Validation</h4>
+                        <p>Validate HTML and CSS</p>
+                    </a>
+                    <a class="deck-link" href="website-hosting-ocn-level2-presentation.html">
+                        <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
+                        <h4>Website Hosting</h4>
+                        <p>Publish and test online</p>
+                    </a>
+                </div>
+                <aside class="notes">Point to DevTools and Responsive Design as supporting checks; Form Validation comes next. Timing: ~2 min.</aside>
+            </section>
+
+            <!-- 16 Quiz intro -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-question-circle" aria-hidden="true"></i> Knowledge Check</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">6 scored questions - pick one answer each. Your running score appears top-right.</p>
+                <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                <p class="score-label" id="quiz-score-label">Score: 0 / 6</p>
+                <div style="text-align: center; margin-top: 24px;"><i class="fas fa-brain" style="font-size: 4.5em; color: var(--brand-purple);" aria-hidden="true"></i></div>
+                <aside class="notes">Encourage a first honest attempt before using retry. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 17 Q1 -->
+            <section data-quiz="1">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q1: Good alt text should...</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>A</span>Repeat the file name only</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>Describe the image purpose for the page</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>C</span>Always be a full paragraph</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>D</span>Be omitted for every image</div>
+                    </div>
+                </div>
+                <aside class="notes">Correct: B. Useful alt text describes purpose, not every pixel. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 18 Q2 -->
+            <section data-quiz="2">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q2: WCAG AA contrast for normal text is at least...</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>A</span>2.0:1</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>B</span>3.0:1</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>C</span>4.5:1</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>D</span>10.0:1 only</div>
+                    </div>
+                </div>
+                <aside class="notes">Correct: C. Normal text needs at least 4.5:1 for WCAG AA. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 19 Q3 -->
+            <section data-quiz="3">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q3: Why are labels better than placeholders alone?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>A</span>Labels make forms slower</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>Labels stay available to assistive technology</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>C</span>Placeholders are illegal in all cases</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>D</span>Labels replace validation</div>
+                    </div>
+                </div>
+                <aside class="notes">Correct: B. Labels remain available to assistive tech when placeholders disappear. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 20 Q4 -->
+            <section data-quiz="4">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q4: A keyboard user needs...</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>A</span>Only a mouse hover state</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>Visible focus and reachable controls</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>C</span>All links removed</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>D</span>Images instead of buttons</div>
+                    </div>
+                </div>
+                <aside class="notes">Correct: B. Keyboard users must see where focus is. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 21 Q5 -->
+            <section data-quiz="5">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q5: Heading levels should...</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>A</span>Jump around for visual size</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>B</span>Be hidden from everyone</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>C</span>Create a logical page outline</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>D</span>Only use h6</div>
+                    </div>
+                </div>
+                <aside class="notes">Correct: C. Headings create a logical outline. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 22 Q6 -->
+            <section data-quiz="6">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q6: Automated audits are best used...</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>A</span>As the only accessibility check ever needed</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>With manual checks and user-focused judgement</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>C</span>To remove all labels automatically</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="false"><span>D</span>Only after publishing to production</div>
+                    </div>
+                </div>
+                <aside class="notes">Correct: B. Automated tools help but cannot replace manual judgement. Timing: ~1 min.</aside>
+            </section>
+
+            <!-- 23 Results -->
+            <section id="slide-quiz-results">
+                <h2 class="animated-gradient" style="text-align:center;"><i class="fas fa-trophy" aria-hidden="true"></i> Results</h2>
+                <div class="results-card glass-card">
+                    <div class="results-grade" id="results-grade">-</div>
+                    <p class="score-label" id="results-score-label">0 / 6</p>
+                    <div class="score-bar-wrap" style="max-width:420px;margin:16px auto;"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <p id="results-message" style="color:rgba(255,255,255,0.75); font-size:0.95em;">Complete the quiz to see your grade.</p>
+                    <button type="button" class="sim-btn" id="quiz-retry" aria-label="Retry quiz" style="margin-top:18px;">Retry quiz</button>
+                </div>
+                <aside class="notes">Celebrate scores and ask learners under 4 to retry after reviewing the glossary. Timing: ~2 min.</aside>
+            </section>
+
+            <!-- 24 Takeaways -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Key Takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-search" aria-hidden="true"></i><h3>Audit first</h3><p>Use tools and manual checks to identify real barriers</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-eye" aria-hidden="true"></i><h3>Check visibility</h3><p>Contrast and focus indicators must work for real users</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-tags" aria-hidden="true"></i><h3>Name controls</h3><p>Alt text, labels, headings, and links provide meaning</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-redo" aria-hidden="true"></i><h3>Retest</h3><p>Evidence matters: before, fix, after, reflection</p></div>
+                </div>
+                <aside class="notes">Summarise the habit: find barrier, fix code, retest with evidence. Timing: ~2 min.</aside>
+            </section>
+
+            <!-- 25 Careers -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-road" aria-hidden="true"></i> Career Pathways</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Accessibility skills grow from front-end basics into specialist quality and UX roles.</p>
+                <div class="career-path fragment fade-up">
+                    <div class="career-step"><i class="fas fa-graduation-cap" aria-hidden="true"></i><h4>Entry Level</h4><p>Junior Web Developer</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog" aria-hidden="true"></i><h4>Mid Level</h4><p>Front-End / UX Developer</p></div>
+                    <div class="career-step"><i class="fas fa-star" aria-hidden="true"></i><h4>Senior Level</h4><p>Accessibility Specialist</p></div>
+                </div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 30px;">
+                    <div class="stat-item"><span class="stat-number">Audit</span><span class="stat-label">Find barriers</span></div>
+                    <div class="stat-item"><span class="stat-number">Fix</span><span class="stat-label">Improve code</span></div>
+                    <div class="stat-item"><span class="stat-number">Retest</span><span class="stat-label">Prove quality</span></div>
+                </div>
+                <aside class="notes">Connect accessibility to UX, front-end, QA, and specialist roles. Timing: ~2 min.</aside>
+            </section>
+
+            <!-- 26 Next steps -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next Steps</h2>
+                <div class="glass-card fragment fade-up">
+                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks" aria-hidden="true"></i> Your Action Plan</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;" aria-hidden="true"></i><strong>Build</strong> - Fix two seeded accessibility issues</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;" aria-hidden="true"></i><strong>Document</strong> - Write issue, impact, fix, and retest result</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;" aria-hidden="true"></i><strong>Peer test</strong> - Ask a partner to tab through your fixed page</li>
+                        <li style="padding: 12px 0;"><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;" aria-hidden="true"></i><strong>Next demo</strong> - Form Validation</li>
+                    </ul>
+                </div>
+                <aside class="notes">Set post-session evidence requirements and next deck. Timing: ~2 min.</aside>
+            </section>
+
+            <!-- 27 Resources -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-toolbox" aria-hidden="true"></i> Resources Required</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fab fa-chrome" aria-hidden="true"></i><h3>Browser DevTools</h3><p>Inspect HTML, CSS, focus states, and labels</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-wave-square" aria-hidden="true"></i><h3>Audit tool</h3><p>Lighthouse, WAVE, axe, or a tutor-approved checker</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-eye-dropper" aria-hidden="true"></i><h3>Contrast checker</h3><p>Measure foreground/background ratio after colour changes</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-file-alt" aria-hidden="true"></i><h3>Evidence template</h3><p>Before screenshot, code change, after screenshot, reflection</p></div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-clipboard-list" aria-hidden="true"></i> Demo kit note</h4>
+                    <p style="margin:0;">Use a small seeded page for first practice. Real pages can be messy; evidence discipline matters more than fixing everything at once.</p>
+                </div>
+                <aside class="notes">Confirm room tools: browser, Lighthouse or WAVE, colour checker, and evidence template. Timing: ~2 min.</aside>
+            </section>
+
+            <!-- 28 Thank you -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
                     <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Questions? Let's discuss!</p>
+                    <p class="subtitle">Questions? Let us audit one more barrier together.</p>
                     <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Website Development — Accessibility Audit</p>
-                        <span class="qualification">OCN NI Level 2–3 — Website development</span>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle" aria-hidden="true"></i> Website development - Accessibility Audit</p>
+                        <span class="qualification">OCN NI Level 2&ndash;3 - Website development</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-universal-access" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-eye" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-keyboard" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;">
+                        <i class="fas fa-universal-access" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i>
+                        <i class="fas fa-keyboard" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i>
+                        <i class="fas fa-eye" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i>
+                    </div>
                 </div>
+                <aside class="notes">Open for questions and remind learners that accessibility improves sites for everyone. Timing: ~2 min.</aside>
             </section>
 
         </div>
@@ -350,20 +1852,474 @@
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
+
         Reveal.initialize({
-            hash: true, controls: true, progress: true, center: true,
-            transition: 'slide', backgroundTransition: 'fade',
-            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
-            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            autoAnimateEasing: 'ease-out',
+            autoAnimateDuration: 0.8,
             plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        const AppState = {
+            quizScore: 0,
+            quizAnswered: {},
+            quizBound: false,
+            checklistScore: 0,
+            checklistAnswers: {},
+            validationMode: 'html5',
+            validationBound: false,
+            judgeBound: false
+        };
+
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                if (card.dataset.bound) return;
+                card.dataset.bound = 'true';
+                const toggle = () => card.classList.toggle('flipped');
+                card.addEventListener('click', toggle);
+                card.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggle();
+                    }
+                });
             });
+        }
+
+        function hexToRgb(hex) {
+            const clean = hex.replace('#', '').trim();
+            if (clean.length !== 6) return { r: 0, g: 0, b: 0 };
+            return {
+                r: parseInt(clean.slice(0, 2), 16),
+                g: parseInt(clean.slice(2, 4), 16),
+                b: parseInt(clean.slice(4, 6), 16)
+            };
+        }
+
+        function channelToLinear(value) {
+            const c = value / 255;
+            return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        }
+
+        function relativeLuminance(hex) {
+            const rgb = hexToRgb(hex);
+            return (0.2126 * channelToLinear(rgb.r)) + (0.7152 * channelToLinear(rgb.g)) + (0.0722 * channelToLinear(rgb.b));
+        }
+
+        function contrastRatio(foreground, background) {
+            const l1 = relativeLuminance(foreground);
+            const l2 = relativeLuminance(background);
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        function initContrastChecker() {
+            const root = document.getElementById('contrast-checker');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+
+            const textInput = document.getElementById('contrast-text');
+            const bgInput = document.getElementById('contrast-bg');
+            const ratioEl = document.getElementById('contrast-ratio');
+            const statusEl = document.getElementById('contrast-status');
+            const normalEl = document.getElementById('contrast-normal');
+            const largeEl = document.getElementById('contrast-large');
+            const sample = document.getElementById('contrast-sample');
+
+            const render = () => {
+                const ratio = contrastRatio(textInput.value, bgInput.value);
+                const rounded = ratio.toFixed(2);
+                const normalPass = ratio >= 4.5;
+                const largePass = ratio >= 3;
+                ratioEl.textContent = rounded + ':1';
+                statusEl.textContent = normalPass ? 'AA pass' : 'AA fail';
+                statusEl.className = 'status-pill ' + (normalPass ? 'pass' : 'fail');
+                normalEl.textContent = normalPass ? 'Normal text: pass' : 'Normal text: fail';
+                normalEl.className = 'status-pill ' + (normalPass ? 'pass' : 'fail');
+                largeEl.textContent = largePass ? 'Large text: pass' : 'Large text: fail';
+                largeEl.className = 'status-pill ' + (largePass ? 'pass' : 'fail');
+                sample.style.color = textInput.value;
+                sample.style.backgroundColor = bgInput.value;
+            };
+
+            root.querySelectorAll('.swatch-btn').forEach(btn => {
+                if (btn.dataset.bound) return;
+                btn.dataset.bound = 'true';
+                btn.addEventListener('click', () => {
+                    textInput.value = btn.dataset.text;
+                    bgInput.value = btn.dataset.bg;
+                    render();
+                });
+            });
+
+            textInput.addEventListener('input', render);
+            bgInput.addEventListener('input', render);
+            render();
+        }
+
+        function updateChecklist() {
+            const selected = Object.keys(AppState.checklistAnswers).length;
+            const correct = Object.values(AppState.checklistAnswers).filter(Boolean).length;
+            const scoreEl = document.getElementById('checklist-score');
+            const feedback = document.getElementById('checklist-feedback');
+            if (scoreEl) scoreEl.textContent = correct + ' / 6';
+            if (feedback) {
+                if (correct === 6) {
+                    feedback.textContent = 'Excellent audit trail: all six learner-visible faults have been flagged.';
+                } else if (selected === 0) {
+                    feedback.textContent = 'Toggle the issues you would record in the audit evidence.';
+                } else {
+                    feedback.textContent = 'Selected ' + selected + ' checks. Correct findings so far: ' + correct + '.';
+                }
+            }
+        }
+
+        function initChecklist() {
+            const root = document.getElementById('wcag-checklist');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            root.querySelectorAll('.check-item').forEach(item => {
+                if (item.dataset.bound) return;
+                item.dataset.bound = 'true';
+                item.addEventListener('click', () => {
+                    const id = item.dataset.id;
+                    item.classList.toggle('selected');
+                    if (item.classList.contains('selected')) {
+                        AppState.checklistAnswers[id] = item.dataset.correct === 'true';
+                    } else {
+                        delete AppState.checklistAnswers[id];
+                    }
+                    updateChecklist();
+                });
+            });
+            updateChecklist();
+        }
+
+        function setValidationMode(mode) {
+            AppState.validationMode = mode;
+            document.querySelectorAll('.mode-toggle').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+                btn.setAttribute('aria-pressed', btn.dataset.mode === mode ? 'true' : 'false');
+            });
+            const form = document.getElementById('validation-form');
+            if (form) form.toggleAttribute('novalidate', mode === 'js');
+            const label = document.getElementById('validation-mode-label');
+            if (label) label.textContent = mode === 'html5' ? 'HTML5 attribute mode' : 'JavaScript custom message mode';
+        }
+
+        function validateSandbox() {
+            const email = document.getElementById('sandbox-email');
+            const password = document.getElementById('sandbox-password');
+            const confirm = document.getElementById('sandbox-confirm');
+            const output = document.getElementById('validation-output');
+            if (!email || !password || !output) return;
+
+            const messages = [];
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            const passwordOk = password.value.length >= 8;
+            const confirmOk = !confirm || confirm.value === password.value;
+
+            if (AppState.validationMode === 'html5') {
+                if (!email.value) messages.push('HTML5 required: email cannot be blank.');
+                else if (!emailOk) messages.push('HTML5 type=email: enter a realistic email address.');
+                if (!password.value) messages.push('HTML5 required: password cannot be blank.');
+                else if (!passwordOk) messages.push('HTML5 minlength=8: password is too short.');
+            } else {
+                if (!emailOk) messages.push('JS rule: email must contain a domain such as learner@example.com.');
+                if (!passwordOk) messages.push('JS rule: password must be at least 8 characters.');
+                if (!confirmOk) messages.push('JS rule: confirmation must match the password.');
+            }
+
+            const pass = messages.length === 0;
+            output.className = 'validation-output ' + (pass ? 'pass' : 'fail');
+            output.innerHTML = pass
+                ? '<strong>Pass:</strong> client-side checks allow this submission. Server validation is still required.'
+                : '<strong>Check failed:</strong><ul><li>' + messages.join('</li><li>') + '</li></ul>';
+        }
+
+        function initValidationSandbox() {
+            const root = document.getElementById('validation-sandbox');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+
+            const form = document.getElementById('validation-form');
+            const email = document.getElementById('sandbox-email');
+            const password = document.getElementById('sandbox-password');
+            const confirm = document.getElementById('sandbox-confirm');
+
+            root.querySelectorAll('.mode-toggle').forEach(btn => {
+                if (btn.dataset.bound) return;
+                btn.dataset.bound = 'true';
+                btn.addEventListener('click', () => {
+                    setValidationMode(btn.dataset.mode);
+                    validateSandbox();
+                });
+            });
+
+            root.querySelectorAll('.tool-btn[data-test]').forEach(btn => {
+                if (btn.dataset.bound) return;
+                btn.dataset.bound = 'true';
+                btn.addEventListener('click', () => {
+                    const test = btn.dataset.test;
+                    if (test === 'blank') {
+                        email.value = '';
+                        password.value = '';
+                        if (confirm) confirm.value = '';
+                    }
+                    if (test === 'bad') {
+                        email.value = 'not-an-email';
+                        password.value = 'abc';
+                        if (confirm) confirm.value = 'different';
+                    }
+                    if (test === 'valid') {
+                        email.value = 'learner@example.com';
+                        password.value = 'correcthorsebattery';
+                        if (confirm) confirm.value = 'correcthorsebattery';
+                    }
+                    validateSandbox();
+                });
+            });
+
+            if (form && !form.dataset.bound) {
+                form.dataset.bound = 'true';
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    validateSandbox();
+                });
+            }
+
+            [email, password, confirm].filter(Boolean).forEach(input => {
+                input.addEventListener('input', validateSandbox);
+            });
+
+            setValidationMode('html5');
+            validateSandbox();
+        }
+
+        function initScenarioJudge() {
+            document.querySelectorAll('.scenario-judge').forEach(root => {
+                if (root.dataset.bound) return;
+                root.dataset.bound = 'true';
+                const feedback = root.querySelector('.scenario-feedback');
+                root.querySelectorAll('.judge-option').forEach(option => {
+                    if (option.dataset.bound) return;
+                    option.dataset.bound = 'true';
+                    option.addEventListener('click', () => {
+                        root.querySelectorAll('.judge-option').forEach(btn => btn.classList.remove('correct', 'incorrect'));
+                        const ok = option.dataset.correct === 'true';
+                        option.classList.add(ok ? 'correct' : 'incorrect');
+                        if (feedback) feedback.textContent = option.dataset.feedback || (ok ? 'Correct.' : 'Try again.');
+                    });
+                });
+            });
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = document.getElementById('quiz-score-label');
+            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+            const progress = document.getElementById('quiz-progress');
+            if (progress) {
+                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+                progress.classList.toggle('visible', AppState.quizScore > 0 || Object.keys(AppState.quizAnswered).length > 0);
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade || !msg || !label) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s === 6) {
+                grade.textContent = 'A+';
+                msg.textContent = 'Outstanding - you can explain and apply the core checks.';
+            } else if (s >= 5) {
+                grade.textContent = 'A';
+                msg.textContent = 'Excellent - review the one missed area and re-test.';
+            } else if (s >= 4) {
+                grade.textContent = 'B';
+                msg.textContent = 'Good pass - revisit the glossary and practical checklist.';
+            } else if (s >= 2) {
+                grade.textContent = 'C';
+                msg.textContent = 'Developing - use the flip cards, then retry the quiz.';
+            } else {
+                grade.textContent = 'D';
+                msg.textContent = 'Start again with the demo sequence and ask for coaching.';
+            }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (AppState.quizBound) return;
+            AppState.quizBound = true;
+
+            const activate = option => {
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            };
+
+            document.addEventListener('click', e => {
+                const option = e.target.closest('.quiz-option');
+                if (!option) return;
+                activate(option);
+            });
+
+            document.addEventListener('keydown', e => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                const option = e.target.closest && e.target.closest('.quiz-option');
+                if (!option) return;
+                e.preventDefault();
+                activate(option);
+            });
+
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.style.pointerEvents = '';
+                    });
+                    updateQuizUI();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h);
+                    showResults();
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound) return;
+            canvas.dataset.bound = 'true';
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+
+                if (!showCanvas || reducedMotion) {
+                    return requestAnimationFrame(draw);
+                }
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+
+            draw();
+        }
+
+        function refreshWidgets() {
+            initFlipCards();
+            initContrastChecker();
+            initChecklist();
+            initValidationSandbox();
+            initScenarioJudge();
+            initGlossary();
+        }
+
+        Reveal.on('slidechanged', event => {
+            refreshWidgets();
+            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
+        });
+
+        Reveal.on('ready', () => {
+            refreshWidgets();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
         });
     </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
