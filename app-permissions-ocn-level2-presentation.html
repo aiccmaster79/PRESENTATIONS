@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#64 | Level 2–3 | App Permissions | OCN NI</title>
+    <title>#64 | Level 2-3 | App Permissions | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
         :root {
             --brand-orange: #F7931E;
             --brand-purple: #8A2BE2;
@@ -22,187 +23,325 @@
             --brand-teal-light: #3dd5c0;
             --dark-bg: #0a0a1a;
             --glass-bg: rgba(20, 20, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-soft: rgba(255, 255, 255, 0.72);
+            --text-muted: rgba(255, 255, 255, 0.55);
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
         }
-        .reveal { font-family: 'Poppins', sans-serif; }
-        .reveal .slides { text-align: left; }
-        .reveal .slides section { height: 100%; padding: 20px 40px; }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif; font-weight: 700;
-            text-transform: none; letter-spacing: -0.02em;
+
+        * {
+            box-sizing: border-box;
         }
-        .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.4em; }
-        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+
+        body {
+            background: var(--dark-bg);
+        }
+
+        .reveal {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .slides section {
+            height: 100%;
+            padding: 20px 40px;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal h1 {
+            font-size: 2.8em;
+        }
+
+        .reveal h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal h3 {
+            font-size: 1.25em;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.88em;
+            line-height: 1.55;
+        }
+
         .animated-gradient {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
             background-size: 400% 400%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; animation: gradientShift 8s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
         }
+
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
+
         .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
+
         .glass-card-small {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
+
         .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+            margin-top: 28px;
         }
+
         .feature-card {
             background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .feature-card:hover {
-            transform: translateY(-8px); border-color: var(--brand-teal);
-            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
+
+        .feature-card:hover,
+        .feature-card:focus-within {
+            transform: translateY(-6px);
+            border-color: var(--brand-teal);
+            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.18);
         }
-        .feature-card i { font-size: 2.5em; margin-bottom: 15px; display: block; }
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-        .feature-card h3 { font-size: 1.2em; margin-bottom: 10px; color: #fff; }
-        .feature-card p { font-size: 0.85em; color: rgba(255, 255, 255, 0.7); margin: 0; }
-        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 25px; border: 2px solid; }
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-        .comparison-box h3 { text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .comparison-box.type1 h3 { color: var(--brand-purple); }
-        .comparison-box.type2 h3 { color: var(--brand-teal); }
-        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
-        .comparison-box li { padding: 8px 0; padding-left: 25px; position: relative; font-size: 0.85em; }
-        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
-        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
-        .benefit-item {
-            display: flex; gap: 15px; align-items: flex-start; background: var(--glass-bg);
-            border-radius: 12px; padding: 18px; border: 1px solid rgba(255,255,255,0.08);
+
+        .feature-card i {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            display: block;
         }
-        .benefit-item i { font-size: 1.8em; color: var(--brand-teal); margin-top: 4px; }
-        .benefit-item h4 { margin: 0 0 6px 0; font-size: 1em; }
-        .benefit-item p { margin: 0; font-size: 0.8em; color: rgba(255,255,255,0.7); }
-        .software-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
-        .software-item {
-            background: var(--glass-bg); border-radius: 14px; padding: 20px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
+
+        .feature-card.orange i {
+            color: var(--brand-orange);
         }
-        .software-item i { font-size: 2em; display: block; margin-bottom: 10px; }
-        .software-item h4 { font-size: 0.95em; margin: 8px 0; }
-        .software-item p { font-size: 0.75em; color: rgba(255,255,255,0.65); margin: 0; }
-        .type-badge {
-            display: inline-block; font-size: 0.65em; padding: 3px 10px; border-radius: 20px;
-            font-weight: 600; margin-bottom: 6px;
+
+        .feature-card.purple i {
+            color: var(--brand-purple);
         }
-        .type-badge.type1 { background: rgba(138,43,226,0.3); color: var(--brand-purple-light); }
-        .type-badge.type2 { background: rgba(0,189,165,0.3); color: var(--brand-teal-light); }
-        .quiz-container { max-width: 900px; margin: 0 auto; }
-        .quiz-question { font-size: 1.3em; font-weight: 600; margin-bottom: 25px; text-align: center; }
-        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .quiz-option {
-            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;
-            display: flex; align-items: center; gap: 12px;
+
+        .feature-card.teal i {
+            color: var(--brand-teal);
         }
-        .quiz-option span {
-            background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
+
+        .feature-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #ffffff;
         }
-        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
-        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
-        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
+
+        .feature-card p {
+            font-size: 0.78em;
+            color: var(--text-soft);
+            margin: 0;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 26px;
+        }
+
+        .comparison-box {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-box.type1 {
+            border-color: var(--brand-purple);
+        }
+
+        .comparison-box.type2 {
+            border-color: var(--brand-teal);
+        }
+
+        .comparison-box h3 {
+            text-align: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-box.type1 h3 {
+            color: var(--brand-purple-light);
+        }
+
+        .comparison-box.type2 h3 {
+            color: var(--brand-teal-light);
+        }
+
+        .comparison-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-box li {
+            position: relative;
+            padding: 8px 0 8px 25px;
+            font-size: 0.82em;
+        }
+
+        .comparison-box li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+
         .stats-bar {
-            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-            background: var(--glass-bg); border-radius: 16px; padding: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 34px;
+            flex-wrap: wrap;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 24px;
         }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 1.5em; font-weight: 700; color: var(--brand-teal); }
-        .stat-label { font-size: 0.75em; color: rgba(255,255,255,0.6); }
-        .career-path {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 30px; position: relative;
+
+        .stat-item {
+            text-align: center;
         }
-        .career-path::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
-            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
-            z-index: 0;
+
+        .stat-number {
+            display: block;
+            font-size: 1.45em;
+            font-weight: 700;
+            color: var(--brand-teal);
         }
-        .career-step {
-            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
-            z-index: 1; min-width: 150px; border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+
+        .stat-label {
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.6);
         }
-        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
-        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
-        .career-step:nth-child(1) i { color: var(--brand-orange); }
-        .career-step:nth-child(2) i { color: var(--brand-purple); }
-        .career-step:nth-child(3) i { color: var(--brand-teal); }
-        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
-        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+
         .title-slide {
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
         }
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
+
+        .title-slide h1 {
+            font-size: 3.35em;
+            margin-bottom: 20px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.28em;
+            color: rgba(255, 255, 255, 0.82);
+            margin-bottom: 30px;
+        }
+
         .title-slide .qualification {
             display: inline-block;
             background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
-        }
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
-        .objectives-list li {
-            display: flex; align-items: flex-start; gap: 15px; padding: 15px;
-            margin-bottom: 10px; background: var(--glass-bg); border-radius: 10px;
-            border-left: 4px solid var(--brand-orange);
-        }
-        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 20px; margin: 20px 0;
-        }
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-        .rule-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85em; }
-        .rule-table th, .rule-table td {
-            padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal); font-weight: 600; }
-        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.1); }
-        code, .code-inline {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.4);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--brand-teal-light);
-        }
-        pre.code-block {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 22px; font-size: 0.75em; line-height: 1.55; overflow-x: auto;
-            color: #e2e8f0; margin: 15px 0;
-        }
-        @media (max-width: 768px) {
-            .feature-grid, .software-grid { grid-template-columns: 1fr; }
-            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .career-path { flex-direction: column; gap: 20px; }
-            .career-path::before { display: none; }
-        }
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
-        }
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0); opacity: 1;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.86em;
+            font-weight: 600;
         }
 
-        /* ====== DEMO META BADGE ====== */
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+
+        .objectives-list li i {
+            color: var(--brand-teal);
+            font-size: 1.15em;
+            margin-top: 4px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--brand-orange);
+            margin: 0 0 10px 0;
+        }
+
+        code,
+        .code-inline {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--brand-teal-light);
+        }
+
+        pre.code-block {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.52);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 0.72em;
+            line-height: 1.55;
+            overflow-x: auto;
+            color: #e2e8f0;
+            margin: 15px 0;
+        }
+
         .demo-meta {
             display: inline-flex;
             align-items: center;
@@ -213,7 +352,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 0.02em;
-            color: #fff;
+            color: #ffffff;
             background: rgba(0, 189, 165, 0.18);
             border: 1px solid rgba(0, 189, 165, 0.45);
         }
@@ -230,149 +369,1561 @@
             opacity: 0.45;
         }
 
+        .section-badge {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.3);
+            color: var(--brand-purple-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .reveal .slides section .fragment.fade-up.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         .back-to-index {
-            position: fixed; top: 16px; left: 16px; z-index: 100;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.55rem 0.95rem; border-radius: 999px; text-decoration: none;
-            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
-            background: rgba(20, 20, 40, 0.88); border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
         }
-        .back-to-index:hover, .back-to-index:focus-visible {
-            border-color: #00BDA5; background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px); outline: none; color: #fff;
-        }
-        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
-        .site-credit {
-            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 100;
-            margin: 0; padding: 0.35rem 0.85rem; border-radius: 999px;
-            font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            pointer-events: none; white-space: nowrap;
+
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #ffffff;
         }
 
-</style>
+        .back-to-index i {
+            color: #00BDA5;
+            font-size: 0.9rem;
+        }
+
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 160px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.98));
+        }
+
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.15), rgba(20, 20, 40, 0.98));
+            transform: rotateY(180deg);
+            border-color: var(--brand-teal);
+        }
+
+        .flip-card-front i {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-front h4 {
+            font-size: 0.96em;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .flip-card-back p {
+            font-size: 0.74em;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .widget-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            margin-top: 14px;
+        }
+
+        .widget-panel {
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .widget-panel h3,
+        .widget-panel h4 {
+            margin-top: 0;
+            color: var(--brand-teal);
+        }
+
+        .control-row,
+        .range-row {
+            margin-bottom: 16px;
+        }
+
+        .control-row label,
+        .range-row label {
+            display: block;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.78em;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .control-row select,
+        .range-row input,
+        .glossary-search {
+            width: 100%;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.38);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .control-row select:focus,
+        .range-row input:focus,
+        .glossary-search:focus {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .builder-summary,
+        .sim-outcome,
+        .audit-summary,
+        .decision-output {
+            min-height: 170px;
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.12), rgba(138, 43, 226, 0.12));
+            border: 1px solid rgba(0, 189, 165, 0.3);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .builder-summary strong,
+        .sim-outcome strong,
+        .audit-summary strong,
+        .decision-output strong {
+            color: var(--brand-orange-light);
+        }
+
+        .phone-preview {
+            width: 170px;
+            height: 300px;
+            margin: 0 auto 18px;
+            border: 9px solid rgba(255, 255, 255, 0.18);
+            border-radius: 30px;
+            background: linear-gradient(160deg, rgba(0, 189, 165, 0.18), rgba(138, 43, 226, 0.22));
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.45), 0 15px 30px rgba(0, 0, 0, 0.32);
+        }
+
+        .phone-preview::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 52px;
+            height: 6px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.34);
+        }
+
+        .phone-preview .phone-screen-text {
+            position: absolute;
+            inset: 55px 16px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.78em;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .decision-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .decision-btn,
+        .sim-btn,
+        .choice-btn,
+        .audit-reset,
+        .quiz-retry-btn {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none;
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 0.78em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .decision-btn:hover,
+        .sim-btn:hover,
+        .choice-btn:hover,
+        .audit-reset:hover,
+        .quiz-retry-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .decision-btn:focus-visible,
+        .sim-btn:focus-visible,
+        .choice-btn:focus-visible,
+        .audit-reset:focus-visible,
+        .quiz-retry-btn:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .prompt-simulator {
+            display: grid;
+            grid-template-columns: 0.85fr 1fr;
+            gap: 20px;
+            margin-top: 14px;
+        }
+
+        .phone-shell {
+            background: rgba(0, 0, 0, 0.58);
+            border: 10px solid rgba(255, 255, 255, 0.14);
+            border-radius: 34px;
+            min-height: 430px;
+            padding: 22px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .app-screen {
+            min-height: 370px;
+            border-radius: 22px;
+            background: linear-gradient(160deg, rgba(247, 147, 30, 0.18), rgba(0, 189, 165, 0.16));
+            padding: 22px;
+            text-align: center;
+        }
+
+        .permission-dialog {
+            background: rgba(245, 245, 245, 0.96);
+            color: #111827;
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .permission-dialog p {
+            color: #374151;
+            font-size: 0.74em;
+            margin: 8px 0 14px;
+        }
+
+        .permission-dialog .choice-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .choice-btn {
+            background: #ffffff;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 8px 10px;
+            font-size: 0.68em;
+        }
+
+        .risk-meter {
+            height: 14px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 12px 0;
+        }
+
+        .risk-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--success), var(--warning), var(--danger));
+            transition: width 0.35s ease;
+        }
+
+        .audit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .audit-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.78em;
+        }
+
+        .audit-row input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--brand-teal);
+        }
+
+        .audit-row .tag {
+            color: var(--brand-orange-light);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82em;
+        }
+
+        .audit-row.good {
+            border-color: rgba(34, 197, 94, 0.55);
+        }
+
+        .audit-row.bad {
+            border-color: rgba(239, 68, 68, 0.65);
+        }
+
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: var(--glass-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.86em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quiz-option span {
+            background: var(--brand-purple);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--brand-teal);
+            transform: translateY(-3px);
+        }
+
+        .quiz-option:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .score-bar-wrap {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            height: 12px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .score-label {
+            font-size: 0.78em;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+        }
+
+        .quiz-progress {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--brand-teal);
+            display: none;
+        }
+
+        .quiz-progress.visible {
+            display: block;
+        }
+
+        .results-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .results-grade {
+            font-size: 4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glossary-search {
+            max-width: 500px;
+            margin-bottom: 18px;
+        }
+
+        .glossary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .glossary-item {
+            background: var(--glass-bg);
+            border-radius: 10px;
+            padding: 12px 16px;
+            border-left: 3px solid var(--brand-purple);
+        }
+
+        .glossary-item.hidden {
+            display: none;
+        }
+
+        .glossary-item dt {
+            font-weight: 600;
+            color: var(--brand-teal);
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+
+        .glossary-item dd {
+            font-size: 0.74em;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .fault-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.76em;
+            margin-top: 15px;
+        }
+
+        .fault-table th,
+        .fault-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            vertical-align: top;
+        }
+
+        .fault-table th {
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-teal);
+            font-weight: 600;
+        }
+
+        .fault-table tr:hover td {
+            background: rgba(0, 189, 165, 0.08);
+        }
+
+        .fault-symptom {
+            color: var(--brand-orange);
+            font-weight: 600;
+        }
+
+        .deck-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .deck-link {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s;
+            text-align: center;
+        }
+
+        .deck-link:hover,
+        .deck-link:focus-visible {
+            border-color: var(--brand-teal);
+            transform: translateY(-3px);
+            outline: none;
+        }
+
+        .deck-link i {
+            font-size: 1.7em;
+            color: var(--brand-teal);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .deck-link h4 {
+            font-size: 0.8em;
+            margin: 0 0 4px;
+        }
+
+        .deck-link p {
+            font-size: 0.66em;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .deck-link.current {
+            border-color: var(--brand-orange);
+            background: rgba(247, 147, 30, 0.1);
+        }
+
+        .kbd-hint {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .kbd-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .kbd-item kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: var(--brand-teal);
+        }
+
+        .criteria-list,
+        .evidence-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        .criteria-list li,
+        .evidence-list li {
+            padding: 8px 0 8px 36px;
+            position: relative;
+            font-size: 0.8em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .criteria-list li::before {
+            content: '[ ]';
+            position: absolute;
+            left: 0;
+            color: var(--brand-teal);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+        }
+
+        .evidence-list li::before {
+            content: '[x]';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .case-meta,
+        .case-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0 18px;
+        }
+
+        .case-pill {
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-purple-light);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.72em;
+            font-weight: 600;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .timeline-step {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 14px;
+            border-top: 3px solid var(--brand-teal);
+            min-height: 115px;
+        }
+
+        .timeline-step strong {
+            color: var(--brand-orange-light);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .career-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .career-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            z-index: 0;
+        }
+
+        .career-step {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            min-width: 170px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .career-step:hover {
+            transform: translateY(-10px);
+            border-color: var(--brand-teal);
+        }
+
+        .career-step i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .career-step:nth-child(1) i {
+            color: var(--brand-orange);
+        }
+
+        .career-step:nth-child(2) i {
+            color: var(--brand-purple);
+        }
+
+        .career-step:nth-child(3) i {
+            color: var(--brand-teal);
+        }
+
+        .career-step h4 {
+            font-size: 0.9em;
+            margin: 0 0 5px 0;
+        }
+
+        .career-step p {
+            font-size: 0.68em;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        #circuit-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient {
+                animation: none;
+            }
+            .flip-card-inner {
+                transition: none;
+            }
+            .feature-card,
+            .career-step,
+            .deck-link,
+            .quiz-option,
+            .decision-btn,
+            .sim-btn,
+            .choice-btn {
+                transition: none;
+            }
+            .score-bar-fill,
+            .risk-fill {
+                transition: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .feature-grid,
+            .flip-grid,
+            .deck-map,
+            .glossary-list,
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            .comparison-container,
+            .quiz-options,
+            .widget-layout,
+            .prompt-simulator,
+            .two-col,
+            .decision-buttons {
+                grid-template-columns: 1fr;
+            }
+            .career-path {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .career-path::before {
+                display: none;
+            }
+            .title-slide h1 {
+                font-size: 2.2em;
+            }
+        }
+
+    </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
     <a class="back-to-index" href="index.html" aria-label="Back to index">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>Back to index</span>
     </a>
     <div class="reveal">
         <div class="slides">
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+
+            <!-- 1 Title -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
-                    <span class="demo-meta"><span class="demo-number">#64</span><span class="sep">·</span><span class="demo-level">Level 2–3</span><span class="sep">·</span><span class="demo-level">Mobile apps</span></span>
+                    <span class="demo-meta"><span class="demo-number">#64</span><span class="sep">&middot;</span><span class="demo-level">Level 2-3</span><span class="sep">&middot;</span><span class="demo-level">Mobile apps</span></span>
                     <h1 class="animated-gradient">App Permissions</h1>
-                    <p class="subtitle">How mobile apps request permissions</p>
-                    <span class="qualification">OCN NI Level 2–3 — Mobile apps</span>
+                    <p class="subtitle">OS permission prompts, deny/allow, and least privilege</p>
+                    <span class="qualification">OCN NI Level 2-3 - Mobile Apps</span>
                 </div>
+                <aside class="notes">Welcome learners and frame permissions as both a user trust topic and a testing topic. Timing: about 2 minutes.</aside>
             </section>
+
+            <!-- 2 Objectives -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list"><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> why mobile OSs gate camera, location, mic, and storage</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Show</strong> a permission prompt on emulator or phone</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Compare</strong> Allow, Allow once, and Deny outcomes</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Find</strong> where users review app permissions in Settings</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> least privilege thinking to app design</span></li></ul>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Explain</strong> why the operating system gates camera, location, and microphone access</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Show</strong> a runtime permission prompt in a demo app</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Compare</strong> Allow, Allow once, and Deny choices</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Find</strong> Settings and revoke a permission after it was granted</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Apply</strong> least privilege so an app asks only for what it can justify</span></li>
+                </ul>
+                <aside class="notes">Read objectives and ask learners which prompts they denied recently. Timing: about 3 minutes.</aside>
             </section>
+
+            <!-- 3 How to use -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-lightbulb"></i> Core Ideas</h2>
-                <div class="comparison-container">
-                    <div class="comparison-box type1 fragment fade-up"><h3>Why prompts exist</h3><ul><li>Protect privacy by default</li><li>Stop silent data access</li><li>Give users meaningful choice</li><li>Required for store policies</li></ul></div>
-                    <div class="comparison-box type2 fragment fade-up"><h3>Examples</h3><ul><li>Camera / Microphone</li><li>Location (precise vs approx)</li><li>Contacts / Photos</li><li>Notifications (platform-dependent)</li></ul></div>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to Use This Deck</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Interactive slides - click, tap, or use the keyboard:</p>
+                <div class="kbd-hint"><div class="kbd-item"><kbd>&rarr;</kbd> Next slide</div><div class="kbd-item"><kbd>&larr;</kbd> Previous slide</div><div class="kbd-item"><kbd>S</kbd> Speaker notes</div><div class="kbd-item"><kbd>F</kbd> Fullscreen</div><div class="kbd-item"><kbd>O</kbd> Slide overview</div><div class="kbd-item"><kbd>Esc</kbd> Exit overview</div></div>
+                <div class="highlight-box fragment fade-up" style="margin-top: 28px; text-align: center;"><p style="margin:0;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> <strong>Flip</strong> permission terms, <strong>simulate</strong> prompts, <strong>audit</strong> least privilege, then complete the quiz.</p></div>
+                <aside class="notes">Tell learners that choices in the simulator are safe and resettable. Timing: about 2 minutes.</aside>
+            </section>
+
+            <!-- 4 Why matters -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-user-shield" aria-hidden="true"></i> Why Permissions Matter</h2>
+                <div class="glass-card fragment fade-up"><p>Permissions are the OS gate between an app and sensitive user data or hardware. A good app asks <strong>in context</strong>, explains why, handles Deny gracefully, and lets users change their mind in Settings.</p></div>
+                <div class="stats-bar fragment fade-up" style="margin-top: 22px;"><div class="stat-item"><span class="stat-number">Camera</span><span class="stat-label">Images and video</span></div><div class="stat-item"><span class="stat-number">Location</span><span class="stat-label">Where the user is</span></div><div class="stat-item"><span class="stat-number">Mic</span><span class="stat-label">Audio capture</span></div></div>
+                <div class="highlight-box fragment fade-up"><h4><i class="fas fa-lightbulb" aria-hidden="true"></i> Key idea</h4><p style="margin:0;">Least privilege means the app asks only for the minimum access needed for the current feature.</p></div>
+                <aside class="notes">Explain that permissions are about trust, safety, and app quality. Timing: about 4 minutes.</aside>
+            </section>
+
+            <!-- 5 Flip toolkit -->
+            <section data-auto-animate>
+                <span class="section-badge">Toolkit</span>
+                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Permission Toolkit</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em; margin-bottom: 6px;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click or press Enter/Space to flip each card.</p>
+                <div class="flip-grid" id="permissions-flip-cards">
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Dangerous permission - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-triangle-exclamation" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>Dangerous permission</h4></div><div class="flip-card-back"><p>Access to sensitive data or hardware, such as camera, microphone, contacts, or precise location.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Runtime prompt - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-comment-dots" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Runtime prompt</h4></div><div class="flip-card-back"><p>A permission request shown while the app runs, usually at the moment a feature is used.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Allow once - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-clock" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>Allow once</h4></div><div class="flip-card-back"><p>Temporary access for a single session or action. Useful when trust is not permanent.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Deny - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-ban" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>Deny</h4></div><div class="flip-card-back"><p>The app must handle refusal without crashing. Offer a fallback or explain the missing feature.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Settings revoke - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-gear" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Settings revoke</h4></div><div class="flip-card-back"><p>Users can remove granted permissions later from OS settings. Test this path.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Least privilege - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-shield-halved" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>Least privilege</h4></div><div class="flip-card-back"><p>Ask for only what is needed, only when it is needed, and explain it clearly.</p></div></div></div>
                 </div>
+                <aside class="notes">Have learners flip the cards and identify which terms are user choices versus developer responsibilities. Timing: about 6 minutes.</aside>
             </section>
+
+            <!-- 6 Concept -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Demo Sequence</h2>
-                <div class="glass-card fragment fade-up"><ol style="font-size:0.9em; line-height:1.7;"><li class="fragment">Launch a demo app that needs camera or location</li><li class="fragment">Trigger the OS permission dialog and read it aloud</li><li class="fragment">Deny first: show graceful failure or rationale</li><li class="fragment">Allow and prove the feature works</li><li class="fragment">Open Settings → Apps → Permissions and revoke</li><li class="fragment">Discuss least privilege: only ask when needed</li></ol></div>
+                <h2 class="animated-gradient"><i class="fas fa-door-closed" aria-hidden="true"></i> What the OS Is Protecting</h2>
+                <div class="comparison-container"><div class="comparison-box type1 fragment fade-up"><h3><i class="fas fa-lock" aria-hidden="true"></i> Without a gate</h3><ul><li>Apps could record audio without consent</li><li>Location could be collected in the background</li><li>Photos or contacts could be accessed unexpectedly</li><li>Users would lose trust and uninstall</li></ul></div><div class="comparison-box type2 fragment fade-up"><h3><i class="fas fa-check" aria-hidden="true"></i> With runtime prompts</h3><ul><li>User sees what is requested</li><li>Access can be one-time, denied, or revoked</li><li>Apps must ask in context and explain value</li><li>Testers can verify safe fallback behaviour</li></ul></div></div>
+                <aside class="notes">Emphasise that the OS protects people, not just files. Timing: about 4 minutes.</aside>
             </section>
+
+            <!-- 7 Applied -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-balance-scale"></i> Practical Notes</h2>
-                <div class="benefits-grid"><div class="benefit-item fragment fade-up"><i class="fas fa-clock"></i><div><h4>Ask in context</h4><p>Prompt when the feature is used</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-comment"></i><div><h4>Explain why</h4><p>Users accept clearer reasons</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-ban"></i><div><h4>Handle deny</h4><p>App must not crash</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-balance-scale"></i><div><h4>Legal/ethics</h4><p>Collect only what you need</p></div></div></div>
+                <h2 class="animated-gradient"><i class="fas fa-route" aria-hidden="true"></i> Permission Flow</h2>
+                <div class="timeline"><div class="timeline-step fragment fade-up"><strong>1. User taps feature</strong><p>Example: Take photo, record note, or tag current location.</p></div><div class="timeline-step fragment fade-up"><strong>2. App explains</strong><p>Short rationale appears before or inside the prompt context.</p></div><div class="timeline-step fragment fade-up"><strong>3. OS prompt</strong><p>User chooses Allow, Allow once, or Deny.</p></div><div class="timeline-step fragment fade-up"><strong>4. App responds</strong><p>Feature continues, temporary access ends, or graceful fallback appears.</p></div></div>
+                <div class="highlight-box fragment fade-up"><p style="margin:0;"><strong>Testing rule:</strong> test Deny first. If the app survives Deny, it is more likely to be robust.</p></div>
+                <aside class="notes">Explain why asking in context improves grant rates and user trust. Timing: about 4 minutes.</aside>
             </section>
+
+            <!-- 8 Signature interactive -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-mobile-alt"></i><h3>Emulator/phone</h3><p>Android Studio or test handset</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-cube"></i><h3>Demo app</h3><p>Needs camera/location</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-cog"></i><h3>Settings path</h3><p>Show revoke flow</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-list"></i><h3>Scenario cards</h3><p>Map / photo / mic tasks</p></div></div>
-                <div class="highlight-box fragment fade-up"><h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4><p>Android Studio/emulator or test phone, demo app that requests at least one dangerous permission.</p></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about app permissions</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: Permissions exist to…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Let users control access to sensitive features</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Speed up Wi-Fi only</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Replace passwords forever</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Colour-code cables</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — OS prompts protect privacy.</div>
+                <span class="section-badge">Doing widget</span>
+                <h2 class="animated-gradient"><i class="fas fa-mobile-screen" aria-hidden="true"></i> Permission Prompt Simulator</h2>
+                <p style="color: rgba(255,255,255,0.65);">Choose Camera, Location, or Mic. Then Allow, Allow once, or Deny. Watch the app outcome and risk score update.</p>
+                <div class="prompt-simulator" id="permission-simulator">
+                    <div class="phone-shell"><div class="app-screen"><h3>Campus Snap</h3><p>Tap a feature and respond to the OS prompt.</p><div class="permission-dialog"><h4 id="prompt-title">Allow Campus Snap?</h4><p id="prompt-body">Prompt details appear here.</p><div class="choice-row"><button class="choice-btn" type="button" data-permission-choice="deny">Deny</button><button class="choice-btn" type="button" data-permission-choice="once">Allow once</button><button class="choice-btn" type="button" data-permission-choice="allow">Allow</button></div></div></div></div>
+                    <div class="widget-panel"><div class="control-row"><label for="permission-kind">Permission to request</label><select id="permission-kind"><option value="camera">Camera</option><option value="location">Location</option><option value="mic">Microphone</option></select></div><div class="risk-meter"><div class="risk-fill" id="risk-fill"></div></div><p class="score-label" id="risk-label">Risk score: 0 / 100</p><div class="sim-outcome" id="permission-outcome" aria-live="polite"><p><strong>Outcome:</strong> Choose a permission response to test app behaviour.</p></div><ul id="permission-history" style="font-size:0.72em; color: rgba(255,255,255,0.7);"></ul></div>
                 </div>
+                <aside class="notes">Ask learners to try Deny for each permission and describe a good fallback. Timing: about 8 minutes.</aside>
             </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: Least privilege means…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Request only what the feature needs</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Ask for every permission at install</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Disable the firewall</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Share the admin password</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Narrow access reduces risk.</div>
-                </div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: If the user denies camera…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>The app should explain and continue safely</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>The phone must factory reset</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>HTML becomes invalid</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>DHCP stops working</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — Good apps handle denial without crashing.</div>
-                </div>
-            </section>
+
+            <!-- 9 Demo sequence -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-key"></i><h3>Ask late</h3><p>Context beats install-time spam</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-user-shield"></i><h3>User choice</h3><p>Allow and deny must both work</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-cog"></i><h3>Revoke path</h3><p>Show Settings control</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-minimize"></i><h3>Least privilege</h3><p>Only what you need</p></div></div>
+                <h2 class="animated-gradient"><i class="fas fa-person-chalkboard" aria-hidden="true"></i> Demo Sequence: Deny, Allow, Revoke</h2>
+                <div class="glass-card"><ol style="margin-top:0;"><li class="fragment fade-up"><strong>Open demo app:</strong> start on the feature screen, not a wall of prompts.</li><li class="fragment fade-up"><strong>Tap camera:</strong> show the runtime prompt and choose Deny first.</li><li class="fragment fade-up"><strong>Check fallback:</strong> app should explain and keep working.</li><li class="fragment fade-up"><strong>Try again:</strong> choose Allow once or Allow and complete the action.</li><li class="fragment fade-up"><strong>Settings:</strong> open App info &gt; Permissions and revoke access.</li></ol></div>
+                <pre class="code-block">Evidence names:
+- prompt-camera-deny.png
+- fallback-after-deny.png
+- settings-permission-revoked.png
+- least-privilege-note.txt</pre>
+                <aside class="notes">Demonstrate the deny path slowly. Learners often only test happy paths. Timing: about 7 minutes.</aside>
             </section>
+
+            <!-- 10 Case study -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
-                <div class="career-path fragment fade-up"><div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Junior Mobile Dev</p></div><div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Privacy Engineer</p></div><div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>App Security Specialist</p></div></div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Ask</span><span class="stat-label">Prompt</span></div><div class="stat-item"><span class="stat-number">Allow</span><span class="stat-label">Deny</span></div><div class="stat-item"><span class="stat-number">Settings</span><span class="stat-label">Revoke</span></div></div>
+                <h2 class="animated-gradient"><i class="fas fa-camera" aria-hidden="true"></i> Case Study: Campus Snap</h2>
+                <div class="glass-card"><div class="case-pills"><span class="case-pill">Photo app</span><span class="case-pill">Contacts + Location at launch</span><span class="case-pill">Trust redesign</span></div><p>Campus Snap was a simple photo app for college events. On first launch, it asked for Contacts and Location before the user took a photo. Many users denied everything, including Camera, because the app looked greedy and unclear.</p><div class="two-col"><div class="glass-card-small"><h3>Original problem</h3><p>Requests appeared out of context, there was no rationale, and Deny caused a confusing blank screen.</p></div><div class="glass-card-small"><h3>Improved design</h3><p>Ask Camera only when the user taps Take photo. Ask Location later, only if the user chooses Add location. Do not request Contacts.</p></div></div></div>
+                <aside class="notes">Ask learners to identify the least-privilege version of the feature. Timing: about 5 minutes.</aside>
             </section>
+
+            <!-- 11 Faults -->
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
-                    <ul style="list-style: none; padding: 0;"><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Build</strong> — Complete the live demo steps for App Permissions</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Practice</strong> — Repeat the key hands-on check without teacher prompts</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Reflect</strong> — Write three bullets on why app permissions matters at work</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Sensor Input</li></ul>
-                </div>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Permissions Fault Table</h2>
+                <table class="fault-table"><thead><tr><th>Fault</th><th>Why it is a problem</th><th>Fix</th><th>Evidence to capture</th></tr></thead><tbody><tr><td class="fault-symptom">Ask everything at install</td><td>User sees risk before value</td><td>Ask at runtime, in context</td><td>Prompt shown after feature tap</td></tr><tr><td class="fault-symptom">Crash on Deny</td><td>User choice breaks the app</td><td>Handle denied callback and show fallback</td><td>Deny screenshot and working fallback</td></tr><tr><td class="fault-symptom">No rationale</td><td>User cannot judge why access is needed</td><td>Use clear one-sentence explanation</td><td>Rationale text before prompt</td></tr><tr><td class="fault-symptom">Cannot find Settings revoke</td><td>Tester misses permission lifecycle</td><td>Open App info &gt; Permissions and retest</td><td>Settings revoked screenshot</td></tr><tr><td class="fault-symptom">Over-broad location</td><td>Precise/background access exceeds need</td><td>Use approximate or one-time access where possible</td><td>Permission level screenshot</td></tr></tbody></table>
+                <aside class="notes">Invite learners to add one more fault from apps they use. Timing: about 6 minutes.</aside>
             </section>
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Questions? Let's discuss!</p>
-                    <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Mobile Apps — App Permissions</p>
-                        <span class="qualification">OCN NI Level 2–3 — Mobile apps</span>
-                    </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-user-shield" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-mobile-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-key" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
-                </div>
+
+            <!-- 12 Challenge widget -->
+            <section data-auto-animate>
+                <span class="section-badge">Challenge</span>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Least-Privilege Audit</h2>
+                <p style="color: rgba(255,255,255,0.65);">Campus Snap is a photo app. Tick only the permissions that are justified by the described features.</p>
+                <div class="widget-layout"><div class="widget-panel" id="least-privilege-audit"><h3>Sample permission list</h3><div class="audit-list"><label class="audit-row" data-justified="true"><input type="checkbox"><span><strong>Camera</strong><br>Take event photos when user taps the camera button</span><span class="tag">runtime</span></label><label class="audit-row" data-justified="false"><input type="checkbox"><span><strong>Contacts</strong><br>Read address book at launch</span><span class="tag">over-ask</span></label><label class="audit-row" data-justified="false"><input type="checkbox"><span><strong>Precise background location</strong><br>Track where the user is after leaving the app</span><span class="tag">over-ask</span></label><label class="audit-row" data-justified="true"><input type="checkbox"><span><strong>Approximate location</strong><br>Optional tag when user chooses Add location</span><span class="tag">optional</span></label><label class="audit-row" data-justified="false"><input type="checkbox"><span><strong>Microphone</strong><br>No audio feature exists</span><span class="tag">over-ask</span></label></div><button class="audit-reset" type="button" id="audit-reset" style="margin-top:14px;">Reset audit</button></div><div class="widget-panel"><div class="audit-summary" id="audit-summary" aria-live="polite"></div></div></div>
+                <aside class="notes">Let pairs debate the location item. The optional feature justifies approximate location only when chosen. Timing: about 7 minutes.</aside>
             </section>
+
+            <!-- 13 Practical -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Practical Task: Test Permission Flows</h2>
+                <div class="glass-card"><p style="margin-top:0;"><strong>Brief:</strong> On a demo app or emulator, deny then allow a permission flow, revoke access in Settings, and write a short least-privilege note.</p><div class="two-col"><div class="glass-card-small"><h3 style="color: var(--brand-teal); font-size: 1em; margin: 0 0 8px;"><i class="fas fa-bullseye" aria-hidden="true"></i> Success criteria</h3><ul class="criteria-list"><li>Prompt appears only when the feature is used</li><li>Deny path does not crash and gives useful feedback</li><li>Allow or Allow once lets the feature complete</li><li>Settings revoke is tested and the app responds correctly</li><li>Least-privilege note identifies justified and unjustified permissions</li></ul></div><div class="glass-card-small"><h3 style="color: var(--brand-orange); font-size: 1em; margin: 0 0 8px;"><i class="fas fa-folder-open" aria-hidden="true"></i> Evidence</h3><ul class="evidence-list"><li>Screenshot of permission prompt</li><li>Screenshot or note showing Deny fallback</li><li>Screenshot of successful Allow or Allow once path</li><li>Screenshot of Settings revoke screen</li><li>Written least-privilege note for the app</li></ul></div></div></div>
+                <aside class="notes">Set the expectation that Deny is a first-class test, not an error in the lesson. Timing: about 12 minutes.</aside>
+            </section>
+
+            <!-- 14 Glossary -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Searchable Glossary</h2>
+                <input id="glossary-search" class="glossary-search" type="search" placeholder="Search permission terms..." aria-label="Search glossary terms">
+                <dl class="glossary-list"><div class="glossary-item" data-terms="dangerous permission sensitive"><dt>Dangerous permission</dt><dd>Permission for sensitive data or hardware, requiring explicit user approval.</dd></div><div class="glossary-item" data-terms="runtime prompt request"><dt>Runtime prompt</dt><dd>OS dialog shown while the app is running and needs access.</dd></div><div class="glossary-item" data-terms="allow once temporary"><dt>Allow once</dt><dd>Temporary permission for the current action or session.</dd></div><div class="glossary-item" data-terms="deny refusal fallback"><dt>Deny</dt><dd>User refuses access; the app must continue safely or explain limits.</dd></div><div class="glossary-item" data-terms="settings revoke app info"><dt>Settings revoke</dt><dd>Removing a permission later through OS app settings.</dd></div><div class="glossary-item" data-terms="least privilege minimal"><dt>Least privilege</dt><dd>Request only the minimum access needed for the current feature.</dd></div><div class="glossary-item" data-terms="rationale explanation"><dt>Rationale</dt><dd>Clear explanation of why a permission is needed.</dd></div><div class="glossary-item" data-terms="camera photos video"><dt>Camera</dt><dd>Permission to capture images or video from device cameras.</dd></div><div class="glossary-item" data-terms="location gps precise approximate"><dt>Location</dt><dd>Permission to access approximate or precise position data.</dd></div><div class="glossary-item" data-terms="microphone audio"><dt>Microphone</dt><dd>Permission to record audio input.</dd></div><div class="glossary-item" data-terms="contacts address book"><dt>Contacts</dt><dd>Access to address book data; rarely needed for a simple camera app.</dd></div><div class="glossary-item" data-terms="background location"><dt>Background access</dt><dd>Permission used while the app is not visible; high privacy impact.</dd></div><div class="glossary-item" data-terms="fallback degrade gracefully"><dt>Fallback</dt><dd>Alternative behaviour when permission is denied.</dd></div><div class="glossary-item" data-terms="privacy trust"><dt>User trust</dt><dd>Confidence that the app asks fairly and handles data responsibly.</dd></div></dl>
+                <aside class="notes">Ask learners to search for least privilege, fallback, and background access. Timing: about 4 minutes.</aside>
+            </section>
+
+            <!-- 15 Pathway -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-map" aria-hidden="true"></i> Mobile Apps Pathway</h2>
+                <p style="color: rgba(255,255,255,0.65);">Use these decks as a route through mobile app testing, privacy, sensors, and platform choices.</p>
+                <div class="deck-map"><a class="deck-link" href="android-emulator-setup-ocn-level2-presentation.html"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i><h4>#63 Android Emulator Setup</h4><p>Testing environment</p></a><a class="deck-link current" href="app-permissions-ocn-level2-presentation.html"><i class="fas fa-user-shield" aria-hidden="true"></i><h4>#64 App Permissions</h4><p>Current deck</p></a><a class="deck-link" href="sensor-input-ocn-level2-presentation.html"><i class="fas fa-compass" aria-hidden="true"></i><h4>#65 Sensor Input</h4><p>Motion and device data</p></a><a class="deck-link" href="native-vs-web-vs-hybrid-ocn-level2-presentation.html"><i class="fas fa-code" aria-hidden="true"></i><h4>#66 Native vs Web vs Hybrid</h4><p>Platform choices</p></a><a class="deck-link" href="browser-devtools-ocn-level2-presentation.html"><i class="fas fa-window-maximize" aria-hidden="true"></i><h4>Browser DevTools</h4><p>Inspect web apps</p></a><a class="deck-link" href="website-hosting-ocn-level2-presentation.html"><i class="fas fa-cloud" aria-hidden="true"></i><h4>Website Hosting</h4><p>Publish and test</p></a></div>
+                <aside class="notes">Link back to emulator setup and forward to sensors. Timing: about 3 minutes.</aside>
+            </section>
+
+            <!-- 16 Quiz intro -->
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-circle-question" aria-hidden="true"></i> Knowledge Check</h2>
+                <div class="glass-card quiz-container"><p style="text-align:center; margin-top:0;">Six scored questions. Choose an answer on each slide. Your score appears in the top-right after you begin.</p><div class="score-bar-wrap"><div class="score-bar-fill" id="quiz-score-bar"></div></div><p class="score-label" id="quiz-score-label">Score: 0 / 6</p><div class="highlight-box" style="text-align:center;"><p style="margin:0;">Tip: think like a tester - what happens when the user says no?</p></div></div>
+                <aside class="notes">Explain that the quiz is formative and retryable. Timing: about 1 minute.</aside>
+            </section>
+
+            <!-- 17 Q1 -->
+            <section data-quiz="1"><div class="quiz-container"><h2 class="animated-gradient">Question 1</h2><p class="quiz-question">Why does the OS gate camera, location, and microphone access?</p><div class="quiz-options"><div class="quiz-option" tabindex="0" role="button"><span>A</span>To make app icons smaller</div><div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>To protect sensitive user data and hardware from unexpected access</div><div class="quiz-option" tabindex="0" role="button"><span>C</span>To stop apps using colour</div><div class="quiz-option" tabindex="0" role="button"><span>D</span>To force every app offline</div></div></div><aside class="notes">Correct answer is B. Emphasise user protection. Timing: about 1 minute.</aside></section>
+
+            <!-- 18 Q2 -->
+            <section data-quiz="2"><div class="quiz-container"><h2 class="animated-gradient">Question 2</h2><p class="quiz-question">What does least privilege mean for app permissions?</p><div class="quiz-options"><div class="quiz-option" tabindex="0" role="button"><span>A</span>Ask for every permission in case it is useful later</div><div class="quiz-option" tabindex="0" role="button"><span>B</span>Never ask for any permission</div><div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>C</span>Ask only for the minimum access needed for the current feature</div><div class="quiz-option" tabindex="0" role="button"><span>D</span>Hide prompts from the user</div></div></div><aside class="notes">Correct answer is C. Link to Campus Snap. Timing: about 1 minute.</aside></section>
+
+            <!-- 19 Q3 -->
+            <section data-quiz="3"><div class="quiz-container"><h2 class="animated-gradient">Question 3</h2><p class="quiz-question">What should an app do if the user taps Deny?</p><div class="quiz-options"><div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>A</span>Handle it gracefully, explain limits, and offer a fallback where possible</div><div class="quiz-option" tabindex="0" role="button"><span>B</span>Crash immediately</div><div class="quiz-option" tabindex="0" role="button"><span>C</span>Secretly keep recording</div><div class="quiz-option" tabindex="0" role="button"><span>D</span>Delete the user's account</div></div></div><aside class="notes">Correct answer is A. Deny is a normal user choice. Timing: about 1 minute.</aside></section>
+
+            <!-- 20 Q4 -->
+            <section data-quiz="4"><div class="quiz-container"><h2 class="animated-gradient">Question 4</h2><p class="quiz-question">What is the benefit of Allow once?</p><div class="quiz-options"><div class="quiz-option" tabindex="0" role="button"><span>A</span>It gives the app permanent background access</div><div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>It gives temporary access for one action or session</div><div class="quiz-option" tabindex="0" role="button"><span>C</span>It removes Settings</div><div class="quiz-option" tabindex="0" role="button"><span>D</span>It shares contacts automatically</div></div></div><aside class="notes">Correct answer is B. Use camera upload as an example. Timing: about 1 minute.</aside></section>
+
+            <!-- 21 Q5 -->
+            <section data-quiz="5"><div class="quiz-container"><h2 class="animated-gradient">Question 5</h2><p class="quiz-question">Where can a user revoke a permission after granting it?</p><div class="quiz-options"><div class="quiz-option" tabindex="0" role="button"><span>A</span>Only by uninstalling the operating system</div><div class="quiz-option" tabindex="0" role="button"><span>B</span>Inside a printer queue</div><div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>C</span>In OS Settings, usually App info &gt; Permissions</div><div class="quiz-option" tabindex="0" role="button"><span>D</span>In the phone case</div></div></div><aside class="notes">Correct answer is C. Settings revoke is part of lifecycle testing. Timing: about 1 minute.</aside></section>
+
+            <!-- 22 Q6 -->
+            <section data-quiz="6"><div class="quiz-container"><h2 class="animated-gradient">Question 6</h2><p class="quiz-question">When should a good app ask for Camera access?</p><div class="quiz-options"><div class="quiz-option" tabindex="0" role="button"><span>A</span>At install, before the user knows why</div><div class="quiz-option" tabindex="0" role="button"><span>B</span>Every five seconds</div><div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>C</span>In context, when the user chooses a camera feature</div><div class="quiz-option" tabindex="0" role="button"><span>D</span>Only after requesting contacts first</div></div></div><aside class="notes">Correct answer is C. Timing: about 1 minute.</aside></section>
+
+            <!-- 23 Results -->
+            <section id="slide-quiz-results" data-auto-animate><h2 class="animated-gradient"><i class="fas fa-award" aria-hidden="true"></i> Quiz Results</h2><div class="glass-card results-card"><div class="results-grade" id="results-grade">A+</div><p id="results-message">Answer the questions to calculate your grade.</p><div class="score-bar-wrap"><div class="score-bar-fill" id="results-score-bar"></div></div><p class="score-label">Final score: <span id="results-score-label">0 / 6</span></p><button class="quiz-retry-btn" id="quiz-retry" type="button"><i class="fas fa-rotate-right" aria-hidden="true"></i> Retry quiz</button></div><aside class="notes">Use results to revisit least privilege or deny handling if needed. Timing: about 2 minutes.</aside></section>
+
+            <!-- 24 Takeaways -->
+            <section data-auto-animate><h2 class="animated-gradient"><i class="fas fa-star" aria-hidden="true"></i> Key Takeaways</h2><div class="feature-grid"><div class="feature-card orange"><i class="fas fa-shield-halved" aria-hidden="true"></i><h3>Prompts protect people</h3><p>Camera, location, mic, and contacts can expose sensitive information.</p></div><div class="feature-card purple"><i class="fas fa-hand-pointer" aria-hidden="true"></i><h3>Ask in context</h3><p>Users understand a permission when it follows a clear feature action.</p></div><div class="feature-card teal"><i class="fas fa-ban" aria-hidden="true"></i><h3>Deny is normal</h3><p>Quality apps handle Deny, Allow once, and Settings revoke safely.</p></div></div><aside class="notes">Ask learners which takeaway will change how they test an app. Timing: about 3 minutes.</aside></section>
+
+            <!-- 25 Careers -->
+            <section data-auto-animate><h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Careers Pathway</h2><div class="career-path"><div class="career-step"><i class="fas fa-bug" aria-hidden="true"></i><h4>Junior App Tester</h4><p>Checks prompts, deny paths, and evidence.</p></div><div class="career-step"><i class="fas fa-mobile-screen" aria-hidden="true"></i><h4>Mobile Developer</h4><p>Implements permission flows and fallbacks.</p></div><div class="career-step"><i class="fas fa-user-secret" aria-hidden="true"></i><h4>Privacy/Security Engineer</h4><p>Reviews data access, risk, and compliance.</p></div></div><aside class="notes">Connect permission testing to privacy and security roles. Timing: about 3 minutes.</aside></section>
+
+            <!-- 26 Next steps -->
+            <section data-auto-animate><h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next Steps</h2><div class="glass-card"><ul style="margin-top:0;"><li>Complete the deny, allow, allow-once, and revoke evidence pack.</li><li>Rewrite Campus Snap's launch prompt into an in-context camera request.</li><li>Move to Sensor Input to discuss accelerometer, GPS, and device data.</li><li>Add a least-privilege review step to every app test plan.</li></ul></div><aside class="notes">Point learners to the sensor deck as the next mobile apps topic. Timing: about 2 minutes.</aside></section>
+
+            <!-- 27 Resources -->
+            <section data-auto-animate><h2 class="animated-gradient"><i class="fas fa-link" aria-hidden="true"></i> Resources</h2><div class="feature-grid"><div class="feature-card orange"><i class="fab fa-android" aria-hidden="true"></i><h3>Android permissions docs</h3><p>Official guidance on runtime requests, rationale, and permission groups.</p></div><div class="feature-card purple"><i class="fas fa-list-check" aria-hidden="true"></i><h3>Class checklist</h3><p>Prompt screenshot, Deny fallback, Allow path, Settings revoke, least-privilege note.</p></div><div class="feature-card teal"><i class="fas fa-user-shield" aria-hidden="true"></i><h3>Privacy patterns</h3><p>Ask in context, explain simply, and avoid broad background access.</p></div></div><aside class="notes">Provide local VLE links or example app package names if available. Timing: about 2 minutes.</aside></section>
+
+            <!-- 28 Thank you -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true"><div class="title-slide"><span class="demo-meta"><span class="demo-number">#64</span><span class="sep">&middot;</span><span class="demo-level">Complete</span></span><h1 class="animated-gradient">Thank You</h1><p class="subtitle">Ask less, explain more, handle Deny well.</p><span class="qualification">Next: Sensor Input</span></div><aside class="notes">Close by reminding learners that privacy-friendly apps are easier to trust and test. Timing: about 1 minute.</aside></section>
+
         </div>
     </div>
-    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
+
         Reveal.initialize({
-            hash: true, controls: true, progress: true, center: true,
-            transition: 'slide', backgroundTransition: 'fade',
-            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
-            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            autoAnimateEasing: 'ease-out',
+            autoAnimateDuration: 0.8,
             plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        const AppState = {
+            quizScore: 0,
+            quizAnswered: {},
+            quizBound: false,
+            avdBound: false,
+            decisionBound: false,
+            permissionBound: false,
+            auditBound: false,
+            permissionRisk: 0,
+            permissionHistory: []
+        };
+
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                if (card.dataset.bound) return;
+                card.dataset.bound = 'true';
+                const toggle = () => card.classList.toggle('flipped');
+                card.addEventListener('click', toggle);
+                card.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggle();
+                    }
+                });
             });
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        function initAvdBuilder() {
+            const root = document.getElementById('avd-builder');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            AppState.avdBound = true;
+
+            const profile = document.getElementById('avd-profile');
+            const api = document.getElementById('avd-api');
+            const ram = document.getElementById('avd-ram');
+            const ramValue = document.getElementById('avd-ram-value');
+            const summary = document.getElementById('avd-summary');
+            const phoneText = document.getElementById('avd-phone-text');
+
+            function profileLabel(value) {
+                if (value === 'compact') return 'Pixel 4a style phone';
+                if (value === 'tablet') return '10 inch tablet';
+                if (value === 'foldable') return 'Foldable test device';
+                return 'Pixel 6 style phone';
+            }
+
+            function render() {
+                const ramMb = parseInt(ram.value, 10);
+                const apiLevel = parseInt(api.value, 10);
+                const label = profileLabel(profile.value);
+                let rating = 'Good classroom config';
+                let icon = 'fa-circle-check';
+                let advice = 'Launch once before the lesson, then snapshot or keep a warm boot ready.';
+                let details = 'Suits a Level 2-3 demo app, camera-less testing, and Logcat evidence.';
+
+                if (ramMb < 2048) {
+                    rating = 'Too low for a reliable emulator';
+                    icon = 'fa-triangle-exclamation';
+                    advice = 'Raise RAM to at least 3072 MB, close heavy apps, or use a real device.';
+                    details = 'Low RAM often causes black screens, slow boots, and Out Of Memory crashes.';
+                } else if (ramMb >= 6144 && apiLevel >= 35) {
+                    rating = 'Powerful but heavy for a shared lab';
+                    icon = 'fa-gauge-high';
+                    advice = 'Use only if the PC has spare memory and disk space. Pre-download the image.';
+                    details = 'Latest API images are useful, but they increase download size and boot time.';
+                } else if (apiLevel < 30) {
+                    rating = 'Runs, but API is older than most current demos';
+                    icon = 'fa-clock-rotate-left';
+                    advice = 'Choose API 33 or 34 unless you are testing backwards compatibility.';
+                    details = 'Older APIs help compatibility testing but may miss current permission behaviour.';
+                }
+
+                ramValue.textContent = ramMb + ' MB';
+                phoneText.innerHTML = '<strong>' + label + '</strong><br>API ' + apiLevel + '<br>' + ramMb + ' MB RAM';
+                summary.innerHTML = '' +
+                    '<h3><i class="fas ' + icon + '" aria-hidden="true"></i> ' + rating + '</h3>' +
+                    '<p><strong>Selected:</strong> ' + label + ', API ' + apiLevel + ', ' + ramMb + ' MB RAM.</p>' +
+                    '<p><strong>Advice:</strong> ' + advice + '</p>' +
+                    '<p><strong>Why:</strong> ' + details + '</p>';
+            }
+
+            [profile, api, ram].forEach(input => input.addEventListener('input', render));
+            render();
+        }
+
+        function initDecisionTree() {
+            const root = document.getElementById('decision-tree');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            AppState.decisionBound = true;
+
+            const fixes = {
+                slow: {
+                    title: 'Slow boot or stuck on Android logo',
+                    cause: 'Cold boot plus slow storage, low RAM, or first-run Play Services setup.',
+                    fix: 'Use Quick Boot after the first launch, allocate 3-4 GB RAM, and close browsers before starting.'
+                },
+                virt: {
+                    title: 'Virtualisation disabled / Hypervisor error',
+                    cause: 'BIOS/UEFI virtualisation is off, or Windows hypervisor components conflict.',
+                    fix: 'Enable Intel VT-x or AMD-V, check Android Emulator Hypervisor Driver, then reboot the PC.'
+                },
+                disk: {
+                    title: 'Image download fails or AVD will not create',
+                    cause: 'System image needs several GB and snapshots also consume disk space.',
+                    fix: 'Clear old AVDs, free disk, choose one shared API image, and pre-download before class.'
+                },
+                black: {
+                    title: 'Black emulator screen',
+                    cause: 'GPU rendering issue, corrupted snapshot, or incompatible graphics mode.',
+                    fix: 'Cold boot once, wipe data if needed, then switch Graphics to Software or Automatic.'
+                }
+            };
+
+            const output = document.getElementById('decision-output');
+            root.addEventListener('click', event => {
+                const btn = event.target.closest('[data-fix]');
+                if (!btn) return;
+                const item = fixes[btn.dataset.fix];
+                output.innerHTML = '' +
+                    '<h3>' + item.title + '</h3>' +
+                    '<p><strong>Likely cause:</strong> ' + item.cause + '</p>' +
+                    '<p><strong>Try this fix:</strong> ' + item.fix + '</p>';
+            });
+        }
+
+        function initPermissionSimulator() {
+            const root = document.getElementById('permission-simulator');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            AppState.permissionBound = true;
+
+            const permission = document.getElementById('permission-kind');
+            const promptTitle = document.getElementById('prompt-title');
+            const promptBody = document.getElementById('prompt-body');
+            const outcome = document.getElementById('permission-outcome');
+            const riskFill = document.getElementById('risk-fill');
+            const riskLabel = document.getElementById('risk-label');
+            const history = document.getElementById('permission-history');
+
+            const meta = {
+                camera: {
+                    label: 'Camera',
+                    reason: 'take a photo for your profile or evidence screen',
+                    risk: 12,
+                    once: 6,
+                    deny: -4,
+                    allowed: 'The app opens the camera and saves only the selected photo.',
+                    denied: 'The app shows an upload alternative and keeps working.'
+                },
+                location: {
+                    label: 'Location',
+                    reason: 'tag where a campus photo was taken',
+                    risk: 24,
+                    once: 10,
+                    deny: -5,
+                    allowed: 'The app can tag precise location, so explain why and store as little as possible.',
+                    denied: 'The app should continue with manual location text or no tag.'
+                },
+                mic: {
+                    label: 'Microphone',
+                    reason: 'record a short audio note',
+                    risk: 18,
+                    once: 8,
+                    deny: -4,
+                    allowed: 'The app records the clip only after a visible user action.',
+                    denied: 'The app disables voice notes but still lets the user type.'
+                }
+            };
+
+            function clamp(value) {
+                return Math.max(0, Math.min(100, value));
+            }
+
+            function renderPrompt() {
+                const item = meta[permission.value];
+                promptTitle.textContent = 'Allow Campus Snap to access ' + item.label + '?';
+                promptBody.textContent = 'Needed to ' + item.reason + '. Ask at the moment the feature is used.';
+            }
+
+            function renderRisk() {
+                riskFill.style.width = AppState.permissionRisk + '%';
+                riskLabel.textContent = 'Risk score: ' + AppState.permissionRisk + ' / 100';
+                history.innerHTML = AppState.permissionHistory.length
+                    ? AppState.permissionHistory.map(line => '<li>' + line + '</li>').join('')
+                    : '<li>No choices yet. Try Allow once, Deny, and Allow.</li>';
+            }
+
+            permission.addEventListener('input', renderPrompt);
+            root.addEventListener('click', event => {
+                const btn = event.target.closest('[data-permission-choice]');
+                if (!btn) return;
+                const item = meta[permission.value];
+                const choice = btn.dataset.permissionChoice;
+                let change = item.risk;
+                let message = item.allowed;
+                let label = 'Allowed ' + item.label;
+                if (choice === 'once') {
+                    change = item.once;
+                    message = 'One-time access works for a single task and reduces ongoing exposure.';
+                    label = 'Allowed once: ' + item.label;
+                } else if (choice === 'deny') {
+                    change = item.deny;
+                    message = item.denied;
+                    label = 'Denied ' + item.label;
+                }
+                AppState.permissionRisk = clamp(AppState.permissionRisk + change);
+                AppState.permissionHistory.unshift(label + ' (' + (change >= 0 ? '+' : '') + change + ')');
+                AppState.permissionHistory = AppState.permissionHistory.slice(0, 5);
+                outcome.innerHTML = '<p><strong>Outcome:</strong> ' + message + '</p><p><strong>Testing note:</strong> Verify the deny path as carefully as the allow path.</p>';
+                renderRisk();
+            });
+
+            renderPrompt();
+            renderRisk();
+        }
+
+        function initAudit() {
+            const root = document.getElementById('least-privilege-audit');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            AppState.auditBound = true;
+
+            const summary = document.getElementById('audit-summary');
+            const reset = document.getElementById('audit-reset');
+
+            function render() {
+                let justified = 0;
+                let risky = 0;
+                let total = 0;
+                root.querySelectorAll('.audit-row').forEach(row => {
+                    const checkbox = row.querySelector('input[type="checkbox"]');
+                    const shouldBe = row.dataset.justified === 'true';
+                    const checked = checkbox.checked;
+                    total++;
+                    row.classList.remove('good', 'bad');
+                    if (checked === shouldBe) {
+                        justified++;
+                        row.classList.add('good');
+                    } else {
+                        risky++;
+                        row.classList.add('bad');
+                    }
+                });
+                const rating = risky === 0
+                    ? 'Excellent: permissions match the feature set.'
+                    : risky <= 2
+                        ? 'Close: review the highlighted over-asking or missing permission.'
+                        : 'High risk: the app asks for more than it can explain.';
+                summary.innerHTML = '' +
+                    '<h3>Audit score: ' + justified + ' / ' + total + '</h3>' +
+                    '<p><strong>Result:</strong> ' + rating + '</p>' +
+                    '<p>For Campus Snap, camera is justified in context. Contacts and background location are not needed at launch.</p>';
+            }
+
+            root.querySelectorAll('input[type="checkbox"]').forEach(input => input.addEventListener('change', render));
+            if (reset && !reset.dataset.bound) {
+                reset.dataset.bound = 'true';
+                reset.addEventListener('click', () => {
+                    root.querySelectorAll('input[type="checkbox"]').forEach(input => { input.checked = false; });
+                    render();
+                });
+            }
+            render();
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = document.getElementById('quiz-score-label');
+            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+            const progress = document.getElementById('quiz-progress');
+            if (progress) {
+                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+                progress.classList.toggle('visible', AppState.quizScore > 0 || Object.keys(AppState.quizAnswered).length > 0);
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade || !msg || !label) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s === 6) {
+                grade.textContent = 'A+';
+                msg.textContent = 'Outstanding. You can explain the workflow and the risk trade-offs.';
+            } else if (s >= 5) {
+                grade.textContent = 'A';
+                msg.textContent = 'Excellent. Review the one missed idea and you are ready to demo.';
+            } else if (s >= 4) {
+                grade.textContent = 'B';
+                msg.textContent = 'Good work. Revisit the practical checklist before assessment.';
+            } else if (s >= 2) {
+                grade.textContent = 'C';
+                msg.textContent = 'Keep practising. Use the glossary and interactive slide again.';
+            } else {
+                grade.textContent = 'D';
+                msg.textContent = 'Restart with the toolkit slide and ask for a guided demonstration.';
+            }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (AppState.quizBound) return;
+            AppState.quizBound = true;
+
+            const activate = option => {
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            };
+
+            document.addEventListener('click', event => {
+                const option = event.target.closest('.quiz-option');
+                if (!option) return;
+                activate(option);
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                const option = event.target.closest && event.target.closest('.quiz-option');
+                if (!option) return;
+                event.preventDefault();
+                activate(option);
+            });
+
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.style.pointerEvents = '';
+                    });
+                    updateQuizUI();
+                    showResults();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h);
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound) return;
+            canvas.dataset.bound = 'true';
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+
+                if (!showCanvas || reducedMotion) {
+                    requestAnimationFrame(draw);
+                    return;
+                }
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+
+            draw();
+        }
+
+        function refreshWidgets() {
+            initFlipCards();
+            initAvdBuilder();
+            initDecisionTree();
+            initPermissionSimulator();
+            initAudit();
+            initGlossary();
+        }
+
+        Reveal.on('slidechanged', event => {
+            refreshWidgets();
+            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
         });
+
+        Reveal.on('ready', () => {
+            refreshWidgets();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
+        });
+
     </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
