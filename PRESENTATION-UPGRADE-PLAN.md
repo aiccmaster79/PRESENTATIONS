@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 13 / 143 presentations complete**
+**Progress: 17 / 143 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -582,13 +582,13 @@ a mandate — swap them if something fits the topic better.
 
 ### Mobile Apps — Demos
 
-- [~] **#63 Android Emulator Setup** — `android-emulator-setup-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-mobile-apps-demos-8ad3`
+- [x] **#63 Android Emulator Setup** — `android-emulator-setup-ocn-level2-presentation.html` · small · 14 → 28 · (#36)
   - AVD config builder, hardware profile compare, troubleshooting matrix
-- [~] **#64 App Permissions** — `app-permissions-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-mobile-apps-demos-8ad3`
+- [x] **#64 App Permissions** — `app-permissions-ocn-level2-presentation.html` · small · 14 → 28 · (#36)
   - Permission prompt simulator with risk score, least-privilege audit of a sample app
-- [~] **#65 Sensor Input** — `sensor-input-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-mobile-apps-demos-8ad3`
+- [x] **#65 Sensor Input** — `sensor-input-ocn-level2-presentation.html` · small · 14 → 28 · (#36)
   - Tilt/shake simulator with a button fallback, sensor → app event matcher
-- [~] **#66 Native vs Web vs Hybrid** — `native-vs-web-vs-hybrid-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-mobile-apps-demos-8ad3`
+- [x] **#66 Native vs Web vs Hybrid** — `native-vs-web-vs-hybrid-ocn-level2-presentation.html` · small · 14 → 28 · (#36)
   - Trade-off matrix, scenario chooser, cost/performance slider
 
 ### Software Testing — Demos
