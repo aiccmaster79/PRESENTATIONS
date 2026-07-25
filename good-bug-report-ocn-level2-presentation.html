@@ -23,186 +23,327 @@
             --dark-bg: #0a0a1a;
             --glass-bg: rgba(20, 20, 40, 0.85);
         }
-        .reveal { font-family: 'Poppins', sans-serif; }
-        .reveal .slides { text-align: left; }
-        .reveal .slides section { height: 100%; padding: 20px 40px; }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif; font-weight: 700;
-            text-transform: none; letter-spacing: -0.02em;
+
+        * {
+            box-sizing: border-box;
         }
-        .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.4em; }
-        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+
+        body {
+            background: radial-gradient(circle at top left, rgba(138, 43, 226, 0.22), transparent 34%),
+                        radial-gradient(circle at bottom right, rgba(0, 189, 165, 0.18), transparent 32%),
+                        var(--dark-bg);
+        }
+
+        .reveal {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .slides section {
+            height: 100%;
+            padding: 20px 40px;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal h1 {
+            font-size: 2.8em;
+        }
+
+        .reveal h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal h3 {
+            font-size: 1.35em;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.86em;
+            line-height: 1.55;
+        }
+
         .animated-gradient {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
             background-size: 400% 400%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; animation: gradientShift 8s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
         }
+
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
+
         .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
+
         .glass-card-small {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
+
         .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 22px;
         }
+
         .feature-card {
             background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .feature-card:hover {
-            transform: translateY(-8px); border-color: var(--brand-teal);
+            transform: translateY(-8px);
+            border-color: var(--brand-teal);
             box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
         }
-        .feature-card i { font-size: 2.5em; margin-bottom: 15px; display: block; }
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-        .feature-card h3 { font-size: 1.2em; margin-bottom: 10px; color: #fff; }
-        .feature-card p { font-size: 0.85em; color: rgba(255, 255, 255, 0.7); margin: 0; }
-        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 25px; border: 2px solid; }
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-        .comparison-box h3 { text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .comparison-box.type1 h3 { color: var(--brand-purple); }
-        .comparison-box.type2 h3 { color: var(--brand-teal); }
-        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
-        .comparison-box li { padding: 8px 0; padding-left: 25px; position: relative; font-size: 0.85em; }
-        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
-        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
-        .benefit-item {
-            display: flex; gap: 15px; align-items: flex-start; background: var(--glass-bg);
-            border-radius: 12px; padding: 18px; border: 1px solid rgba(255,255,255,0.08);
+
+        .feature-card i {
+            font-size: 2.15em;
+            margin-bottom: 12px;
+            display: block;
         }
-        .benefit-item i { font-size: 1.8em; color: var(--brand-teal); margin-top: 4px; }
-        .benefit-item h4 { margin: 0 0 6px 0; font-size: 1em; }
-        .benefit-item p { margin: 0; font-size: 0.8em; color: rgba(255,255,255,0.7); }
-        .software-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
-        .software-item {
-            background: var(--glass-bg); border-radius: 14px; padding: 20px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
+
+        .feature-card.orange i {
+            color: var(--brand-orange);
         }
-        .software-item i { font-size: 2em; display: block; margin-bottom: 10px; }
-        .software-item h4 { font-size: 0.95em; margin: 8px 0; }
-        .software-item p { font-size: 0.75em; color: rgba(255,255,255,0.65); margin: 0; }
-        .type-badge {
-            display: inline-block; font-size: 0.65em; padding: 3px 10px; border-radius: 20px;
-            font-weight: 600; margin-bottom: 6px;
+
+        .feature-card.purple i {
+            color: var(--brand-purple);
         }
-        .type-badge.type1 { background: rgba(138,43,226,0.3); color: var(--brand-purple-light); }
-        .type-badge.type2 { background: rgba(0,189,165,0.3); color: var(--brand-teal-light); }
-        .quiz-container { max-width: 900px; margin: 0 auto; }
-        .quiz-question { font-size: 1.3em; font-weight: 600; margin-bottom: 25px; text-align: center; }
-        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .quiz-option {
-            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;
-            display: flex; align-items: center; gap: 12px;
+
+        .feature-card.teal i {
+            color: var(--brand-teal);
         }
-        .quiz-option span {
-            background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
+
+        .feature-card h3 {
+            font-size: 1.05em;
+            margin-bottom: 8px;
+            color: #fff;
         }
-        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
-        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
-        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
+
+        .feature-card p {
+            font-size: 0.76em;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .comparison-box {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 23px;
+            border: 2px solid;
+        }
+
+        .comparison-box.type1 {
+            border-color: var(--brand-purple);
+        }
+
+        .comparison-box.type2 {
+            border-color: var(--brand-teal);
+        }
+
+        .comparison-box.type3 {
+            border-color: var(--brand-orange);
+        }
+
+        .comparison-box h3 {
+            text-align: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-box.type1 h3 {
+            color: var(--brand-purple-light);
+        }
+
+        .comparison-box.type2 h3 {
+            color: var(--brand-teal-light);
+        }
+
+        .comparison-box.type3 h3 {
+            color: var(--brand-orange-light);
+        }
+
+        .comparison-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-box li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            font-size: 0.8em;
+        }
+
+        .comparison-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+
         .stats-bar {
-            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-            background: var(--glass-bg); border-radius: 16px; padding: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 22px;
         }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 1.5em; font-weight: 700; color: var(--brand-teal); }
-        .stat-label { font-size: 0.75em; color: rgba(255,255,255,0.6); }
-        .career-path {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 30px; position: relative;
+
+        .stat-item {
+            text-align: center;
         }
-        .career-path::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
-            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
-            z-index: 0;
+
+        .stat-number {
+            display: block;
+            font-size: 1.45em;
+            font-weight: 700;
+            color: var(--brand-teal);
         }
-        .career-step {
-            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
-            z-index: 1; min-width: 150px; border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+
+        .stat-label {
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.6);
         }
-        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
-        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
-        .career-step:nth-child(1) i { color: var(--brand-orange); }
-        .career-step:nth-child(2) i { color: var(--brand-purple); }
-        .career-step:nth-child(3) i { color: var(--brand-teal); }
-        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
-        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+
         .title-slide {
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
         }
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
+
+        .title-slide h1 {
+            font-size: 3.15em;
+            margin-bottom: 18px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 28px;
+        }
+
         .title-slide .qualification {
             display: inline-block;
             background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
-        }
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
-        .objectives-list li {
-            display: flex; align-items: flex-start; gap: 15px; padding: 15px;
-            margin-bottom: 10px; background: var(--glass-bg); border-radius: 10px;
-            border-left: 4px solid var(--brand-orange);
-        }
-        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 20px; margin: 20px 0;
-        }
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-        .rule-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85em; }
-        .rule-table th, .rule-table td {
-            padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal); font-weight: 600; }
-        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.1); }
-        code, .code-inline {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.4);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--brand-teal-light);
-        }
-        pre.code-block {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 22px; font-size: 0.75em; line-height: 1.55; overflow-x: auto;
-            color: #e2e8f0; margin: 15px 0;
-        }
-        @media (max-width: 768px) {
-            .feature-grid, .software-grid { grid-template-columns: 1fr; }
-            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .career-path { flex-direction: column; gap: 20px; }
-            .career-path::before { display: none; }
-        }
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
-        }
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0); opacity: 1;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.88em;
+            font-weight: 600;
         }
 
-        /* ====== DEMO META BADGE ====== */
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+
+        .objectives-list li i {
+            color: var(--brand-teal);
+            font-size: 1.1em;
+            margin-top: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 18px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--brand-orange);
+            margin: 0 0 10px 0;
+        }
+
+        code,
+        .code-inline {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--brand-teal-light);
+        }
+
+        pre.code-block {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 22px;
+            font-size: 0.68em;
+            line-height: 1.5;
+            overflow-x: auto;
+            color: #e2e8f0;
+            margin: 15px 0;
+        }
+
         .demo-meta {
             display: inline-flex;
             align-items: center;
@@ -231,148 +372,1866 @@
         }
 
         .back-to-index {
-            position: fixed; top: 16px; left: 16px; z-index: 100;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.55rem 0.95rem; border-radius: 999px; text-decoration: none;
-            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
-            background: rgba(20, 20, 40, 0.88); border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
         }
-        .back-to-index:hover, .back-to-index:focus-visible {
-            border-color: #00BDA5; background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px); outline: none; color: #fff;
-        }
-        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
-        .site-credit {
-            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 100;
-            margin: 0; padding: 0.35rem 0.85rem; border-radius: 999px;
-            font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            pointer-events: none; white-space: nowrap;
+
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #fff;
         }
 
-</style>
+        .back-to-index i {
+            color: #00BDA5;
+            font-size: 0.9rem;
+        }
+
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 164px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.98));
+        }
+
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.15), rgba(20, 20, 40, 0.98));
+            transform: rotateY(180deg);
+            border-color: var(--brand-teal);
+        }
+
+        .flip-card-front i {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-front h4 {
+            font-size: 1em;
+            margin: 0;
+            color: #fff;
+        }
+
+        .flip-card-back p {
+            font-size: 0.74em;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+            line-height: 1.45;
+        }
+
+        .interactive-panel {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 14px;
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .controls-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .control-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none;
+            color: #fff;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-size: 0.78em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .action-btn.warning {
+            background: linear-gradient(135deg, var(--brand-orange-dark), var(--brand-orange));
+        }
+
+        .action-btn:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .meter {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.09);
+            border-radius: 999px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .meter span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            transition: width 0.25s ease;
+        }
+
+        .readout {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            padding: 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.74em;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .report-builder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .field-group label {
+            color: var(--brand-teal-light);
+            font-size: 0.72em;
+            font-weight: 600;
+        }
+
+        .field-group input,
+        .field-group select,
+        .field-group textarea {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.76em;
+        }
+
+        .field-group textarea {
+            min-height: 76px;
+            resize: vertical;
+        }
+
+        .field-group input:focus,
+        .field-group select:focus,
+        .field-group textarea:focus {
+            outline: 2px solid var(--brand-teal);
+            border-color: transparent;
+        }
+
+        .rubric-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rubric-score {
+            text-align: center;
+            font-size: 2.4em;
+            font-weight: 700;
+            color: var(--brand-orange);
+        }
+
+        .rubric-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .rubric-list li {
+            position: relative;
+            padding: 7px 0 7px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.76em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .rubric-list li::before {
+            content: '○';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .rubric-list li.pass {
+            color: #fff;
+        }
+
+        .rubric-list li.pass::before {
+            content: '✓';
+            color: var(--brand-teal);
+        }
+
+        .evidence-toggle {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.76em;
+        }
+
+        .compare-panel {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 18px;
+        }
+
+        .report-sample {
+            background: rgba(0, 0, 0, 0.42);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 16px;
+            min-height: 260px;
+        }
+
+        .report-sample.bad {
+            border-color: rgba(239, 68, 68, 0.55);
+        }
+
+        .report-sample.good {
+            border-color: rgba(34, 197, 94, 0.6);
+        }
+
+        .report-sample h3 {
+            margin: 0 0 10px;
+            font-size: 1em;
+            color: var(--brand-orange-light);
+        }
+
+        .report-sample p,
+        .report-sample li {
+            font-size: 0.74em;
+        }
+
+        .compare-checklist {
+            display: grid;
+            gap: 10px;
+        }
+
+        .compare-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--brand-purple);
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--glass-bg);
+        }
+
+        .compare-item strong {
+            color: var(--brand-teal-light);
+        }
+
+        .compare-item p {
+            margin: 4px 0 0;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 0.72em;
+        }
+
+        .sequence-board {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .sequence-pool,
+        .sequence-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sequence-chip,
+        .sequence-slot {
+            width: 100%;
+            min-height: 48px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            background: var(--glass-bg);
+            color: #fff;
+            text-align: left;
+            padding: 11px 13px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.76em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .sequence-chip:hover,
+        .sequence-chip:focus-visible,
+        .sequence-slot:hover,
+        .sequence-slot:focus-visible {
+            border-color: var(--brand-teal);
+            outline: none;
+            transform: translateY(-1px);
+        }
+
+        .sequence-chip.selected {
+            border-color: var(--brand-orange);
+            box-shadow: 0 0 0 2px rgba(247, 147, 30, 0.2);
+        }
+
+        .sequence-chip.placed {
+            opacity: 0.35;
+        }
+
+        .sequence-slot {
+            border-style: dashed;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .sequence-slot.filled {
+            border-style: solid;
+            color: #fff;
+            background: rgba(0, 189, 165, 0.12);
+        }
+
+        .sequence-slot.correct {
+            border-color: #22c55e;
+        }
+
+        .sequence-slot.incorrect {
+            border-color: #ef4444;
+            animation: chipShake 0.4s;
+        }
+
+        @keyframes chipShake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-6px);
+            }
+
+            75% {
+                transform: translateX(6px);
+            }
+        }
+
+        .sequence-feedback,
+        .builder-feedback,
+        .compare-feedback {
+            min-height: 1.4em;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 0.78em;
+            margin-top: 12px;
+        }
+
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            font-size: 1.22em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: var(--glass-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.84em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            text-align: left;
+        }
+
+        .quiz-option span {
+            background: var(--brand-purple);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--brand-teal);
+            transform: translateY(-3px);
+        }
+
+        .quiz-option:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .quiz-option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .score-bar-wrap {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            height: 12px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .score-label {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+        }
+
+        .quiz-progress {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--brand-teal);
+            display: none;
+        }
+
+        .quiz-progress.visible {
+            display: block;
+        }
+
+        .results-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .results-grade {
+            font-size: 4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glossary-search {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--glass-bg);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9em;
+            margin-bottom: 18px;
+        }
+
+        .glossary-search:focus {
+            outline: none;
+            border-color: var(--brand-teal);
+        }
+
+        .glossary-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .glossary-item {
+            background: var(--glass-bg);
+            border-radius: 10px;
+            padding: 12px 16px;
+            border-left: 3px solid var(--brand-purple);
+        }
+
+        .glossary-item.hidden {
+            display: none;
+        }
+
+        .glossary-item dt {
+            font-weight: 600;
+            color: var(--brand-teal);
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+
+        .glossary-item dd {
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .fault-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.74em;
+            margin-top: 15px;
+        }
+
+        .fault-table th,
+        .fault-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            vertical-align: top;
+        }
+
+        .fault-table th {
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-teal);
+            font-weight: 600;
+        }
+
+        .fault-table tr:hover td {
+            background: rgba(0, 189, 165, 0.08);
+        }
+
+        .fault-symptom {
+            color: var(--brand-orange);
+            font-weight: 600;
+        }
+
+        .deck-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .deck-link {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s;
+            text-align: center;
+        }
+
+        .deck-link:hover,
+        .deck-link:focus-visible {
+            border-color: var(--brand-teal);
+            transform: translateY(-3px);
+            outline: none;
+        }
+
+        .deck-link i {
+            font-size: 1.8em;
+            color: var(--brand-teal);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .deck-link h4 {
+            font-size: 0.78em;
+            margin: 0 0 4px;
+        }
+
+        .deck-link p {
+            font-size: 0.64em;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .deck-link.current {
+            border-color: var(--brand-orange);
+            background: rgba(247, 147, 30, 0.1);
+        }
+
+        .kbd-hint {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .kbd-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .kbd-item kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+            color: var(--brand-teal);
+        }
+
+        .criteria-list,
+        .evidence-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        .criteria-list li,
+        .evidence-list li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 0.8em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .criteria-list li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--brand-teal);
+        }
+
+        .evidence-list li::before {
+            content: '☑';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0 18px;
+        }
+
+        .case-pill {
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-purple-light);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.72em;
+            font-weight: 600;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .timeline-step {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 14px;
+            align-items: start;
+            background: var(--glass-bg);
+            border-left: 4px solid var(--brand-teal);
+            border-radius: 12px;
+            padding: 13px 16px;
+        }
+
+        .timeline-step strong {
+            color: var(--brand-orange-light);
+            font-size: 0.78em;
+        }
+
+        .timeline-step p {
+            margin: 0;
+            font-size: 0.74em;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .mini-flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .flow-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .flow-card i {
+            color: var(--brand-teal);
+            font-size: 1.65em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .flow-card h4 {
+            font-size: 0.78em;
+            margin: 0 0 5px;
+        }
+
+        .flow-card p {
+            font-size: 0.64em;
+            color: rgba(255, 255, 255, 0.62);
+            margin: 0;
+        }
+
+        #circuit-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient {
+                animation: none;
+            }
+
+            .flip-card-inner,
+            .feature-card,
+            .deck-link,
+            .sequence-chip,
+            .sequence-slot,
+            .quiz-option,
+            .action-btn,
+            .score-bar-fill,
+            .meter span {
+                transition: none;
+            }
+
+            .sequence-slot.incorrect {
+                animation: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reveal .slides section {
+                padding: 18px 22px;
+            }
+
+            .reveal h1 {
+                font-size: 2.2em;
+            }
+
+            .reveal h2 {
+                font-size: 1.55em;
+            }
+
+            .feature-grid,
+            .flip-grid,
+            .deck-map,
+            .glossary-list,
+            .mini-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-container,
+            .quiz-options,
+            .two-col,
+            .panel-grid,
+            .report-builder-grid,
+            .compare-panel,
+            .sequence-board {
+                grid-template-columns: 1fr;
+            }
+
+            .site-credit {
+                display: none;
+            }
+        }
+
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .reveal .slides section .fragment.fade-up.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
     <a class="back-to-index" href="index.html" aria-label="Back to index">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>Back to index</span>
     </a>
+
     <div class="reveal">
         <div class="slides">
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <section data-canvas-bg>
                 <div class="title-slide">
-                    <span class="demo-meta"><span class="demo-number">#67</span><span class="sep">·</span><span class="demo-level">Level 2–3</span><span class="sep">·</span><span class="demo-level">Software testing</span></span>
-                    <h1 class="animated-gradient">Good Bug Report</h1>
-                    <p class="subtitle">Turn a fault into a useful bug report</p>
-                    <span class="qualification">OCN NI Level 2–3 — Software testing</span>
-                </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list"><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>List</strong> the fields of a useful bug report</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Write</strong> clear steps to reproduce</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Capture</strong> expected vs actual results</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Attach</strong> evidence such as screenshot, version, and environment</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Avoid</strong> vague reports that waste developer time</span></li></ul>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-lightbulb"></i> Core Ideas</h2>
-                <div class="comparison-container">
-                    <div class="comparison-box type1 fragment fade-up"><h3>Must include</h3><ul><li>Short title</li><li>Steps to reproduce</li><li>Expected vs actual</li><li>Environment / version</li></ul></div>
-                    <div class="comparison-box type2 fragment fade-up"><h3>Nice extras</h3><ul><li>Screenshots / short clip</li><li>Severity / priority note</li><li>Workaround if known</li><li>Related ticket links</li></ul></div>
-                </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Demo Sequence</h2>
-                <div class="glass-card fragment fade-up"><ol style="font-size:0.9em; line-height:1.7;"><li class="fragment">Discover a planted fault in the buggy demo</li><li class="fragment">Draft a title that names the symptom</li><li class="fragment">Write numbered steps another person can follow</li><li class="fragment">State expected vs actual clearly</li><li class="fragment">Add environment/version and a screenshot</li><li class="fragment">Peer-swap: can a partner reproduce from the report?</li></ol></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-balance-scale"></i> Practical Notes</h2>
-                <div class="benefits-grid"><div class="benefit-item fragment fade-up"><i class="fas fa-shoe-prints"></i><div><h4>Reproducible</h4><p>Another person can follow steps</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-one"></i><div><h4>One bug each</h4><p>Do not mix issues</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-camera"></i><div><h4>Evidence</h4><p>Picture beats it broke</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-user-check"></i><div><h4>Neutral tone</h4><p>Describe facts, not blame</p></div></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-bug"></i><h3>Buggy app/site</h3><p>Known faults planted</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-clipboard-list"></i><h3>Report template</h3><p>Printed or shared doc</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-camera"></i><h3>Screenshot tool</h3><p>Snipping / phone</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-laptop"></i><h3>Test browser/PC</h3><p>Note versions</p></div></div>
-                <div class="highlight-box fragment fade-up"><h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4><p>Buggy app/site, test plan template, local test tool. Plant 2–3 obvious bugs before class.</p></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about good bug report</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: A good bug report always needs…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Steps to reproduce plus expected vs actual</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Only the word broken</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>A new laptop</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A VLAN ID</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — Repro steps make bugs fixable.</div>
-                </div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: It does not work is weak because…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>It lacks detail another person can follow</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>It uses correct English</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>It includes screenshots</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>It names the build number</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Vague reports slow everyone down.</div>
-                </div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: Environment details help…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Developers recreate the same conditions</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Change cable colours</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Disable learning objectives</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Replace Git</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — OS, browser, and version matter.</div>
-                </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-list-ol"></i><h3>Steps win</h3><p>Make it reproducible</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-not-equal"></i><h3>Expected vs actual</h3><p>State both clearly</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-camera"></i><h3>Show evidence</h3><p>Screenshot the fault</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-split"></i><h3>One issue</h3><p>Do not combine bugs</p></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
-                <div class="career-path fragment fade-up"><div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Junior QA Tester</p></div><div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>QA Analyst</p></div><div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Test Lead</p></div></div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Title</span><span class="stat-label">Steps</span></div><div class="stat-item"><span class="stat-number">Expected</span><span class="stat-label">Actual</span></div><div class="stat-item"><span class="stat-number">Evidence</span><span class="stat-label">Env</span></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
-                    <ul style="list-style: none; padding: 0;"><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Build</strong> — Complete the live demo steps for Good Bug Report</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Practice</strong> — Repeat the key hands-on check without teacher prompts</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Reflect</strong> — Write three bullets on why good bug report matters at work</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Regression Testing</li></ul>
-                </div>
-            </section>
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Questions? Let's discuss!</p>
-                    <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Software Testing — Good Bug Report</p>
-                        <span class="qualification">OCN NI Level 2–3 — Software testing</span>
+                    <div class="demo-meta" aria-label="#67 Level 2–3 Software testing">
+                        <span class="demo-number">#67</span>
+                        <span class="sep">·</span>
+                        <span class="demo-level">Level 2–3</span>
+                        <span class="sep">·</span>
+                        <span>Software testing</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-bug" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-clipboard-list" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-check" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <h1 class="animated-gradient">Good Bug Report</h1>
+                    <p class="subtitle">Turn a discovered fault into a clear, reproducible, useful ticket.</p>
+                    <span class="qualification">OCN NI Level 2/3 Software Testing</span>
                 </div>
+                <aside class="notes">Delivery cue: open with a story about a bug that everyone can see but nobody can reproduce. Timing: 2 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</h2>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Explain why reproducible bug reports save developer and tester time.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Write concise titles, ordered steps, expected results, actual results, environment details, and evidence.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Distinguish severity from priority and avoid mixing multiple bugs into one ticket.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Use a rubric to improve a weak report until it is ready for triage.</span></li>
+                </ul>
+                <aside class="notes">Delivery cue: ask learners which report field they usually forget. Timing: 3 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to Use This Deck</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-hand-pointer" aria-hidden="true"></i><h3>Interact</h3><p>Flip cards, compare reports, build a ticket, and order repro steps.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-universal-access" aria-hidden="true"></i><h3>Keyboard friendly</h3><p>Use Tab to move, then Enter or Space on controls and cards.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-clipboard-check" aria-hidden="true"></i><h3>Evidence ready</h3><p>Use the practical task checklist as your assessment evidence guide.</p></div>
+                </div>
+                <div class="kbd-hint" aria-label="Keyboard shortcuts">
+                    <span class="kbd-item"><kbd>←</kbd><span>Previous slide</span></span>
+                    <span class="kbd-item"><kbd>→</kbd><span>Next slide</span></span>
+                    <span class="kbd-item"><kbd>Space</kbd><span>Activate selected widget</span></span>
+                    <span class="kbd-item"><kbd>S</kbd><span>Speaker notes</span></span>
+                </div>
+                <aside class="notes">Delivery cue: demonstrate keyboard navigation before learners use the widgets. Timing: 2 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-stopwatch" aria-hidden="true"></i> Why Good Reports Matter</h2>
+                <div class="stats-bar">
+                    <div class="stat-item"><span class="stat-number">1 clear ticket</span><span class="stat-label">can unblock a developer</span></div>
+                    <div class="stat-item"><span class="stat-number">10 vague tickets</span><span class="stat-label">can hide the real fault</span></div>
+                    <div class="stat-item"><span class="stat-number">5 minutes</span><span class="stat-label">spent on detail can save hours</span></div>
+                </div>
+                <div class="highlight-box">
+                    <h4>Testing is communication</h4>
+                    <p>A bug report is not just a complaint. It is a repeatable experiment: if another person follows it, they should see the same failure and understand why it matters.</p>
+                </div>
+                <aside class="notes">Delivery cue: stress that the report is a bridge between tester, developer, product owner, and support. Timing: 3 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-file-lines" aria-hidden="true"></i> The Anatomy of a Useful Report</h2>
+                <div class="mini-flow">
+                    <div class="flow-card"><i class="fas fa-heading" aria-hidden="true"></i><h4>Title</h4><p>Specific symptom and area.</p></div>
+                    <div class="flow-card"><i class="fas fa-list-ol" aria-hidden="true"></i><h4>Steps</h4><p>Ordered actions from a known state.</p></div>
+                    <div class="flow-card"><i class="fas fa-scale-balanced" aria-hidden="true"></i><h4>Expected/Actual</h4><p>The gap that proves the fault.</p></div>
+                    <div class="flow-card"><i class="fas fa-desktop" aria-hidden="true"></i><h4>Environment</h4><p>Device, browser, build, data.</p></div>
+                    <div class="flow-card"><i class="fas fa-paperclip" aria-hidden="true"></i><h4>Evidence</h4><p>Screenshot, video, logs, IDs.</p></div>
+                </div>
+                <pre class="code-block"><code>Title: Checkout shows blank page after applying expired voucher
+Severity: Major
+Environment: Android 14, Chrome 126, staging build 2.8.4
+Steps: 1. Sign in as test buyer 2. Add item 3. Apply voucher EXPIRED10 4. Tap Pay
+Expected: Voucher rejected with message
+Actual: Checkout area becomes blank; console shows TypeError in VoucherPanel</code></pre>
+                <aside class="notes">Delivery cue: read the example aloud and point out that each field answers a different triage question. Timing: 4 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-repeat" aria-hidden="true"></i> Reproducibility Is the Core</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1">
+                        <h3>Weak report</h3>
+                        <ul>
+                            <li>Starts from the middle of the story</li>
+                            <li>Uses vague language like "broken"</li>
+                            <li>Hides test data and account details</li>
+                            <li>Leaves the developer guessing</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2">
+                        <h3>Reproducible report</h3>
+                        <ul>
+                            <li>Begins from a clean, known state</li>
+                            <li>Lists actions in the order taken</li>
+                            <li>Names exact data, build, device, and user role</li>
+                            <li>Shows expected and actual outcomes</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: ask learners to identify what a developer can do with the right-hand report that they cannot do with the left. Timing: 4 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Severity, Priority, and One Bug Per Ticket</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-fire" aria-hidden="true"></i><h3>Severity</h3><p>How bad is the impact? Data loss, crash, security issue, incorrect result, or cosmetic problem?</p></div>
+                    <div class="feature-card purple"><i class="fas fa-arrow-up-wide-short" aria-hidden="true"></i><h3>Priority</h3><p>How soon should it be fixed? This includes deadlines, users affected, business value, and release risk.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-ticket" aria-hidden="true"></i><h3>One bug per ticket</h3><p>Separate faults can have separate causes, owners, tests, fixes, and release decisions.</p></div>
+                </div>
+                <div class="highlight-box"><h4>Example</h4><p>A typo on the homepage may be low severity but high priority before a public launch. A rare admin crash may be high severity but lower priority if only internal staff can trigger it.</p></div>
+                <aside class="notes">Delivery cue: invite learners to classify a few examples before showing the explanation. Timing: 4 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-layer-group" aria-hidden="true"></i> Flip Cards: Report Fields</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.78em;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click, tap, or press Enter/Space to reveal the purpose of each field.</p>
+                <div class="flip-grid">
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Title card - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-heading" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>Title</h4></div><div class="flip-card-back"><p>Summarises the affected feature, action, and visible failure in one searchable line.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Steps card - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-list-ol" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Steps</h4></div><div class="flip-card-back"><p>Gives a numbered route from a known start to the fault, using exact data and actions.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Expected actual card - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-not-equal" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>Expected / Actual</h4></div><div class="flip-card-back"><p>Separates what should happen from what did happen so the defect is measurable.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Environment card - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-laptop-code" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>Environment</h4></div><div class="flip-card-back"><p>Records build, browser, OS, device, network, role, and test data that might affect reproduction.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Evidence card - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-paperclip" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Evidence</h4></div><div class="flip-card-back"><p>Adds screenshots, videos, logs, timestamps, console errors, and request IDs to shorten diagnosis.</p></div></div></div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Severity card - click to flip"><div class="flip-card-inner"><div class="flip-card-front"><i class="fas fa-gauge-high" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>Severity</h4></div><div class="flip-card-back"><p>States the user or system impact without deciding the whole release schedule on its own.</p></div></div></div>
+                </div>
+                <aside class="notes">Delivery cue: give learners 90 seconds to flip every card, then ask which field helps reproduction most. Timing: 5 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-code-compare" aria-hidden="true"></i> Bad vs Good Compare</h2>
+                <div class="interactive-panel" id="compare-widget">
+                    <div class="control-row" style="margin-bottom: 12px;">
+                        <button class="action-btn warning" data-compare="bad" type="button">Show vague ticket</button>
+                        <button class="action-btn" data-compare="good" type="button">Show improved ticket</button>
+                    </div>
+                    <div class="compare-panel">
+                        <article class="report-sample bad" id="compare-sample" aria-live="polite">
+                            <h3>Login broken</h3>
+                            <p>It does not work. I tried logging in and got an error. Please fix ASAP.</p>
+                        </article>
+                        <div class="compare-checklist" id="compare-checklist" aria-live="polite">
+                            <div class="compare-item"><strong>Missing repro route</strong><p>No role, URL, account state, browser, or exact action sequence.</p></div>
+                            <div class="compare-item"><strong>No expected result</strong><p>The developer cannot tell whether the issue is validation, authentication, or display.</p></div>
+                            <div class="compare-item"><strong>No evidence</strong><p>"Error" is not enough; include the message, screenshot, logs, and timestamp.</p></div>
+                        </div>
+                    </div>
+                    <div class="compare-feedback" id="compare-feedback">Compare how much guesswork each ticket creates.</div>
+                </div>
+                <aside class="notes">Delivery cue: first show the vague ticket and ask what the developer would have to ask next. Timing: 5 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i> Report Builder with Rubric Score</h2>
+                <div class="interactive-panel panel-grid" id="report-builder">
+                    <form class="report-builder-grid" aria-label="Bug report builder">
+                        <div class="field-group full"><label for="bug-title">Title</label><input id="bug-title" name="title" type="text" value="Login broken" autocomplete="off"></div>
+                        <div class="field-group"><label for="bug-severity">Severity</label><select id="bug-severity" name="severity"><option value="">Choose severity</option><option>Blocker</option><option>Major</option><option>Minor</option><option>Cosmetic</option></select></div>
+                        <div class="field-group"><label for="bug-env">Environment</label><input id="bug-env" name="environment" type="text" placeholder="e.g. Chrome 126, Windows 11, staging 2.8.4"></div>
+                        <div class="field-group full"><label for="bug-steps">Repro steps</label><textarea id="bug-steps" name="steps" placeholder="1. Open...&#10;2. Enter...&#10;3. Click..."></textarea></div>
+                        <div class="field-group"><label for="bug-expected">Expected</label><textarea id="bug-expected" name="expected" placeholder="What should happen?"></textarea></div>
+                        <div class="field-group"><label for="bug-actual">Actual</label><textarea id="bug-actual" name="actual" placeholder="What actually happened?"></textarea></div>
+                        <label class="evidence-toggle full"><input id="bug-evidence" name="evidence" type="checkbox"> Evidence attached: screenshot, video, log, or request ID</label>
+                    </form>
+                    <aside class="rubric-card glass-card-small" aria-live="polite">
+                        <div class="rubric-score"><span id="rubric-score">1</span><span style="font-size: 0.4em; color: rgba(255,255,255,0.5);"> / 12</span></div>
+                        <div class="meter" aria-hidden="true"><span id="rubric-meter"></span></div>
+                        <ul class="rubric-list" id="rubric-list">
+                            <li data-check="title">Specific searchable title</li>
+                            <li data-check="severity">Severity selected</li>
+                            <li data-check="steps">At least three ordered steps</li>
+                            <li data-check="expected">Expected result is clear</li>
+                            <li data-check="actual">Actual result is clear</li>
+                            <li data-check="environment">Environment includes version/device/build detail</li>
+                            <li data-check="evidence">Evidence attached or named</li>
+                        </ul>
+                        <div class="builder-feedback" id="builder-feedback">Improve the weak starting report until it becomes triage-ready.</div>
+                    </aside>
+                </div>
+                <aside class="notes">Delivery cue: let learners work in pairs and narrate how the score changes as they add detail. Timing: 8 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-route" aria-hidden="true"></i> A Reliable Repro Workflow</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-broom" aria-hidden="true"></i><h3>Start clean</h3><p>Use a known account, reset data, clear filters, and record the build.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-magnifying-glass" aria-hidden="true"></i><h3>Isolate</h3><p>Remove unrelated actions until the smallest repeatable path remains.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-rotate" aria-hidden="true"></i><h3>Repeat</h3><p>Run the steps twice. If it happens sometimes, record the frequency.</p></div>
+                    <div class="feature-card orange"><i class="fas fa-user-group" aria-hidden="true"></i><h3>Cross-check</h3><p>Ask another tester to follow your steps before the ticket reaches development.</p></div>
+                </div>
+                <aside class="notes">Delivery cue: frame this as scientific method for testers: setup, action, observation, repeat. Timing: 4 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-shuffle" aria-hidden="true"></i> Repro Step Ordering Challenge</h2>
+                <div class="interactive-panel" id="sequence-widget">
+                    <p style="font-size: 0.76em; color: rgba(255,255,255,0.68);">Drag steps into the numbered slots, or tap a step then tap a slot. Keyboard: Tab to a step, Space to select, Tab to a slot, Space to place.</p>
+                    <div class="sequence-board">
+                        <div>
+                            <h3 style="font-size: 0.95em; color: var(--brand-orange);">Shuffled steps</h3>
+                            <div class="sequence-pool" id="sequence-pool">
+                                <button class="sequence-chip" draggable="true" data-order="4" type="button">Tap Pay and observe the checkout area turning blank</button>
+                                <button class="sequence-chip" draggable="true" data-order="2" type="button">Add the "USB-C Hub" item to the basket</button>
+                                <button class="sequence-chip" draggable="true" data-order="5" type="button">Capture screenshot and console TypeError</button>
+                                <button class="sequence-chip" draggable="true" data-order="1" type="button">Sign in as test buyer on staging build 2.8.4</button>
+                                <button class="sequence-chip" draggable="true" data-order="3" type="button">Apply expired voucher EXPIRED10</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 0.95em; color: var(--brand-teal);">Correct order</h3>
+                            <div class="sequence-slots" id="sequence-slots">
+                                <button class="sequence-slot" data-slot="1" type="button">1. Drop first step here</button>
+                                <button class="sequence-slot" data-slot="2" type="button">2. Drop second step here</button>
+                                <button class="sequence-slot" data-slot="3" type="button">3. Drop third step here</button>
+                                <button class="sequence-slot" data-slot="4" type="button">4. Drop fourth step here</button>
+                                <button class="sequence-slot" data-slot="5" type="button">5. Drop evidence step here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-row" style="margin-top: 14px;">
+                        <button class="action-btn" id="sequence-check" type="button">Validate order</button>
+                        <button class="action-btn secondary" id="sequence-reset" type="button">Reset</button>
+                    </div>
+                    <div class="sequence-feedback" id="sequence-feedback" aria-live="polite">Build a path that begins from a known state and ends with evidence.</div>
+                </div>
+                <aside class="notes">Delivery cue: let learners try before explaining the answer; focus on starting state and evidence as anchors. Timing: 7 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-camera" aria-hidden="true"></i> Evidence and Environment Details</h2>
+                <div class="two-col">
+                    <div class="glass-card-small">
+                        <h3><i class="fas fa-paperclip" aria-hidden="true"></i> Strong evidence</h3>
+                        <ul class="evidence-list">
+                            <li>Screenshot with the full page or error visible</li>
+                            <li>Short video for timing, animation, or multi-step issues</li>
+                            <li>Console error, network request ID, or server log reference</li>
+                            <li>Timestamp, test account, data record, and build number</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card-small">
+                        <h3><i class="fas fa-desktop" aria-hidden="true"></i> Environment clues</h3>
+                        <ul class="criteria-list">
+                            <li>OS and version: Windows 11, Android 14, iOS 18</li>
+                            <li>Browser and version: Chrome 126, Edge 126, Safari 18</li>
+                            <li>App build, branch, API environment, feature flag state</li>
+                            <li>Network, role, permission level, locale, screen size</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: point out that environment does not mean every device detail, only the details that could change the result. Timing: 4 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Case Study: "Login Broken" Cost Two Days</h2>
+                <div class="case-meta"><span class="case-pill">Classroom SaaS scenario</span><span class="case-pill">Authentication</span><span class="case-pill">Triage delay</span></div>
+                <div class="timeline">
+                    <div class="timeline-step"><strong>09:10 Mon</strong><p>Support files a ticket: "Login broken for students" with no browser, school, screenshot, URL, or account role.</p></div>
+                    <div class="timeline-step"><strong>14:30 Mon</strong><p>Developers cannot reproduce on staff accounts. They suspect a recent password reset change and start reading unrelated code.</p></div>
+                    <div class="timeline-step"><strong>11:45 Tue</strong><p>A tester adds evidence: Safari on managed iPads, student role, school SSO, error after tapping "Continue" twice.</p></div>
+                    <div class="timeline-step"><strong>15:00 Tue</strong><p>The real cause is found: a duplicate submit sends two SSO callbacks; the second clears the session. A five-field report would have saved most of the search.</p></div>
+                </div>
+                <aside class="notes">Delivery cue: make the lesson concrete by asking what each missing detail cost the team. Timing: 5 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Common Report Faults</h2>
+                <table class="fault-table">
+                    <thead><tr><th>Symptom in ticket</th><th>Likely cause</th><th>Fix before triage</th></tr></thead>
+                    <tbody>
+                        <tr><td class="fault-symptom">"It is broken"</td><td>Title and actual result describe frustration, not a visible failure</td><td>Name feature, action, and symptom: "Login returns 500 after SSO callback"</td></tr>
+                        <tr><td class="fault-symptom">Developer cannot reproduce</td><td>Missing environment, test data, role, or starting state</td><td>Add build, browser, account role, record ID, and exact setup</td></tr>
+                        <tr><td class="fault-symptom">Ticket keeps changing scope</td><td>Several unrelated faults are bundled together</td><td>Split into one bug per ticket and link related issues</td></tr>
+                        <tr><td class="fault-symptom">Arguments about importance</td><td>Severity and priority are mixed together</td><td>State impact separately from urgency and release timing</td></tr>
+                        <tr><td class="fault-symptom">"Expected" duplicates "actual"</td><td>Tester has not identified the rule or requirement being violated</td><td>Quote acceptance criteria, design, standard, or normal behaviour</td></tr>
+                        <tr><td class="fault-symptom">Screenshot does not help</td><td>Image is cropped, missing timestamp, or lacks error detail</td><td>Attach full screenshot, console/network detail, and short annotation</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Delivery cue: use this as a triage checklist; have learners match a weak ticket to one row. Timing: 5 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Extended Practical Task</h2>
+                <div class="highlight-box"><h4>Scenario brief</h4><p>You discover that applying an expired voucher during checkout sometimes creates a blank payment panel. Your job is to create a bug report that another tester and developer can reproduce without asking follow-up questions.</p></div>
+                <div class="two-col">
+                    <div class="glass-card-small"><h3>Success criteria</h3><ul class="criteria-list"><li>Title identifies feature, action, and failure</li><li>Steps begin from a known state and are numbered</li><li>Expected and actual results are separate and testable</li><li>Environment includes build, browser/device, role, and data</li><li>Severity is justified by user impact</li></ul></div>
+                    <div class="glass-card-small"><h3>Evidence checklist</h3><ul class="evidence-list"><li>Screenshot of blank panel and voucher value</li><li>Console error or network request ID</li><li>Timestamp and test account used</li><li>Note whether it reproduces 1/1, 2/3, or intermittently</li><li>Link to related regression or requirement if known</li></ul></div>
+                </div>
+                <aside class="notes">Delivery cue: give learners 12-15 minutes to draft, then pair review against the checklist. Timing: 15 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Jargon Buster</h2>
+                <input type="search" class="glossary-search" id="glossary-search" placeholder="Search terms..." aria-label="Search glossary terms">
+                <dl class="glossary-list" id="glossary-list">
+                    <div class="glossary-item" data-terms="severity impact"><dt>Severity</dt><dd>How serious the bug's impact is for users, data, security, or system stability.</dd></div>
+                    <div class="glossary-item" data-terms="priority urgency"><dt>Priority</dt><dd>How soon the team should fix it, considering business timing and release risk.</dd></div>
+                    <div class="glossary-item" data-terms="repro reproduce reproduction"><dt>Repro</dt><dd>Short for reproduce: the ability to trigger the same bug by following the same steps.</dd></div>
+                    <div class="glossary-item" data-terms="expected result"><dt>Expected result</dt><dd>The behaviour that should happen according to requirements, design, or normal operation.</dd></div>
+                    <div class="glossary-item" data-terms="actual result observed"><dt>Actual result</dt><dd>The behaviour actually observed during the test.</dd></div>
+                    <div class="glossary-item" data-terms="regression returned bug"><dt>Regression</dt><dd>A feature that used to work but fails after a code, data, or configuration change.</dd></div>
+                    <div class="glossary-item" data-terms="blocker critical"><dt>Blocker</dt><dd>A bug so severe it prevents testing, release, or a critical user journey from continuing.</dd></div>
+                    <div class="glossary-item" data-terms="triage review"><dt>Triage</dt><dd>The team process of reviewing, clarifying, prioritising, assigning, or closing tickets.</dd></div>
+                    <div class="glossary-item" data-terms="environment browser device build"><dt>Environment</dt><dd>The conditions where the test ran: device, OS, browser, app build, role, data, and flags.</dd></div>
+                    <div class="glossary-item" data-terms="build version release"><dt>Build</dt><dd>A packaged version of the software, often with a number or commit reference.</dd></div>
+                    <div class="glossary-item" data-terms="log console network"><dt>Log</dt><dd>A record of events or errors that helps diagnose what the software did internally.</dd></div>
+                    <div class="glossary-item" data-terms="screenshot video evidence"><dt>Evidence</dt><dd>Material attached to prove and explain the fault, such as screenshots, videos, logs, or IDs.</dd></div>
+                    <div class="glossary-item" data-terms="intermittent flaky sometimes"><dt>Intermittent</dt><dd>A bug that appears only sometimes, often because of timing, data, network, or state.</dd></div>
+                    <div class="glossary-item" data-terms="duplicate related ticket"><dt>Duplicate</dt><dd>A ticket that reports the same underlying bug as an existing ticket.</dd></div>
+                </dl>
+                <aside class="notes">Delivery cue: ask learners to search for "priority", "blocker", and "intermittent" before the quiz. Timing: 4 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-project-diagram" aria-hidden="true"></i> Where This Fits</h2>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.82em;">Software testing pathway - use sibling decks to deepen the skill around this bug-reporting workflow.</p>
+                <div class="deck-map">
+                    <a class="deck-link current" href="good-bug-report-ocn-level2-presentation.html" aria-current="page"><i class="fas fa-bug" aria-hidden="true"></i><h4>#67 Good Bug Report</h4><p>Turn faults into tickets</p></a>
+                    <a class="deck-link" href="regression-testing-ocn-level2-presentation.html"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i><h4>#68 Regression Testing</h4><p>Check fixes stay fixed</p></a>
+                    <a class="deck-link" href="unit-test-runner-ocn-level2-presentation.html"><i class="fas fa-vial" aria-hidden="true"></i><h4>#69 Unit Test Runner</h4><p>Automated evidence</p></a>
+                    <a class="deck-link" href="usability-testing-ocn-level2-presentation.html"><i class="fas fa-user-check" aria-hidden="true"></i><h4>#70 Usability</h4><p>Observe user friction</p></a>
+                    <a class="deck-link" href="load-stress-testing-ocn-level2-presentation.html"><i class="fas fa-gauge-high" aria-hidden="true"></i><h4>#71 Load/Stress</h4><p>Performance faults</p></a>
+                    <a class="deck-link" href="input-validation-ocn-level2-presentation.html"><i class="fas fa-keyboard" aria-hidden="true"></i><h4>#54 Input Validation</h4><p>Expected input rules</p></a>
+                    <a class="deck-link" href="debugger-ocn-level2-presentation.html"><i class="fas fa-stethoscope" aria-hidden="true"></i><h4>#51 Debugger</h4><p>Trace and diagnose</p></a>
+                </div>
+                <aside class="notes">Delivery cue: show how a bug report feeds regression tests, automated checks, and debugging. Timing: 3 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-circle-question" aria-hidden="true"></i> Knowledge Check</h2>
+                <div class="glass-card quiz-container">
+                    <p style="text-align: center; color: rgba(255,255,255,0.74);">Answer six questions. Your score appears in the top-right progress pill and in the bar below.</p>
+                    <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                    <div class="score-label" id="quiz-score-label" aria-live="polite">Score: 0 / 6</div>
+                    <div class="feature-grid" style="margin-top: 24px;">
+                        <div class="feature-card orange"><i class="fas fa-list-ol" aria-hidden="true"></i><h3>Repro steps</h3><p>Order, exact data, and starting state.</p></div>
+                        <div class="feature-card purple"><i class="fas fa-scale-balanced" aria-hidden="true"></i><h3>Expected vs actual</h3><p>The gap that proves a bug.</p></div>
+                        <div class="feature-card teal"><i class="fas fa-paperclip" aria-hidden="true"></i><h3>Evidence</h3><p>Make diagnosis faster.</p></div>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: remind learners each question locks after the first answer; results appear after Q6. Timing: 1 minute.</aside>
+            </section>
+
+            <section data-quiz="1">
+                <h2 class="animated-gradient">Quiz 1: Repro Steps</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question">Which set of steps is most useful for reproducing a bug?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>Open the app and click around until it breaks.</button>
+                        <button class="quiz-option" data-correct="true" type="button"><span>B</span>Start from a known account, list exact actions in order, and include test data.</button>
+                        <button class="quiz-option" type="button"><span>C</span>Tell the developer to watch you reproduce it later.</button>
+                        <button class="quiz-option" type="button"><span>D</span>Only describe the screen where the problem ended.</button>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: after answers, reinforce that reproducibility starts before the visible failure. Timing: 2 minutes.</aside>
+            </section>
+
+            <section data-quiz="2">
+                <h2 class="animated-gradient">Quiz 2: Expected vs Actual</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question">What belongs in the "expected result" field?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>The error message that appeared.</button>
+                        <button class="quiz-option" type="button"><span>B</span>The developer's likely fix.</button>
+                        <button class="quiz-option" data-correct="true" type="button"><span>C</span>The behaviour that should happen according to the requirement or normal flow.</button>
+                        <button class="quiz-option" type="button"><span>D</span>A copy of the actual result.</button>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: ask learners to explain why expected and actual should not be blended. Timing: 2 minutes.</aside>
+            </section>
+
+            <section data-quiz="3">
+                <h2 class="animated-gradient">Quiz 3: Environment Details</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question">Which environment detail is most likely to help reproduce a browser-specific fault?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>The tester's favourite colour theme.</button>
+                        <button class="quiz-option" data-correct="true" type="button"><span>B</span>Browser name/version, OS/device, app build, account role, and feature flags.</button>
+                        <button class="quiz-option" type="button"><span>C</span>The office room number only.</button>
+                        <button class="quiz-option" type="button"><span>D</span>The sprint goal without any device detail.</button>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: connect this question back to the Safari/iPad case study. Timing: 2 minutes.</aside>
+            </section>
+
+            <section data-quiz="4">
+                <h2 class="animated-gradient">Quiz 4: One Bug Per Ticket</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question">Why should a report usually contain one bug per ticket?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>Because tickets must always be very short.</button>
+                        <button class="quiz-option" type="button"><span>B</span>Because screenshots cannot show more than one problem.</button>
+                        <button class="quiz-option" data-correct="true" type="button"><span>C</span>Because different bugs can have different causes, owners, fixes, tests, and release decisions.</button>
+                        <button class="quiz-option" type="button"><span>D</span>Because developers do not need related context.</button>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: explain that related tickets can be linked without merging separate defects. Timing: 2 minutes.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <h2 class="animated-gradient">Quiz 5: Severity vs Priority</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question">A typo on the homepage is low impact but must be fixed before a public demo in one hour. What does that show?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>High severity and low priority.</button>
+                        <button class="quiz-option" data-correct="true" type="button"><span>B</span>Low severity but high priority.</button>
+                        <button class="quiz-option" type="button"><span>C</span>Blocker severity.</button>
+                        <button class="quiz-option" type="button"><span>D</span>It should not be reported.</button>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: reinforce that severity is impact and priority is urgency. Timing: 2 minutes.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <h2 class="animated-gradient">Quiz 6: Evidence</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question">Which evidence package best supports a checkout bug report?</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>A cropped screenshot with no date or page context.</button>
+                        <button class="quiz-option" type="button"><span>B</span>A statement that "it happened yesterday".</button>
+                        <button class="quiz-option" data-correct="true" type="button"><span>C</span>Screenshot/video, timestamp, test account, browser/build, console error, and request ID.</button>
+                        <button class="quiz-option" type="button"><span>D</span>A suggested code change without reproduction steps.</button>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: remind learners evidence reduces investigation time but does not replace clear steps. Timing: 2 minutes.</aside>
+            </section>
+
+            <section id="slide-quiz-results">
+                <h2 class="animated-gradient"><i class="fas fa-award" aria-hidden="true"></i> Quiz Results</h2>
+                <div class="glass-card results-card quiz-container">
+                    <div class="results-grade" id="results-grade">D</div>
+                    <p id="results-message" style="color: rgba(255,255,255,0.78);">Answer the questions to calculate your grade.</p>
+                    <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <div class="score-label">Final score: <span id="results-score-label" aria-live="polite">0 / 6</span></div>
+                    <button class="action-btn" id="quiz-retry" type="button" style="margin-top: 20px;">Retry quiz</button>
+                </div>
+                <aside class="notes">Delivery cue: use the grade as a discussion prompt, not just a mark; revisit any weak topic. Timing: 3 minutes.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-map-signs" aria-hidden="true"></i> Key Takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-repeat" aria-hidden="true"></i><h3>Reproducible</h3><p>Another person can follow the same path and see the same fault.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i><h3>Diagnosable</h3><p>Environment, data, logs, and evidence point towards likely causes.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-scale-balanced" aria-hidden="true"></i><h3>Prioritisable</h3><p>Impact and urgency are clear enough for triage decisions.</p></div>
+                    <div class="feature-card orange"><i class="fas fa-people-arrows" aria-hidden="true"></i><h3>Collaborative</h3><p>The report respects the time of testers, developers, support, and users.</p></div>
+                </div>
+                <div class="stats-bar" style="margin-top: 22px;">
+                    <div class="stat-item"><span class="stat-number">Tester</span><span class="stat-label">observes and clarifies</span></div>
+                    <div class="stat-item"><span class="stat-number">Developer</span><span class="stat-label">reproduces and fixes</span></div>
+                    <div class="stat-item"><span class="stat-number">Product owner</span><span class="stat-label">prioritises risk</span></div>
+                </div>
+                <aside class="notes">Delivery cue: close the learning loop by linking report quality to professional teamwork. Timing: 3 minutes.</aside>
+            </section>
+
+            <section data-canvas-bg>
+                <div class="title-slide">
+                    <div class="demo-meta" aria-label="#67 Level 2–3 Software testing">
+                        <span class="demo-number">#67</span>
+                        <span class="sep">·</span>
+                        <span class="demo-level">Level 2–3</span>
+                        <span class="sep">·</span>
+                        <span>Software testing</span>
+                    </div>
+                    <h2 class="animated-gradient" style="font-size: 2.5em;">Thank You</h2>
+                    <p class="subtitle">Next: write one ticket that a developer can reproduce on the first try.</p>
+                    <div class="kbd-hint">
+                        <span class="kbd-item"><kbd>Esc</kbd><span>Slide overview</span></span>
+                        <span class="kbd-item"><kbd>S</kbd><span>Speaker notes</span></span>
+                    </div>
+                </div>
+                <aside class="notes">Delivery cue: finish by asking learners to state one field they will improve in their next report. Timing: 2 minutes.</aside>
             </section>
         </div>
     </div>
-    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
         Reveal.initialize({
-            hash: true, controls: true, progress: true, center: true,
-            transition: 'slide', backgroundTransition: 'fade',
-            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
-            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade',
             plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        const AppState = {
+            quizScore: 0,
+            quizAnswered: {},
+            quizBound: false,
+            reportScore: 1,
+            compareMode: 'bad',
+            selectedSequenceChip: null,
+            draggedSequenceChip: null
+        };
+
+        const compareData = {
+            bad: {
+                className: 'bad',
+                html: '<h3>Login broken</h3><p>It does not work. I tried logging in and got an error. Please fix ASAP.</p>',
+                items: [
+                    ['Missing repro route', 'No role, URL, account state, browser, or exact action sequence.'],
+                    ['No expected result', 'The developer cannot tell whether the issue is validation, authentication, or display.'],
+                    ['No evidence', '"Error" is not enough; include the message, screenshot, logs, and timestamp.']
+                ],
+                feedback: 'This ticket creates follow-up questions before anyone can start fixing.'
+            },
+            good: {
+                className: 'good',
+                html: '<h3>Student SSO login loops after tapping Continue twice on Safari iPad</h3><p><strong>Severity:</strong> Major - affected students cannot reach assignments.</p><ol><li>On iPadOS 17.5 / Safari, open staging.schoolapp.test.</li><li>Choose Student SSO and sign in as student-sso-04.</li><li>Tap Continue twice while the spinner is visible.</li><li>Observe redirect back to login with Session expired.</li></ol><p><strong>Expected:</strong> Student dashboard loads once. <strong>Actual:</strong> Login loop; console request ID 8f31 fails callback validation.</p>',
+                items: [
+                    ['Specific title', 'Names role, login method, browser/device, trigger action, and symptom.'],
+                    ['Reproducible path', 'Starts from a known environment and gives ordered steps using test data.'],
+                    ['Useful evidence', 'Includes exact message and request ID so logs can be searched quickly.']
+                ],
+                feedback: 'This ticket is ready for triage because a second person can reproduce it.'
+            }
+        };
+
+        function bindActivation(el, handler) {
+            if (!el || el.dataset.bound) return;
+            el.dataset.bound = 'true';
+            el.addEventListener('click', handler);
+            el.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    handler(event);
+                }
             });
+        }
+
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                bindActivation(card, () => card.classList.toggle('flipped'));
+            });
+        }
+
+        function renderCompare(mode) {
+            const data = compareData[mode];
+            const sample = document.getElementById('compare-sample');
+            const list = document.getElementById('compare-checklist');
+            const feedback = document.getElementById('compare-feedback');
+            if (!data || !sample || !list || !feedback) return;
+            AppState.compareMode = mode;
+            sample.classList.remove('bad', 'good');
+            sample.classList.add(data.className);
+            sample.innerHTML = data.html;
+            list.innerHTML = data.items.map(item => '<div class="compare-item"><strong>' + item[0] + '</strong><p>' + item[1] + '</p></div>').join('');
+            feedback.textContent = data.feedback;
+        }
+
+        function initCompare() {
+            const root = document.getElementById('compare-widget');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            root.querySelectorAll('[data-compare]').forEach(button => {
+                button.addEventListener('click', () => renderCompare(button.dataset.compare));
+            });
+            renderCompare(AppState.compareMode);
+        }
+
+        function countStepLines(value) {
+            return value.split(/\n+/).map(line => line.trim()).filter(Boolean).length;
+        }
+
+        function hasVersionDetail(value) {
+            return /\d|chrome|safari|edge|firefox|android|ios|windows|mac|build|staging|role/i.test(value);
+        }
+
+        function updateReportScore() {
+            const root = document.getElementById('report-builder');
+            if (!root) return;
+            const title = document.getElementById('bug-title').value.trim();
+            const severity = document.getElementById('bug-severity').value;
+            const environment = document.getElementById('bug-env').value.trim();
+            const steps = document.getElementById('bug-steps').value.trim();
+            const expected = document.getElementById('bug-expected').value.trim();
+            const actual = document.getElementById('bug-actual').value.trim();
+            const evidence = document.getElementById('bug-evidence').checked;
+            const checks = {
+                title: title.length >= 12 && !/^login broken$/i.test(title),
+                severity: Boolean(severity),
+                steps: countStepLines(steps) >= 3,
+                expected: expected.length >= 12,
+                actual: actual.length >= 12,
+                environment: environment.length >= 10 && hasVersionDetail(environment),
+                evidence: evidence
+            };
+            let score = 0;
+            if (checks.title) score += 2;
+            if (checks.severity) score += 1;
+            if (checks.steps) score += 3;
+            if (checks.expected) score += 2;
+            if (checks.actual) score += 2;
+            if (checks.environment) score += 1;
+            if (checks.evidence) score += 1;
+            AppState.reportScore = score;
+            const scoreEl = document.getElementById('rubric-score');
+            const meter = document.getElementById('rubric-meter');
+            const feedback = document.getElementById('builder-feedback');
+            if (scoreEl) scoreEl.textContent = String(score);
+            if (meter) meter.style.width = ((score / 12) * 100) + '%';
+            document.querySelectorAll('#rubric-list [data-check]').forEach(item => {
+                item.classList.toggle('pass', Boolean(checks[item.dataset.check]));
+            });
+            if (feedback) {
+                if (score >= 11) feedback.textContent = 'Triage-ready: another tester should be able to reproduce this.';
+                else if (score >= 8) feedback.textContent = 'Close: add the missing field before handing it to development.';
+                else if (score >= 4) feedback.textContent = 'Partly useful: reproduction and evidence still need more detail.';
+                else feedback.textContent = 'Still too vague: start with title, steps, expected, and actual.';
+            }
+        }
+
+        function initReportBuilder() {
+            const root = document.getElementById('report-builder');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            root.querySelectorAll('input, textarea, select').forEach(field => {
+                field.addEventListener('input', updateReportScore);
+                field.addEventListener('change', updateReportScore);
+            });
+            updateReportScore();
+        }
+
+        function clearSequenceSelection() {
+            if (AppState.selectedSequenceChip) {
+                AppState.selectedSequenceChip.classList.remove('selected');
+            }
+            AppState.selectedSequenceChip = null;
+        }
+
+        function placeChipInSlot(chip, slot) {
+            if (!chip || !slot) return;
+            const previousOrder = slot.dataset.order;
+            if (previousOrder) {
+                const previousChip = document.querySelector('.sequence-chip[data-order="' + previousOrder + '"]');
+                if (previousChip) previousChip.classList.remove('placed');
+            }
+            slot.dataset.order = chip.dataset.order;
+            slot.textContent = slot.dataset.slot + '. ' + chip.textContent;
+            slot.classList.add('filled');
+            slot.classList.remove('correct', 'incorrect');
+            chip.classList.add('placed');
+            clearSequenceSelection();
+            const feedback = document.getElementById('sequence-feedback');
+            if (feedback) feedback.textContent = 'Placed step ' + chip.dataset.order + '. Validate when every slot is filled.';
+        }
+
+        function resetSequence() {
+            document.querySelectorAll('.sequence-chip').forEach(chip => {
+                chip.classList.remove('placed', 'selected');
+            });
+            document.querySelectorAll('.sequence-slot').forEach(slot => {
+                slot.dataset.order = '';
+                slot.textContent = slot.dataset.slot + '. Drop ' + (slot.dataset.slot === '5' ? 'evidence step' : ['first', 'second', 'third', 'fourth'][Number(slot.dataset.slot) - 1] + ' step') + ' here';
+                slot.classList.remove('filled', 'correct', 'incorrect');
+            });
+            clearSequenceSelection();
+            const feedback = document.getElementById('sequence-feedback');
+            if (feedback) feedback.textContent = 'Build a path that begins from a known state and ends with evidence.';
+        }
+
+        function validateSequence() {
+            const slots = Array.from(document.querySelectorAll('.sequence-slot'));
+            const feedback = document.getElementById('sequence-feedback');
+            let filled = true;
+            let firstWrong = null;
+            slots.forEach(slot => {
+                slot.classList.remove('correct', 'incorrect');
+                if (!slot.dataset.order) filled = false;
+                const ok = slot.dataset.order === slot.dataset.slot;
+                if (slot.dataset.order) slot.classList.add(ok ? 'correct' : 'incorrect');
+                if (slot.dataset.order && !ok && !firstWrong) firstWrong = slot.dataset.slot;
+            });
+            if (!feedback) return;
+            if (!filled) {
+                feedback.textContent = 'Fill every slot before validating.';
+            } else if (firstWrong) {
+                feedback.textContent = 'First wrong position: slot ' + firstWrong + '. Start from setup, then action, trigger, observation, evidence.';
+            } else {
+                feedback.textContent = 'Correct: the sequence is reproducible and evidence-led.';
+            }
+        }
+
+        function initSequence() {
+            const root = document.getElementById('sequence-widget');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            root.querySelectorAll('.sequence-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    if (chip.classList.contains('placed')) return;
+                    clearSequenceSelection();
+                    chip.classList.add('selected');
+                    AppState.selectedSequenceChip = chip;
+                    const feedback = document.getElementById('sequence-feedback');
+                    if (feedback) feedback.textContent = 'Selected: ' + chip.textContent + '. Now choose a slot.';
+                });
+                chip.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        chip.click();
+                    }
+                });
+                chip.addEventListener('dragstart', event => {
+                    AppState.draggedSequenceChip = chip;
+                    event.dataTransfer.setData('text/plain', chip.dataset.order);
+                });
+            });
+            root.querySelectorAll('.sequence-slot').forEach(slot => {
+                slot.addEventListener('click', () => placeChipInSlot(AppState.selectedSequenceChip, slot));
+                slot.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        placeChipInSlot(AppState.selectedSequenceChip, slot);
+                    }
+                });
+                slot.addEventListener('dragover', event => event.preventDefault());
+                slot.addEventListener('drop', event => {
+                    event.preventDefault();
+                    const order = event.dataTransfer.getData('text/plain');
+                    const chip = AppState.draggedSequenceChip || document.querySelector('.sequence-chip[data-order="' + order + '"]');
+                    placeChipInSlot(chip, slot);
+                    AppState.draggedSequenceChip = null;
+                });
+            });
+            const check = document.getElementById('sequence-check');
+            const reset = document.getElementById('sequence-reset');
+            if (check && !check.dataset.bound) {
+                check.dataset.bound = 'true';
+                check.addEventListener('click', validateSequence);
+            }
+            if (reset && !reset.dataset.bound) {
+                reset.dataset.bound = 'true';
+                reset.addEventListener('click', resetSequence);
+            }
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = document.getElementById('quiz-score-label');
+            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+            const progress = document.getElementById('quiz-progress');
+            if (progress) {
+                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+                progress.classList.toggle('visible', AppState.quizScore > 0 || Object.keys(AppState.quizAnswered).length > 0);
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade || !msg || !label) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s === 6) {
+                grade.textContent = 'A+';
+                msg.textContent = 'Outstanding - your reports are clear, reproducible, and triage-ready.';
+            } else if (s >= 5) {
+                grade.textContent = 'A';
+                msg.textContent = 'Excellent - revisit the one area you missed.';
+            } else if (s >= 4) {
+                grade.textContent = 'B';
+                msg.textContent = 'Good work - review the glossary and practical checklist.';
+            } else if (s >= 2) {
+                grade.textContent = 'C';
+                msg.textContent = 'Keep practising - focus on repro steps, expected/actual, and evidence.';
+            } else {
+                grade.textContent = 'D';
+                msg.textContent = 'Retry after using the builder and compare widgets.';
+            }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (AppState.quizBound) return;
+            AppState.quizBound = true;
+            const activate = option => {
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.disabled = true;
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            };
+            document.addEventListener('click', event => {
+                const option = event.target.closest('.quiz-option');
+                if (!option) return;
+                activate(option);
+            });
+            document.addEventListener('keydown', event => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                const option = event.target.closest && event.target.closest('.quiz-option');
+                if (!option) return;
+                event.preventDefault();
+                activate(option);
+            });
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.disabled = false;
+                    });
+                    updateQuizUI();
+                    showResults();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h);
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound) return;
+            canvas.dataset.bound = 'true';
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            const particles = [];
+            for (let i = 0; i < 42; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+                if (!showCanvas || reducedMotion) {
+                    requestAnimationFrame(draw);
+                    return;
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function refreshWidgets() {
+            initFlipCards();
+            initCompare();
+            initReportBuilder();
+            initSequence();
+            initGlossary();
+        }
+
+        Reveal.on('slidechanged', event => {
+            refreshWidgets();
+            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
+        });
+
+        Reveal.on('ready', () => {
+            refreshWidgets();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
         });
     </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
