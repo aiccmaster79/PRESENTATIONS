@@ -256,6 +256,42 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+
+        .career-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            position: relative;
+        }
+        .career-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            z-index: 0;
+        }
+        .career-step {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            min-width: 170px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
+        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
+        .career-step:nth-child(1) i { color: var(--brand-orange); }
+        .career-step:nth-child(2) i { color: var(--brand-purple); }
+        .career-step:nth-child(3) i { color: var(--brand-teal); }
+        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
+        .career-step p { font-size: 0.68em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+
         .title-slide {
             display: flex;
             flex-direction: column;
@@ -1763,6 +1799,23 @@ Actual: Checkout area becomes blank; console shows TypeError in VoucherPanel</co
                     <div class="stat-item"><span class="stat-number">Product owner</span><span class="stat-label">prioritises risk</span></div>
                 </div>
                 <aside class="notes">Delivery cue: close the learning loop by linking report quality to professional teamwork. Timing: 3 minutes.</aside>
+            </section>
+
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-road" aria-hidden="true"></i> Career Pathways</h2>
+                <p style="text-align:center; color: rgba(255,255,255,0.7); margin-bottom: 12px;">Clear bug reports are a core skill across QA and support roles.</p>
+                <div class="career-path">
+                    <div class="career-step"><i class="fas fa-graduation-cap" aria-hidden="true"></i><h4>Entry</h4><p>Junior QA / Helpdesk</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog" aria-hidden="true"></i><h4>Mid</h4><p>QA Analyst / Test Engineer</p></div>
+                    <div class="career-step"><i class="fas fa-star" aria-hidden="true"></i><h4>Senior</h4><p>Test Lead / Quality Manager</p></div>
+                </div>
+                <div class="stats-bar" style="margin-top: 28px;">
+                    <div class="stat-item"><span class="stat-number">Steps</span><span class="stat-label">Repro clarity</span></div>
+                    <div class="stat-item"><span class="stat-number">Evidence</span><span class="stat-label">Screenshots &amp; logs</span></div>
+                    <div class="stat-item"><span class="stat-number">Impact</span><span class="stat-label">Severity &amp; priority</span></div>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Link report writing to junior tester and support roles. Ask which field they would improve first on the job.</aside>
             </section>
 
             <section data-canvas-bg>

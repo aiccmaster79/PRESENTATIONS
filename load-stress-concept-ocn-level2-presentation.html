@@ -114,6 +114,42 @@
         .feature-card h3 { font-size: 1.02em; margin: 0 0 8px; color: #fff; }
         .feature-card p { font-size: 0.76em; color: rgba(255, 255, 255, 0.72); margin: 0; }
 
+
+        .career-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            position: relative;
+        }
+        .career-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            z-index: 0;
+        }
+        .career-step {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            min-width: 170px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
+        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
+        .career-step:nth-child(1) i { color: var(--brand-orange); }
+        .career-step:nth-child(2) i { color: var(--brand-purple); }
+        .career-step:nth-child(3) i { color: var(--brand-teal); }
+        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
+        .career-step p { font-size: 0.68em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+
         .title-slide {
             display: flex;
             flex-direction: column;
@@ -1291,19 +1327,41 @@
                 <aside class="notes">Timing: 3 minutes. Celebrate improvement and use retry if the class needs another pass. Ask what rule they will remember outside the classroom.</aside>
             </section>
 
-            <section data-canvas-bg data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Key takeaways</h1>
-                    <div class="feature-grid" style="width: 100%; max-width: 1120px;">
-                        <div class="feature-card orange"><i class="fas fa-users" aria-hidden="true"></i><h3>Load = expected peak</h3><p>Check the service is usable under realistic demand.</p></div>
-                        <div class="feature-card purple"><i class="fas fa-bolt" aria-hidden="true"></i><h3>Stress = safe limit finding</h3><p>Push beyond normal only in a controlled, authorised lab.</p></div>
-                        <div class="feature-card teal"><i class="fas fa-chart-line" aria-hidden="true"></i><h3>Baseline + metrics</h3><p>Compare response time, throughput, and errors with evidence.</p></div>
-                        <div class="feature-card orange"><i class="fas fa-shield-alt" aria-hidden="true"></i><h3>Authorisation first</h3><p>Never attack real sites or shared school systems.</p></div>
-                    </div>
-                    <p class="subtitle" style="margin-top: 24px;">Next: practise writing a clear performance test conclusion.</p>
-                    <span class="qualification">OCN NI Level 2–3 — Software testing</span>
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Key Takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-users" aria-hidden="true"></i><h3>Load = expected peak</h3><p>Check the service is usable under realistic demand.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-bolt" aria-hidden="true"></i><h3>Stress = safe limit finding</h3><p>Push beyond normal only in a controlled, authorised lab.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-chart-line" aria-hidden="true"></i><h3>Baseline + metrics</h3><p>Compare response time, throughput, and errors with evidence.</p></div>
+                    <div class="feature-card orange"><i class="fas fa-shield-alt" aria-hidden="true"></i><h3>Authorisation first</h3><p>Never attack real sites or shared school systems.</p></div>
                 </div>
-                <aside class="notes">Timing: 3 minutes. Close with the four pillars. Make the final message ethical and practical: permission, baseline, gradual ramp, evidence.</aside>
+                <aside class="notes">Timing: 3 minutes. Close the learning loop with the four pillars: permission, baseline, gradual ramp, evidence.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-road" aria-hidden="true"></i> Career Pathways</h2>
+                <p style="text-align:center; color: rgba(255,255,255,0.7);">Performance awareness supports testing, support, and infrastructure roles.</p>
+                <div class="career-path">
+                    <div class="career-step"><i class="fas fa-graduation-cap" aria-hidden="true"></i><h4>Entry</h4><p>Junior Tester / Support</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog" aria-hidden="true"></i><h4>Mid</h4><p>Performance / QA Analyst</p></div>
+                    <div class="career-step"><i class="fas fa-star" aria-hidden="true"></i><h4>Senior</h4><p>SRE / Quality Lead</p></div>
+                </div>
+                <div class="stats-bar" style="margin-top: 28px;">
+                    <div class="stat-item"><span class="stat-number">Authorise</span><span class="stat-label">Permission first</span></div>
+                    <div class="stat-item"><span class="stat-number">Baseline</span><span class="stat-label">Know normal</span></div>
+                    <div class="stat-item"><span class="stat-number">Ramp</span><span class="stat-label">Find the limit safely</span></div>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Stress ethics as strongly as tooling — authorised lab work is the professional standard.</aside>
+            </section>
+
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
+                <div class="title-slide">
+                    <span class="demo-meta"><span class="demo-number">#71</span><span class="sep">·</span><span class="demo-level">Complete</span><span class="sep">·</span><span class="demo-level">Software testing</span></span>
+                    <h1 class="animated-gradient">Thank You</h1>
+                    <p class="subtitle">Authorise first. Baseline. Ramp carefully. Report with evidence.</p>
+                    <span class="qualification">Next: write a safe mini performance conclusion</span>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Ask one learner to restate the authorisation rule before dismissal.</aside>
             </section>
         </div>
     </div>
