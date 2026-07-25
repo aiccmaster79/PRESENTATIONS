@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 7 / 143 presentations complete**
+**Progress: 13 / 143 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -567,17 +567,17 @@ a mandate — swap them if something fits the topic better.
 
 ### Website Development — Demos
 
-- [~] **#57 Browser DevTools** — `browser-devtools-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-website-dev-demos-8ad3`
+- [x] **#57 Browser DevTools** — `browser-devtools-ocn-level2-presentation.html` · small · 14 → 28 · (#34)
   - Mock DevTools panel (Elements / Console / Network) with inspect challenges
-- [~] **#58 Responsive Design** — `responsive-design-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-website-dev-demos-8ad3`
+- [x] **#58 Responsive Design** — `responsive-design-ocn-level2-presentation.html` · small · 14 → 28 · (#34)
   - Viewport width slider with live layout, breakpoint builder, mobile-first ordering
-- [~] **#59 Accessibility Audit** — `accessibility-audit-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-website-dev-demos-8ad3`
+- [x] **#59 Accessibility Audit** — `accessibility-audit-ocn-level2-presentation.html` · small · 14 → 28 · (#34)
   - Live contrast checker, alt-text writing exercise, screen reader path simulator, scored WCAG checklist
-- [~] **#60 Form Validation** — `form-validation-ocn-level2-presentation.html` · small · 15 → 28 · `cursor/upgrade-website-dev-demos-8ad3`
+- [x] **#60 Form Validation** — `form-validation-ocn-level2-presentation.html` · small · 15 → 28 · (#34)
   - Side-by-side HTML5 vs JS validation sandbox, error message design, edge case tests
-- [~] **#61 W3C Validation** — `w3c-validation-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-website-dev-demos-8ad3`
+- [x] **#61 W3C Validation** — `w3c-validation-ocn-level2-presentation.html` · small · 14 → 28 · (#34)
   - Validator error decoder, fix-the-markup game, workflow steps
-- [~] **#62 Website Hosting** — `website-hosting-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-website-dev-demos-8ad3`
+- [x] **#62 Website Hosting** — `website-hosting-ocn-level2-presentation.html` · small · 14 → 28 · (#34)
   - Request path animation, 404 triage, deploy sequencer, hosting type compare
 
 ### Mobile Apps — Demos
