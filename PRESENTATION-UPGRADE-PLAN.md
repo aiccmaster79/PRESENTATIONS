@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 22 / 143 presentations complete**
+**Progress: 22 / 143 presentations complete** (claiming #72–#75)
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -505,13 +505,13 @@ a mandate — swap them if something fits the topic better.
   - Sharing link chooser, effective access calculator, oversharing scenarios
 - [ ] **#36 Version History Restore** — `version-history-restore-ocn-level2-presentation.html` · medium · 16 → 30
   - Version timeline scrubber with restore, delete-recovery flow
-- [ ] **#72 SaaS/PaaS/IaaS Comparison** — `saas-paas-iaas-comparison-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#72 SaaS/PaaS/IaaS Comparison** — `saas-paas-iaas-comparison-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-cloud-collab-demos-849c`
   - Responsibility split drag, service classifier game
-- [ ] **#73 SharePoint/Teams Setup** — `sharepoint-teams-setup-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#73 SharePoint/Teams Setup** — `sharepoint-teams-setup-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-cloud-collab-demos-849c`
   - Site setup sequencer, structure planner, governance tips
-- [ ] **#74 Cloud Sync Conflict** — `cloud-sync-conflict-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#74 Cloud Sync Conflict** — `cloud-sync-conflict-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-cloud-collab-demos-849c`
   - Two-user edit simulator producing conflict copies, resolution decision tree
-- [ ] **#75 Storage Quota Management** — `storage-quota-management-ocn-level2-presentation.html` · small · 14 → 28
+- [~] **#75 Storage Quota Management** — `storage-quota-management-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-cloud-collab-demos-849c`
   - Quota analyser widget, safe cleanup rules, retention policy
 
 ### IoT — Demos
