@@ -1512,6 +1512,7 @@
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
         const AppState = {
             quota: 100,
@@ -1913,12 +1914,19 @@
 
         Reveal.initialize({
             hash: true,
-            slideNumber: true,
             controls: true,
             progress: true,
-            center: false,
+            center: true,
             transition: 'slide',
-            plugins: [RevealNotes, RevealHighlight]
+            backgroundTransition: 'fade',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            autoAnimateEasing: 'ease-out',
+            autoAnimateDuration: 0.8,
+            plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
 
         Reveal.on('ready', event => {
