@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 26 / 143 presentations complete**
+**Progress: 29 / 143 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -289,11 +289,11 @@ a mandate — swap them if something fits the topic better.
   - Counter gauges, bottleneck detective (given counters, name the culprit), Task Manager hotspots
 - [ ] **#13 Account Permissions** — `account-permissions-ocn-level2-presentation.html` · medium · 16 → 30
   - Effective-permissions calculator, group membership drag, least-privilege scenarios
-- [~] **#76 Service Catalogue** — `service-catalogue-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-it-support-demos-d292`
+- [x] **#76 Service Catalogue** — `service-catalogue-ocn-level2-presentation.html` · small · 14 → 28 · (#40)
   - Catalogue builder, request form designer, service tier matcher
-- [~] **#77 SLA Response Times** — `sla-response-times-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-it-support-demos-d292`
+- [x] **#77 SLA Response Times** — `sla-response-times-ocn-level2-presentation.html` · small · 14 → 28 · (#40)
   - SLA clock simulator with priority matrix, breach calculator
-- [~] **#78 Asset Tagging** — `asset-tagging-ocn-level2-presentation.html` · small · 14 → 28 · `cursor/upgrade-it-support-demos-d292`
+- [x] **#78 Asset Tagging** — `asset-tagging-ocn-level2-presentation.html` · small · 14 → 28 · (#40)
   - Lifecycle sequence builder, label designer, audit spot-check game
 - [ ] **#89 Software Updating** — `software-updating-ocn-level2-presentation.html` · medium · 16 → 30
   - Patch-risk ranker, update rings diagram, bad-update rollback case study
