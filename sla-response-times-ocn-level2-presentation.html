@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#77 | Level 2–3 | SLA Response Times | OCN NI</title>
+    <title>#77 | Level 2-3 | SLA Response Times | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
@@ -23,186 +23,72 @@
             --dark-bg: #0a0a1a;
             --glass-bg: rgba(20, 20, 40, 0.85);
         }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: radial-gradient(circle at top left, rgba(138, 43, 226, 0.24), transparent 36%),
+                        radial-gradient(circle at bottom right, rgba(0, 189, 165, 0.18), transparent 32%),
+                        var(--dark-bg);
+        }
+
         .reveal { font-family: 'Poppins', sans-serif; }
         .reveal .slides { text-align: left; }
         .reveal .slides section { height: 100%; padding: 20px 40px; }
         .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif; font-weight: 700;
-            text-transform: none; letter-spacing: -0.02em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
         }
         .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.4em; }
-        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+        .reveal h2 { font-size: 1.92em; margin-bottom: 0.45em; }
+        .reveal h3 { font-size: 1.28em; }
+        .reveal p, .reveal li { font-size: 0.84em; line-height: 1.5; }
+        .reveal small { color: rgba(255, 255, 255, 0.66); }
+
         .animated-gradient {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
             background-size: 400% 400%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; animation: gradientShift 8s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
         }
+
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-        .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+        .glass-card, .glass-card-small, .feature-card, .comparison-box, .bin, .chip-pool, .scenario-card, .table-wrap, .clock-panel, .calc-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
         }
-        .glass-card-small {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-top: 30px;
-        }
-        .feature-card {
-            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .feature-card:hover {
-            transform: translateY(-8px); border-color: var(--brand-teal);
-            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
-        }
-        .feature-card i { font-size: 2.5em; margin-bottom: 15px; display: block; }
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-        .feature-card h3 { font-size: 1.2em; margin-bottom: 10px; color: #fff; }
-        .feature-card p { font-size: 0.85em; color: rgba(255, 255, 255, 0.7); margin: 0; }
-        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 25px; border: 2px solid; }
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-        .comparison-box h3 { text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .comparison-box.type1 h3 { color: var(--brand-purple); }
-        .comparison-box.type2 h3 { color: var(--brand-teal); }
-        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
-        .comparison-box li { padding: 8px 0; padding-left: 25px; position: relative; font-size: 0.85em; }
-        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
-        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
-        .benefit-item {
-            display: flex; gap: 15px; align-items: flex-start; background: var(--glass-bg);
-            border-radius: 12px; padding: 18px; border: 1px solid rgba(255,255,255,0.08);
-        }
-        .benefit-item i { font-size: 1.8em; color: var(--brand-teal); margin-top: 4px; }
-        .benefit-item h4 { margin: 0 0 6px 0; font-size: 1em; }
-        .benefit-item p { margin: 0; font-size: 0.8em; color: rgba(255,255,255,0.7); }
-        .software-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
-        .software-item {
-            background: var(--glass-bg); border-radius: 14px; padding: 20px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .software-item i { font-size: 2em; display: block; margin-bottom: 10px; }
-        .software-item h4 { font-size: 0.95em; margin: 8px 0; }
-        .software-item p { font-size: 0.75em; color: rgba(255,255,255,0.65); margin: 0; }
-        .type-badge {
-            display: inline-block; font-size: 0.65em; padding: 3px 10px; border-radius: 20px;
-            font-weight: 600; margin-bottom: 6px;
-        }
-        .type-badge.type1 { background: rgba(138,43,226,0.3); color: var(--brand-purple-light); }
-        .type-badge.type2 { background: rgba(0,189,165,0.3); color: var(--brand-teal-light); }
-        .quiz-container { max-width: 900px; margin: 0 auto; }
-        .quiz-question { font-size: 1.3em; font-weight: 600; margin-bottom: 25px; text-align: center; }
-        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .quiz-option {
-            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;
-            display: flex; align-items: center; gap: 12px;
-        }
-        .quiz-option span {
-            background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
-        }
-        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
-        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
-        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
-        .stats-bar {
-            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-            background: var(--glass-bg); border-radius: 16px; padding: 25px;
-        }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 1.5em; font-weight: 700; color: var(--brand-teal); }
-        .stat-label { font-size: 0.75em; color: rgba(255,255,255,0.6); }
-        .career-path {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 30px; position: relative;
-        }
-        .career-path::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
-            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
-            z-index: 0;
-        }
-        .career-step {
-            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
-            z-index: 1; min-width: 150px; border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
-        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
-        .career-step:nth-child(1) i { color: var(--brand-orange); }
-        .career-step:nth-child(2) i { color: var(--brand-purple); }
-        .career-step:nth-child(3) i { color: var(--brand-teal); }
-        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
-        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+        .glass-card { border-radius: 20px; padding: 26px; }
+        .glass-card-small { border-radius: 15px; padding: 18px; }
+
         .title-slide {
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
         }
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
-        .title-slide .qualification {
+        .title-slide h1 { font-size: 3.35em; margin: 0 0 18px; }
+        .title-slide .subtitle { font-size: 1.25em; color: rgba(255, 255, 255, 0.82); margin-bottom: 26px; }
+        .qualification {
             display: inline-block;
             background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.86em;
+            font-weight: 600;
         }
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
-        .objectives-list li {
-            display: flex; align-items: flex-start; gap: 15px; padding: 15px;
-            margin-bottom: 10px; background: var(--glass-bg); border-radius: 10px;
-            border-left: 4px solid var(--brand-orange);
-        }
-        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 20px; margin: 20px 0;
-        }
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-        .rule-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85em; }
-        .rule-table th, .rule-table td {
-            padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal); font-weight: 600; }
-        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.1); }
-        code, .code-inline {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.4);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--brand-teal-light);
-        }
-        pre.code-block {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 22px; font-size: 0.75em; line-height: 1.55; overflow-x: auto;
-            color: #e2e8f0; margin: 15px 0;
-        }
-        @media (max-width: 768px) {
-            .feature-grid, .software-grid { grid-template-columns: 1fr; }
-            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .career-path { flex-direction: column; gap: 20px; }
-            .career-path::before { display: none; }
-        }
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
-        }
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0); opacity: 1;
-        }
-
-        /* ====== DEMO META BADGE ====== */
         .demo-meta {
             display: inline-flex;
             align-items: center;
@@ -217,162 +103,1529 @@
             background: rgba(0, 189, 165, 0.18);
             border: 1px solid rgba(0, 189, 165, 0.45);
         }
-
-        .demo-meta .demo-number {
-            color: var(--brand-teal);
-        }
-
-        .demo-meta .demo-level {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .demo-meta .sep {
-            opacity: 0.45;
-        }
+        .demo-meta .demo-number { color: var(--brand-teal); }
+        .demo-meta .demo-level { color: rgba(255, 255, 255, 0.85); }
+        .demo-meta .sep { opacity: 0.45; }
 
         .back-to-index {
-            position: fixed; top: 16px; left: 16px; z-index: 100;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.55rem 0.95rem; border-radius: 999px; text-decoration: none;
-            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
-            background: rgba(20, 20, 40, 0.88); border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
         }
         .back-to-index:hover, .back-to-index:focus-visible {
-            border-color: #00BDA5; background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px); outline: none; color: #fff;
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #fff;
         }
         .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
         .site-credit {
-            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 100;
-            margin: 0; padding: 0.35rem 0.85rem; border-radius: 999px;
-            font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            pointer-events: none; white-space: nowrap;
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
         }
 
-</style>
+        #circuit-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-grid, .model-grid, .deck-map, .glossary-list, .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+        .feature-card {
+            border-radius: 16px;
+            padding: 21px;
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
+            transition: all 0.35s ease;
+        }
+        .feature-card:hover { transform: translateY(-6px); border-color: var(--brand-teal); box-shadow: 0 18px 36px rgba(0, 189, 165, 0.18); }
+        .feature-card i { display: block; font-size: 2.1em; margin-bottom: 12px; }
+        .feature-card.orange i { color: var(--brand-orange); }
+        .feature-card.purple i { color: var(--brand-purple); }
+        .feature-card.teal i { color: var(--brand-teal); }
+        .feature-card h3 { margin: 0 0 8px; font-size: 1.02em; }
+        .feature-card p { margin: 0; color: rgba(255, 255, 255, 0.72); font-size: 0.74em; }
+
+        .objectives-list, .criteria-list, .evidence-list, .tick-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .objectives-list li, .tick-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 13px 15px;
+            margin-bottom: 10px;
+            background: var(--glass-bg);
+            border-left: 4px solid var(--brand-orange);
+            border-radius: 10px;
+        }
+        .objectives-list i, .tick-list i { color: var(--brand-teal); margin-top: 4px; }
+
+        .two-col, .comparison-container, .responsibility-board, .classifier-board, .clock-layout, .calc-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 18px;
+        }
+        .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
+        .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+        .comparison-box { border-radius: 16px; padding: 22px; border-width: 2px; }
+        .comparison-box.type1 { border-color: var(--brand-purple); }
+        .comparison-box.type2 { border-color: var(--brand-teal); }
+        .comparison-box.type3 { border-color: var(--brand-orange); }
+        .comparison-box.type4 { border-color: rgba(255, 255, 255, 0.35); }
+        .comparison-box h3 { margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
+        .comparison-box.type1 h3 { color: var(--brand-purple-light); }
+        .comparison-box.type2 h3 { color: var(--brand-teal-light); }
+        .comparison-box.type3 h3 { color: var(--brand-orange-light); }
+        .comparison-box.type4 h3 { color: rgba(255, 255, 255, 0.85); }
+        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
+        .comparison-box li { position: relative; padding: 7px 0 7px 24px; font-size: 0.76em; }
+        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 22px;
+            margin-top: 18px;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { display: block; font-size: 1.45em; font-weight: 700; color: var(--brand-teal); }
+        .stat-label { font-size: 0.72em; color: rgba(255, 255, 255, 0.62); }
+
+        .kbd-hint { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 20px; }
+        .kbd-item { display: flex; align-items: center; gap: 8px; font-size: 0.74em; color: rgba(255, 255, 255, 0.64); }
+        .kbd-item kbd { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; padding: 4px 10px; color: var(--brand-teal); font-family: 'Fira Code', monospace; }
+
+        .mode-tabs, .widget-actions, .scenario-actions, .priority-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 12px 0;
+        }
+        button, .action-btn, .mode-tab, .quiz-option, .chip, .service-card, .scenario-btn, .bin, .priority-tab {
+            font-family: 'Poppins', sans-serif;
+        }
+        .action-btn, .mode-tab, .scenario-btn, .priority-tab {
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            padding: 9px 15px;
+            font-size: 0.72em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover, .action-btn:focus-visible, .mode-tab:hover, .mode-tab:focus-visible, .scenario-btn:hover, .scenario-btn:focus-visible, .priority-tab:hover, .priority-tab:focus-visible {
+            outline: none;
+            border-color: var(--brand-teal);
+            background: rgba(0, 189, 165, 0.16);
+            transform: translateY(-1px);
+        }
+        .mode-tab.active, .scenario-btn.selected, .priority-tab.active { border-color: var(--brand-orange); background: rgba(247, 147, 30, 0.2); }
+
+        .chip-pool, .service-pool, .classifier-bin-wrap, .ticket-pool {
+            border-radius: 16px;
+            padding: 16px;
+            min-height: 120px;
+        }
+        .chip-list, .service-list, .ticket-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: flex-start;
+        }
+        .chip, .service-card, .ticket-chip {
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.32);
+            color: #fff;
+            padding: 9px 13px;
+            font-size: 0.7em;
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        .chip:hover, .chip:focus-visible, .service-card:hover, .service-card:focus-visible, .ticket-chip:hover, .ticket-chip:focus-visible {
+            outline: none;
+            border-color: var(--brand-teal);
+            transform: translateY(-1px);
+        }
+        .chip.selected, .service-card.selected, .ticket-chip.selected { border-color: var(--brand-orange); box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.16); }
+        .chip.correct, .service-card.correct, .ticket-chip.correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.18); }
+        .chip.incorrect, .service-card.incorrect, .ticket-chip.incorrect { border-color: #ef4444; background: rgba(239, 68, 68, 0.16); animation: chipShake 0.35s; }
+        .bin {
+            border-radius: 16px;
+            padding: 14px;
+            min-height: 140px;
+            border-style: dashed;
+            text-align: left;
+            color: #fff;
+            cursor: pointer;
+        }
+        .bin h3 { margin: 0 0 10px; font-size: 0.88em; color: var(--brand-teal-light); }
+        .bin:focus-visible, .bin:hover { outline: none; border-color: var(--brand-orange); }
+        .classifier-board { grid-template-columns: 0.9fr 1.1fr; }
+        .classifier-bins { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .classifier-bins .bin { min-height: 150px; }
+        .score-readout, .feedback {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.76em;
+            min-height: 1.4em;
+            margin-top: 10px;
+        }
+        .score-readout strong, .feedback strong { color: var(--brand-teal-light); }
+        @keyframes chipShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+        .scenario-card { border-radius: 16px; padding: 18px; }
+        .scenario-card h3 { margin: 0 0 8px; color: var(--brand-orange-light); }
+        .scenario-card p { font-size: 0.72em; color: rgba(255, 255, 255, 0.72); margin-bottom: 12px; }
+        .scenario-card.correct { border-color: #22c55e; }
+        .scenario-card.incorrect { border-color: #ef4444; }
+
+        .table-wrap { border-radius: 16px; padding: 18px; overflow-x: auto; }
+        .rule-table { width: 100%; border-collapse: collapse; font-size: 0.76em; }
+        .rule-table th, .rule-table td { padding: 11px 13px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top; }
+        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal-light); font-weight: 600; }
+        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.08); }
+
+        .criteria-list li, .evidence-list li {
+            position: relative;
+            padding: 7px 0 7px 28px;
+            font-size: 0.76em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .criteria-list li::before { content: '☐'; position: absolute; left: 0; color: var(--brand-teal); }
+        .evidence-list li::before { content: '☑'; position: absolute; left: 0; color: var(--brand-orange); }
+
+        .glossary-search {
+            width: 100%;
+            max-width: 520px;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82em;
+        }
+        .glossary-search:focus { outline: 2px solid var(--brand-teal); outline-offset: 2px; }
+        .glossary-item { background: var(--glass-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid var(--brand-purple); border-radius: 12px; padding: 12px 14px; }
+        .glossary-item.hidden { display: none; }
+        .glossary-item strong { color: var(--brand-teal-light); display: block; font-size: 0.8em; margin-bottom: 4px; }
+        .glossary-item span { color: rgba(255, 255, 255, 0.68); font-size: 0.68em; display: block; }
+
+        .deck-link {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.25s ease;
+            min-height: 132px;
+        }
+        .deck-link:hover, .deck-link:focus-visible { outline: none; border-color: var(--brand-teal); transform: translateY(-3px); color: #fff; }
+        .deck-link.current { border-color: var(--brand-orange); background: rgba(247, 147, 30, 0.12); }
+        .deck-link i { display: block; color: var(--brand-teal); font-size: 1.65em; margin-bottom: 8px; }
+        .deck-link h4 { font-size: 0.78em; margin: 0 0 5px; }
+        .deck-link p { font-size: 0.64em; color: rgba(255, 255, 255, 0.55); margin: 0; }
+
+        .quiz-progress {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--brand-teal);
+            display: none;
+        }
+        .quiz-progress.visible { display: block; }
+        .quiz-container { max-width: 900px; margin: 0 auto; }
+        .quiz-question { text-align: center; font-size: 1.2em; font-weight: 600; margin-bottom: 22px; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .quiz-option {
+            background: var(--glass-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 17px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.82em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-align: left;
+        }
+        .quiz-option span { background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+        .quiz-option:hover, .quiz-option:focus-visible { border-color: var(--brand-teal); transform: translateY(-2px); outline: none; }
+        .quiz-option.correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.2); }
+        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239, 68, 68, 0.2); }
+        .score-bar-wrap { background: rgba(255, 255, 255, 0.08); border-radius: 10px; height: 12px; margin: 15px 0; overflow: hidden; }
+        .score-bar-fill { height: 100%; background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal)); border-radius: 10px; width: 0%; transition: width 0.45s ease; }
+        .score-label { text-align: center; color: rgba(255, 255, 255, 0.65); font-size: 0.8em; }
+        .results-card { text-align: center; padding: 30px; }
+        .results-grade { font-size: 4em; font-weight: 700; background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .career-path { display: flex; justify-content: space-between; align-items: stretch; margin-top: 26px; gap: 18px; position: relative; }
+        .career-step { background: var(--glass-bg); border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 18px; text-align: center; flex: 1; }
+        .career-step i { display: block; font-size: 1.9em; margin-bottom: 10px; color: var(--brand-teal); }
+        .career-step h4 { margin: 0 0 6px; font-size: 0.9em; }
+        .career-step p { font-size: 0.68em; color: rgba(255, 255, 255, 0.62); margin: 0; }
+
+        .clock-panel, .calc-panel { border-radius: 18px; padding: 20px; }
+        .clock-display {
+            font-family: 'Fira Code', monospace;
+            font-size: 3.2em;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.04em;
+            margin: 12px 0 8px;
+            color: var(--brand-teal-light);
+            transition: color 0.3s ease;
+        }
+        .clock-panel.on-track .clock-display { color: #22c55e; }
+        .clock-panel.warning .clock-display { color: var(--brand-orange-light); }
+        .clock-panel.breach .clock-display { color: #ef4444; }
+        .clock-panel.on-track { border-color: rgba(34, 197, 94, 0.45); }
+        .clock-panel.warning { border-color: rgba(247, 147, 30, 0.55); }
+        .clock-panel.breach { border-color: rgba(239, 68, 68, 0.55); box-shadow: 0 0 28px rgba(239, 68, 68, 0.18); }
+        .clock-status {
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            min-height: 1.4em;
+        }
+        .clock-meter {
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            margin: 10px 0 14px;
+        }
+        .clock-meter-fill {
+            height: 100%;
+            width: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #22c55e, var(--brand-teal));
+            transition: width 0.2s linear, background 0.3s ease;
+        }
+        .clock-panel.warning .clock-meter-fill { background: linear-gradient(90deg, var(--brand-orange), #f59e0b); }
+        .clock-panel.breach .clock-meter-fill { background: linear-gradient(90deg, #ef4444, #b91c1c); width: 0% !important; }
+
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .field-group label {
+            display: block;
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 6px;
+        }
+        .field-group input, .field-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82em;
+        }
+        .field-group input:focus, .field-group select:focus {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+        .breach-result {
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.28);
+            min-height: 110px;
+        }
+        .breach-result.ok { border-color: rgba(34, 197, 94, 0.5); }
+        .breach-result.warn { border-color: rgba(247, 147, 30, 0.5); }
+        .breach-result.bad { border-color: rgba(239, 68, 68, 0.55); }
+        .breach-result h4 { margin: 0 0 8px; font-size: 1em; }
+        .breach-result p { margin: 0; font-size: 0.78em; color: rgba(255, 255, 255, 0.78); }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 90px repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 14px;
+            font-size: 0.72em;
+        }
+        .matrix-cell {
+            border-radius: 10px;
+            padding: 12px 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .matrix-cell.head { background: rgba(138, 43, 226, 0.28); color: var(--brand-teal-light); font-weight: 600; }
+        .matrix-cell.p1 { background: rgba(239, 68, 68, 0.22); border-color: rgba(239, 68, 68, 0.4); }
+        .matrix-cell.p2 { background: rgba(247, 147, 30, 0.2); border-color: rgba(247, 147, 30, 0.4); }
+        .matrix-cell.p3 { background: rgba(138, 43, 226, 0.2); border-color: rgba(138, 43, 226, 0.4); }
+        .matrix-cell.p4 { background: rgba(0, 189, 165, 0.16); border-color: rgba(0, 189, 165, 0.35); }
+
+        .reveal .slides section .fragment.fade-up { transform: translateY(30px); opacity: 0; transition: all 0.5s ease; }
+        .reveal .slides section .fragment.fade-up.visible { transform: translateY(0); opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient, .chip.incorrect, .service-card.incorrect, .ticket-chip.incorrect { animation: none; }
+            .feature-card, .deck-link, .quiz-option, .score-bar-fill, .chip, .service-card, .ticket-chip, .action-btn, .mode-tab, .scenario-btn, .priority-tab, .clock-meter-fill { transition: none; }
+        }
+
+        @media (max-width: 768px) {
+            .reveal .slides section { padding: 18px 22px; }
+            .reveal h1 { font-size: 2.1em; }
+            .reveal h2 { font-size: 1.45em; }
+            .two-col, .three-col, .four-col, .comparison-container, .responsibility-board, .classifier-board, .classifier-bins, .quiz-options, .career-path, .clock-layout, .calc-layout, .field-row { grid-template-columns: 1fr; flex-direction: column; }
+            .feature-grid, .model-grid, .deck-map, .glossary-list, .scenario-grid { grid-template-columns: 1fr; }
+            .matrix-grid { grid-template-columns: 70px repeat(3, 1fr); font-size: 0.62em; }
+            .clock-display { font-size: 2.2em; }
+            .site-credit { display: none; }
+        }
+    </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
     <a class="back-to-index" href="index.html" aria-label="Back to index">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>Back to index</span>
     </a>
+
     <div class="reveal">
         <div class="slides">
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <section data-canvas-bg>
                 <div class="title-slide">
-                    <span class="demo-meta"><span class="demo-number">#77</span><span class="sep">·</span><span class="demo-level">Level 2–3</span><span class="sep">·</span><span class="demo-level">IT support / service delivery</span></span>
+                    <div class="demo-meta" aria-label="#77 Level 2-3 IT support / service delivery">
+                        <span class="demo-number">#77</span><span class="sep">·</span><span class="demo-level">Level 2-3</span><span class="sep">·</span><span class="demo-level">IT support / service delivery</span>
+                    </div>
                     <h1 class="animated-gradient">SLA Response Times</h1>
-                    <p class="subtitle">How service levels shape support priorities</p>
-                    <span class="qualification">OCN NI Level 2–3 — IT support / service delivery</span>
+                    <p class="subtitle">How service levels shape support priorities, clocks and trust.</p>
+                    <span class="qualification">OCN NI Level 2-3 · IT support / service delivery</span>
                 </div>
+                <aside class="notes">Timing: 2 minutes. Welcome learners and frame SLAs as customer promises that decide who gets helped first — not just paperwork.</aside>
             </section>
+
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list"><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Define</strong> SLA in support-desk language</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Distinguish</strong> response time vs resolution time</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Prioritise</strong> tickets using impact/urgency examples</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> a simple priority matrix to sample tickets</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> why SLAs need realistic targets</span></li></ul>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning objectives</h2>
+                <p style="color: rgba(255,255,255,0.7);">By the end of this session, you will be able to:</p>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Define</strong> an SLA in support-desk language as an agreed, measurable service target.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Distinguish</strong> response time from resolution time with clear examples.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Prioritise</strong> tickets using impact × urgency into P1–P4 (Critical–Low).</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Simulate</strong> an SLA clock and recognise on-track, warning and breach states.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Explain</strong> why unrealistic targets destroy trust and flood real outages with noise.</span></li>
+                </ul>
+                <aside class="notes">Timing: 3 minutes. Ask who has waited on a helpdesk call, then connect that feeling to measurable response promises.</aside>
             </section>
+
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-lightbulb"></i> Core Ideas</h2>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to use this deck</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-stopwatch" aria-hidden="true"></i><h3>Clock</h3><p>Run the SLA clock simulator and watch states flip from on-track to breach.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-th" aria-hidden="true"></i><h3>Matrix</h3><p>Drag or tap tickets into P1–P4 bins using impact × urgency.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-calculator" aria-hidden="true"></i><h3>Calculate</h3><p>Use the breach calculator to see remaining time or how far past target you are.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-universal-access" aria-hidden="true"></i><h3>Accessible</h3><p>Keyboard and touch supported. Motion reduces when the system asks for it.</p></div>
+                </div>
+                <div class="kbd-hint" aria-label="Keyboard hints">
+                    <span class="kbd-item"><kbd>Space</kbd> select chip or answer</span>
+                    <span class="kbd-item"><kbd>Enter</kbd> place or choose</span>
+                    <span class="kbd-item"><kbd>S</kbd> speaker notes</span>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Demonstrate starting the clock and selecting one ticket chip so learners know widgets are interactive.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Why this matters</h2>
+                <div class="two-col">
+                    <div class="glass-card fragment fade-up">
+                        <h3 style="color: var(--brand-orange-light);">When everything is “urgent”, nothing is</h3>
+                        <p>Helpdesks that treat every ticket as P1 burn the Critical clock on password resets while a real campus outage waits. Published SLAs and a priority matrix protect the people who are actually blocked.</p>
+                        <p><strong>Real consequence:</strong> Trust collapses when users see “we’ll respond in 15 minutes” but the queue is full of low-impact noise.</p>
+                    </div>
+                    <div class="stats-bar fragment fade-up" aria-label="SLA quick stats">
+                        <div class="stat-item"><span class="stat-number">P1</span><span class="stat-label">Minutes to respond</span></div>
+                        <div class="stat-item"><span class="stat-number">P4</span><span class="stat-label">Hours / next day</span></div>
+                        <div class="stat-item"><span class="stat-number">Respond</span><span class="stat-label">≠ Resolve</span></div>
+                        <div class="stat-item"><span class="stat-number">Breach</span><span class="stat-label">Target missed</span></div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Use the “everything urgent” line as the hook for the college case study later.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-file-contract" aria-hidden="true"></i> Core concept: what is an SLA?</h2>
                 <div class="comparison-container">
-                    <div class="comparison-box type1 fragment fade-up"><h3>SLA ideas</h3><ul><li>Promise to the customer</li><li>Response vs resolve</li><li>Measured and reported</li><li>Drives prioritisation</li></ul></div>
-                    <div class="comparison-box type2 fragment fade-up"><h3>Priority examples</h3><ul><li>P1: whole site offline</li><li>P2: class cannot print</li><li>P3: one user slow laptop</li><li>P4: how-to question</li></ul></div>
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>SLA ideas</h3>
+                        <ul>
+                            <li>A promise to the customer or business</li>
+                            <li>Measurable targets (response, resolve, uptime)</li>
+                            <li>Reported and reviewed, not just printed</li>
+                            <li>Drives who gets helped first</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>In support language</h3>
+                        <ul>
+                            <li>“We will acknowledge a Critical ticket within 15 minutes.”</li>
+                            <li>“We will aim to restore service within 4 hours.”</li>
+                            <li>Targets must be realistic for staffing and hours</li>
+                            <li>Business hours vs 24×7 clocks matter</li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="glass-card-small fragment fade-up" style="margin-top:16px;"><strong style="color:var(--brand-teal-light);">Remember:</strong> An SLA is not a wish list. It is an agreed target you can measure and defend.</div>
+                <aside class="notes">Timing: 5 minutes. Ask learners to invent one bad SLA (“fix every email in 30 seconds”) and why it fails.</aside>
             </section>
+
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Demo Sequence</h2>
-                <div class="glass-card fragment fade-up"><ol style="font-size:0.9em; line-height:1.7;"><li class="fragment">Define SLA with a customer promise example</li><li class="fragment">Show a priority matrix (impact × urgency)</li><li class="fragment">Sort five sample tickets into priorities</li><li class="fragment">Assign response targets to each priority</li><li class="fragment">Discuss what happens when an SLA is breached</li><li class="fragment">Reflect: unrealistic SLAs hurt trust</li></ol></div>
+                <h2 class="animated-gradient"><i class="fas fa-bolt" aria-hidden="true"></i> Response time vs resolution time</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type3 fragment fade-up">
+                        <h3>Response time</h3>
+                        <ul>
+                            <li>First meaningful contact</li>
+                            <li>Acknowledge, triage, start work</li>
+                            <li>Clock often starts at ticket open</li>
+                            <li>Does <strong>not</strong> mean the issue is fixed</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>Resolution time</h3>
+                        <ul>
+                            <li>Time to restore service or close</li>
+                            <li>May need parts, vendors or change windows</li>
+                            <li>Often longer than response target</li>
+                            <li>Users care about both — be clear which you quote</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stats-bar fragment fade-up">
+                    <div class="stat-item"><span class="stat-number">Respond</span><span class="stat-label">Engage &amp; triage</span></div>
+                    <div class="stat-item"><span class="stat-number">Resolve</span><span class="stat-label">Fix &amp; close</span></div>
+                    <div class="stat-item"><span class="stat-number">Both</span><span class="stat-label">Tracked in ITSM</span></div>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Role-play: agent replies “looking at it” in 10 minutes but fix takes 3 hours — response met, resolve still open.</aside>
             </section>
+
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-balance-scale"></i> Practical Notes</h2>
-                <div class="benefits-grid"><div class="benefit-item fragment fade-up"><i class="fas fa-bolt"></i><div><h4>Response ≠ fix</h4><p>First meaningful contact matters</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-users"></i><div><h4>Impact counts</h4><p>How many people blocked?</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-clock"></i><div><h4>Be honest</h4><p>Targets must be achievable</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-chart-bar"></i><div><h4>Measure</h4><p>You improve what you track</p></div></div></div>
+                <h2 class="animated-gradient"><i class="fas fa-list-ol" aria-hidden="true"></i> Priorities: P1–P4 (Critical–Low)</h2>
+                <div class="four-col">
+                    <div class="comparison-box type1 fragment fade-up"><h3>P1 Critical</h3><ul><li>Whole site / campus offline</li><li>Major exam system down</li><li>Fastest response clock</li></ul></div>
+                    <div class="comparison-box type3 fragment fade-up"><h3>P2 High</h3><ul><li>Department or class blocked</li><li>Important service degraded</li><li>Same-day push</li></ul></div>
+                    <div class="comparison-box type2 fragment fade-up"><h3>P3 Medium</h3><ul><li>One user heavily impacted</li><li>Workaround may exist</li><li>Standard queue</li></ul></div>
+                    <div class="comparison-box type4 fragment fade-up"><h3>P4 Low</h3><ul><li>How-to / request</li><li>Cosmetic or non-blocking</li><li>Longer target OK</li></ul></div>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Map each priority to a college example before revealing the matrix slide.</aside>
             </section>
+
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-table"></i><h3>Priority matrix</h3><p>Projected grid</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-ticket-alt"></i><h3>Sample tickets</h3><p>Five scenarios</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-clock"></i><h3>SLA card</h3><p>Response/resolve targets</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-list"></i><h3>Breach discussion</h3><p>What next?</p></div></div>
-                <div class="highlight-box fragment fade-up"><h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4><p>Service scenario, ticket examples, service catalogue template with sample priorities.</p></div>
+                <h2 class="animated-gradient"><i class="fas fa-border-all" aria-hidden="true"></i> Priority matrix: impact × urgency</h2>
+                <p style="color: rgba(255,255,255,0.72);">Priority is not “how loud someone shouts”. It is impact (how many / how bad) combined with urgency (how soon it must be fixed).</p>
+                <div class="matrix-grid" aria-label="Impact and urgency priority matrix">
+                    <div class="matrix-cell head"></div>
+                    <div class="matrix-cell head">Low urgency</div>
+                    <div class="matrix-cell head">Medium urgency</div>
+                    <div class="matrix-cell head">High urgency</div>
+                    <div class="matrix-cell head">High impact</div>
+                    <div class="matrix-cell p3">P3</div>
+                    <div class="matrix-cell p2">P2</div>
+                    <div class="matrix-cell p1">P1</div>
+                    <div class="matrix-cell head">Medium impact</div>
+                    <div class="matrix-cell p4">P4</div>
+                    <div class="matrix-cell p3">P3</div>
+                    <div class="matrix-cell p2">P2</div>
+                    <div class="matrix-cell head">Low impact</div>
+                    <div class="matrix-cell p4">P4</div>
+                    <div class="matrix-cell p4">P4</div>
+                    <div class="matrix-cell p3">P3</div>
+                </div>
+                <div class="glass-card-small fragment fade-up" style="margin-top:14px;"><strong style="color:var(--brand-orange-light);">Classroom tip:</strong> Password reset for one staff member = usually P3/P4. Entire VLE down during exams = P1.</div>
+                <aside class="notes">Timing: 5 minutes. Walk two tickets through the grid live before the interactive matrix game.</aside>
             </section>
+
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about sla response times</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
+                <h2 class="animated-gradient"><i class="fas fa-stopwatch" aria-hidden="true"></i> Interactive 1: SLA clock simulator</h2>
+                <p style="color: rgba(255,255,255,0.72);">Pick a priority, start the demo clock (accelerated for class), and watch <strong>on-track</strong> → <strong>warning</strong> → <strong>breach</strong>.</p>
+                <div class="priority-tabs" role="tablist" aria-label="Priority selector">
+                    <button class="priority-tab active" type="button" data-priority="p1" role="tab" aria-selected="true">P1 · 15 min</button>
+                    <button class="priority-tab" type="button" data-priority="p2" role="tab" aria-selected="false">P2 · 60 min</button>
+                    <button class="priority-tab" type="button" data-priority="p3" role="tab" aria-selected="false">P3 · 4 hrs</button>
+                    <button class="priority-tab" type="button" data-priority="p4" role="tab" aria-selected="false">P4 · 1 day</button>
+                </div>
+                <div class="clock-layout">
+                    <div class="clock-panel on-track" id="clock-panel" aria-live="polite">
+                        <div class="clock-status" id="clock-status">On track — select Start</div>
+                        <div class="clock-display" id="clock-display">00:15:00</div>
+                        <div class="clock-meter" aria-hidden="true"><div class="clock-meter-fill" id="clock-meter-fill"></div></div>
+                        <p style="text-align:center; font-size:0.72em; color:rgba(255,255,255,0.65); margin:0;" id="clock-target-label">Target response: 15 minutes (demo speed ×60)</p>
+                    </div>
+                    <div class="glass-card-small">
+                        <h3 style="color:var(--brand-teal-light); margin-top:0;">Demo controls</h3>
+                        <p style="font-size:0.74em; color:rgba(255,255,255,0.7);">One real second ≈ one simulated minute so a P1 breach appears in about 15 seconds of class time.</p>
+                        <div class="widget-actions">
+                            <button class="action-btn" type="button" id="clock-start">Start clock</button>
+                            <button class="action-btn" type="button" id="clock-pause">Pause</button>
+                            <button class="action-btn" type="button" id="clock-reset">Reset</button>
+                        </div>
+                        <div class="score-readout" id="clock-feedback">Ready. Choose a priority, then start.</div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Run P1 first until breach, then reset and contrast with P4 so learners feel how targets differ.</aside>
             </section>
-            <section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Interactive 2: priority matrix game</h2>
+                <p style="color: rgba(255,255,255,0.72);">Classify each ticket into P1–P4. Drag, tap-to-select, or use keyboard focus with Enter/Space.</p>
+                <div class="classifier-board" aria-label="Priority matrix activity">
+                    <div class="ticket-pool glass-card-small">
+                        <h3>Tickets to place</h3>
+                        <div class="ticket-list" id="ticket-pool" aria-label="Unclassified tickets"></div>
+                    </div>
+                    <div class="classifier-bins" aria-label="Priority bins">
+                        <div class="bin" data-priority="p1" tabindex="0" role="button" aria-label="P1 Critical bin"><h3>P1 Critical</h3><div class="ticket-list"></div></div>
+                        <div class="bin" data-priority="p2" tabindex="0" role="button" aria-label="P2 High bin"><h3>P2 High</h3><div class="ticket-list"></div></div>
+                        <div class="bin" data-priority="p3" tabindex="0" role="button" aria-label="P3 Medium bin"><h3>P3 Medium</h3><div class="ticket-list"></div></div>
+                        <div class="bin" data-priority="p4" tabindex="0" role="button" aria-label="P4 Low bin"><h3>P4 Low</h3><div class="ticket-list"></div></div>
+                    </div>
+                </div>
+                <div class="widget-actions">
+                    <button class="action-btn" type="button" id="matrix-check">Check priorities</button>
+                    <button class="action-btn" type="button" id="matrix-reset">Reset game</button>
+                    <span class="score-readout" id="matrix-score" aria-live="polite">Score: 0 / 6 · Best: 0 / 6</span>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Pause on the campus outage vs password-reset cards — they set up the case study.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-hourglass-end" aria-hidden="true"></i> Breach risk: when clocks run past target</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-bell" aria-hidden="true"></i><h3>Warning</h3><p>Approaching the target — escalate, re-prioritise, or warn the customer.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-bomb" aria-hidden="true"></i><h3>Breach</h3><p>Target missed. Record why, notify stakeholders, and recover the service.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-chart-line" aria-hidden="true"></i><h3>Reporting</h3><p>Breach rates feed service reviews. Patterns show staffing or process gaps.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-handshake" aria-hidden="true"></i><h3>Trust</h3><p>Honest targets beat fantasy SLAs that always breach and train users to ignore them.</p></div>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Stress that a breach is a process event, not personal failure — but ignoring it is a failure.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-calculator" aria-hidden="true"></i> Interactive 3: breach calculator</h2>
+                <p style="color: rgba(255,255,255,0.72);">Enter how long the ticket has been open and the response target. See remaining time, breach amount and severity feedback.</p>
+                <div class="calc-layout">
+                    <div class="calc-panel">
+                        <div class="field-row">
+                            <div class="field-group">
+                                <label for="calc-open-mins">Minutes open</label>
+                                <input id="calc-open-mins" type="number" min="0" step="1" value="20" inputmode="numeric">
+                            </div>
+                            <div class="field-group">
+                                <label for="calc-target-mins">Target response (mins)</label>
+                                <input id="calc-target-mins" type="number" min="1" step="1" value="15" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="field-group" style="margin-bottom:12px;">
+                            <label for="calc-preset">Quick preset</label>
+                            <select id="calc-preset">
+                                <option value="">Custom values</option>
+                                <option value="10|15">P1 example: 10 open / 15 target</option>
+                                <option value="20|15">P1 breach: 20 open / 15 target</option>
+                                <option value="45|60">P2 on track: 45 / 60</option>
+                                <option value="250|240">P3 just breached: 250 / 240</option>
+                            </select>
+                        </div>
+                        <div class="widget-actions">
+                            <button class="action-btn" type="button" id="calc-run">Calculate</button>
+                            <button class="action-btn" type="button" id="calc-reset">Reset</button>
+                        </div>
+                    </div>
+                    <div class="breach-result" id="breach-result" aria-live="polite">
+                        <h4>Ready</h4>
+                        <p>Enter values and press Calculate to see remaining or breached minutes.</p>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 7 minutes. Let pairs try the P1 breach preset, then invent their own open/target pair.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-school" aria-hidden="true"></i> Case study: college helpdesk flood</h2>
+                <div class="glass-card">
+                    <div class="stats-bar" aria-label="Case study snapshot">
+                        <div class="stat-item"><span class="stat-number">Mon 09:05</span><span class="stat-label">Campus Wi‑Fi down</span></div>
+                        <div class="stat-item"><span class="stat-number">40+</span><span class="stat-label">“Urgent” resets</span></div>
+                        <div class="stat-item"><span class="stat-number">P1</span><span class="stat-label">Clock breached</span></div>
+                    </div>
+                    <div class="three-col">
+                        <div class="comparison-box type1 fragment fade-up"><h3>What happened</h3><ul><li>All tickets marked urgent by default</li><li>Password-reset noise filled the queue</li><li>Real outage sat behind low-impact work</li></ul></div>
+                        <div class="comparison-box type3 fragment fade-up"><h3>Impact</h3><ul><li>P1 response SLA breached</li><li>Teaching spaces stayed offline longer</li><li>Users lost trust in the desk</li></ul></div>
+                        <div class="comparison-box type2 fragment fade-up"><h3>Fix</h3><ul><li>Publish priority matrix + SLAs</li><li>Train agents to reclassify noise</li><li>Major incident channel for outages</li></ul></div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 7 minutes. Ask: what would you do in the first 10 minutes of this Monday morning?</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Common faults and fixes</h2>
+                <div class="table-wrap">
+                    <table class="rule-table">
+                        <thead><tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr></thead>
+                        <tbody>
+                            <tr><td>P1 clock always red</td><td>Everything tagged Critical / urgent</td><td>Enforce impact × urgency matrix; audit misclassified tickets weekly</td></tr>
+                            <tr><td>Users say “nobody replied”</td><td>Agents confuse resolve with response</td><td>Require first meaningful contact note within response SLA</td></tr>
+                            <tr><td>SLA reports look perfect, users angry</td><td>Targets too soft or clocks paused incorrectly</td><td>Review pause rules; survey experience separately from SLA %</td></tr>
+                            <tr><td>Outage hidden in queue</td><td>No major-incident path</td><td>Create P1 playbook and bridge/Teams channel for campus-wide issues</td></tr>
+                            <tr><td>Constant breaches after hours</td><td>24×7 targets on business-hours staffing</td><td>Align SLA calendar with support hours or add on-call cover</td></tr>
+                            <tr><td>Agents ignore SLA warnings</td><td>Tool alerts not in workflow</td><td>Surface timers on ticket board; escalate at 75% of target</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <aside class="notes">Timing: 6 minutes. Use as a triage table: symptom first, then process fix.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Practical task: publish a mini SLA card</h2>
+                <div class="two-col">
+                    <div class="glass-card fragment fade-up">
+                        <h3 style="color: var(--brand-orange-light);">Brief</h3>
+                        <p>Design a one-page SLA card for a college helpdesk covering P1–P4 response targets, one resolve target each, and three example tickets.</p>
+                        <ul class="criteria-list">
+                            <li>Separate response from resolution clearly</li>
+                            <li>Use impact × urgency language</li>
+                            <li>Include a breach escalation step</li>
+                            <li>Keep targets realistic for a small team</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card fragment fade-up">
+                        <h3 style="color: var(--brand-teal-light);">Evidence checklist</h3>
+                        <ul class="evidence-list">
+                            <li>Completed P1–P4 SLA table</li>
+                            <li>Three classified sample tickets with reasons</li>
+                            <li>Screenshot or score from the matrix game</li>
+                            <li>One paragraph on the college case study lesson</li>
+                            <li>Reflection: what would you ask the service owner?</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 10 minutes. Pair task; circulate and challenge any fantasy 2-minute-everything targets.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Jargon buster</h2>
+                <input id="glossary-search" class="glossary-search" type="search" placeholder="Search terms: SLA, breach, P1, triage..." aria-label="Search jargon buster">
+                <div class="glossary-list" id="glossary-list">
+                    <div class="glossary-item" data-terms="sla service level agreement target promise"><strong>SLA</strong><span>Service Level Agreement: an agreed, measurable promise about service performance such as response time.</span></div>
+                    <div class="glossary-item" data-terms="response time acknowledge engage first contact"><strong>Response time</strong><span>How quickly support makes first meaningful contact after a ticket is logged.</span></div>
+                    <div class="glossary-item" data-terms="resolution time resolve fix restore close"><strong>Resolution time</strong><span>How long it takes to restore service or fully close the issue.</span></div>
+                    <div class="glossary-item" data-terms="priority p1 p2 p3 p4 critical high medium low"><strong>Priority</strong><span>The ordered importance of a ticket, often P1 Critical through P4 Low.</span></div>
+                    <div class="glossary-item" data-terms="impact how many blocked severity business"><strong>Impact</strong><span>How widely or severely the issue affects users or the organisation.</span></div>
+                    <div class="glossary-item" data-terms="urgency how soon deadline time pressure"><strong>Urgency</strong><span>How quickly the issue needs attention based on time pressure.</span></div>
+                    <div class="glossary-item" data-terms="breach missed target sla fail clock past"><strong>Breach</strong><span>When the clock runs past the agreed SLA target without meeting it.</span></div>
+                    <div class="glossary-item" data-terms="triage classify sort priority queue"><strong>Triage</strong><span>Quickly assessing and classifying tickets so the right work is done first.</span></div>
+                    <div class="glossary-item" data-terms="itsm service management tool ticketing"><strong>ITSM</strong><span>IT Service Management: practices and tools for delivering and supporting IT services.</span></div>
+                    <div class="glossary-item" data-terms="service desk helpdesk support front line"><strong>Service desk</strong><span>The front-line team that logs, prioritises and handles support requests.</span></div>
+                    <div class="glossary-item" data-terms="major incident outage campus wide critical"><strong>Major incident</strong><span>A high-impact outage managed with a dedicated process, often at P1.</span></div>
+                    <div class="glossary-item" data-terms="escalation raise manager specialist vendor"><strong>Escalation</strong><span>Moving an issue to a higher skill level or manager when needed.</span></div>
+                    <div class="glossary-item" data-terms="ola operational level agreement internal"><strong>OLA</strong><span>Operational Level Agreement: internal targets between teams that support the SLA.</span></div>
+                    <div class="glossary-item" data-terms="business hours calendar clock pause"><strong>Business hours</strong><span>The working window when SLA clocks usually run for non-24×7 services.</span></div>
+                </div>
+                <aside class="notes">Timing: 6 minutes. Give two minutes to search three terms, then ask learners to use “breach” and “response” in one sentence each.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-compass" aria-hidden="true"></i> Where this fits: pathway map</h2>
+                <div class="deck-map">
+                    <a class="deck-link" href="service-catalogue-ocn-level2-presentation.html"><i class="fas fa-book-open" aria-hidden="true"></i><h4>#76 Service Catalogue</h4><p>Define what services exist before you set response promises.</p></a>
+                    <a class="deck-link current" href="sla-response-times-ocn-level2-presentation.html"><i class="fas fa-clock" aria-hidden="true"></i><h4>#77 SLA Response Times</h4><p>This deck: priorities, clocks, breach and trust.</p></a>
+                    <a class="deck-link" href="asset-tagging-ocn-level2-presentation.html"><i class="fas fa-tags" aria-hidden="true"></i><h4>#78 Asset Tagging</h4><p>Identify devices so tickets and SLAs attach to real assets.</p></a>
+                    <a class="deck-link" href="helpdesk-ticket-lifecycle-ocn-level2-presentation.html"><i class="fas fa-ticket-alt" aria-hidden="true"></i><h4>Helpdesk Ticket Lifecycle</h4><p>Follow a ticket from log → triage → resolve → close.</p></a>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Show the sequence: catalogue defines services, SLAs set clocks, assets and lifecycle keep tickets accurate.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-circle-question" aria-hidden="true"></i> Knowledge check: 6-question quiz</h2>
+                <div class="glass-card quiz-container">
+                    <p style="text-align:center; color: rgba(255,255,255,0.74);">Answer each question once. The progress pill updates as you go; visit the results slide for your grade.</p>
+                    <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                    <div class="score-label" id="quiz-score-label" aria-live="polite">Score: 0 / 6</div>
+                    <div class="kbd-hint"><span class="kbd-item"><kbd>Tab</kbd> focus answers</span><span class="kbd-item"><kbd>Enter</kbd> choose answer</span><span class="kbd-item"><kbd>Space</kbd> choose answer</span></div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Explain the quiz checks response vs resolve, priority and breach ideas from the activities.</aside>
+            </section>
+
+            <section data-quiz="1">
                 <div class="quiz-container">
                     <p class="quiz-question">Q1: An SLA is mainly…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>An agreed service target with the customer</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>A type of SSD</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>A Wi-Fi channel</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A Python library</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — An agreed service target with the customer</div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button" data-correct="true"><span>A</span>An agreed, measurable service target with the customer</button>
+                        <button class="quiz-option" type="button"><span>B</span>A type of SSD</button>
+                        <button class="quiz-option" type="button"><span>C</span>A Wi‑Fi channel plan</button>
+                        <button class="quiz-option" type="button"><span>D</span>A Python library</button>
+                    </div>
                 </div>
+                <aside class="notes">Timing: 1 minute. Correct answer A. Emphasise agreed and measurable.</aside>
             </section>
-            <section>
+
+            <section data-quiz="2">
                 <div class="quiz-container">
                     <p class="quiz-question">Q2: Response time means…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>How quickly support first engages</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>How fast the CPU runs</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Cable length limits</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>DNS TTL only</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — How fast the CPU runs</div>
-                </div>
-            </section>
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: A whole-school outage is usually…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Highest priority / fastest response</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Ignored until Friday</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>A cable colour choice</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>A hosting plan name</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — Highest priority / fastest response</div>
-                </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-clock"></i><h3>SLAs set expectations</h3><p>Promises you can measure</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-bolt"></i><h3>Response vs resolve</h3><p>Both matter</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-exclamation"></i><h3>Prioritise by impact</h3><p>Who is blocked?</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-handshake"></i><h3>Be realistic</h3><p>Trust over fantasy targets</p></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
-                <div class="career-path fragment fade-up"><div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>Service Desk Analyst</p></div><div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Incident Manager</p></div><div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Service Delivery Manager</p></div></div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Priority</span><span class="stat-label">Matrix</span></div><div class="stat-item"><span class="stat-number">Respond</span><span class="stat-label">Engage</span></div><div class="stat-item"><span class="stat-number">Resolve</span><span class="stat-label">Close</span></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
-                    <ul style="list-style: none; padding: 0;"><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Build</strong> — Complete the live demo for SLA Response Times</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Practice</strong> — Repeat the key check without prompts</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Reflect</strong> — Write three bullets on why SLA Response Times matters</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Asset Tagging</li></ul>
-                </div>
-            </section>
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Questions? Let's discuss!</p>
-                    <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Support — SLA Response Times</p>
-                        <span class="qualification">OCN NI Level 2–3 — IT support / service delivery</span>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button" data-correct="true"><span>A</span>How quickly support first engages meaningfully</button>
+                        <button class="quiz-option" type="button"><span>B</span>How fast the CPU runs</button>
+                        <button class="quiz-option" type="button"><span>C</span>Cable length limits only</button>
+                        <button class="quiz-option" type="button"><span>D</span>DNS TTL only</button>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-clock" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-ticket-alt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-exclamation" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
                 </div>
+                <aside class="notes">Timing: 1 minute. Correct answer A. Fixes the old deck error that marked CPU speed as correct.</aside>
+            </section>
+
+            <section data-quiz="3">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q3: A whole-campus network outage is usually…</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button" data-correct="true"><span>A</span>P1 / Critical with the fastest response target</button>
+                        <button class="quiz-option" type="button"><span>B</span>Ignored until Friday</button>
+                        <button class="quiz-option" type="button"><span>C</span>Always a P4 how-to request</button>
+                        <button class="quiz-option" type="button"><span>D</span>A hosting plan name</button>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 1 minute. Correct answer A. High impact + high urgency = P1.</aside>
+            </section>
+
+            <section data-quiz="4">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q4: Priority is best decided by…</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>Whoever emails in CAPITALS</button>
+                        <button class="quiz-option" type="button" data-correct="true"><span>B</span>Impact × urgency using an agreed matrix</button>
+                        <button class="quiz-option" type="button"><span>C</span>Ticket colour in the tool only</button>
+                        <button class="quiz-option" type="button"><span>D</span>Alphabetical order of the user’s name</button>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 1 minute. Correct answer B. Link back to the matrix interactive.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q5: An agent replies in 10 minutes but the fix takes 3 hours. Which statement is true?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>Response and resolution are always the same clock</button>
+                        <button class="quiz-option" type="button" data-correct="true"><span>B</span>Response may be met while resolution is still open</button>
+                        <button class="quiz-option" type="button"><span>C</span>The ticket must be closed after the first reply</button>
+                        <button class="quiz-option" type="button"><span>D</span>Resolution time never matters to users</button>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 1 minute. Correct answer B. Reinforce response ≠ resolve.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q6: An SLA breach means…</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" type="button"><span>A</span>The ticket was assigned to the wrong building</button>
+                        <button class="quiz-option" type="button"><span>B</span>The user used the wrong password</button>
+                        <button class="quiz-option" type="button" data-correct="true"><span>C</span>The agreed time target was missed</button>
+                        <button class="quiz-option" type="button"><span>D</span>The service catalogue needs a new logo</button>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 1 minute. Correct answer C. Tie to the clock simulator warning/breach states.</aside>
+            </section>
+
+            <section id="slide-quiz-results" data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-award" aria-hidden="true"></i> Quiz results</h2>
+                <div class="glass-card results-card">
+                    <div class="results-grade" id="results-grade" aria-live="polite">R</div>
+                    <p id="results-message">Answer the quiz questions to calculate your grade.</p>
+                    <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <div class="score-label">Final score: <span id="results-score-label" aria-live="polite">0 / 6</span></div>
+                    <button class="action-btn" type="button" id="quiz-retry" style="margin-top:18px;"><i class="fas fa-rotate-right" aria-hidden="true"></i> Retry quiz</button>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Celebrate improvement; retry if response vs resolve is still confused.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Key takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-file-signature" aria-hidden="true"></i><h3>SLAs set expectations</h3><p>Agreed, measurable promises — not slogans.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-bolt" aria-hidden="true"></i><h3>Respond ≠ resolve</h3><p>First contact and full fix are different clocks.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-th" aria-hidden="true"></i><h3>Impact × urgency</h3><p>Priority matrices beat “everything urgent”.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-hourglass-end" aria-hidden="true"></i><h3>Watch the breach</h3><p>Warning states and honest targets protect trust.</p></div>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Ask learners to summarise each takeaway in five words or fewer.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Career pathways</h2>
+                <p style="text-align:center; color: rgba(255,255,255,0.72);">SLA and priority skills open doors on the Service Desk and ITSM pathway.</p>
+                <div class="career-path fragment fade-up">
+                    <div class="career-step"><i class="fas fa-headset" aria-hidden="true"></i><h4>Service Desk Analyst</h4><p>Triages tickets, meets response SLAs, writes clear first contacts.</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog" aria-hidden="true"></i><h4>Incident Analyst</h4><p>Owns major incidents, watches P1 clocks, coordinates recovery.</p></div>
+                    <div class="career-step"><i class="fas fa-clipboard-list" aria-hidden="true"></i><h4>ITSM Coordinator</h4><p>Tunes matrices, reports breaches and improves processes.</p></div>
+                    <div class="career-step"><i class="fas fa-star" aria-hidden="true"></i><h4>Service Delivery Manager</h4><p>Agrees SLAs with the business and defends realistic targets.</p></div>
+                </div>
+                <div class="stats-bar fragment fade-up"><div class="stat-item"><span class="stat-number">Triage</span><span class="stat-label">Entry skill</span></div><div class="stat-item"><span class="stat-number">Incident</span><span class="stat-label">P1 ownership</span></div><div class="stat-item"><span class="stat-number">ITSM</span><span class="stat-label">Process design</span></div></div>
+                <aside class="notes">Timing: 4 minutes. Link classroom matrix practice to real job descriptions for Service Desk roles.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next steps and further reading</h2>
+                <div class="glass-card">
+                    <h3 style="color: var(--brand-teal-light);"><i class="fas fa-tasks" aria-hidden="true"></i> Your action plan</h3>
+                    <ul class="tick-list">
+                        <li><i class="fas fa-play" aria-hidden="true"></i><span><strong>Replay</strong> the SLA clock until you can predict warning and breach without looking.</span></li>
+                        <li><i class="fas fa-th" aria-hidden="true"></i><span><strong>Rebuild</strong> the priority matrix game at 6/6 and keep a screenshot for evidence.</span></li>
+                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><span><strong>Draft</strong> your mini SLA card from the practical task.</span></li>
+                        <li><i class="fas fa-arrow-right" aria-hidden="true"></i><span><strong>Continue</strong> with Service Catalogue (#76), Asset Tagging (#78) or Helpdesk Ticket Lifecycle.</span></li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Set the SLA card as homework or the warm-up for the next lesson.</aside>
+            </section>
+
+            <section data-canvas-bg>
+                <div class="title-slide">
+                    <h1 class="animated-gradient">Thank you!</h1>
+                    <p class="subtitle">Questions? What would you prioritise first on that Monday morning?</p>
+                    <div style="margin-top: 30px;">
+                        <p style="color: rgba(255,255,255,0.72); margin-bottom: 18px;"><i class="fas fa-info-circle" aria-hidden="true"></i> Demo #77 · SLA Response Times</p>
+                        <span class="qualification">OCN NI Level 2-3 · IT support / service delivery</span>
+                    </div>
+                    <div style="margin-top: 42px;"><i class="fas fa-clock" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i><i class="fas fa-ticket-alt" style="font-size: 3em; color: var(--brand-purple); margin: 0 15px;" aria-hidden="true"></i><i class="fas fa-exclamation" style="font-size: 3em; color: var(--brand-orange); margin: 0 15px;" aria-hidden="true"></i></div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Close by asking one learner to define response vs resolution in their own words.</aside>
             </section>
         </div>
     </div>
-    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
         Reveal.initialize({
-            hash: true, controls: true, progress: true, center: true,
-            transition: 'slide', backgroundTransition: 'fade',
-            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
-            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            autoAnimateEasing: 'ease-out',
+            autoAnimateDuration: 0.8,
             plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        const AppState = {
+            clock: {
+                priority: 'p1',
+                remainingMs: 15 * 60 * 1000,
+                targetMs: 15 * 60 * 1000,
+                running: false,
+                timerId: null,
+                lastTick: 0
+            },
+            selectedTicket: null,
+            draggedTicket: null,
+            quizScore: 0,
+            quizAnswered: {},
+            quizBound: false
+        };
+
+        const PRIORITY_TARGETS = {
+            p1: { label: 'P1 Critical', targetMins: 15, demoMs: 15 * 1000 },
+            p2: { label: 'P2 High', targetMins: 60, demoMs: 60 * 1000 },
+            p3: { label: 'P3 Medium', targetMins: 240, demoMs: 120 * 1000 },
+            p4: { label: 'P4 Low', targetMins: 480, demoMs: 160 * 1000 }
+        };
+
+        const TICKETS = [
+            { name: 'Campus Wi‑Fi down for all sites', priority: 'p1' },
+            { name: 'Exam hall printers offline (one building)', priority: 'p2' },
+            { name: 'One lecturer laptop running slowly', priority: 'p3' },
+            { name: 'How do I change my email signature?', priority: 'p4' },
+            { name: 'VLE unavailable during timed assessment', priority: 'p1' },
+            { name: 'Request new headset for next week', priority: 'p4' }
+        ];
+
+        function activateButtonKeyboard(event, callback) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                callback(event);
+            }
+        }
+
+        function clearSelection(selector) {
+            document.querySelectorAll(selector).forEach(el => el.classList.remove('selected'));
+        }
+
+        function formatClock(ms) {
+            const totalSec = Math.max(0, Math.ceil(ms / 1000));
+            const h = Math.floor(totalSec / 3600);
+            const m = Math.floor((totalSec % 3600) / 60);
+            const s = totalSec % 60;
+            return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        }
+
+        function setClockState(state) {
+            const panel = document.getElementById('clock-panel');
+            if (!panel) return;
+            panel.classList.remove('on-track', 'warning', 'breach');
+            panel.classList.add(state);
+        }
+
+        function updateClockUI() {
+            const display = document.getElementById('clock-display');
+            const status = document.getElementById('clock-status');
+            const fill = document.getElementById('clock-meter-fill');
+            const feedback = document.getElementById('clock-feedback');
+            const targetLabel = document.getElementById('clock-target-label');
+            const cfg = PRIORITY_TARGETS[AppState.clock.priority];
+            if (!cfg) return;
+
+            const ratio = AppState.clock.remainingMs / AppState.clock.targetMs;
+            const demoRemaining = Math.max(0, Math.round((AppState.clock.remainingMs / AppState.clock.targetMs) * cfg.targetMins));
+            if (display) display.textContent = formatClock(demoRemaining * 60 * 1000);
+
+            if (AppState.clock.remainingMs <= 0) {
+                setClockState('breach');
+                if (status) status.textContent = 'BREACH — response target missed';
+                if (fill) fill.style.width = '0%';
+                if (feedback) feedback.innerHTML = '<strong>Breach:</strong> Escalate and record why the ' + cfg.label + ' clock was missed.';
+            } else if (ratio <= 0.25) {
+                setClockState('warning');
+                if (status) status.textContent = 'Warning — under 25% of target remaining';
+                if (fill) fill.style.width = Math.max(4, ratio * 100) + '%';
+                if (feedback) feedback.innerHTML = '<strong>Warning:</strong> Re-check queue order and escalate if blocked.';
+            } else {
+                setClockState('on-track');
+                if (status) status.textContent = AppState.clock.running ? 'On track — clock running' : 'On track — ready';
+                if (fill) fill.style.width = (ratio * 100) + '%';
+                if (feedback && !AppState.clock.running) feedback.textContent = 'Ready. ' + cfg.label + ' demo clock loaded.';
+            }
+            if (targetLabel) {
+                targetLabel.textContent = 'Target response: ' + cfg.targetMins + ' minutes (accelerated demo clock)';
+            }
+        }
+
+        function stopClockTimer() {
+            if (AppState.clock.timerId) {
+                clearInterval(AppState.clock.timerId);
+                AppState.clock.timerId = null;
+            }
+            AppState.clock.running = false;
+        }
+
+        function tickClock() {
+            if (!AppState.clock.running) return;
+            const now = Date.now();
+            const elapsed = now - AppState.clock.lastTick;
+            AppState.clock.lastTick = now;
+            AppState.clock.remainingMs -= elapsed;
+            if (AppState.clock.remainingMs <= 0) {
+                AppState.clock.remainingMs = 0;
+                stopClockTimer();
+            }
+            updateClockUI();
+        }
+
+        function resetClock(priority) {
+            stopClockTimer();
+            if (priority) AppState.clock.priority = priority;
+            const cfg = PRIORITY_TARGETS[AppState.clock.priority];
+            AppState.clock.targetMs = cfg.demoMs;
+            AppState.clock.remainingMs = cfg.demoMs;
+            updateClockUI();
+        }
+
+        function startClock() {
+            if (AppState.clock.remainingMs <= 0) resetClock();
+            if (AppState.clock.running) return;
+            AppState.clock.running = true;
+            AppState.clock.lastTick = Date.now();
+            AppState.clock.timerId = setInterval(tickClock, 100);
+            updateClockUI();
+        }
+
+        function initClockSimulator() {
+            document.querySelectorAll('.priority-tab').forEach(tab => {
+                if (tab.dataset.bound) return;
+                tab.dataset.bound = 'true';
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.priority-tab').forEach(t => {
+                        t.classList.toggle('active', t === tab);
+                        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+                    });
+                    resetClock(tab.dataset.priority);
+                });
             });
+            const start = document.getElementById('clock-start');
+            const pause = document.getElementById('clock-pause');
+            const reset = document.getElementById('clock-reset');
+            if (start && !start.dataset.bound) {
+                start.dataset.bound = 'true';
+                start.addEventListener('click', startClock);
+            }
+            if (pause && !pause.dataset.bound) {
+                pause.dataset.bound = 'true';
+                pause.addEventListener('click', () => {
+                    stopClockTimer();
+                    updateClockUI();
+                    const feedback = document.getElementById('clock-feedback');
+                    if (feedback && AppState.clock.remainingMs > 0) feedback.textContent = 'Paused. Resume with Start.';
+                });
+            }
+            if (reset && !reset.dataset.bound) {
+                reset.dataset.bound = 'true';
+                reset.addEventListener('click', () => resetClock());
+            }
+            if (!document.getElementById('clock-panel')) return;
+            if (!AppState.clock._inited) {
+                AppState.clock._inited = true;
+                resetClock('p1');
+            }
+        }
+
+        function getBestMatrixScore() {
+            const raw = localStorage.getItem('slaPriorityMatrixBest');
+            const score = Number(raw || 0);
+            return Number.isFinite(score) ? score : 0;
+        }
+
+        function setMatrixScore(score) {
+            const best = Math.max(getBestMatrixScore(), score);
+            localStorage.setItem('slaPriorityMatrixBest', String(best));
+            const label = document.getElementById('matrix-score');
+            if (label) label.textContent = 'Score: ' + score + ' / 6 · Best: ' + best + ' / 6';
+        }
+
+        function selectTicket(chip) {
+            if (!chip) return;
+            clearSelection('.ticket-chip');
+            AppState.selectedTicket = chip;
+            chip.classList.add('selected');
+        }
+
+        function placeTicket(chip, bin) {
+            if (!chip || !bin) return;
+            const list = bin.querySelector('.ticket-list');
+            if (!list) return;
+            list.appendChild(chip);
+            chip.classList.remove('selected', 'correct', 'incorrect');
+            AppState.selectedTicket = null;
+        }
+
+        function bindTicketChips() {
+            document.querySelectorAll('.ticket-chip').forEach(chip => {
+                if (chip.dataset.bound) return;
+                chip.dataset.bound = 'true';
+                chip.addEventListener('click', () => selectTicket(chip));
+                chip.addEventListener('keydown', event => activateButtonKeyboard(event, () => selectTicket(chip)));
+                chip.addEventListener('dragstart', event => {
+                    AppState.draggedTicket = chip;
+                    event.dataTransfer.setData('text/plain', chip.textContent);
+                });
+                chip.addEventListener('dragend', () => { AppState.draggedTicket = null; });
+            });
+        }
+
+        function resetMatrix() {
+            const pool = document.getElementById('ticket-pool');
+            if (!pool) return;
+            pool.innerHTML = '';
+            document.querySelectorAll('.classifier-bins .ticket-list').forEach(list => { list.innerHTML = ''; });
+            TICKETS.forEach(ticket => {
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = 'ticket-chip';
+                chip.draggable = true;
+                chip.dataset.priority = ticket.priority;
+                chip.textContent = ticket.name;
+                chip.setAttribute('aria-label', 'Classify ticket: ' + ticket.name);
+                pool.appendChild(chip);
+            });
+            setMatrixScore(0);
+            bindTicketChips();
+        }
+
+        function checkMatrix() {
+            let score = 0;
+            document.querySelectorAll('.classifier-bins .ticket-chip').forEach(chip => {
+                const binPriority = chip.closest('.bin').dataset.priority;
+                const ok = binPriority === chip.dataset.priority;
+                chip.classList.toggle('correct', ok);
+                chip.classList.toggle('incorrect', !ok);
+                if (ok) score++;
+            });
+            const placed = document.querySelectorAll('.classifier-bins .ticket-chip').length;
+            setMatrixScore(score);
+            if (placed < TICKETS.length) {
+                const label = document.getElementById('matrix-score');
+                if (label) label.textContent += ' · Place all 6 tickets for a full attempt.';
+            }
+        }
+
+        function initPriorityMatrix() {
+            const pool = document.getElementById('ticket-pool');
+            if (!pool) return;
+            if (!pool.children.length && !document.querySelector('.classifier-bins .ticket-chip')) resetMatrix();
+            document.querySelectorAll('.classifier-bins .bin').forEach(bin => {
+                if (bin.dataset.bound) return;
+                bin.dataset.bound = 'true';
+                bin.addEventListener('click', () => placeTicket(AppState.selectedTicket, bin));
+                bin.addEventListener('keydown', event => activateButtonKeyboard(event, () => placeTicket(AppState.selectedTicket, bin)));
+                bin.addEventListener('dragover', event => event.preventDefault());
+                bin.addEventListener('drop', event => {
+                    event.preventDefault();
+                    placeTicket(AppState.draggedTicket, bin);
+                    AppState.draggedTicket = null;
+                });
+            });
+            const check = document.getElementById('matrix-check');
+            const reset = document.getElementById('matrix-reset');
+            if (check && !check.dataset.bound) {
+                check.dataset.bound = 'true';
+                check.addEventListener('click', checkMatrix);
+            }
+            if (reset && !reset.dataset.bound) {
+                reset.dataset.bound = 'true';
+                reset.addEventListener('click', resetMatrix);
+            }
+            const label = document.getElementById('matrix-score');
+            if (label && !label.dataset.bestLoaded) {
+                label.dataset.bestLoaded = 'true';
+                label.textContent = 'Score: 0 / 6 · Best: ' + getBestMatrixScore() + ' / 6';
+            }
+        }
+
+        function formatDuration(mins) {
+            const m = Math.abs(Math.round(mins));
+            if (m < 60) return m + ' min';
+            const h = Math.floor(m / 60);
+            const rem = m % 60;
+            return rem ? h + ' h ' + rem + ' min' : h + ' h';
+        }
+
+        function runBreachCalc() {
+            const openEl = document.getElementById('calc-open-mins');
+            const targetEl = document.getElementById('calc-target-mins');
+            const result = document.getElementById('breach-result');
+            if (!openEl || !targetEl || !result) return;
+            const openMins = Number(openEl.value);
+            const targetMins = Number(targetEl.value);
+            if (!Number.isFinite(openMins) || openMins < 0 || !Number.isFinite(targetMins) || targetMins <= 0) {
+                result.className = 'breach-result warn';
+                result.innerHTML = '<h4>Check inputs</h4><p>Open minutes must be 0 or more. Target must be greater than 0.</p>';
+                return;
+            }
+            const delta = targetMins - openMins;
+            const ratio = openMins / targetMins;
+            if (delta > 0 && ratio <= 0.75) {
+                result.className = 'breach-result ok';
+                result.innerHTML = '<h4>On track</h4><p><strong>' + formatDuration(delta) + '</strong> remaining before the response target. Keep triage moving.</p>';
+            } else if (delta > 0) {
+                result.className = 'breach-result warn';
+                result.innerHTML = '<h4>Warning zone</h4><p>Only <strong>' + formatDuration(delta) + '</strong> left (' + Math.round(ratio * 100) + '% of target used). Escalate if blocked.</p>';
+            } else if (delta === 0) {
+                result.className = 'breach-result warn';
+                result.innerHTML = '<h4>At the limit</h4><p>The ticket has used 100% of the target. Any further delay is a breach.</p>';
+            } else {
+                const over = Math.abs(delta);
+                const severity = over >= targetMins ? 'Severe breach' : (over >= targetMins * 0.5 ? 'Significant breach' : 'Breach');
+                result.className = 'breach-result bad';
+                result.innerHTML = '<h4>' + severity + '</h4><p>Past target by <strong>' + formatDuration(over) + '</strong>. Notify stakeholders, escalate, and log the reason.</p>';
+            }
+        }
+
+        function initBreachCalculator() {
+            const run = document.getElementById('calc-run');
+            const reset = document.getElementById('calc-reset');
+            const preset = document.getElementById('calc-preset');
+            const openEl = document.getElementById('calc-open-mins');
+            const targetEl = document.getElementById('calc-target-mins');
+            if (run && !run.dataset.bound) {
+                run.dataset.bound = 'true';
+                run.addEventListener('click', runBreachCalc);
+            }
+            if (reset && !reset.dataset.bound) {
+                reset.dataset.bound = 'true';
+                reset.addEventListener('click', () => {
+                    if (openEl) openEl.value = '20';
+                    if (targetEl) targetEl.value = '15';
+                    if (preset) preset.value = '';
+                    const result = document.getElementById('breach-result');
+                    if (result) {
+                        result.className = 'breach-result';
+                        result.innerHTML = '<h4>Ready</h4><p>Enter values and press Calculate to see remaining or breached minutes.</p>';
+                    }
+                });
+            }
+            if (preset && !preset.dataset.bound) {
+                preset.dataset.bound = 'true';
+                preset.addEventListener('change', () => {
+                    if (!preset.value) return;
+                    const parts = preset.value.split('|');
+                    if (openEl) openEl.value = parts[0];
+                    if (targetEl) targetEl.value = parts[1];
+                    runBreachCalc();
+                });
+            }
+            [openEl, targetEl].forEach(el => {
+                if (!el || el.dataset.bound) return;
+                el.dataset.bound = 'true';
+                el.addEventListener('keydown', event => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        runBreachCalc();
+                    }
+                });
+            });
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = document.getElementById('quiz-score-label');
+            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+            const progress = document.getElementById('quiz-progress');
+            if (progress) {
+                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+                progress.classList.toggle('visible', AppState.quizScore > 0 || Object.keys(AppState.quizAnswered).length > 0);
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade || !msg || !label) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s >= 5) {
+                grade.textContent = 'A';
+                msg.textContent = 'Excellent. You can separate response from resolve and apply priority thinking clearly.';
+            } else if (s === 4) {
+                grade.textContent = 'B';
+                msg.textContent = 'Good. Revisit breach vs warning and the impact × urgency matrix.';
+            } else if (s === 3) {
+                grade.textContent = 'C';
+                msg.textContent = 'Secure pass. Replay the clock simulator and matrix game once more.';
+            } else if (s === 2) {
+                grade.textContent = 'D';
+                msg.textContent = 'Developing. Review response vs resolution before retrying.';
+            } else {
+                grade.textContent = 'R';
+                msg.textContent = 'Retry recommended. Start with what an SLA is and what P1 means.';
+            }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (AppState.quizBound) return;
+            AppState.quizBound = true;
+            const activate = option => {
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.disabled = true;
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            };
+            document.addEventListener('click', event => {
+                const option = event.target.closest('.quiz-option');
+                if (!option) return;
+                activate(option);
+            });
+            document.addEventListener('keydown', event => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                const option = event.target.closest && event.target.closest('.quiz-option');
+                if (!option) return;
+                event.preventDefault();
+                activate(option);
+            });
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.disabled = false;
+                    });
+                    updateQuizUI();
+                    showResults();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h);
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound) return;
+            canvas.dataset.bound = 'true';
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            const particles = [];
+            for (let i = 0; i < 42; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+                if (!showCanvas || reducedMotion) {
+                    requestAnimationFrame(draw);
+                    return;
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function refreshWidgets() {
+            initClockSimulator();
+            initPriorityMatrix();
+            initBreachCalculator();
+            initGlossary();
+        }
+
+        Reveal.on('slidechanged', event => {
+            refreshWidgets();
+            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
+        });
+
+        Reveal.on('ready', () => {
+            refreshWidgets();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
         });
     </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
