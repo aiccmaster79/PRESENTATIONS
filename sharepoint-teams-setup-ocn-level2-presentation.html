@@ -6,7 +6,6 @@
     <title>#73 | Level 2–3 | SharePoint/Teams Setup | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -23,186 +22,95 @@
             --dark-bg: #0a0a1a;
             --glass-bg: rgba(20, 20, 40, 0.85);
         }
-        .reveal { font-family: 'Poppins', sans-serif; }
+
+        * { box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle at top left, rgba(138, 43, 226, 0.22), transparent 34%),
+                        radial-gradient(circle at bottom right, rgba(0, 189, 165, 0.16), transparent 34%),
+                        var(--dark-bg);
+        }
+        .reveal { font-family: 'Poppins', sans-serif; color: #fff; }
         .reveal .slides { text-align: left; }
         .reveal .slides section { height: 100%; padding: 20px 40px; }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif; font-weight: 700;
-            text-transform: none; letter-spacing: -0.02em;
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
         }
-        .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.4em; }
-        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+        .reveal h1 { font-size: 2.9em; }
+        .reveal h2 { font-size: 2em; margin-bottom: 0.45em; }
+        .reveal h3 { font-size: 1.18em; }
+        .reveal p,
+        .reveal li { font-size: 0.84em; line-height: 1.52; }
+        .reveal small { color: rgba(255, 255, 255, 0.72); }
+
+        #circuit-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.canvas-active #circuit-canvas { opacity: 0.55; }
+        .reveal,
+        .back-to-index,
+        .site-credit { position: relative; z-index: 1; }
+
         .animated-gradient {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
             background-size: 400% 400%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; animation: gradientShift 8s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
         }
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-        .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-        .glass-card-small {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; margin-top: 30px;
-        }
-        .feature-card {
-            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px; padding: 25px; border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .feature-card:hover {
-            transform: translateY(-8px); border-color: var(--brand-teal);
-            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
-        }
-        .feature-card i { font-size: 2.5em; margin-bottom: 15px; display: block; }
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-        .feature-card h3 { font-size: 1.2em; margin-bottom: 10px; color: #fff; }
-        .feature-card p { font-size: 0.85em; color: rgba(255, 255, 255, 0.7); margin: 0; }
-        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 25px; border: 2px solid; }
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-        .comparison-box h3 { text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .comparison-box.type1 h3 { color: var(--brand-purple); }
-        .comparison-box.type2 h3 { color: var(--brand-teal); }
-        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
-        .comparison-box li { padding: 8px 0; padding-left: 25px; position: relative; font-size: 0.85em; }
-        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
-        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
-        .benefit-item {
-            display: flex; gap: 15px; align-items: flex-start; background: var(--glass-bg);
-            border-radius: 12px; padding: 18px; border: 1px solid rgba(255,255,255,0.08);
-        }
-        .benefit-item i { font-size: 1.8em; color: var(--brand-teal); margin-top: 4px; }
-        .benefit-item h4 { margin: 0 0 6px 0; font-size: 1em; }
-        .benefit-item p { margin: 0; font-size: 0.8em; color: rgba(255,255,255,0.7); }
-        .software-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
-        .software-item {
-            background: var(--glass-bg); border-radius: 14px; padding: 20px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .software-item i { font-size: 2em; display: block; margin-bottom: 10px; }
-        .software-item h4 { font-size: 0.95em; margin: 8px 0; }
-        .software-item p { font-size: 0.75em; color: rgba(255,255,255,0.65); margin: 0; }
-        .type-badge {
-            display: inline-block; font-size: 0.65em; padding: 3px 10px; border-radius: 20px;
-            font-weight: 600; margin-bottom: 6px;
-        }
-        .type-badge.type1 { background: rgba(138,43,226,0.3); color: var(--brand-purple-light); }
-        .type-badge.type2 { background: rgba(0,189,165,0.3); color: var(--brand-teal-light); }
-        .quiz-container { max-width: 900px; margin: 0 auto; }
-        .quiz-question { font-size: 1.3em; font-weight: 600; margin-bottom: 25px; text-align: center; }
-        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .quiz-option {
-            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;
-            display: flex; align-items: center; gap: 12px;
-        }
-        .quiz-option span {
-            background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
-        }
-        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
-        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
-        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
-        .stats-bar {
-            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-            background: var(--glass-bg); border-radius: 16px; padding: 25px;
-        }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 1.5em; font-weight: 700; color: var(--brand-teal); }
-        .stat-label { font-size: 0.75em; color: rgba(255,255,255,0.6); }
-        .career-path {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 30px; position: relative;
-        }
-        .career-path::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
-            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
-            z-index: 0;
-        }
-        .career-step {
-            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
-            z-index: 1; min-width: 150px; border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
-        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
-        .career-step:nth-child(1) i { color: var(--brand-orange); }
-        .career-step:nth-child(2) i { color: var(--brand-purple); }
-        .career-step:nth-child(3) i { color: var(--brand-teal); }
-        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
-        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
-        .title-slide {
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; height: 100%;
-        }
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
-        .title-slide .qualification {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
-        }
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
-        .objectives-list li {
-            display: flex; align-items: flex-start; gap: 15px; padding: 15px;
-            margin-bottom: 10px; background: var(--glass-bg); border-radius: 10px;
-            border-left: 4px solid var(--brand-orange);
-        }
-        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 20px; margin: 20px 0;
-        }
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-        .rule-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.85em; }
-        .rule-table th, .rule-table td {
-            padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal); font-weight: 600; }
-        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.1); }
-        code, .code-inline {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.4);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--brand-teal-light);
-        }
-        pre.code-block {
-            font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            padding: 18px 22px; font-size: 0.75em; line-height: 1.55; overflow-x: auto;
-            color: #e2e8f0; margin: 15px 0;
-        }
-        @media (max-width: 768px) {
-            .feature-grid, .software-grid { grid-template-columns: 1fr; }
-            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .career-path { flex-direction: column; gap: 20px; }
-            .career-path::before { display: none; }
-        }
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
-        }
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0); opacity: 1;
-        }
 
-        /* ====== DEMO META BADGE ====== */
+        .glass-card,
+        .glass-card-small,
+        .feature-card,
+        .timeline-card,
+        .path-card,
+        .layout-option,
+        .flip-card-inner,
+        .results-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+        .glass-card { border-radius: 20px; padding: 26px; }
+        .glass-card-small { border-radius: 15px; padding: 18px; }
+
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+        .title-slide h1 { font-size: 3.1em; margin: 0 0 18px; }
+        .subtitle { color: rgba(255, 255, 255, 0.82); font-size: 1.08em; margin: 0 0 24px; }
+        .qualification {
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            font-size: 0.86em;
+            font-weight: 600;
+        }
         .demo-meta {
             display: inline-flex;
             align-items: center;
@@ -212,166 +120,1504 @@
             border-radius: 999px;
             font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.02em;
             color: #fff;
             background: rgba(0, 189, 165, 0.18);
             border: 1px solid rgba(0, 189, 165, 0.45);
         }
-
-        .demo-meta .demo-number {
-            color: var(--brand-teal);
-        }
-
-        .demo-meta .demo-level {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .demo-meta .sep {
-            opacity: 0.45;
-        }
+        .demo-meta .demo-number { color: var(--brand-teal); }
+        .demo-meta .sep { opacity: 0.45; }
 
         .back-to-index {
-            position: fixed; top: 16px; left: 16px; z-index: 100;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.55rem 0.95rem; border-radius: 999px; text-decoration: none;
-            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
-            background: rgba(20, 20, 40, 0.88); border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
         }
-        .back-to-index:hover, .back-to-index:focus-visible {
-            border-color: #00BDA5; background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px); outline: none; color: #fff;
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: var(--brand-teal);
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #fff;
         }
-        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
+        .back-to-index i { color: var(--brand-teal); }
         .site-credit {
-            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 100;
-            margin: 0; padding: 0.35rem 0.85rem; border-radius: 999px;
-            font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            pointer-events: none; white-space: nowrap;
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
         }
 
-</style>
+        .objectives-list { list-style: none; padding: 0; margin: 0; }
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 13px 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            border-left: 4px solid var(--brand-orange);
+            background: var(--glass-bg);
+        }
+        .objectives-list li i { color: var(--brand-teal); margin-top: 5px; }
+
+        .feature-grid,
+        .three-grid,
+        .two-grid,
+        .pathway-map,
+        .glossary-grid,
+        .quiz-options,
+        .flip-grid,
+        .checklist-grid {
+            display: grid;
+            gap: 16px;
+        }
+        .feature-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .three-grid { grid-template-columns: repeat(3, 1fr); }
+        .two-grid { grid-template-columns: repeat(2, 1fr); }
+        .pathway-map { grid-template-columns: repeat(3, 1fr); }
+        .glossary-grid { grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); max-height: 470px; overflow: auto; padding-right: 6px; }
+        .quiz-options { grid-template-columns: repeat(2, 1fr); }
+        .flip-grid { grid-template-columns: repeat(3, 1fr); }
+        .checklist-grid { grid-template-columns: repeat(3, 1fr); }
+
+        .feature-card {
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .feature-card:hover,
+        .feature-card:focus-within {
+            transform: translateY(-5px);
+            border-color: var(--brand-teal);
+            box-shadow: 0 18px 36px rgba(0, 189, 165, 0.18);
+        }
+        .feature-card i { display: block; font-size: 2em; margin-bottom: 10px; }
+        .orange i,
+        .orange .stat-number { color: var(--brand-orange); }
+        .purple i,
+        .purple .stat-number { color: var(--brand-purple-light); }
+        .teal i,
+        .teal .stat-number { color: var(--brand-teal); }
+        .feature-card h3 { margin: 0 0 8px; font-size: 1.02em; }
+        .feature-card p,
+        .feature-card li,
+        .path-card p { color: rgba(255, 255, 255, 0.72); font-size: 0.74em; margin: 0; }
+
+        .stats-bar {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+        }
+        .stat-item { min-width: 150px; text-align: center; }
+        .stat-number { display: block; font-size: 1.35em; font-weight: 700; }
+        .stat-label { display: block; color: rgba(255, 255, 255, 0.65); font-size: 0.68em; }
+
+        .process-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .process-step {
+            position: relative;
+            padding: 14px 10px;
+            border-radius: 14px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .process-step strong { display: block; color: var(--brand-teal-light); font-size: 0.76em; }
+        .process-step span { display: block; color: rgba(255, 255, 255, 0.7); font-size: 0.62em; margin-top: 5px; }
+
+        .sequencer-board {
+            display: grid;
+            grid-template-columns: minmax(340px, 1fr) 0.72fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+        .sequence-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+        .sequence-item {
+            display: grid;
+            grid-template-columns: 38px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 11px 12px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sequence-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(0, 189, 165, 0.18);
+            color: var(--brand-teal-light);
+            font-weight: 700;
+        }
+        .sequence-controls { display: inline-flex; gap: 6px; }
+        .mini-btn,
+        .action-btn,
+        .scenario-btn,
+        .layout-option,
+        .quiz-option,
+        .flip-card,
+        .check-btn {
+            cursor: pointer;
+            outline: none;
+        }
+        .mini-btn,
+        .action-btn,
+        .scenario-btn,
+        .check-btn {
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+        .mini-btn { width: 34px; height: 34px; }
+        .action-btn,
+        .scenario-btn,
+        .check-btn { padding: 10px 16px; }
+        .action-btn.primary,
+        .scenario-btn.active,
+        .check-btn[aria-pressed="true"] {
+            border-color: var(--brand-teal);
+            background: rgba(0, 189, 165, 0.22);
+        }
+        .mini-btn:hover,
+        .mini-btn:focus-visible,
+        .action-btn:hover,
+        .action-btn:focus-visible,
+        .scenario-btn:hover,
+        .scenario-btn:focus-visible,
+        .layout-option:hover,
+        .layout-option:focus-visible,
+        .quiz-option:hover,
+        .quiz-option:focus-visible,
+        .check-btn:hover,
+        .check-btn:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--brand-teal);
+        }
+        .feedback-panel {
+            min-height: 90px;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 189, 165, 0.26);
+            background: rgba(0, 189, 165, 0.1);
+        }
+        .feedback-panel.warning {
+            border-color: rgba(239, 68, 68, 0.75);
+            background: rgba(239, 68, 68, 0.14);
+        }
+        .feedback-panel.success {
+            border-color: rgba(34, 197, 94, 0.85);
+            background: rgba(34, 197, 94, 0.16);
+        }
+        .shake { animation: shake 0.45s ease; }
+        @keyframes shake {
+            10%, 90% { transform: translateX(-2px); }
+            20%, 80% { transform: translateX(4px); }
+            30%, 50%, 70% { transform: translateX(-6px); }
+            40%, 60% { transform: translateX(6px); }
+        }
+
+        .planner-shell { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 18px; }
+        .scenario-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+        .layout-options { display: grid; gap: 12px; }
+        .layout-option {
+            border-radius: 16px;
+            padding: 16px;
+            text-align: left;
+            color: #fff;
+        }
+        .layout-option.selected {
+            border-color: var(--brand-orange);
+            box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.18);
+        }
+        .layout-option strong { display: block; color: var(--brand-teal-light); margin-bottom: 5px; }
+        .planner-result h3 { margin-top: 0; color: var(--brand-orange-light); }
+        .planner-badge {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.68em;
+            font-weight: 700;
+            background: rgba(138, 43, 226, 0.25);
+            color: var(--brand-purple-light);
+        }
+
+        .timeline { display: grid; gap: 12px; }
+        .timeline-card {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 14px;
+            align-items: start;
+            padding: 14px;
+            border-radius: 15px;
+        }
+        .timeline-card .marker {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+        }
+        .timeline-card h3 { margin: 0 0 4px; }
+        .timeline-card p { margin: 0; color: rgba(255, 255, 255, 0.72); font-size: 0.75em; }
+
+        .fault-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--glass-bg);
+        }
+        .fault-table th,
+        .fault-table td {
+            padding: 13px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            vertical-align: top;
+            font-size: 0.72em;
+        }
+        .fault-table th {
+            color: var(--brand-teal-light);
+            text-align: left;
+            background: rgba(0, 189, 165, 0.12);
+        }
+        .fault-table tr:last-child td { border-bottom: 0; }
+
+        .flip-card {
+            border: 0;
+            background: transparent;
+            min-height: 185px;
+            perspective: 900px;
+            padding: 0;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            min-height: 185px;
+            border-radius: 17px;
+            transition: transform 0.55s ease;
+            transform-style: preserve-3d;
+        }
+        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 17px;
+            backface-visibility: hidden;
+        }
+        .flip-face.back {
+            transform: rotateY(180deg);
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.2), rgba(138, 43, 226, 0.2));
+        }
+        .flip-face i { color: var(--brand-orange); font-size: 2em; margin-bottom: 10px; }
+        .flip-face p { font-size: 0.76em; color: rgba(255, 255, 255, 0.74); margin: 0; }
+
+        .checklist-panel { margin-top: 18px; }
+        .check-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 58px;
+            border-radius: 14px;
+            font-size: 0.72em;
+        }
+        .governance-status { margin-top: 12px; color: var(--brand-teal-light); font-weight: 700; }
+
+        .task-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
+        .evidence-list { list-style: none; padding: 0; margin: 0; }
+        .evidence-list li {
+            padding: 9px 0 9px 28px;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.78em;
+        }
+        .evidence-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--brand-teal);
+            border-radius: 4px;
+        }
+
+        .glossary-search {
+            width: 100%;
+            padding: 13px 16px;
+            margin: 0 0 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            font-family: 'Poppins', sans-serif;
+        }
+        .glossary-item {
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .glossary-item strong { display: block; color: var(--brand-orange-light); margin-bottom: 4px; }
+        .glossary-item p { margin: 0; font-size: 0.7em; color: rgba(255, 255, 255, 0.7); }
+
+        .path-card {
+            min-height: 135px;
+            border-radius: 16px;
+            padding: 18px;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .path-card:hover,
+        .path-card:focus-visible {
+            color: #fff;
+            border-color: var(--brand-teal);
+            transform: translateY(-4px);
+            outline: none;
+        }
+        .path-card strong { display: block; margin-bottom: 7px; color: var(--brand-teal-light); }
+
+        .quiz-status {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .quiz-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 118px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.42);
+            color: #fff;
+            font-size: 0.72em;
+            font-weight: 700;
+        }
+        .score-track {
+            flex: 1;
+            min-width: 140px;
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+        }
+        .score-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            transition: width 0.35s ease;
+        }
+        .quiz-container { max-width: 920px; margin: 0 auto; }
+        .quiz-question { font-size: 1.14em; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .quiz-option {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            min-height: 72px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            color: #fff;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+        .quiz-option span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--brand-purple);
+            font-weight: 700;
+        }
+        .quiz-option.correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.18); }
+        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239, 68, 68, 0.18); }
+        .quiz-option.disabled { cursor: default; opacity: 0.84; }
+        .quiz-feedback {
+            min-height: 54px;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.78em;
+        }
+        .results-card { border-radius: 20px; padding: 28px; text-align: center; }
+        .grade-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 112px;
+            height: 112px;
+            margin: 10px auto 14px;
+            border-radius: 50%;
+            color: #fff;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+            .three-grid,
+            .two-grid,
+            .pathway-map,
+            .quiz-options,
+            .flip-grid,
+            .checklist-grid,
+            .planner-shell,
+            .sequencer-board,
+            .task-grid { grid-template-columns: 1fr; }
+            .process-strip { grid-template-columns: repeat(2, 1fr); }
+            .reveal .slides section { padding: 18px 24px; }
+            .site-credit { display: none; }
+        }
+        @media (max-width: 768px) {
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.55em; }
+            .quiz-status { flex-direction: column; align-items: stretch; }
+            .back-to-index { transform: scale(0.9); transform-origin: top left; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+            #circuit-canvas { display: none; }
+        }
+    </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
     <a class="back-to-index" href="index.html" aria-label="Back to index">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>Back to index</span>
     </a>
+    <p class="site-credit">OCN NI Level 2–3 Digital Skills · Demo #73</p>
+
     <div class="reveal">
         <div class="slides">
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <section data-canvas-bg>
                 <div class="title-slide">
-                    <span class="demo-meta"><span class="demo-number">#73</span><span class="sep">·</span><span class="demo-level">Level 2–3</span><span class="sep">·</span><span class="demo-level">Cloud / collaboration</span></span>
+                    <span class="demo-meta"><span class="demo-number">#73</span><span class="sep">·</span><span>Level 2–3</span><span class="sep">·</span><span>Cloud / collaboration</span></span>
                     <h1 class="animated-gradient">SharePoint/Teams Setup</h1>
-                    <p class="subtitle">Create a basic cloud collaboration space</p>
-                    <span class="qualification">OCN NI Level 2–3 — Cloud / collaboration</span>
+                    <p class="subtitle">Design a usable Microsoft Team, connect it to SharePoint, and set governance before the file chaos begins.</p>
+                    <span class="qualification">OCN NI Digital Skills · Feature-rich practical deck</span>
                 </div>
+                <aside class="notes">Timing: 2 minutes. Welcome learners and frame the session as a practical build: Teams is the front door, SharePoint is the file engine, and governance keeps the space usable.</aside>
             </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list"><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Create</strong> a Team or SharePoint site for a class project</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Add</strong> channels/folders and member permissions</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Upload</strong> a starter file set and pin key links</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Show</strong> how chat, files, and meetings connect</span></li><li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> sensible naming and access rules</span></li></ul>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-lightbulb"></i> Core Ideas</h2>
-                <div class="comparison-container">
-                    <div class="comparison-box type1 fragment fade-up"><h3>Why set this up</h3><ul><li>One place for files and chat</li><li>Clear membership</li><li>Less email chaos</li><li>Audit-friendly sharing</li></ul></div>
-                    <div class="comparison-box type2 fragment fade-up"><h3>Classroom build</h3><ul><li>Create Team / site</li><li>Add members (or owners)</li><li>Create folders/channels</li><li>Upload dummy project files</li></ul></div>
-                </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Demo Sequence</h2>
-                <div class="glass-card fragment fade-up"><ol style="font-size:0.9em; line-height:1.7;"><li class="fragment">Sign into the test Microsoft 365 tenant</li><li class="fragment">Create a Team (or SharePoint site) for a sample project</li><li class="fragment">Add two channels/folders: General and Resources</li><li class="fragment">Upload dummy files and set a shared link carefully</li><li class="fragment">Show Files tab vs SharePoint library</li><li class="fragment">Agree naming + guest access rules for the class</li></ol></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-balance-scale"></i> Practical Notes</h2>
-                <div class="benefits-grid"><div class="benefit-item fragment fade-up"><i class="fas fa-user-shield"></i><div><h4>Owners vs members</h4><p>Least privilege for guests</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-link"></i><div><h4>Sharing links</h4><p>Prefer specific people</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-i-cursor"></i><div><h4>Naming</h4><p>Clear project titles</p></div></div><div class="benefit-item fragment fade-up"><i class="fas fa-archive"></i><div><h4>Lifecycle</h4><p>Archive when the project ends</p></div></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-toolbox"></i> Resources Required</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-cloud"></i><h3>Test M365 accounts</h3><p>Teacher + learners</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-folder"></i><h3>Dummy files</h3><p>Safe sample documents</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-users"></i><h3>Role cards</h3><p>Owner/member/guest</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-list"></i><h3>Setup checklist</h3><p>Channels, files, rules</p></div></div>
-                <div class="highlight-box fragment fade-up"><h4><i class="fas fa-clipboard-list"></i> Demo kit note</h4><p>Test Microsoft 365/Google Workspace accounts and dummy files. Use a sandbox tenant if possible.</p></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about sharepoint/teams setup</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
-            </section>
+
             <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: A Team/site mainly gives…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Shared files plus collaboration tools</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>A new CPU cooler</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Cat6 certification</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>BIOS passwords</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — Shared files plus collaboration tools</div>
-                </div>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning objectives</h2>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Explain how a Team, channels, files, and the connected SharePoint site fit together.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Build a safe setup sequence: create Team, name channels, assign owners/members, create folders, set sharing defaults, invite users.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Choose an appropriate channel and folder structure for class projects or department work.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span>Apply naming, guest access, and lifecycle rules that stop collaboration spaces becoming abandoned storage.</span></li>
+                </ul>
+                <aside class="notes">Timing: 3 minutes. Read each objective and ask learners which one they already feel confident about. Use responses to decide how much time to spend on the core concept slides.</aside>
             </section>
+
             <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: Guest links should usually…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Be limited to specific people when possible</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Be posted publicly forever</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Disable MFA</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Replace backups</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Be posted publicly forever</div>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to use this deck</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-hand-pointer" aria-hidden="true"></i><h3>Clickable and tappable</h3><p>Interactive cards, planner choices, and quiz answers work with mouse, touch, Enter, or Space.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-arrows-up-down" aria-hidden="true"></i><h3>Build, then check</h3><p>The setup sequencer asks you to arrange actions into a safe order, then validates your work.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-eye" aria-hidden="true"></i><h3>Reduced motion friendly</h3><p>Animations and the canvas background respect prefers-reduced-motion settings.</p></div>
                 </div>
+                <div class="glass-card-small" style="margin-top: 18px;">
+                    <p><strong>Keyboard hint:</strong> use arrow keys to move slides. Press <strong>S</strong> for speaker view, <strong>F</strong> for full screen, and <strong>Esc</strong> for the slide overview.</p>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Demonstrate keyboard navigation and point out that the interactions are designed for phones, touch screens, and keyboards.</aside>
             </section>
+
             <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: Owners should…</p>
-                    <div class="quiz-options"><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>Control membership and key settings</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Share the global admin password</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Delete logs daily for fun</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Ignore permissions</div></div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> — Control membership and key settings</div>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Why this matters</h2>
+                <div class="stats-bar">
+                    <div class="stat-item orange"><span class="stat-number">1 Team</span><span class="stat-label">can create many channels, tabs, files, apps, and conversations</span></div>
+                    <div class="stat-item purple"><span class="stat-number">2 owners</span><span class="stat-label">minimum recommended so a Team does not become orphaned</span></div>
+                    <div class="stat-item teal"><span class="stat-number">0 plan</span><span class="stat-label">usually means duplicate files, missing permissions, and noisy channels</span></div>
                 </div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-                <div class="feature-grid"><div class="feature-card orange fragment fade-up"><i class="fas fa-users"></i><h3>One hub</h3><p>Chat + files together</p></div><div class="feature-card purple fragment fade-up"><i class="fas fa-user-shield"></i><h3>Control access</h3><p>Owners manage membership</p></div><div class="feature-card teal fragment fade-up"><i class="fas fa-folder"></i><h3>Structure early</h3><p>Channels/folders reduce chaos</p></div><div class="feature-card orange fragment fade-up"><i class="fas fa-link"></i><h3>Share carefully</h3><p>Least privilege links</p></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
-                <div class="career-path fragment fade-up"><div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>IT Support Junior</p></div><div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>M365 Administrator</p></div><div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Collaboration Lead</p></div></div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">Create</span><span class="stat-label">Team</span></div><div class="stat-item"><span class="stat-number">Add</span><span class="stat-label">Files</span></div><div class="stat-item"><span class="stat-number">Control</span><span class="stat-label">Access</span></div></div>
-            </section>
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
-                    <ul style="list-style: none; padding: 0;"><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Build</strong> — Complete the live demo for SharePoint/Teams Setup</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Practice</strong> — Repeat the key check without prompts</li><li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-users" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Reflect</strong> — Write three bullets on why SharePoint/Teams Setup matters</li><li style="padding: 12px 0; "><i class="fas fa-forward" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Next demo</strong> — Cloud Sync Conflict</li></ul>
+                <div class="glass-card" style="margin-top: 22px;">
+                    <h3>Real consequence</h3>
+                    <p>A Team created in a hurry can expose files to the wrong audience, hide important resources in chat history, and leave staff unable to archive or hand over ownership later.</p>
                 </div>
+                <aside class="notes">Timing: 4 minutes. Ask for examples of messy Teams learners have seen. Keep it constructive: the problem is usually a missing setup process, not careless users.</aside>
             </section>
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Questions? Let's discuss!</p>
-                    <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> Cloud / Collaboration — SharePoint/Teams Setup</p>
-                        <span class="qualification">OCN NI Level 2–3 — Cloud / collaboration</span>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fab fa-microsoft" aria-hidden="true"></i> Teams and SharePoint: the mental model</h2>
+                <div class="three-grid">
+                    <div class="feature-card orange"><i class="fas fa-comments" aria-hidden="true"></i><h3>Teams is the workspace</h3><p>Chat, meetings, channel posts, tabs, apps, and notifications live where people collaborate day to day.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-sitemap" aria-hidden="true"></i><h3>Channels create context</h3><p>Channels split work into topics such as Assessment, Projects, Admin, or Year 1 cohort.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-folder-tree" aria-hidden="true"></i><h3>SharePoint stores files</h3><p>The Files tab connects to a SharePoint document library, with folders for each standard channel.</p></div>
+                </div>
+                <div class="glass-card-small" style="margin-top: 18px;"><p><strong>Key idea:</strong> do not treat Teams as "just chat". Every setup decision has a file, permission, and lifecycle impact.</p></div>
+                <aside class="notes">Timing: 4 minutes. Draw the front-door/back-room analogy: Teams is the door learners use; SharePoint is where the documents and permissions actually live.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-user-shield" aria-hidden="true"></i> Roles and permissions</h2>
+                <div class="two-grid">
+                    <div class="glass-card">
+                        <h3 style="color: var(--brand-orange-light);">Owners</h3>
+                        <ul>
+                            <li>Create and delete channels.</li>
+                            <li>Manage members, guests, settings, and connectors.</li>
+                            <li>Control archive, restore, and handover decisions.</li>
+                        </ul>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-users" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-folder-open" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-comments" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div class="glass-card">
+                        <h3 style="color: var(--brand-teal-light);">Members and guests</h3>
+                        <ul>
+                            <li>Members collaborate inside the Team according to settings.</li>
+                            <li>Guests need explicit policy approval and narrower expectations.</li>
+                            <li>Visitors may have read-only access in SharePoint when required.</li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="glass-card-small" style="margin-top: 18px;"><p><strong>Rule of thumb:</strong> at least two active owners, membership via groups where possible, and guest access decided before invitations are sent.</p></div>
+                <aside class="notes">Timing: 5 minutes. Emphasise that ownership is operational resilience. Ask what happens during staff absence if only one owner exists.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Plan before you click Create</h2>
+                <div class="process-strip">
+                    <div class="process-step"><strong>Purpose</strong><span>What work belongs here?</span></div>
+                    <div class="process-step"><strong>Audience</strong><span>Who needs access?</span></div>
+                    <div class="process-step"><strong>Owners</strong><span>Who is accountable?</span></div>
+                    <div class="process-step"><strong>Channels</strong><span>Which topics need space?</span></div>
+                    <div class="process-step"><strong>Files</strong><span>What folders are needed?</span></div>
+                    <div class="process-step"><strong>Lifecycle</strong><span>When will it archive?</span></div>
+                </div>
+                <div class="glass-card" style="margin-top: 20px;">
+                    <h3>Setup charter</h3>
+                    <p>Write a one-paragraph charter before creation: Team name, purpose, owner pair, member group, guest policy, initial channel list, and review date.</p>
+                </div>
+                <aside class="notes">Timing: 5 minutes. This slide prepares the sequencer. Ask learners to spot which decisions should be made before invitations go out.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-sort-amount-down" aria-hidden="true"></i> Interactive: setup sequencer</h2>
+                <div class="sequencer-board" id="sequencer-board">
+                    <div class="glass-card">
+                        <p style="margin-top: 0;">Use the up/down buttons to order the setup actions safely, then check your answer.</p>
+                        <ol class="sequence-list" id="sequence-list" aria-label="SharePoint and Teams setup steps"></ol>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                            <button class="action-btn primary" id="check-sequence" type="button">Check order</button>
+                            <button class="action-btn" id="reset-sequence" type="button">Reset</button>
+                        </div>
+                    </div>
+                    <div class="feedback-panel" id="sequence-feedback" aria-live="polite">
+                        Arrange the six steps. A wrong order will shake so you can adjust it.
+                    </div>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Let pairs attempt the order before revealing. If they get it wrong, ask what risk appears when invitations happen before sharing defaults and folders are ready.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-route" aria-hidden="true"></i> A safe build flow in practice</h2>
+                <div class="timeline">
+                    <div class="timeline-card"><span class="marker">1</span><div><h3>Create Team</h3><p>Use the agreed Team type and name; avoid creating from a vague chat title.</p></div></div>
+                    <div class="timeline-card"><span class="marker">2</span><div><h3>Name channels</h3><p>Create only the channels needed at launch, using a naming convention people can scan.</p></div></div>
+                    <div class="timeline-card"><span class="marker">3</span><div><h3>Set owners and members</h3><p>Add two owners, then members through a group or verified list.</p></div></div>
+                    <div class="timeline-card"><span class="marker">4</span><div><h3>Folders, sharing, invitations</h3><p>Create starter folders, lock sharing defaults, then invite users with a short welcome post.</p></div></div>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Connect this flow to the learner sequence. Mention that local tenant settings may change the exact screen names, but not the governance logic.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-folder-open" aria-hidden="true"></i> Channels versus folders</h2>
+                <div class="two-grid">
+                    <div class="glass-card">
+                        <h3 style="color: var(--brand-purple-light);">Use channels for work streams</h3>
+                        <ul>
+                            <li>There is a distinct conversation or audience.</li>
+                            <li>Notifications and posts need separation.</li>
+                            <li>The topic may need tabs, apps, or meetings.</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: var(--brand-teal-light);">Use folders for file organisation</h3>
+                        <ul>
+                            <li>The audience is the same but documents need grouping.</li>
+                            <li>You need templates, drafts, final versions, or evidence folders.</li>
+                            <li>The structure should remain understandable in SharePoint.</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Explain that overusing channels creates notification noise, while overusing folders can bury files. The goal is a structure that matches how the group works.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-share-nodes" aria-hidden="true"></i> Sharing defaults and guest access</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-link" aria-hidden="true"></i><h3>Default link type</h3><p>Prefer organisation-only links for internal collaboration unless a specific external need is approved.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-clock" aria-hidden="true"></i><h3>Expiry and review</h3><p>External links and guest memberships should expire or be reviewed on a schedule.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-lock" aria-hidden="true"></i><h3>Sensitive content</h3><p>Use private channels, SharePoint permissions, or sensitivity labels when the audience is narrower.</p></div>
+                </div>
+                <div class="glass-card-small" style="margin-top: 18px;"><p><strong>Before inviting:</strong> check whether guests can invite others, whether members can create channels, and what link type appears by default.</p></div>
+                <aside class="notes">Timing: 5 minutes. This is a risk slide. Ask learners to identify which settings could leak documents accidentally if left at permissive defaults.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-diagram-project" aria-hidden="true"></i> Interactive: structure planner</h2>
+                <div class="planner-shell">
+                    <div class="glass-card">
+                        <h3>Choose a scenario</h3>
+                        <div class="scenario-buttons" role="group" aria-label="Team scenario">
+                            <button class="scenario-btn active" type="button" data-scenario="class">Class project Team</button>
+                            <button class="scenario-btn" type="button" data-scenario="department">Departmental Team</button>
+                        </div>
+                        <div id="scenario-summary" class="feedback-panel">Scenario: mixed groups of learners producing a project with drafts, final evidence, and teacher feedback.</div>
+                    </div>
+                    <div class="glass-card planner-result">
+                        <span class="planner-badge">Pick a layout</span>
+                        <div class="layout-options" id="layout-options" aria-label="Channel and folder layout choices"></div>
+                        <div class="feedback-panel" id="planner-feedback" aria-live="polite" style="margin-top: 14px;">Choose a layout to compare recommended and risky structures.</div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Have learners vote individually, then compare. Stress that the recommended answer is about fit to the scenario, not one universal Team template.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-school" aria-hidden="true"></i> Case study: Northbridge Creative Media</h2>
+                <div class="two-grid">
+                    <div class="glass-card">
+                        <h3 style="color: #fca5a5;">Before: chaos</h3>
+                        <ul>
+                            <li>A lecturer created "Media Stuff" with no naming convention.</li>
+                            <li>Only one owner existed; they left mid-year.</li>
+                            <li>Students uploaded final evidence, drafts, and feedback into General.</li>
+                            <li>Guest freelancers were invited with broad access and no review date.</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="color: var(--brand-teal-light);">After: governed rebuild</h3>
+                        <ul>
+                            <li>Renamed to <strong>CM-2026-Production-Portfolio</strong>.</li>
+                            <li>Added programme lead and technician as owners.</li>
+                            <li>Created Assessment, Project Groups, Resources, and Staff Planning channels.</li>
+                            <li>Set guest expiry, archive review, and starter folder templates.</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 6 minutes. Tell this as a short story. Ask learners which single change had the greatest effect and why multiple controls worked together.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i> Common faults table</h2>
+                <table class="fault-table">
+                    <thead><tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr></thead>
+                    <tbody>
+                        <tr><td>Files are duplicated across channels.</td><td>No agreed folder or naming pattern.</td><td>Create a starter structure, archive duplicates, and pin the rules in a welcome post.</td></tr>
+                        <tr><td>Teacher cannot remove a guest.</td><td>Only one owner or the wrong owner role.</td><td>Add a second trained owner and review guest membership from Team settings.</td></tr>
+                        <tr><td>Students post everything in General.</td><td>Channels are unclear or too many to understand.</td><td>Rename channels by activity and hide/archive unused ones.</td></tr>
+                        <tr><td>External user sees more files than expected.</td><td>Guest invited to the whole Team rather than a narrower space.</td><td>Use specific SharePoint permissions, a private channel, or a separate external collaboration Team.</td></tr>
+                        <tr><td>No one knows whether the Team is still active.</td><td>No lifecycle owner, review date, or archive process.</td><td>Add review metadata, owner handover, and an archive decision at project close.</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Timing: 6 minutes. Work down the rows and ask learners to diagnose the likely cause before revealing the fix. Connect each fix back to planning decisions.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-id-card" aria-hidden="true"></i> Interactive: governance tips</h2>
+                <div class="flip-grid">
+                    <button class="flip-card" type="button" aria-label="Flip naming conventions card">
+                        <span class="flip-card-inner">
+                            <span class="flip-face front"><i class="fas fa-tag" aria-hidden="true"></i><strong>Naming conventions</strong><p>Tap or press Enter to reveal the rule.</p></span>
+                            <span class="flip-face back"><strong>Make names sortable.</strong><p>Use patterns such as DEPT-YEAR-PURPOSE and avoid vague labels like "new Team".</p></span>
+                        </span>
+                    </button>
+                    <button class="flip-card" type="button" aria-label="Flip guest access card">
+                        <span class="flip-card-inner">
+                            <span class="flip-face front"><i class="fas fa-user-plus" aria-hidden="true"></i><strong>Guest access</strong><p>Tap or press Enter to reveal the rule.</p></span>
+                            <span class="flip-face back"><strong>Invite deliberately.</strong><p>Record why a guest is needed, who sponsors them, and when access should be reviewed.</p></span>
+                        </span>
+                    </button>
+                    <button class="flip-card" type="button" aria-label="Flip lifecycle and archive card">
+                        <span class="flip-card-inner">
+                            <span class="flip-face front"><i class="fas fa-box-archive" aria-hidden="true"></i><strong>Lifecycle/archive</strong><p>Tap or press Enter to reveal the rule.</p></span>
+                            <span class="flip-face back"><strong>Close the loop.</strong><p>Define active, review, archive, and delete/retain stages before the project starts.</p></span>
+                        </span>
+                    </button>
+                </div>
+                <div class="glass-card checklist-panel">
+                    <h3>Governance checklist</h3>
+                    <div class="checklist-grid" role="group" aria-label="Governance checklist">
+                        <button class="check-btn" type="button" aria-pressed="false">Naming rule agreed</button>
+                        <button class="check-btn" type="button" aria-pressed="false">Two owners assigned</button>
+                        <button class="check-btn" type="button" aria-pressed="false">Guest policy reviewed</button>
+                        <button class="check-btn" type="button" aria-pressed="false">Archive date set</button>
+                        <button class="check-btn" type="button" aria-pressed="false">Welcome post pinned</button>
+                        <button class="check-btn" type="button" aria-pressed="false">Sharing defaults checked</button>
+                    </div>
+                    <p class="governance-status" id="governance-status" aria-live="polite">0 / 6 governance checks selected.</p>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Learners flip each card, then use the checklist for a hypothetical Team. Discuss why governance is light-touch but still explicit.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-person-chalkboard" aria-hidden="true"></i> Practical task: build a governed Team plan</h2>
+                <div class="task-grid">
+                    <div class="glass-card">
+                        <h3>Brief</h3>
+                        <p>Create a setup plan for a Level 2 project Team that will hold resources, group work, assessment evidence, and teacher feedback for one term.</p>
+                        <h3>Success criteria</h3>
+                        <ul>
+                            <li>Team name follows a convention.</li>
+                            <li>At least two owners and membership rules are defined.</li>
+                            <li>Channels and folders match the purpose.</li>
+                            <li>Sharing defaults and guest policy are stated.</li>
+                            <li>Archive or review date is included.</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Evidence checklist</h3>
+                        <ul class="evidence-list">
+                            <li>Screenshot or sketch of channel list.</li>
+                            <li>Folder tree for one important channel.</li>
+                            <li>Owner/member/guest table.</li>
+                            <li>Welcome post explaining where files go.</li>
+                            <li>Short risk note: what could go wrong and how it is controlled.</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 10 minutes. This can be a paired activity. If software access is unavailable, accept a paper or whiteboard plan as evidence.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-book-open" aria-hidden="true"></i> Searchable jargon buster</h2>
+                <input class="glossary-search" id="glossary-search" type="search" placeholder="Search terms such as owner, channel, guest, library..." aria-label="Search SharePoint and Teams glossary">
+                <p id="glossary-count" aria-live="polite" style="margin: 0 0 12px;">15 terms shown.</p>
+                <div class="glossary-grid" id="glossary-grid">
+                    <div class="glossary-item" data-terms="team microsoft workspace collaboration"><strong>Team</strong><p>A Microsoft 365 collaboration workspace with members, channels, chats, meetings, and files.</p></div>
+                    <div class="glossary-item" data-terms="sharepoint site files document storage"><strong>SharePoint site</strong><p>The connected web site that stores files and supports permissions, pages, and lists.</p></div>
+                    <div class="glossary-item" data-terms="channel standard topic conversation"><strong>Channel</strong><p>A topic area inside a Team with posts, tabs, and a linked file folder.</p></div>
+                    <div class="glossary-item" data-terms="standard channel public team"><strong>Standard channel</strong><p>A channel visible to all Team members.</p></div>
+                    <div class="glossary-item" data-terms="private channel restricted audience"><strong>Private channel</strong><p>A restricted channel for a subset of Team members, with separate membership and file area.</p></div>
+                    <div class="glossary-item" data-terms="shared channel external organisation"><strong>Shared channel</strong><p>A channel that can include people from another organisation when tenant policy allows it.</p></div>
+                    <div class="glossary-item" data-terms="owners manage settings archive"><strong>Owners</strong><p>People who manage Team settings, membership, channels, and lifecycle decisions.</p></div>
+                    <div class="glossary-item" data-terms="members edit collaborate"><strong>Members</strong><p>People who participate in the Team and usually edit shared files.</p></div>
+                    <div class="glossary-item" data-terms="visitors read sharepoint"><strong>Visitors</strong><p>SharePoint users who commonly have read-only access to a site or library.</p></div>
+                    <div class="glossary-item" data-terms="document library files metadata"><strong>Document library</strong><p>A SharePoint container for files, folders, versions, metadata, and permissions.</p></div>
+                    <div class="glossary-item" data-terms="folder file structure hierarchy"><strong>Folder</strong><p>A file grouping inside a library or channel folder.</p></div>
+                    <div class="glossary-item" data-terms="sharing link anyone organisation specific people"><strong>Sharing link</strong><p>A generated link that controls who can open or edit a file.</p></div>
+                    <div class="glossary-item" data-terms="guest access external collaborator"><strong>Guest access</strong><p>Access for someone outside the organisation, usually with extra policy controls.</p></div>
+                    <div class="glossary-item" data-terms="lifecycle archive retention review"><strong>Lifecycle</strong><p>The plan for creation, active use, review, archive, retention, and deletion.</p></div>
+                    <div class="glossary-item" data-terms="sensitivity label classification protection"><strong>Sensitivity label</strong><p>A Microsoft 365 label that can apply protection or classification to a Team, site, or file.</p></div>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Invite learners to search for terms they have heard but not used confidently. Use this slide as a checkpoint before the quiz.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-map-signs" aria-hidden="true"></i> Where this fits: pathway map</h2>
+                <div class="pathway-map">
+                    <a class="path-card" href="onedrive-sharepoint-permissions-ocn-level2-presentation.html"><strong>OneDrive/SharePoint permissions</strong><p>Deepen the permission model behind sharing links and access groups.</p></a>
+                    <a class="path-card" href="version-history-restore-ocn-level2-presentation.html"><strong>Version history restore</strong><p>Recover from accidental edits, overwrites, or deleted content.</p></a>
+                    <a class="path-card" href="cloud-sync-conflict-ocn-level2-presentation.html"><strong>Cloud sync conflict</strong><p>Handle duplicate edits and local sync problems.</p></a>
+                    <a class="path-card" href="saas-paas-iaas-comparison-ocn-level2-presentation.html"><strong>SaaS/PaaS/IaaS comparison</strong><p>Place Microsoft 365 collaboration in the wider cloud service model.</p></a>
+                    <a class="path-card" href="storage-quota-management-ocn-level2-presentation.html"><strong>Storage quota management</strong><p>Manage growth, retention, and cleanup before storage becomes expensive.</p></a>
+                    <a class="path-card" href="cloud-collaboration-ocn-level2-presentation.html"><strong>Cloud collaboration</strong><p>Connect Teams practice to wider collaborative working habits.</p></a>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Show this as the learner's route through related cloud topics. Point out which deck helps if they struggle with permissions or file recovery.</aside>
+            </section>
+
+            <section data-quiz-intro>
+                <h2 class="animated-gradient"><i class="fas fa-brain" aria-hidden="true"></i> Knowledge check</h2>
+                <div class="quiz-status">
+                    <span class="quiz-pill" id="quiz-progress" aria-live="polite">0 / 6 answered</span>
+                    <div class="score-track" aria-hidden="true"><div class="score-fill" id="score-fill"></div></div>
+                    <span class="quiz-pill" id="quiz-score" aria-live="polite">Score: 0</span>
+                </div>
+                <div class="glass-card">
+                    <h3>Six questions</h3>
+                    <p>Answer each question once. The results slide gives a letter grade and a retry button. Use the feedback to revise your setup plan.</p>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Tell learners whether to answer individually or as a group. Reinforce that mistakes are useful diagnosis.</aside>
+            </section>
+
+            <section data-quiz="1">
+                <div class="quiz-status"><span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span><div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div><span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span></div>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q1. What is the best description of the relationship between Teams and SharePoint?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" role="button" tabindex="0" data-correct="true"><span>A</span>Teams is the collaboration front end; SharePoint stores and manages the files.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>B</span>They are unrelated products with no shared permissions.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>C</span>SharePoint only stores meeting recordings and nothing else.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>D</span>Teams replaces the need for file governance.</div>
+                    </div>
+                    <div class="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Confirm that the connected SharePoint site is why setup choices matter beyond chat.</aside>
+            </section>
+
+            <section data-quiz="2">
+                <div class="quiz-status"><span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span><div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div><span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span></div>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q2. Which setup sequence is safest?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" role="button" tabindex="0"><span>A</span>Invite everyone, then decide the purpose later.</div>
+                        <div class="quiz-option" role="button" tabindex="0" data-correct="true"><span>B</span>Create Team, name channels, set owners/members, create folders, set sharing defaults, invite users.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>C</span>Create every possible channel, then remove most of them.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>D</span>Start with guest invitations so external partners can organise files.</div>
+                    </div>
+                    <div class="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Link this directly to the sequencer. The right order reduces permission and structure mistakes.</aside>
+            </section>
+
+            <section data-quiz="3">
+                <div class="quiz-status"><span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span><div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div><span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span></div>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q3. Why should a Team normally have at least two owners?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" role="button" tabindex="0"><span>A</span>Because members cannot upload files unless there are two owners.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>B</span>Because Microsoft deletes Teams with one owner.</div>
+                        <div class="quiz-option" role="button" tabindex="0" data-correct="true"><span>C</span>So settings, membership, archive, and handover can be managed if one owner is absent.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>D</span>So every channel automatically becomes private.</div>
+                    </div>
+                    <div class="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Revisit the case study if learners miss this: orphaned Teams are common and avoidable.</aside>
+            </section>
+
+            <section data-quiz="4">
+                <div class="quiz-status"><span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span><div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div><span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span></div>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q4. When is a new channel better than a new folder?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" role="button" tabindex="0"><span>A</span>Whenever a single file needs a shorter name.</div>
+                        <div class="quiz-option" role="button" tabindex="0" data-correct="true"><span>B</span>When the work stream needs separate conversations, tabs, notifications, or audience context.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>C</span>Whenever the folder list has more than three items.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>D</span>Only when guest access is disabled for the whole tenant.</div>
+                    </div>
+                    <div class="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Clarify that folders organise files; channels organise collaboration context.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <div class="quiz-status"><span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span><div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div><span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span></div>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q5. Which guest access practice is strongest?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" role="button" tabindex="0"><span>A</span>Invite guests to the whole Team because it is quicker.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>B</span>Let guests decide which files they need and move them.</div>
+                        <div class="quiz-option" role="button" tabindex="0" data-correct="true"><span>C</span>Approve the need, define the sponsor, limit access, and set a review or expiry date.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>D</span>Use "anyone with the link" for all resources.</div>
+                    </div>
+                    <div class="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Emphasise least privilege and review dates, especially in education or project contexts.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <div class="quiz-status"><span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span><div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div><span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span></div>
+                <div class="quiz-container">
+                    <p class="quiz-question">Q6. What should happen when a project Team reaches the end of its useful life?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" role="button" tabindex="0"><span>A</span>Leave it active forever in case somebody wants it.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>B</span>Delete it immediately without checking records or evidence.</div>
+                        <div class="quiz-option" role="button" tabindex="0"><span>C</span>Rename it "old" and create a second identical Team.</div>
+                        <div class="quiz-option" role="button" tabindex="0" data-correct="true"><span>D</span>Review ownership, required retention, archive status, guest access, and cleanup actions.</div>
+                    </div>
+                    <div class="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Use this to reinforce lifecycle thinking. Archive is a managed decision, not an afterthought.</aside>
+            </section>
+
+            <section data-quiz-results>
+                <h2 class="animated-gradient"><i class="fas fa-award" aria-hidden="true"></i> Quiz results</h2>
+                <div class="results-card">
+                    <div class="quiz-status">
+                        <span class="quiz-pill" data-quiz-progress aria-live="polite">0 / 6 answered</span>
+                        <div class="score-track" aria-hidden="true"><div class="score-fill" data-score-fill></div></div>
+                        <span class="quiz-pill" data-quiz-score aria-live="polite">Score: 0</span>
+                    </div>
+                    <div class="grade-badge" id="grade-badge" aria-live="polite">--</div>
+                    <h3 id="results-heading" style="color: var(--brand-teal-light);">Answer the six questions to see your grade.</h3>
+                    <p id="results-detail">Your feedback will appear here.</p>
+                    <button class="action-btn primary" id="retry-quiz" type="button">Retry quiz</button>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Let learners record their grade and one revision target. Use the retry button if the class needs immediate reinforcement.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-star" aria-hidden="true"></i> Key takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-compass" aria-hidden="true"></i><h3>Purpose first</h3><p>A clear purpose drives Team type, channels, membership, and lifecycle.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-users-gear" aria-hidden="true"></i><h3>Ownership matters</h3><p>Two trained owners prevent orphaned spaces and unmanaged guest access.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-layer-group" aria-hidden="true"></i><h3>Structure should match work</h3><p>Use channels for conversations and folders for file organisation.</p></div>
+                    <div class="feature-card orange"><i class="fas fa-shield-halved" aria-hidden="true"></i><h3>Governance is usability</h3><p>Naming, sharing defaults, and archive plans make collaboration safer and easier.</p></div>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Summarise the four pillars and ask each learner to choose one they will apply in their practical task.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Career pathways</h2>
+                <div class="three-grid">
+                    <div class="feature-card orange"><i class="fas fa-headset" aria-hidden="true"></i><h3>IT support technician</h3><p>Creates and troubleshoots Teams, permissions, sync, and user access requests.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-cloud" aria-hidden="true"></i><h3>Microsoft 365 administrator</h3><p>Manages tenant policy, retention, guest access, sensitivity labels, and lifecycle rules.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-people-arrows" aria-hidden="true"></i><h3>Digital workplace champion</h3><p>Designs templates, trains teams, and improves collaboration habits across departments.</p></div>
+                </div>
+                <div class="stats-bar" style="margin-top: 20px;">
+                    <div class="stat-item teal"><span class="stat-number">Evidence</span><span class="stat-label">Screenshots, setup charters, and governance checklists show practical competence.</span></div>
+                    <div class="stat-item purple"><span class="stat-number">Skill blend</span><span class="stat-label">Technical configuration plus communication and process design.</span></div>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Link the practical task to employability evidence. Explain that workplace collaboration tools need both technical and people skills.</aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next steps and further reading</h2>
+                <div class="glass-card">
+                    <ul class="objectives-list">
+                        <li><i class="fas fa-play" aria-hidden="true"></i><span><strong>Build:</strong> create a draft setup charter for a real or sample Team.</span></li>
+                        <li><i class="fas fa-magnifying-glass" aria-hidden="true"></i><span><strong>Audit:</strong> inspect an existing Team and score it against the governance checklist.</span></li>
+                        <li><i class="fas fa-user-group" aria-hidden="true"></i><span><strong>Discuss:</strong> agree who should be owners, members, guests, and visitors.</span></li>
+                        <li><i class="fas fa-link" aria-hidden="true"></i><span><strong>Continue:</strong> move to OneDrive/SharePoint permissions or Version history restore for deeper file controls.</span></li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Assign one next step as homework or extension. Encourage learners to use the same checklist outside the classroom.</aside>
+            </section>
+
+            <section data-canvas-bg>
+                <div class="title-slide">
+                    <h2 class="animated-gradient">Thank you</h2>
+                    <p class="subtitle">Create collaboration spaces that people can understand, trust, and maintain.</p>
+                    <div class="glass-card-small">
+                        <p><strong>Exit prompt:</strong> name one governance rule you would add before inviting users to a new Team.</p>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Close with the exit prompt and gather two or three responses. Remind learners where to find the pathway decks for follow-up.</aside>
             </section>
         </div>
     </div>
-    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
-        Reveal.initialize({
-            hash: true, controls: true, progress: true, center: true,
-            transition: 'slide', backgroundTransition: 'fade',
-            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
-            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
-            plugins: [RevealNotes, RevealHighlight, RevealZoom]
-        });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+        const AppState = {
+            sequence: [
+                'Create Team',
+                'Create folders',
+                'Invite users',
+                'Set owners/members',
+                'Set sharing defaults',
+                'Name channels'
+            ],
+            correctSequence: [
+                'Create Team',
+                'Name channels',
+                'Set owners/members',
+                'Create folders',
+                'Set sharing defaults',
+                'Invite users'
+            ],
+            plannerScenario: 'class',
+            quiz: {
+                total: 6,
+                answers: {},
+                score: 0
+            },
+            canvas: {
+                ctx: null,
+                width: 0,
+                height: 0,
+                particles: [],
+                raf: null
+            }
+        };
+
+        const PlannerData = {
+            class: {
+                summary: 'Scenario: mixed groups of learners producing a project with drafts, final evidence, and teacher feedback.',
+                options: [
+                    {
+                        title: 'Recommended: channels by learning activity',
+                        body: 'General for announcements, Resources, Group Projects, Assessment Evidence, and Feedback. Folders separate Drafts, Final, and Rubrics.',
+                        verdict: 'recommended'
+                    },
+                    {
+                        title: 'Risky: one folder per learner in General',
+                        body: 'Everything lands in one channel. Conversations, feedback, and final evidence become difficult to find.',
+                        verdict: 'risky'
+                    },
+                    {
+                        title: 'Risky: private channel for every task',
+                        body: 'Too much permission complexity for normal class work, and owners spend time managing access rather than teaching.',
+                        verdict: 'risky'
+                    }
+                ]
+            },
+            department: {
+                summary: 'Scenario: a department Team used by staff for policies, meetings, schemes of work, resources, and cross-year planning.',
+                options: [
+                    {
+                        title: 'Recommended: channels by service area',
+                        body: 'General, Meetings, Curriculum, Resources, Assessment, and Staff Admin. Folders match academic year and document status.',
+                        verdict: 'recommended'
+                    },
+                    {
+                        title: 'Risky: single General channel dump',
+                        body: 'Fast to create, but meeting notes, policies, and resources compete in one feed and one folder.',
+                        verdict: 'risky'
+                    },
+                    {
+                        title: 'Risky: clone a new Team every month',
+                        body: 'Creates duplicates, breaks search, and makes ownership and retention hard to manage.',
+                        verdict: 'risky'
+                    }
+                ]
+            }
+        };
+
+        const QuizFeedback = {
+            1: 'Correct: Teams is the visible collaboration space, while SharePoint holds the files and many permissions behind the scenes.',
+            2: 'Correct: structure and controls should be ready before users arrive.',
+            3: 'Correct: two owners reduce operational risk and make handover possible.',
+            4: 'Correct: use channels when collaboration context changes, not just because a file exists.',
+            5: 'Correct: guest access should have a business reason, sponsor, scope, and review date.',
+            6: 'Correct: lifecycle review protects evidence, storage, ownership, and access.'
+        };
+
+        function activateOnKeyboard(element, callback) {
+            element.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    callback(event);
+                }
             });
+        }
+
+        function renderSequence() {
+            const list = document.getElementById('sequence-list');
+            if (!list) return;
+            list.innerHTML = '';
+            AppState.sequence.forEach((step, index) => {
+                const item = document.createElement('li');
+                item.className = 'sequence-item';
+                item.innerHTML = '<span class="sequence-number">' + (index + 1) + '</span><strong>' + step + '</strong><span class="sequence-controls"><button class="mini-btn" type="button" aria-label="Move ' + step + ' up">↑</button><button class="mini-btn" type="button" aria-label="Move ' + step + ' down">↓</button></span>';
+                const buttons = item.querySelectorAll('button');
+                buttons[0].disabled = index === 0;
+                buttons[1].disabled = index === AppState.sequence.length - 1;
+                buttons[0].addEventListener('click', () => moveSequence(index, -1));
+                buttons[1].addEventListener('click', () => moveSequence(index, 1));
+                list.appendChild(item);
+            });
+        }
+
+        function moveSequence(index, direction) {
+            const target = index + direction;
+            if (target < 0 || target >= AppState.sequence.length) return;
+            const copy = AppState.sequence.slice();
+            const temp = copy[index];
+            copy[index] = copy[target];
+            copy[target] = temp;
+            AppState.sequence = copy;
+            renderSequence();
+            const feedback = document.getElementById('sequence-feedback');
+            if (feedback) {
+                feedback.className = 'feedback-panel';
+                feedback.textContent = 'Step moved. Check the order when you are ready.';
+            }
+        }
+
+        function checkSequence() {
+            const feedback = document.getElementById('sequence-feedback');
+            const board = document.getElementById('sequencer-board');
+            const correct = AppState.sequence.every((step, index) => step === AppState.correctSequence[index]);
+            if (!feedback) return;
+            if (correct) {
+                feedback.className = 'feedback-panel success';
+                feedback.innerHTML = '<strong>Correct order.</strong><br>Create the workspace, shape the structure, assign people, prepare folders, lock sharing defaults, then invite users.';
+                return;
+            }
+            const firstWrong = AppState.sequence.findIndex((step, index) => step !== AppState.correctSequence[index]);
+            feedback.className = 'feedback-panel warning';
+            feedback.innerHTML = '<strong>Not yet.</strong><br>The first mismatch is position ' + (firstWrong + 1) + '. Reorder the list and check again.';
+            if (board) {
+                board.classList.remove('shake');
+                void board.offsetWidth;
+                board.classList.add('shake');
+            }
+        }
+
+        function resetSequence() {
+            AppState.sequence = ['Create Team', 'Create folders', 'Invite users', 'Set owners/members', 'Set sharing defaults', 'Name channels'];
+            renderSequence();
+            const feedback = document.getElementById('sequence-feedback');
+            if (feedback) {
+                feedback.className = 'feedback-panel';
+                feedback.textContent = 'Sequence reset. Arrange the six steps again.';
+            }
+        }
+
+        function initSequencer() {
+            const check = document.getElementById('check-sequence');
+            const reset = document.getElementById('reset-sequence');
+            if (check && !check.dataset.bound) {
+                check.dataset.bound = 'true';
+                check.addEventListener('click', checkSequence);
+            }
+            if (reset && !reset.dataset.bound) {
+                reset.dataset.bound = 'true';
+                reset.addEventListener('click', resetSequence);
+            }
+            renderSequence();
+        }
+
+        function renderPlanner() {
+            const data = PlannerData[AppState.plannerScenario];
+            const summary = document.getElementById('scenario-summary');
+            const options = document.getElementById('layout-options');
+            const feedback = document.getElementById('planner-feedback');
+            if (summary) summary.textContent = data.summary;
+            if (!options) return;
+            options.innerHTML = '';
+            data.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'layout-option';
+                button.innerHTML = '<strong>' + option.title + '</strong><span>' + option.body + '</span>';
+                button.addEventListener('click', () => chooseLayout(option, button));
+                activateOnKeyboard(button, () => chooseLayout(option, button));
+                options.appendChild(button);
+            });
+            if (feedback) {
+                feedback.className = 'feedback-panel';
+                feedback.textContent = 'Choose a layout to compare recommended and risky structures.';
+            }
+        }
+
+        function chooseLayout(option, button) {
+            document.querySelectorAll('.layout-option').forEach((el) => el.classList.remove('selected'));
+            button.classList.add('selected');
+            const feedback = document.getElementById('planner-feedback');
+            if (!feedback) return;
+            if (option.verdict === 'recommended') {
+                feedback.className = 'feedback-panel success';
+                feedback.innerHTML = '<strong>Recommended.</strong><br>' + option.body + ' This structure keeps conversations and files aligned with the way people work.';
+            } else {
+                feedback.className = 'feedback-panel warning';
+                feedback.innerHTML = '<strong>Risky structure.</strong><br>' + option.body + ' Rework it before inviting users.';
+            }
+        }
+
+        function initPlanner() {
+            document.querySelectorAll('.scenario-btn').forEach((button) => {
+                if (button.dataset.bound) return;
+                button.dataset.bound = 'true';
+                button.addEventListener('click', () => {
+                    AppState.plannerScenario = button.dataset.scenario;
+                    document.querySelectorAll('.scenario-btn').forEach((el) => el.classList.toggle('active', el === button));
+                    renderPlanner();
+                });
+            });
+            renderPlanner();
+        }
+
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach((card) => {
+                if (card.dataset.bound) return;
+                card.dataset.bound = 'true';
+                const toggle = () => card.classList.toggle('is-flipped');
+                card.addEventListener('click', toggle);
+                activateOnKeyboard(card, toggle);
+            });
+        }
+
+        function updateGovernanceStatus() {
+            const buttons = Array.from(document.querySelectorAll('.check-btn'));
+            const selected = buttons.filter((button) => button.getAttribute('aria-pressed') === 'true').length;
+            const status = document.getElementById('governance-status');
+            if (status) status.textContent = selected + ' / ' + buttons.length + ' governance checks selected.';
+        }
+
+        function initGovernanceChecklist() {
+            document.querySelectorAll('.check-btn').forEach((button) => {
+                if (button.dataset.bound) return;
+                button.dataset.bound = 'true';
+                button.addEventListener('click', () => {
+                    const pressed = button.getAttribute('aria-pressed') === 'true';
+                    button.setAttribute('aria-pressed', String(!pressed));
+                    updateGovernanceStatus();
+                });
+            });
+            updateGovernanceStatus();
+        }
+
+        function initGlossary() {
+            const input = document.getElementById('glossary-search');
+            const count = document.getElementById('glossary-count');
+            const items = Array.from(document.querySelectorAll('.glossary-item'));
+            if (!input || input.dataset.bound) return;
+            input.dataset.bound = 'true';
+            input.addEventListener('input', () => {
+                const query = input.value.trim().toLowerCase();
+                let visible = 0;
+                items.forEach((item) => {
+                    const haystack = (item.textContent + ' ' + item.dataset.terms).toLowerCase();
+                    const match = !query || haystack.includes(query);
+                    item.hidden = !match;
+                    if (match) visible += 1;
+                });
+                if (count) count.textContent = visible + ' term' + (visible === 1 ? '' : 's') + ' shown.';
+            });
+        }
+
+        function updateQuizUI() {
+            const answered = Object.keys(AppState.quiz.answers).length;
+            AppState.quiz.score = Object.values(AppState.quiz.answers).filter(Boolean).length;
+            const progressText = answered + ' / ' + AppState.quiz.total + ' answered';
+            const scoreText = 'Score: ' + AppState.quiz.score;
+            document.querySelectorAll('[data-quiz-progress], #quiz-progress').forEach((el) => { el.textContent = progressText; });
+            document.querySelectorAll('[data-quiz-score], #quiz-score').forEach((el) => { el.textContent = scoreText; });
+            document.querySelectorAll('[data-score-fill], #score-fill').forEach((el) => {
+                el.style.width = Math.round((AppState.quiz.score / AppState.quiz.total) * 100) + '%';
+            });
+            updateResults();
+        }
+
+        function chooseQuizOption(option) {
+            const section = option.closest('[data-quiz]');
+            if (!section) return;
+            const question = section.dataset.quiz;
+            if (Object.prototype.hasOwnProperty.call(AppState.quiz.answers, question)) return;
+            const correct = option.dataset.correct === 'true';
+            AppState.quiz.answers[question] = correct;
+            section.querySelectorAll('.quiz-option').forEach((candidate) => {
+                candidate.classList.add('disabled');
+                candidate.setAttribute('aria-disabled', 'true');
+                if (candidate.dataset.correct === 'true') candidate.classList.add('correct');
+            });
+            if (!correct) option.classList.add('incorrect');
+            const feedback = section.querySelector('.quiz-feedback');
+            if (feedback) feedback.textContent = correct ? QuizFeedback[question] : 'Not quite. ' + QuizFeedback[question];
+            updateQuizUI();
+        }
+
+        function gradeForScore(score) {
+            if (score === 6) return { grade: 'A', heading: 'Excellent governance judgement', detail: 'You can explain the setup sequence and the reasons behind it.' };
+            if (score === 5) return { grade: 'B', heading: 'Strong result', detail: 'Review the one missed area and apply it to the practical task.' };
+            if (score === 4) return { grade: 'C', heading: 'Secure foundation', detail: 'Revisit guest access, lifecycle, or structure choices before building.' };
+            if (score === 3) return { grade: 'D', heading: 'Developing', detail: 'Use the glossary and common faults table, then retry.' };
+            return { grade: 'R', heading: 'Review needed', detail: 'Work back through the setup sequence and governance cards before retrying.' };
+        }
+
+        function updateResults() {
+            const grade = document.getElementById('grade-badge');
+            const heading = document.getElementById('results-heading');
+            const detail = document.getElementById('results-detail');
+            if (!grade || !heading || !detail) return;
+            if (Object.keys(AppState.quiz.answers).length < AppState.quiz.total) {
+                grade.textContent = '--';
+                heading.textContent = 'Answer the six questions to see your grade.';
+                detail.textContent = 'Your feedback will appear here.';
+                return;
+            }
+            const result = gradeForScore(AppState.quiz.score);
+            grade.textContent = result.grade;
+            heading.textContent = 'Grade ' + result.grade + ': ' + result.heading;
+            detail.textContent = result.detail;
+        }
+
+        function resetQuiz() {
+            AppState.quiz.answers = {};
+            AppState.quiz.score = 0;
+            document.querySelectorAll('.quiz-option').forEach((option) => {
+                option.classList.remove('correct', 'incorrect', 'disabled');
+                option.removeAttribute('aria-disabled');
+            });
+            document.querySelectorAll('.quiz-feedback').forEach((feedback) => {
+                feedback.textContent = 'Choose the best answer.';
+            });
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            document.querySelectorAll('.quiz-option').forEach((option) => {
+                if (option.dataset.bound) return;
+                option.dataset.bound = 'true';
+                option.addEventListener('click', () => chooseQuizOption(option));
+                activateOnKeyboard(option, () => chooseQuizOption(option));
+            });
+            const retry = document.getElementById('retry-quiz');
+            if (retry && !retry.dataset.bound) {
+                retry.dataset.bound = 'true';
+                retry.addEventListener('click', resetQuiz);
+            }
+            updateQuizUI();
+        }
+
+        function resizeCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas) return;
+            AppState.canvas.width = canvas.width = window.innerWidth;
+            AppState.canvas.height = canvas.height = window.innerHeight;
+        }
+
+        function seedCanvas() {
+            AppState.canvas.particles = Array.from({ length: 56 }, () => ({
+                x: Math.random() * AppState.canvas.width,
+                y: Math.random() * AppState.canvas.height,
+                vx: (Math.random() - 0.5) * 0.35,
+                vy: (Math.random() - 0.5) * 0.35,
+                r: Math.random() * 2 + 1
+            }));
+        }
+
+        function drawCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            const ctx = AppState.canvas.ctx;
+            if (!canvas || !ctx) return;
+            ctx.clearRect(0, 0, AppState.canvas.width, AppState.canvas.height);
+            ctx.fillStyle = 'rgba(0, 189, 165, 0.68)';
+            ctx.strokeStyle = 'rgba(247, 147, 30, 0.18)';
+            AppState.canvas.particles.forEach((particle, index) => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                if (particle.x < 0 || particle.x > AppState.canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > AppState.canvas.height) particle.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+                ctx.fill();
+                for (let i = index + 1; i < AppState.canvas.particles.length; i += 1) {
+                    const other = AppState.canvas.particles[i];
+                    const dx = particle.x - other.x;
+                    const dy = particle.y - other.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 130) {
+                        ctx.globalAlpha = 1 - distance / 130;
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(other.x, other.y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            });
+            AppState.canvas.raf = window.requestAnimationFrame(drawCanvas);
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            canvas.dataset.bound = 'true';
+            AppState.canvas.ctx = canvas.getContext('2d');
+            resizeCanvas();
+            seedCanvas();
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                seedCanvas();
+            });
+            drawCanvas();
+        }
+
+        function updateCanvasVisibility() {
+            const current = Reveal.getCurrentSlide ? Reveal.getCurrentSlide() : null;
+            document.body.classList.toggle('canvas-active', Boolean(current && current.hasAttribute('data-canvas-bg')));
+        }
+
+        function initAll() {
+            initSequencer();
+            initPlanner();
+            initFlipCards();
+            initGovernanceChecklist();
+            initGlossary();
+            initQuiz();
+            initCanvas();
+            updateCanvasVisibility();
+        }
+
+        Reveal.on('ready', initAll);
+        Reveal.on('slidechanged', () => {
+            initAll();
+            updateCanvasVisibility();
+        });
+
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            transition: 'slide',
+            plugins: window.RevealNotes ? [RevealNotes] : []
         });
     </script>
 </body>
