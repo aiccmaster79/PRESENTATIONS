@@ -1,734 +1,1907 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-scheme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VEX Robotics &amp; Base Bot | OCN NI Level 2 IT</title>
+    <title>#141 | Level 2 | VEX Robotics &amp; Base Bot | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* ====== BRAND COLORS ====== */
         :root {
+            --bg: #101114;
+            --surface: #16181d;
+            --ink: #ecedf0;
+            --ink-dim: rgba(236, 237, 240, 0.62);
+            --ink-faint: rgba(236, 237, 240, 0.4);
+            --rule: rgba(255, 255, 255, 0.1);
+            --accent: #00BDA5;
+            --cue: #F7931E;
+            --you: #F7931E;
+            --provider: #8A2BE2;
+            --pass: #22c55e;
+            --fail: #ef4444;
             --brand-orange: #F7931E;
             --brand-purple: #8A2BE2;
             --brand-teal: #00BDA5;
-            --brand-orange-dark: #d47a0a;
-            --brand-purple-dark: #6a1fb2;
-            --brand-teal-dark: #008f7a;
-            --brand-orange-light: #ffb858;
-            --brand-purple-light: #a855f7;
-            --brand-teal-light: #3dd5c0;
-            --dark-bg: #0a0a1a;
-            --glass-bg: rgba(20, 20, 40, 0.85);
+            --motor: #8A2BE2;
+            --sensor: #00BDA5;
+            --power: #F7931E;
         }
 
-        /* ====== GLOBAL STYLES ====== */
+        :root[data-scheme="light"] {
+            --bg: #f7f8fa;
+            --surface: #eceef1;
+            --ink: #14161a;
+            --ink-dim: rgba(20, 22, 26, 0.6);
+            --ink-faint: rgba(20, 22, 26, 0.45);
+            --rule: rgba(20, 22, 26, 0.12);
+            --accent: #008574;
+            --cue: #b06a00;
+            --motor: #6a1fb2;
+            --sensor: #008574;
+            --power: #b06a00;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            background: var(--bg);
+            color: var(--ink);
+        }
+
         .reveal {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--ink);
+            background: var(--bg);
         }
 
-        .reveal .slides {
-            text-align: left;
-        }
+        .reveal .slides { text-align: left; }
 
-        .reveal .slides section {
+        .reveal .slides > section {
             height: 100%;
-            padding: 20px 40px;
-        }
-
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: -0.02em;
-        }
-
-        .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
-        .reveal h3 { font-size: 1.4em; }
-        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
-
-        /* ====== ANIMATED GRADIENT TITLE ====== */
-        .animated-gradient {
-            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 8s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* ====== GLASSMORPHISM CARDS ====== */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        .glass-card-small {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* ====== FEATURE GRID ====== */
-        .feature-grid {
+            padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: 420px minmax(0, 1fr);
         }
 
-        .feature-card {
-            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--brand-teal);
-            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
-        }
-
-        .feature-card i {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-
-        .feature-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .feature-card p {
-            font-size: 0.85em;
-            color: rgba(255, 255, 255, 0.7);
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            text-transform: none;
+            color: var(--ink);
+            text-shadow: none;
             margin: 0;
         }
 
-        /* ====== COMPARISON TABLE ====== */
-        .comparison-container {
+        .reveal h1 { font-size: 124px; line-height: 0.95; }
+        .reveal h2 { font-size: 76px; line-height: 1.05; margin-bottom: 28px; }
+        .reveal h3 { font-size: 36px; line-height: 1.2; }
+
+        /* —— Rail —— */
+        .rail {
+            background: var(--surface);
+            border-right: 1px solid var(--rule);
+            padding: 56px 44px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            height: 100%;
+        }
+
+        .rail-deck-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            margin: 0 0 10px;
+        }
+
+        .rail-deck-name {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin: 0 0 22px;
+            color: var(--ink);
+        }
+
+        .rail-rule {
+            border: 0;
+            border-top: 1px solid var(--rule);
+            margin: 0 0 22px;
+        }
+
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .chapter-list li {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            color: var(--ink-faint);
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: 36px 1fr auto;
+            gap: 10px;
+            align-items: baseline;
         }
 
-        .comparison-box {
-            background: var(--glass-bg);
-            border-radius: 16px;
-            padding: 25px;
-            border: 2px solid;
+        .chapter-list li.current { color: var(--ink); }
+        .chapter-list li.current .nn { color: var(--accent); }
+
+        .rail-next {
+            margin-top: auto;
+            padding-top: 24px;
         }
 
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-
-        .comparison-box h3 {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .rail-next .label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin: 0 0 10px;
         }
 
-        .comparison-box.type1 h3 { color: var(--brand-purple); }
-        .comparison-box.type2 h3 { color: var(--brand-teal); }
+        .rail-next .cue {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 26px;
+            line-height: 1.35;
+            color: var(--cue);
+            margin: 0;
+        }
 
-        .comparison-box ul {
+        .rail-chapter-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin: 0 0 12px;
+        }
+
+        .rail-chapter-name {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin: 0 0 14px;
+            color: var(--ink);
+        }
+
+        .rail-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            color: var(--accent);
+            margin: 0 0 22px;
+        }
+
+        .rail-note {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 26px;
+            line-height: 1.4;
+            color: var(--ink-dim);
+            margin: 0;
+        }
+
+        .rail-progress {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            padding-top: 28px;
+        }
+
+        .rail-progress span {
+            height: 8px;
+            background: var(--rule);
+            display: block;
+        }
+
+        .rail-progress span.on { background: var(--accent); }
+
+        /* —— Content —— */
+        .content {
+            min-width: 0;
+            height: 100%;
+            padding: 72px 80px;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .content.bleed {
+            padding: 0;
+            position: relative;
+        }
+
+        .lead {
+            font-size: 46px;
+            line-height: 1.35;
+            color: var(--ink);
+            margin: 0 0 24px;
+            max-width: 28ch;
+        }
+
+        .body {
+            font-size: 32px;
+            line-height: 1.5;
+            color: var(--ink-dim);
+            margin: 0 0 18px;
+            max-width: 42ch;
+        }
+
+        .cue-line {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            color: var(--cue);
+            margin: 18px 0 0;
+            line-height: 1.5;
+        }
+
+        .obj-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .comparison-box li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.85em;
+        .obj-list li {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 24px;
+            align-items: start;
+            border-top: 1px solid var(--rule);
+            padding: 22px 0;
         }
 
-        .comparison-box li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--brand-orange);
+        .obj-list .num {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 92px;
+            font-weight: 700;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            color: var(--accent);
         }
 
-        /* ====== ARCHITECTURE DIAGRAM ====== */
-        .architecture-diagram {
+        .obj-list .num.motor { color: var(--motor); }
+        .obj-list .num.sensor { color: var(--sensor); }
+        .obj-list .num.power { color: var(--power); }
+
+        .obj-list .text {
+            padding-top: 12px;
+        }
+
+        .obj-list strong {
+            display: block;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .obj-list p {
+            font-size: 28px;
+            line-height: 1.4;
+            color: var(--ink-dim);
+            margin: 0;
+            max-width: 36ch;
+        }
+
+        .stack {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            max-width: 600px;
-            margin: 0 auto;
+            gap: 0;
         }
 
-        .arch-layer {
-            width: 100%;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: transform 0.3s ease;
-        }
-
-        .arch-layer:hover { transform: scale(1.02); }
-
-        .layer-app { background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark)); }
-        .layer-os { background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark)); }
-        .layer-brain { background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark)); }
-        .layer-hardware { background: linear-gradient(135deg, #444, #222); border: 2px solid #666; }
-
-        .arch-label {
-            font-size: 0.7em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ====== BENEFITS LIST ====== */
-        .benefits-grid {
+        .stack li {
+            border: 1px solid var(--rule);
+            border-bottom: 0;
+            padding: 22px 28px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 160px 1fr;
             gap: 20px;
-            margin-top: 25px;
+            align-items: center;
+            background: var(--surface);
         }
 
-        .benefit-item {
+        .stack li:last-child { border-bottom: 1px solid var(--rule); }
+
+        .stack .layer {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .stack .layer.motor { color: var(--motor); }
+        .stack .layer.brain { color: var(--accent); }
+        .stack .layer.sensor { color: var(--sensor); }
+        .stack .layer.power { color: var(--power); }
+
+        .stack .desc {
+            font-size: 30px;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        .stack .sub {
+            display: block;
+            font-size: 24px;
+            color: var(--ink-dim);
+            margin-top: 4px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .col-block {
+            border-top: 1px solid var(--rule);
+            padding-top: 20px;
+        }
+
+        .col-block .eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin: 0 0 12px;
+        }
+
+        .col-block .eyebrow.motor { color: var(--motor); }
+        .col-block .eyebrow.sensor { color: var(--sensor); }
+        .col-block .eyebrow.power { color: var(--power); }
+        .col-block .eyebrow.accent { color: var(--accent); }
+
+        .col-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .col-block li {
+            font-size: 28px;
+            line-height: 1.45;
+            color: var(--ink-dim);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .code-plate {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 28px 32px;
+            margin-top: 12px;
+        }
+
+        .code-plate pre {
+            margin: 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 26px;
+            line-height: 1.7;
+            color: var(--accent);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .trade-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .trade-item {
+            border-top: 4px solid var(--accent);
+            padding-top: 16px;
+        }
+
+        .trade-item.motor { border-top-color: var(--motor); }
+        .trade-item.sensor { border-top-color: var(--sensor); }
+        .trade-item.power { border-top-color: var(--power); }
+
+        .trade-item h3 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .trade-item p {
+            font-size: 28px;
+            line-height: 1.4;
+            color: var(--ink-dim);
+            margin: 0;
+            max-width: 28ch;
+        }
+
+        .fault-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .fault-table th,
+        .fault-table td {
+            text-align: left;
+            padding: 16px 14px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 26px;
+            line-height: 1.35;
+            vertical-align: top;
+        }
+
+        .fault-table th {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .fault-table td:first-child { color: var(--ink); }
+        .fault-table td { color: var(--ink-dim); }
+
+        .plate {
+            margin: 0;
+            height: 100%;
             display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 20px;
-            background: var(--glass-bg);
-            border-radius: 12px;
-            border-left: 4px solid var(--brand-teal);
+            flex-direction: column;
+            background: var(--surface);
+            position: relative;
         }
 
-        .benefit-item i {
-            font-size: 1.5em;
-            color: var(--brand-orange);
-            flex-shrink: 0;
+        .plate-frame {
+            flex: 1;
+            min-height: 0;
+            background:
+                linear-gradient(var(--rule) 1px, transparent 1px) 0 0 / 100% 40px,
+                linear-gradient(90deg, var(--rule) 1px, transparent 1px) 0 0 / 40px 100%,
+                var(--bg);
+            display: flex;
+            align-items: flex-end;
+            padding: 40px 48px 220px;
         }
 
-        .benefit-item h4 { font-size: 1em; margin: 0 0 5px 0; color: #fff; }
-        .benefit-item p { font-size: 0.8em; color: rgba(255, 255, 255, 0.7); margin: 0; }
+        .plate-frame p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+            margin: 0;
+            max-width: 42ch;
+        }
 
-        /* ====== QUIZ STYLES ====== */
-        .quiz-container { max-width: 800px; margin: 0 auto; }
+        .plate-scrim {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 300px;
+            background: linear-gradient(to top, var(--bg), transparent);
+            pointer-events: none;
+        }
 
-        .quiz-question {
-            font-size: 1.2em;
-            margin-bottom: 25px;
-            color: var(--brand-orange);
+        .plate-title {
+            position: absolute;
+            left: 80px;
+            right: 80px;
+            bottom: 64px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .plate-title h2 {
+            font-size: 72px;
+            margin: 0 0 12px;
+        }
+
+        .plate-title p {
+            font-size: 30px;
+            color: var(--ink-dim);
+            margin: 0;
+            max-width: 36ch;
+        }
+
+        /* —— Presenter HUD —— */
+        .hud {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .hud-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin: 0 0 8px;
+        }
+
+        .clock {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 118px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .clock.warn { color: var(--cue); }
+        .clock.over { color: var(--fail); }
+
+        .clock-cap {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 21px;
+            color: var(--ink-dim);
+            margin: 0 0 12px;
+        }
+
+        .clock-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .clock-actions button,
+        .reveal-answer,
+        .scheme-toggle,
+        .back-to-index,
+        .glossary-close,
+        .quiz-btn,
+        .confidence button {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            border-radius: 0;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        .clock-actions button:hover,
+        .clock-actions button:focus-visible,
+        .reveal-answer:hover,
+        .reveal-answer:focus-visible,
+        .scheme-toggle:hover,
+        .scheme-toggle:focus-visible,
+        .back-to-index:hover,
+        .back-to-index:focus-visible,
+        .glossary-close:hover,
+        .glossary-close:focus-visible,
+        .quiz-btn:hover,
+        .quiz-btn:focus-visible,
+        .confidence button:hover,
+        .confidence button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-color: var(--accent);
+        }
+
+        .say {
+            font-size: 24px;
+            color: var(--ink-dim);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .say span {
+            display: block;
+            color: var(--cue);
+            font-size: 26px;
+            margin-top: 8px;
+            line-height: 1.35;
+        }
+
+        .activity-body {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            flex: 1;
+        }
+
+        .prompt-box {
+            border-left: 4px solid var(--cue);
+            padding-left: 24px;
+        }
+
+        .prompt-box p {
+            font-size: 34px;
+            line-height: 1.4;
+            color: var(--ink);
+            margin: 0;
+            max-width: 36ch;
+        }
+
+        .confidence {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .confidence button {
+            text-align: left;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 160px;
+        }
+
+        .confidence .band {
+            font-size: 22px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ink-dim);
+        }
+
+        .confidence .desc {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 24px;
+            color: var(--ink);
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .confidence .count {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 76px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            color: var(--accent);
+        }
+
+        .answer {
+            font-size: 30px;
+            line-height: 1.45;
+            color: var(--ink);
+            margin: 12px 0 0;
+            max-width: 40ch;
+            border-top: 1px solid var(--rule);
+            padding-top: 16px;
+        }
+
+        .answer[hidden] { display: none; }
+
+        /* —— Quiz —— */
+        .quiz-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .quiz-progress {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            color: var(--accent);
+            margin: 0 0 16px;
+        }
+
+        .quiz-q {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin: 0 0 24px;
+            max-width: 28ch;
         }
 
         .quiz-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .quiz-option {
-            background: var(--glass-bg);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .quiz-option:hover {
-            border-color: var(--brand-teal);
-            background: rgba(0, 189, 165, 0.1);
-        }
-
-        .quiz-option.correct {
-            border-color: #22c55e;
-            background: rgba(34, 197, 94, 0.2);
-        }
-
-        .quiz-option.incorrect {
-            border-color: #ef4444;
-            background: rgba(239, 68, 68, 0.2);
-        }
-
-        .quiz-option span {
-            display: block;
-            font-weight: 600;
-            color: var(--brand-purple);
-            margin-bottom: 5px;
-        }
-
-        /* ====== STATS BAR ====== */
-        .stats-bar {
             display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-options button {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 28px;
+            text-align: left;
+            background: var(--surface);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            border-radius: 0;
+            padding: 16px 18px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .quiz-options button .k {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--cue);
+        }
+
+        .quiz-options button:hover,
+        .quiz-options button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-color: var(--accent);
+        }
+
+        .quiz-options button.correct { border-color: var(--pass); color: var(--pass); }
+        .quiz-options button.incorrect { border-color: var(--fail); color: var(--fail); }
+        .quiz-options button:disabled { cursor: default; opacity: 0.9; }
+
+        .quiz-why {
+            font-size: 26px;
+            color: var(--ink-dim);
+            line-height: 1.45;
+            min-height: 2.5em;
+            margin: 0;
+            max-width: 42ch;
+        }
+
+        .results-grade {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 124px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            color: var(--accent);
+            margin: 0 0 12px;
+        }
+
+        .results-score {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 26px;
+            color: var(--ink);
+            margin: 0 0 16px;
+        }
+
+        .results-msg {
+            font-size: 32px;
+            line-height: 1.4;
+            color: var(--ink-dim);
+            margin: 0 0 12px;
+            max-width: 34ch;
+        }
+
+        .results-meaning {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            color: var(--cue);
+            line-height: 1.5;
+            margin: 0 0 24px;
+            max-width: 42ch;
+        }
+
+        .takeaways {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .takeaways li {
+            border-top: 1px solid var(--rule);
+            padding: 20px 0;
+            display: grid;
+            grid-template-columns: 130px 1fr;
             gap: 20px;
         }
 
-        .stat-item { text-align: center; padding: 20px; }
-
-        .stat-number {
-            font-size: 2.5em;
+        .takeaways .num {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 72px;
             font-weight: 700;
+            line-height: 0.9;
+            color: var(--accent);
+        }
+
+        .takeaways strong {
             display: block;
-            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 34px;
+            margin-bottom: 6px;
         }
 
-        .stat-label {
-            font-size: 0.85em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .takeaways p {
+            font-size: 28px;
+            color: var(--ink-dim);
+            margin: 0;
+            max-width: 34ch;
         }
 
-        /* ====== HIGHLIGHT BOX ====== */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
+        .close-box {
+            border-left: 4px solid var(--cue);
+            padding-left: 28px;
+            margin-top: 12px;
         }
 
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-
-        /* ====== RESPONSIVE ====== */
-        @media (max-width: 768px) {
-            .feature-grid, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .comparison-container { grid-template-columns: 1fr; }
+        .close-box p {
+            font-size: 42px;
+            line-height: 1.3;
+            color: var(--ink);
+            margin: 0;
+            max-width: 22ch;
         }
 
-        /* ====== FRAGMENT ANIMATIONS ====== */
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* ====== TITLE SLIDE ====== */
-        .title-slide {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-        }
-
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
-
-        .title-slide .qualification {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px;
-            border-radius: 30px;
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        /* ====== LEARNING OBJECTIVES ====== */
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
-
-        .objectives-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: var(--glass-bg);
-            border-radius: 10px;
-            border-left: 4px solid var(--brand-orange);
-        }
-
-        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
-
-        /* ====== BACK TO INDEX ====== */
+        /* —— Chrome —— */
         .back-to-index {
             position: fixed;
             top: 16px;
             left: 16px;
-            z-index: 100;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.55rem 0.95rem;
-            border-radius: 999px;
+            z-index: 120;
             text-decoration: none;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            background: rgba(20, 20, 40, 0.88);
-            border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+            font-size: 20px;
+            padding: 8px 12px;
         }
 
-        .back-to-index:hover,
-        .back-to-index:focus-visible {
-            border-color: #00BDA5;
-            background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px);
-            outline: none;
-            color: #fff;
+        .scheme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 120;
+            font-size: 20px;
+            padding: 8px 12px;
         }
 
-        .back-to-index i {
-            color: #00BDA5;
-            font-size: 0.9rem;
-        }
-
-        /* ====== SITE CREDIT ====== */
         .site-credit {
             position: fixed;
             left: 50%;
-            bottom: 14px;
+            bottom: 12px;
             transform: translateX(-50%);
             z-index: 100;
             margin: 0;
-            padding: 0.35rem 0.85rem;
-            border-radius: 999px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            color: var(--ink-faint);
             pointer-events: none;
             white-space: nowrap;
         }
 
+        .glossary-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(16, 17, 20, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+
+        .glossary-overlay.open { display: flex; }
+
+        :root[data-scheme="light"] .glossary-overlay {
+            background: rgba(247, 248, 250, 0.94);
+        }
+
+        .glossary-panel {
+            width: min(1100px, 100%);
+            max-height: 80vh;
+            overflow: auto;
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 28px 30px;
+        }
+
+        .glossary-panel header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .glossary-panel h2 {
+            font-size: 42px;
+            margin: 0;
+        }
+
+        .glossary-search {
+            width: 100%;
+            margin-bottom: 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            padding: 12px 14px;
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+        }
+
+        .glossary-search:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .glossary-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .glossary-item {
+            border: 1px solid var(--rule);
+            padding: 14px 16px;
+        }
+
+        .glossary-item.hidden { display: none; }
+
+        .glossary-item strong {
+            display: block;
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .glossary-item span {
+            display: block;
+            font-size: 24px;
+            line-height: 1.35;
+            color: var(--ink-dim);
+        }
+
+        .reveal .controls,
+        .reveal .progress { color: var(--accent); }
+
+        .reveal .progress span { background: var(--accent); }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; animation: none !important; }
+        }
+
+        @media (max-width: 900px) {
+            .reveal .slides > section {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+            }
+            .rail {
+                border-right: 0;
+                border-bottom: 1px solid var(--rule);
+                padding: 28px 24px;
+                min-height: auto;
+            }
+            .rail-progress { display: none; }
+            .content { padding: 36px 28px; }
+            .reveal h1 { font-size: 64px; }
+            .reveal h2 { font-size: 42px; }
+            .lead { font-size: 32px; }
+            .obj-list li,
+            .takeaways li { grid-template-columns: 64px 1fr; }
+            .obj-list .num,
+            .takeaways .num { font-size: 48px; }
+            .two-col,
+            .trade-grid,
+            .confidence,
+            .glossary-list { grid-template-columns: 1fr; }
+            .clock { font-size: 72px; }
+            .site-credit { display: none; }
+            .chapter-list { display: none; }
+        }
     </style>
 </head>
 <body>
-    <a class="back-to-index" href="index.html" aria-label="Back to index">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        <span>Back to index</span>
-    </a>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">← index</a>
+    <button class="scheme-toggle" type="button" aria-pressed="false">Light</button>
+    <p class="site-credit">OCN NI · deck 141 · studio</p>
+
+    <div class="glossary-overlay" id="glossary-overlay" role="dialog" aria-modal="true" aria-labelledby="glossary-title" hidden>
+        <div class="glossary-panel">
+            <header>
+                <h2 id="glossary-title">Glossary</h2>
+                <button class="glossary-close" type="button" id="glossary-close">close [esc]</button>
+            </header>
+            <input id="glossary-search" class="glossary-search" type="search" placeholder="Filter terms…" aria-label="Filter glossary terms">
+            <div class="glossary-list" id="glossary-list">
+                <div class="glossary-item" data-terms="v5 brain controller processor"><strong>V5 Brain</strong><span>Main controller that runs the program and drives motors and sensors.</span></div>
+                <div class="glossary-item" data-terms="base bot chassis starter platform"><strong>Base Bot</strong><span>Starter VEX drivetrain platform used to learn build and control fundamentals.</span></div>
+                <div class="glossary-item" data-terms="smart motor encoder pwm"><strong>Smart Motor</strong><span>V5 motor with built-in encoder feedback for speed and position control.</span></div>
+                <div class="glossary-item" data-terms="encoder rotation sensor wheel turns"><strong>Encoder / rotation sensor</strong><span>Counts how far a motor or wheel has turned so distance can be measured.</span></div>
+                <div class="glossary-item" data-terms="ultrasonic distance sensor"><strong>Distance sensor</strong><span>Measures how far objects are — often ultrasonic on classroom kits.</span></div>
+                <div class="glossary-item" data-terms="imu inertial gyro accelerometer"><strong>IMU</strong><span>Inertial Measurement Unit — tracks heading and motion for straighter drives.</span></div>
+                <div class="glossary-item" data-terms="differential steering tank drive"><strong>Differential steering</strong><span>Turning by running left and right drive sides at different speeds.</span></div>
+                <div class="glossary-item" data-terms="gear ratio torque speed"><strong>Gear ratio</strong><span>Trade-off between wheel speed and pushing torque.</span></div>
+                <div class="glossary-item" data-terms="autonomous driver control match"><strong>Autonomous</strong><span>Robot follows pre-written code with no live driver input.</span></div>
+                <div class="glossary-item" data-terms="driver control teleop controller"><strong>Driver control</strong><span>Student operates the robot live with a controller during a match.</span></div>
+                <div class="glossary-item" data-terms="vexcode blocks c++ text"><strong>VEXcode</strong><span>Official IDE with Blocks and text (C++) programming for VEX robots.</span></div>
+                <div class="glossary-item" data-terms="chassis frame cog stability"><strong>Chassis</strong><span>Structural frame that holds motors, brain, battery and wheels.</span></div>
+            </div>
+        </div>
+    </div>
+
     <div class="reveal">
         <div class="slides">
 
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">VEX Robotics &amp; Base Bot</h1>
-                    <p class="subtitle">Building, Programming, and Competing</p>
-                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+            <!-- 01 Title -->
+            <section data-chapter="0">
+                <aside class="rail" aria-label="Presenter rail">
+                    <p class="rail-deck-num">No. 141</p>
+                    <p class="rail-deck-name">VEX Base Bot</p>
+                    <hr class="rail-rule">
+                    <ol class="chapter-list">
+                        <li class="current"><span class="nn">01</span><span>Hook</span><span>4</span></li>
+                        <li><span class="nn">02</span><span>Base Bot</span><span>12</span></li>
+                        <li><span class="nn">03</span><span>Build</span><span>10</span></li>
+                        <li><span class="nn">04</span><span>Code</span><span>10</span></li>
+                        <li><span class="nn">05</span><span>Practice</span><span>12</span></li>
+                        <li><span class="nn">06</span><span>Check</span><span>12</span></li>
+                    </ol>
+                    <div class="rail-next">
+                        <p class="label">Next up</p>
+                        <p class="cue">“What happens if the bot drives with a loose motor cable?”</p>
+                    </div>
+                </aside>
+                <div class="content bleed">
+                    <figure class="plate">
+                        <div class="plate-frame">
+                            <p>img/141-classroom-base-bot.jpg<br>Author plate · school robotics bench · Base Bot chassis on mats</p>
+                        </div>
+                        <div class="plate-scrim" aria-hidden="true"></div>
+                        <div class="plate-title">
+                            <h1>VEX Base Bot</h1>
+                            <p>Build, drive and program — Level 2 robotics</p>
+                        </div>
+                    </figure>
                 </div>
+                <aside class="notes">Timing: 2 minutes. Open with the physical bot on the bench if you have one. Point at the chapter list so learners know the shape of the lesson.</aside>
             </section>
 
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Understand</strong> what VEX Robotics is and its educational purpose</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> the components of a VEX Base Bot</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Explain</strong> how motors, sensors, and controllers work together</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Program</strong> basic robot movements using VEXCode</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Apply</strong> engineering principles to improve robot performance</span></li>
-                </ul>
+            <!-- 02 Hook -->
+            <section data-chapter="1" data-slide-meta="4 min · slide 2 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 01</p>
+                    <p class="rail-chapter-name">Hook</p>
+                    <p class="rail-meta">4 minutes · slide 2 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Hold up a motor cable. Ask who owns the fault when a “working” program fails.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>A working program still fails</h2>
+                    <p class="lead">If a drive motor cable is half-seated, the Base Bot pulls left, burns a port, or tips a scoring object — and the class blames the code.</p>
+                    <p class="body">Getting the build wrong wastes match time. Getting the responsibility wrong wastes learning time.</p>
+                    <p class="cue-line">Say: “Hardware and code fail as a team — diagnose both.”</p>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Use a real loose cable demo if safe. Consequence must feel concrete before objectives.</aside>
             </section>
 
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-robot"></i> What is VEX Robotics?</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 15px;">A Hands-On STEM Education Platform</h3>
-                    <p style="font-size: 0.95em; line-height: 1.8; margin-bottom: 0;">VEX Robotics is a global robotics education initiative that engages students in science, technology, engineering, and mathematics (STEM). It provides accessible, affordable robotics kits and competitive challenges that build problem-solving, teamwork, and coding skills.</p>
-                </div>
-                <div class="benefits-grid fragment fade-up">
-                    <div class="benefit-item"><i class="fas fa-graduation-cap"></i><div><h4>Educational Focus</h4><p>Designed for students ages 5-18</p></div></div>
-                    <div class="benefit-item"><i class="fas fa-users-gear"></i><div><h4>Competitive</h4><p>Regional and international competitions</p></div></div>
-                    <div class="benefit-item"><i class="fas fa-code"></i><div><h4>Modular Design</h4><p>Expandable and customizable platforms</p></div></div>
-                    <div class="benefit-item"><i class="fas fa-globe"></i><div><h4>Worldwide Community</h4><p>Thousands of teams globally</p></div></div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-cube"></i> The VEX Base Bot Overview</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 25px;">A starter platform perfect for learning robotics fundamentals</p>
-                <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-cog"></i><h3>4 Drive Motors</h3><p>Two independent motor pairs for directional control and steering</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-microchip"></i><h3>Brain Controller</h3><p>Main processing unit running the robot program</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-battery-three-quarters"></i><h3>Battery System</h3><p>Power management for motors and controller</p></div>
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-shapes"></i><h3>Structural Components</h3><p>Metal framework for chassis construction</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-radar"></i><h3>Sensors</h3><p>Distance, rotation, and touch inputs for navigation</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-wifi"></i><h3>Wireless Control</h3><p>Radio link for remote operation and program upload</p></div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-gears"></i> Base Bot Hardware Architecture</h2>
-                <div class="architecture-diagram fragment fade-up">
-                    <div class="arch-layer layer-app">
-                        <strong>Drive Motors (4×)</strong>
-                        <div class="arch-label">Movement & Propulsion</div>
-                    </div>
-                    <div style="font-size: 1.5em; color: var(--brand-teal);">↓</div>
-                    <div class="arch-layer layer-brain">
-                        <strong>V5 Brain Controller</strong>
-                        <div class="arch-label">Processing & Control Logic</div>
-                    </div>
-                    <div style="font-size: 1.5em; color: var(--brand-teal);">↓</div>
-                    <div class="arch-layer layer-os">
-                        <strong>Sensors (Distance, Touch, Rotation)</strong>
-                        <div class="arch-label">Input & Feedback</div>
-                    </div>
-                    <div style="font-size: 1.5em; color: var(--brand-teal);">↓</div>
-                    <div class="arch-layer layer-hardware">
-                        <strong>Battery &amp; Wireless System</strong>
-                        <div class="arch-label">Power & Communication</div>
-                    </div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-microchip"></i> Key Components Explained</h2>
-                <div class="comparison-container">
-                    <div class="comparison-box type1 fragment fade-up">
-                        <h3><i class="fas fa-motor"></i> Motors</h3>
-                        <ul>
-                            <li>393 RPM V5 Smart Motors</li>
-                            <li>Controlled via PWM signals</li>
-                            <li>Encoders track rotation</li>
-                            <li>Used for movement &amp; actuation</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-box type2 fragment fade-up">
-                        <h3><i class="fas fa-radar"></i> Sensors</h3>
-                        <ul>
-                            <li>Rotation Sensors track wheel turns</li>
-                            <li>Distance Sensors (Ultrasonic)</li>
-                            <li>Touch/Bumper Sensors</li>
-                            <li>Inertial Measurement Unit (IMU)</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-keyboard"></i> Programming the Base Bot</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-orange); margin-bottom: 15px;">VEXCode: Block &amp; Text Programming</h3>
-                    <p style="font-size: 0.95em; margin-bottom: 15px;">Two programming approaches, both in VEXCode:</p>
-                    <ul style="font-size: 0.9em; line-height: 1.8;">
-                        <li><strong>Block-Based:</strong> Drag-and-drop visual blocks for beginners learning logic flow</li>
-                        <li><strong>Text-Based (C++):</strong> Professional coding for advanced students and teams</li>
-                        <li><strong>Code Library:</strong> Pre-built functions for common tasks like driving forward</li>
-                        <li><strong>Wireless Upload:</strong> Program runs directly on the V5 Brain controller</li>
+            <!-- 03 Objectives -->
+            <section data-chapter="1" data-slide-meta="3 min · slide 3 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 01</p>
+                    <p class="rail-chapter-name">Hook</p>
+                    <p class="rail-meta">3 minutes · slide 3 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Verb-led only. Ask learners which objective feels hardest before you leave the slide.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Objectives</h2>
+                    <ul class="obj-list">
+                        <li><span class="num">01</span><div class="text"><strong>Identify</strong><p>Name the Base Bot parts: brain, motors, sensors, battery, radio.</p></div></li>
+                        <li><span class="num">02</span><div class="text"><strong>Explain</strong><p>Describe how sensors and motors close the control loop with the V5 Brain.</p></div></li>
+                        <li><span class="num">03</span><div class="text"><strong>Program</strong><p>Write a simple drive routine in VEXcode Blocks or text.</p></div></li>
+                        <li><span class="num">04</span><div class="text"><strong>Diagnose</strong><p>Trace a drive fault to build, wiring, power or code — with a reason.</p></div></li>
                     </ul>
                 </div>
-                <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-code"></i> Example: Simple Drive Forward</h4>
-                    <p style="font-size: 0.9em; font-family: 'Fira Code', monospace; color: var(--brand-teal);">MotorGroup(Motors.Left, Motors.Right).spin(forward, 50, percent);</p>
-                </div>
+                <aside class="notes">Timing: 3 minutes. Keep verbs visible. Cut “understand VEX history” — it is not a doing objective.</aside>
             </section>
 
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-wrench"></i> Building the Base Bot: Core Concepts</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-ruler"></i><div><h4>Chassis Design</h4><p>Strong frame, low center of gravity for stability</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-cog"></i><div><h4>Motor Positioning</h4><p>Paired motors for straight movement, differential steering</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-circle"></i><div><h4>Wheel Selection</h4><p>Size &amp; tire compound affect traction and speed</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-arrow-up"></i><div><h4>Gear Ratios</h4><p>Speed vs. Torque trade-offs for task performance</p></div></div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-compass"></i> Navigation &amp; Control</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;">Autonomous vs. Driver Control</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="background: rgba(138, 43, 226, 0.2); padding: 15px; border-radius: 10px; border-left: 4px solid var(--brand-purple);">
-                            <h4 style="color: var(--brand-purple); margin-bottom: 10px;"><i class="fas fa-robot"></i> Autonomous Mode</h4>
-                            <p style="font-size: 0.9em; margin: 0;">Robot follows pre-programmed instructions without human input. Uses sensors for navigation and object detection.</p>
-                        </div>
-                        <div style="background: rgba(0, 189, 165, 0.2); padding: 15px; border-radius: 10px; border-left: 4px solid var(--brand-teal);">
-                            <h4 style="color: var(--brand-teal); margin-bottom: 10px;"><i class="fas fa-gamepad"></i> Driver Control</h4>
-                            <p style="font-size: 0.9em; margin: 0;">Student operates robot with controller in real-time during match, responding to field conditions.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about VEX Robotics</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
-            </section>
-
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: What is the main controller in a VEX Base Bot?</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>V5 Brain Controller</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>Wireless remote only</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Arduino microcontroller</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Raspberry Pi</div>
-                    </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> &mdash; The V5 Brain is the main processing unit that runs programs and controls all robot functions.</div>
-                </div>
-            </section>
-
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: Which programming environment is used for VEX robots?</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Only block-based coding</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>VEXCode with blocks or C++ options</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Python exclusively</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Hardware assembly only</div>
-                    </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> &mdash; VEXCode offers both visual block-based and text-based C++ programming for different skill levels.</div>
-                </div>
-            </section>
-
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: What do rotation sensors measure on the Base Bot?</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>A</span>How many times a wheel has turned</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>B</span>The temperature of motors</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>The wireless signal strength</div>
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Battery voltage only</div>
-                    </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: A</strong> &mdash; Rotation sensors track encoder data to count motor rotations, helping the robot know distance traveled.</div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-lightbulb"></i> Best Practices &amp; Tips</h2>
-                <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-balance-scale"></i><h3>Weight Distribution</h3><p>Keep battery and brain centered for stable movement</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-link"></i><h3>Cable Management</h3><p>Organize wires to prevent tangling and signal loss</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-pen-fancy"></i><h3>Code Comments</h3><p>Document your programs for debugging and teamwork</p></div>
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-flask"></i><h3>Testing &amp; Tuning</h3><p>Calibrate motor power and sensor thresholds systematically</p></div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-trophy"></i> Competitive Robotics</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-orange); margin-bottom: 20px;">VEX Competitions Worldwide</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.9em;">
-                        <div style="background: rgba(247, 147, 30, 0.15); padding: 15px; border-radius: 10px;">
-                            <h4 style="color: var(--brand-orange); margin-bottom: 10px;"><i class="fas fa-hammer"></i> VEX Robotics Competition</h4>
-                            <p style="margin: 0;">Large teams (up to 15) compete in game-based challenges with autonomous and driver-controlled periods.</p>
-                        </div>
-                        <div style="background: rgba(0, 189, 165, 0.15); padding: 15px; border-radius: 10px;">
-                            <h4 style="color: var(--brand-teal); margin-bottom: 10px;"><i class="fas fa-microscope"></i> VEX IQ Challenge</h4>
-                            <p style="margin: 0;">Designed for younger students with smaller robots, simplified building, and collaborative learning focus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="stats-bar fragment fade-up">
-                    <div class="stat-item"><span class="stat-number">100K+</span><span class="stat-label">Students Worldwide</span></div>
-                    <div class="stat-item"><span class="stat-number">40+</span><span class="stat-label">Countries</span></div>
-                    <div class="stat-item"><span class="stat-number">$60M+</span><span class="stat-label">In Scholarships</span></div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-                <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-cube"></i><h3>Modular Platform</h3><p>Base Bot is scalable—start simple, add complexity</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-code"></i><h3>Accessible Coding</h3><p>Blocks and C++ let all skill levels participate</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-people-arrows"></i><h3>Team-Based</h3><p>Robotics teaches collaboration alongside STEM skills</p></div>
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-star"></i><h3>Competition Ready</h3><p>Competitive opportunities motivate learning</p></div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
-                <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-hammer" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Build a Base Bot</strong> &mdash; Follow assembly instructions and familiarize yourself with hardware</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-code" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Write Your First Program</strong> &mdash; Create a simple movement routine in VEXCode</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-cog" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Test &amp; Troubleshoot</strong> &mdash; Debug movement issues and optimize motor speeds</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-users" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Join a Robotics Team</strong> &mdash; Participate in competitions and collaborate with peers</li>
+            <!-- 04 Core concept -->
+            <section data-chapter="2" data-slide-meta="5 min · slide 4 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 02</p>
+                    <p class="rail-chapter-name">Base Bot</p>
+                    <p class="rail-meta">5 minutes · slide 4 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">This stack is the deck’s spine. Point to the physical bot as you name each layer.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>The control stack</h2>
+                    <ul class="stack" aria-label="Base Bot architecture">
+                        <li><span class="layer motor">Motors</span><p class="desc">4× drive smart motors<span class="sub">Movement, steering, encoder feedback</span></p></li>
+                        <li><span class="layer brain">Brain</span><p class="desc">V5 Brain controller<span class="sub">Runs the program · talks to ports</span></p></li>
+                        <li><span class="layer sensor">Sensors</span><p class="desc">Distance · rotation · bumper · IMU<span class="sub">Input that changes the next decision</span></p></li>
+                        <li><span class="layer power">Power</span><p class="desc">Battery + wireless radio<span class="sub">Energy and live link for upload / driver control</span></p></li>
                     </ul>
                 </div>
+                <aside class="notes">Timing: 5 minutes. Emphasise the loop: sense → decide → act → sense again.</aside>
             </section>
 
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Now Build, Code, and Compete!</p>
-                    <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> This presentation covers content for:</p>
-                        <span class="qualification">Robotics &amp; Automation Systems (A/653/xxxx)</span>
-                        <p style="color: rgba(255,255,255,0.6); margin-top: 15px; font-size: 0.85em;">OCN NI Level 2 Diploma in Information Technology</p>
+            <!-- 05 Motors -->
+            <section data-chapter="2" data-slide-meta="4 min · slide 5 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 02</p>
+                    <p class="rail-chapter-name">Base Bot</p>
+                    <p class="rail-meta">4 minutes · slide 5 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Pass a smart motor around. Show the encoder cable — that is why “smart” matters.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Drive motors</h2>
+                    <div class="two-col">
+                        <div class="col-block">
+                            <p class="eyebrow motor">What they do</p>
+                            <ul>
+                                <li>V5 Smart Motors with built-in encoders</li>
+                                <li>Paired left / right for differential steering</li>
+                                <li>Speed and position reported back to the Brain</li>
+                                <li>Used for drivetrain and later mechanisms</li>
+                            </ul>
+                        </div>
+                        <div class="col-block">
+                            <p class="eyebrow power">Tutor cue</p>
+                            <p class="body" style="max-width:28ch;">If both sides do not get the same command and the same mechanical load, the bot curves — even with “perfect” code.</p>
+                            <p class="cue-line">Ask: “Who checks motor ports before blaming VEXcode?”</p>
+                        </div>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-robot" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-microchip" style="font-size: 3em; color: var(--brand-orange); margin: 0 15px;"></i> <i class="fas fa-code" style="font-size: 3em; color: var(--brand-purple); margin: 0 15px;"></i></div>
                 </div>
+                <aside class="notes">Timing: 4 minutes. Connect motors to the hook: a half-seated cable looks like a software bug.</aside>
+            </section>
+
+            <!-- 06 Sensors -->
+            <section data-chapter="2" data-slide-meta="4 min · slide 6 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 02</p>
+                    <p class="rail-chapter-name">Base Bot</p>
+                    <p class="rail-meta">4 minutes · slide 6 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Without sensors, autonomous is just open-loop hope.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Sensors</h2>
+                    <ul class="obj-list">
+                        <li><span class="num sensor">01</span><div class="text"><strong>Rotation</strong><p>Counts wheel turns so distance can be measured.</p></div></li>
+                        <li><span class="num sensor">02</span><div class="text"><strong>Distance</strong><p>Ultrasonic range for walls, objects and stopping points.</p></div></li>
+                        <li><span class="num sensor">03</span><div class="text"><strong>Bumper / touch</strong><p>Contact events for bump-and-turn logic.</p></div></li>
+                        <li><span class="num sensor">04</span><div class="text"><strong>IMU</strong><p>Heading awareness for straighter drives and turns.</p></div></li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Learners should say what each sensor returns — a number, not “it helps navigation.”</aside>
+            </section>
+
+            <!-- 07 Brain & power -->
+            <section data-chapter="2" data-slide-meta="3 min · slide 7 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 02</p>
+                    <p class="rail-chapter-name">Base Bot</p>
+                    <p class="rail-meta">3 minutes · slide 7 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Brain is the only place the program actually runs.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Brain, battery, radio</h2>
+                    <div class="two-col">
+                        <div class="col-block">
+                            <p class="eyebrow accent">V5 Brain</p>
+                            <ul>
+                                <li>Runs VEXcode programs on-device</li>
+                                <li>Routes commands to motor and sensor ports</li>
+                                <li>Shows battery, radio and program status</li>
+                            </ul>
+                        </div>
+                        <div class="col-block">
+                            <p class="eyebrow power">Power &amp; link</p>
+                            <ul>
+                                <li>Battery feeds motors and controller</li>
+                                <li>Radio for driver control and wireless upload</li>
+                                <li>Low battery looks like weak motors — check voltage first</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Show the Brain screen if available. Stress: laptop writes the program; Brain executes it.</aside>
+            </section>
+
+            <!-- 08 Activity 1 — Presenter HUD -->
+            <section data-chapter="3" data-section-timer="build-check" data-timer-limit="480" data-slide-meta="8 min · slide 8 of 18">
+                <aside class="rail">
+                    <div class="hud" data-hud="build-check">
+                        <p class="hud-label">Presenter HUD</p>
+                        <p class="clock" aria-live="off">00:00</p>
+                        <p class="clock-cap">of 8 minutes allowed</p>
+                        <div class="clock-actions">
+                            <button type="button" data-action="toggle">Start</button>
+                            <button type="button" data-action="reset">Reset</button>
+                        </div>
+                        <p class="say">Say it out loud<br><span>“Check the cable before you rewrite the loop.”</span></p>
+                    </div>
+                </aside>
+                <div class="content">
+                    <h2>Activity · port check</h2>
+                    <div class="activity-body">
+                        <div class="prompt-box">
+                            <p>The left side of the Base Bot barely moves. The program spins both motor groups at 50%. Hands up — where do you look first?</p>
+                        </div>
+                        <div class="confidence" data-confidence="build-check" aria-label="Class confidence tally">
+                            <button type="button" data-band="1"><span class="band">1 · lost</span><span class="desc">No idea — rewrite the code</span><span class="count">0</span></button>
+                            <button type="button" data-band="2"><span class="band">2 · unsure</span><span class="desc">Maybe a sensor or battery?</span><span class="count">0</span></button>
+                            <button type="button" data-band="3"><span class="band">3 · clear</span><span class="desc">Ports, cable, mechanical bind</span><span class="count">0</span></button>
+                        </div>
+                        <button type="button" class="reveal-answer" aria-expanded="false" data-answer="build-check">Reveal answer</button>
+                        <p class="answer" id="answer-build-check" hidden>Start at the left motor cable and port. A half-seated smart-motor cable or a seized wheel makes “identical” code drive unevenly — rewriting the loop hides the real fault.</p>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Start the HUD clock. Tally hands. Reveal only after discussion. Timer must not auto-advance.</aside>
+            </section>
+
+            <!-- 09 Worked example -->
+            <section data-chapter="4" data-slide-meta="5 min · slide 9 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 04</p>
+                    <p class="rail-chapter-name">Code</p>
+                    <p class="rail-meta">5 minutes · slide 9 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Type or project this live in VEXcode if the projector allows.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Worked example</h2>
+                    <p class="body">Drive both sides forward at half power. Same command · same expectation · then measure with encoders later.</p>
+                    <div class="code-plate">
+                        <pre>// VEXcode text sketch — drive forward
+MotorGroup Drive = MotorGroup(LeftMotors, RightMotors);
+Drive.spin(forward, 50, percent);</pre>
+                    </div>
+                    <p class="cue-line">Blocks path: Drivetrain → drive forward · set velocity 50%.</p>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Contrast Blocks vs text without ranking them — both are VEXcode.</aside>
+            </section>
+
+            <!-- 10 Trade-offs -->
+            <section data-chapter="4" data-slide-meta="5 min · slide 10 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 04</p>
+                    <p class="rail-chapter-name">Code</p>
+                    <p class="rail-meta">5 minutes · slide 10 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Every build choice is a trade. Force learners to name what they give up.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Trade-offs</h2>
+                    <div class="trade-grid">
+                        <div class="trade-item power">
+                            <h3>Speed vs torque</h3>
+                            <p>Gear for push power and you lose top speed on long runs.</p>
+                        </div>
+                        <div class="trade-item motor">
+                            <h3>Blocks vs C++</h3>
+                            <p>Blocks teach flow fast; text scales for teams and reuse.</p>
+                        </div>
+                        <div class="trade-item sensor">
+                            <h3>Auto vs driver</h3>
+                            <p>Autonomous needs sensors and testing; driver control needs practice under pressure.</p>
+                        </div>
+                        <div class="trade-item">
+                            <h3>Weight vs stability</h3>
+                            <p>Center the brain and battery — high mass tips scoring objects and curves drives.</p>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Ask pairs to pick one trade-off for their next build decision.</aside>
+            </section>
+
+            <!-- 11 Activity 2 — diagnose scenario -->
+            <section data-chapter="5" data-section-timer="diagnose" data-timer-limit="420" data-slide-meta="7 min · slide 11 of 18">
+                <aside class="rail">
+                    <div class="hud" data-hud="diagnose">
+                        <p class="hud-label">Presenter HUD</p>
+                        <p class="clock" aria-live="off">00:00</p>
+                        <p class="clock-cap">of 7 minutes allowed</p>
+                        <div class="clock-actions">
+                            <button type="button" data-action="toggle">Start</button>
+                            <button type="button" data-action="reset">Reset</button>
+                        </div>
+                        <p class="say">Say it out loud<br><span>“Name the evidence before you name the fix.”</span></p>
+                    </div>
+                </aside>
+                <div class="content">
+                    <h2>Activity · diagnose</h2>
+                    <div class="activity-body">
+                        <div class="prompt-box">
+                            <p>Autonomous: drive 100 cm forward. The bot stops at ~60 cm every run. Battery is full. Distance sensor faces the floor. What failed?</p>
+                        </div>
+                        <div class="confidence" data-confidence="diagnose" aria-label="Class confidence tally">
+                            <button type="button" data-band="1"><span class="band">1 · lost</span><span class="desc">Change motor power randomly</span><span class="count">0</span></button>
+                            <button type="button" data-band="2"><span class="band">2 · unsure</span><span class="desc">Maybe encoder math?</span><span class="count">0</span></button>
+                            <button type="button" data-band="3"><span class="band">3 · clear</span><span class="desc">Sensor mount / wrong stop condition</span><span class="count">0</span></button>
+                        </div>
+                        <button type="button" class="reveal-answer" aria-expanded="false" data-answer="diagnose">Reveal answer</button>
+                        <p class="answer" id="answer-diagnose" hidden>The distance sensor is reading the floor, so the stop condition fires early. Remount it level to the field — otherwise every “tune the motors” change hides a sensing fault and costs match points.</p>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 7 minutes. Reward evidence language: what the sensor sees, not vibes.</aside>
+            </section>
+
+            <!-- 12 Case study A -->
+            <section data-chapter="5" data-slide-meta="4 min · slide 12 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 05</p>
+                    <p class="rail-chapter-name">Practice</p>
+                    <p class="rail-meta">4 minutes · slide 12 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Named classroom story — keep it local and believable.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Case · Friday skills match</h2>
+                    <p class="lead">Team North built a Base Bot for a 60-second skills run: 15 s autonomous, then driver control.</p>
+                    <p class="body">Autonomous scored zero. Driver control looked fine. The team rewrote drive code three times before anyone checked the Brain — the autonomous program slot was empty.</p>
+                    <p class="cue-line">Consequence: practice time burned on the wrong layer of the stack.</p>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Ask which checklist item would have caught this in one minute.</aside>
+            </section>
+
+            <!-- 13 Case study B -->
+            <section data-chapter="5" data-slide-meta="4 min · slide 13 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 05</p>
+                    <p class="rail-chapter-name">Practice</p>
+                    <p class="rail-meta">4 minutes · slide 13 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Close the case with the fix ritual, not more drama.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Case · the fix ritual</h2>
+                    <ul class="obj-list">
+                        <li><span class="num power">01</span><div class="text"><strong>Confirm slot</strong><p>Autonomous and driver programs both downloaded and selected on the Brain.</p></div></li>
+                        <li><span class="num motor">02</span><div class="text"><strong>Confirm ports</strong><p>Left/right motor groups match the build diagram.</p></div></li>
+                        <li><span class="num sensor">03</span><div class="text"><strong>Confirm sense</strong><p>Sensor values update on the Brain screen before the run.</p></div></li>
+                        <li><span class="num">04</span><div class="text"><strong>Then tune code</strong><p>Only after the stack below the program is honest.</p></div></li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 4 minutes. Write the four steps on the board — this becomes the team checklist.</aside>
+            </section>
+
+            <!-- 14 Common faults -->
+            <section data-chapter="5" data-slide-meta="5 min · slide 14 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 05</p>
+                    <p class="rail-chapter-name">Practice</p>
+                    <p class="rail-meta">5 minutes · slide 14 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Triage table: symptom → likely cause → fix.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Common faults</h2>
+                    <table class="fault-table">
+                        <thead>
+                            <tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Pulls left / right</td><td>Loose motor cable or bind</td><td>Reseat ports; free the wheel</td></tr>
+                            <tr><td>Stops early in auto</td><td>Sensor aimed wrong</td><td>Remount; watch live values</td></tr>
+                            <tr><td>Weak drive</td><td>Low battery</td><td>Swap pack; check Brain voltage</td></tr>
+                            <tr><td>No auto motion</td><td>Wrong / empty program slot</td><td>Download and select autonomous</td></tr>
+                            <tr><td>Radio dropouts</td><td>Cable tangle / interference</td><td>Manage wires; re-pair radio</td></tr>
+                            <tr><td>Tips on turn</td><td>High centre of mass</td><td>Center brain/battery; slow turn</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <aside class="notes">Timing: 5 minutes. Pick two rows and role-play technician triage aloud.</aside>
+            </section>
+
+            <!-- 15 Quiz -->
+            <section data-chapter="6" data-slide-meta="8 min · slide 15 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 06</p>
+                    <p class="rail-chapter-name">Check</p>
+                    <p class="rail-meta">8 minutes · slide 15 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Scored quiz. Wrong answers must explain the consequence.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Quiz</h2>
+                    <div class="quiz-panel" id="quiz-panel">
+                        <p class="quiz-progress" id="quiz-progress" aria-live="polite">q 1 of 6 · score 0</p>
+                        <p class="quiz-q" id="quiz-q"></p>
+                        <div class="quiz-options" id="quiz-options"></div>
+                        <p class="quiz-why" id="quiz-why" aria-live="polite"></p>
+                        <div style="margin-top:auto;">
+                            <button type="button" class="quiz-btn" id="quiz-next" hidden>Next</button>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 8 minutes. Six questions. Do not rush past the why line.</aside>
+            </section>
+
+            <!-- 16 Results -->
+            <section data-chapter="6" data-slide-meta="3 min · slide 16 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 06</p>
+                    <p class="rail-chapter-name">Check</p>
+                    <p class="rail-meta">3 minutes · slide 16 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Read the meaning line aloud — what a wrong answer costs on the field.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Results</h2>
+                    <p class="results-grade" id="results-grade" aria-live="polite">—</p>
+                    <p class="results-score">Final score: <span id="results-score" aria-live="polite">0 / 6</span></p>
+                    <p class="results-msg" id="results-message">Complete the quiz to calculate your grade.</p>
+                    <p class="results-meaning" id="results-meaning"></p>
+                    <button type="button" class="quiz-btn" id="quiz-retry">Retry quiz</button>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Offer retry for anyone still mixing Brain duties with laptop duties.</aside>
+            </section>
+
+            <!-- 17 Takeaways -->
+            <section data-chapter="6" data-slide-meta="3 min · slide 17 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 06</p>
+                    <p class="rail-chapter-name">Check</p>
+                    <p class="rail-meta">3 minutes · slide 17 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">Four pillars only. Learners should recite without reading.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Takeaways</h2>
+                    <ul class="takeaways">
+                        <li><span class="num">01</span><div><strong>Stack first</strong><p>Motors, Brain, sensors, power — then code.</p></div></li>
+                        <li><span class="num">02</span><div><strong>Sense closes the loop</strong><p>Autonomous without honest sensors is open-loop luck.</p></div></li>
+                        <li><span class="num">03</span><div><strong>VEXcode is two doors</strong><p>Blocks and text both upload to the same Brain.</p></div></li>
+                        <li><span class="num">04</span><div><strong>Diagnose before you rewrite</strong><p>Cables and mounts waste more time than syntax.</p></div></li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 3 minutes. Cold-call four learners for one pillar each.</aside>
+            </section>
+
+            <!-- 18 Close -->
+            <section data-chapter="6" data-slide-meta="2 min · slide 18 of 18">
+                <aside class="rail">
+                    <p class="rail-chapter-label">Chapter 06</p>
+                    <p class="rail-chapter-name">Check</p>
+                    <p class="rail-meta">2 minutes · slide 18 of 18</p>
+                    <hr class="rail-rule">
+                    <p class="rail-note">One instruction. No thank-you slide.</p>
+                    <div class="rail-progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+                </aside>
+                <div class="content">
+                    <h2>Next</h2>
+                    <div class="close-box">
+                        <p>Before next lesson: seat every motor cable, then run drive-forward once and watch the Brain ports while it moves.</p>
+                    </div>
+                    <p class="cue-line" style="margin-top:28px;">Optional path: VEXcode Tutorial (#143) for Blocks vs text step-by-step.</p>
+                </div>
+                <aside class="notes">Timing: 2 minutes. Set the cable check as the exit ticket. Dismiss.</aside>
             </section>
 
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
         Reveal.initialize({
-            hash: true, controls: true, progress: true, center: true,
-            transition: 'slide', backgroundTransition: 'fade',
-            width: 1920, height: 1080, margin: 0.04, minScale: 0.2, maxScale: 2.0,
-            autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
-            plugins: [RevealNotes, RevealHighlight, RevealZoom]
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'none',
+            backgroundTransition: 'none',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [RevealNotes, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        /* scheme toggle */
+        (function initScheme() {
+            const t = document.querySelector('.scheme-toggle');
+            const set = (v) => {
+                document.documentElement.dataset.scheme = v;
+                t.setAttribute('aria-pressed', v === 'light' ? 'true' : 'false');
+                t.textContent = v === 'light' ? 'Dark' : 'Light';
+                localStorage.setItem('ocn-scheme', v);
+            };
+            set(localStorage.getItem('ocn-scheme') || 'dark');
+            t.addEventListener('click', () => {
+                set(document.documentElement.dataset.scheme === 'light' ? 'dark' : 'light');
             });
+        })();
+
+        /* glossary ? */
+        (function initGlossary() {
+            const overlay = document.getElementById('glossary-overlay');
+            const search = document.getElementById('glossary-search');
+            const closeBtn = document.getElementById('glossary-close');
+            const items = () => overlay.querySelectorAll('.glossary-item');
+
+            function open() {
+                overlay.hidden = false;
+                overlay.classList.add('open');
+                search.value = '';
+                items().forEach((el) => el.classList.remove('hidden'));
+                search.focus();
+            }
+            function close() {
+                overlay.classList.remove('open');
+                overlay.hidden = true;
+            }
+
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+            search.addEventListener('input', () => {
+                const q = search.value.trim().toLowerCase();
+                items().forEach((el) => {
+                    const hay = (el.dataset.terms + ' ' + el.textContent).toLowerCase();
+                    el.classList.toggle('hidden', q !== '' && !hay.includes(q));
+                });
+            });
+            document.addEventListener('keydown', (e) => {
+                const tag = (e.target && e.target.tagName) || '';
+                if (tag === 'INPUT' || tag === 'TEXTAREA') {
+                    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                        e.preventDefault();
+                        close();
+                    }
+                    return;
+                }
+                if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
+                    e.preventDefault();
+                    if (overlay.classList.contains('open')) close();
+                    else open();
+                }
+                if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                    e.preventDefault();
+                    close();
+                }
+            });
+        })();
+
+        /* Presenter HUD — timer + confidence + reveal */
+        const HudTimers = {};
+
+        function formatTime(sec) {
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        }
+
+        function getTimerState(id) {
+            const raw = sessionStorage.getItem('deck-141-timer-' + id);
+            if (!raw) return { seconds: 0, running: false };
+            try { return JSON.parse(raw); } catch (e) { return { seconds: 0, running: false }; }
+        }
+
+        function setTimerState(id, state) {
+            sessionStorage.setItem('deck-141-timer-' + id, JSON.stringify(state));
+        }
+
+        function paintClock(hud, seconds, limit) {
+            const el = hud.querySelector('.clock');
+            el.textContent = formatTime(seconds);
+            el.classList.remove('warn', 'over');
+            if (seconds >= Math.floor(limit * 1.5)) el.classList.add('over');
+            else if (seconds >= limit) el.classList.add('warn');
+        }
+
+        function stopTicker(id) {
+            if (HudTimers[id]) {
+                clearInterval(HudTimers[id]);
+                HudTimers[id] = null;
+            }
+        }
+
+        function startTicker(id, hud, limit) {
+            stopTicker(id);
+            HudTimers[id] = setInterval(() => {
+                const state = getTimerState(id);
+                if (!state.running) return;
+                state.seconds += 1;
+                setTimerState(id, state);
+                paintClock(hud, state.seconds, limit);
+            }, 1000);
+        }
+
+        function initHud(section) {
+            const hud = section.querySelector('.hud');
+            if (!hud) return;
+            const id = hud.dataset.hud;
+            const limit = Number(section.dataset.timerLimit || 480);
+            const toggle = hud.querySelector('[data-action="toggle"]');
+            const reset = hud.querySelector('[data-action="reset"]');
+            const state = getTimerState(id);
+            paintClock(hud, state.seconds, limit);
+            toggle.textContent = state.running ? 'Pause' : 'Start';
+            if (state.running) startTicker(id, hud, limit);
+
+            if (!toggle.dataset.bound) {
+                toggle.dataset.bound = 'true';
+                toggle.addEventListener('click', () => {
+                    const s = getTimerState(id);
+                    s.running = !s.running;
+                    setTimerState(id, s);
+                    toggle.textContent = s.running ? 'Pause' : 'Start';
+                    if (s.running) startTicker(id, hud, limit);
+                    else stopTicker(id);
+                });
+                reset.addEventListener('click', () => {
+                    stopTicker(id);
+                    setTimerState(id, { seconds: 0, running: false });
+                    toggle.textContent = 'Start';
+                    paintClock(hud, 0, limit);
+                });
+            }
+        }
+
+        function initConfidence(root) {
+            root.querySelectorAll('.confidence').forEach((group) => {
+                if (group.dataset.bound) return;
+                group.dataset.bound = 'true';
+                group.querySelectorAll('button[data-band]').forEach((btn) => {
+                    const countEl = btn.querySelector('.count');
+                    let count = 0;
+                    const paint = () => { countEl.textContent = String(count); };
+                    btn.addEventListener('click', () => {
+                        count += 1;
+                        paint();
+                    });
+                    btn.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        count = Math.max(0, count - 1);
+                        paint();
+                    });
+                    let pressTimer = null;
+                    btn.addEventListener('pointerdown', () => {
+                        pressTimer = setTimeout(() => {
+                            count = Math.max(0, count - 1);
+                            paint();
+                        }, 550);
+                    });
+                    const clear = () => { if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; } };
+                    btn.addEventListener('pointerup', clear);
+                    btn.addEventListener('pointerleave', clear);
+                    paint();
+                });
+            });
+        }
+
+        function initReveals(root) {
+            root.querySelectorAll('.reveal-answer').forEach((btn) => {
+                if (btn.dataset.bound) return;
+                btn.dataset.bound = 'true';
+                btn.addEventListener('click', () => {
+                    const id = 'answer-' + btn.dataset.answer;
+                    const answer = document.getElementById(id);
+                    const open = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+                    if (answer) {
+                        if (open) answer.setAttribute('hidden', '');
+                        else answer.removeAttribute('hidden');
+                    }
+                    btn.textContent = open ? 'Reveal answer' : 'Hide answer';
+                });
+            });
+        }
+
+        /* Quiz */
+        const QUIZ = [
+            {
+                q: 'What is the main controller on a VEX Base Bot?',
+                options: [
+                    { k: 'A', t: 'V5 Brain', correct: true },
+                    { k: 'B', t: 'Wireless remote only', correct: false },
+                    { k: 'C', t: 'Arduino microcontroller', correct: false },
+                    { k: 'D', t: 'Raspberry Pi', correct: false }
+                ],
+                why: 'The V5 Brain runs the program and drives ports. Without it selected and powered, nothing on the stack executes.'
+            },
+            {
+                q: 'Which environment programs VEX robots?',
+                options: [
+                    { k: 'A', t: 'Only block-based coding', correct: false },
+                    { k: 'B', t: 'VEXcode — Blocks or C++', correct: true },
+                    { k: 'C', t: 'Python exclusively', correct: false },
+                    { k: 'D', t: 'Hardware assembly only', correct: false }
+                ],
+                why: 'Both doors upload to the same Brain. Choosing Blocks does not remove the need for honest wiring.'
+            },
+            {
+                q: 'What do rotation sensors / encoders measure?',
+                options: [
+                    { k: 'A', t: 'How far a wheel or motor has turned', correct: true },
+                    { k: 'B', t: 'Motor temperature only', correct: false },
+                    { k: 'C', t: 'Wireless signal strength', correct: false },
+                    { k: 'D', t: 'Battery voltage only', correct: false }
+                ],
+                why: 'Distance claims in autonomous need encoder counts. Guessing time-based drives drifts every run.'
+            },
+            {
+                q: 'Bot pulls left though both sides are set to 50%. First check?',
+                options: [
+                    { k: 'A', t: 'Rewrite the entire autonomous', correct: false },
+                    { k: 'B', t: 'Left motor cable, port, and wheel bind', correct: true },
+                    { k: 'C', t: 'Buy a new Brain immediately', correct: false },
+                    { k: 'D', t: 'Disable all sensors', correct: false }
+                ],
+                why: 'Identical commands with uneven mechanics still curve. Cable faults waste the match if you only edit code.'
+            },
+            {
+                q: 'Autonomous stops early; distance sensor faces the floor. Likely cause?',
+                options: [
+                    { k: 'A', t: 'Battery is empty', correct: false },
+                    { k: 'B', t: 'Stop condition reading the floor', correct: true },
+                    { k: 'C', t: 'VEXcode cannot do autonomous', correct: false },
+                    { k: 'D', t: 'Radio must be unplugged', correct: false }
+                ],
+                why: 'Bad sensor mounting fires the stop early. Remount and watch live values before retuning motors.'
+            },
+            {
+                q: 'Why center the Brain and battery on the chassis?',
+                options: [
+                    { k: 'A', t: 'It looks neater in photos', correct: false },
+                    { k: 'B', t: 'Lower / centered mass improves stability', correct: true },
+                    { k: 'C', t: 'Sensors only work at the rear', correct: false },
+                    { k: 'D', t: 'Wireless range doubles', correct: false }
+                ],
+                why: 'A high centre of mass tips objects and curves turns — a build fault that code cannot fully hide.'
+            }
+        ];
+
+        const QuizState = { index: 0, score: 0, answered: {}, waiting: false };
+
+        function gradeLetter(score, total) {
+            const pct = (score / total) * 100;
+            if (pct >= 90) return 'A';
+            if (pct >= 80) return 'B';
+            if (pct >= 70) return 'C';
+            if (pct >= 60) return 'D';
+            return 'R';
+        }
+
+        function meaningFor(score, total) {
+            if (score === total) return 'Wrong answers avoided: you diagnose the stack before rewriting loops.';
+            if (score >= total - 1) return 'A wrong answer usually means treating a cable or mount fault as a software bug.';
+            if (score >= Math.ceil(total / 2)) return 'Revisit the control stack and the Friday skills case before the next build session.';
+            return 'Retry after running the four-step fix ritual on a real Base Bot.';
+        }
+
+        function showResults() {
+            const total = QUIZ.length;
+            const grade = gradeLetter(QuizState.score, total);
+            document.getElementById('results-grade').textContent = grade;
+            document.getElementById('results-score').textContent = QuizState.score + ' / ' + total;
+            document.getElementById('results-message').textContent =
+                grade === 'R'
+                    ? 'Retry recommended — stack diagnosis is still fuzzy.'
+                    : 'Grade ' + grade + ' — read the meaning line before you leave.';
+            document.getElementById('results-meaning').textContent = meaningFor(QuizState.score, total);
+        }
+
+        function renderQuiz() {
+            const q = QUIZ[QuizState.index];
+            const progress = document.getElementById('quiz-progress');
+            const qEl = document.getElementById('quiz-q');
+            const opts = document.getElementById('quiz-options');
+            const why = document.getElementById('quiz-why');
+            const next = document.getElementById('quiz-next');
+
+            if (!q) {
+                progress.textContent = 'q 6 of 6 · score ' + QuizState.score + ' · complete';
+                qEl.textContent = 'Quiz complete — open results.';
+                opts.innerHTML = '';
+                why.textContent = 'Advance to the results slide for grade and meaning.';
+                next.hidden = true;
+                showResults();
+                return;
+            }
+
+            progress.textContent = 'q ' + (QuizState.index + 1) + ' of ' + QUIZ.length + ' · score ' + QuizState.score;
+            qEl.textContent = q.q;
+            why.textContent = '';
+            next.hidden = true;
+            QuizState.waiting = false;
+            opts.innerHTML = '';
+
+            q.options.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerHTML = '<span class="k">' + opt.k + '</span><span>' + opt.t + '</span>';
+                btn.addEventListener('click', () => {
+                    if (QuizState.answered[QuizState.index] != null) return;
+                    QuizState.answered[QuizState.index] = opt.correct;
+                    if (opt.correct) QuizState.score += 1;
+                    opts.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+                    btn.classList.add(opt.correct ? 'correct' : 'incorrect');
+                    if (!opt.correct) {
+                        const correctBtn = Array.from(opts.children)[q.options.findIndex((o) => o.correct)];
+                        if (correctBtn) correctBtn.classList.add('correct');
+                    }
+                    why.textContent = (opt.correct ? 'Correct — ' : 'Not quite — ') + q.why;
+                    progress.textContent = 'q ' + (QuizState.index + 1) + ' of ' + QUIZ.length + ' · score ' + QuizState.score;
+                    next.hidden = false;
+                    next.textContent = QuizState.index >= QUIZ.length - 1 ? 'Show results' : 'Next';
+                    QuizState.waiting = true;
+                });
+                opts.appendChild(btn);
+            });
+        }
+
+        function initQuiz() {
+            const next = document.getElementById('quiz-next');
+            next.addEventListener('click', () => {
+                if (!QuizState.waiting) return;
+                if (QuizState.index >= QUIZ.length - 1) {
+                    QuizState.index = QUIZ.length;
+                    renderQuiz();
+                    showResults();
+                    Reveal.slide(15);
+                    return;
+                }
+                QuizState.index += 1;
+                renderQuiz();
+            });
+
+            document.getElementById('quiz-retry').addEventListener('click', () => {
+                QuizState.index = 0;
+                QuizState.score = 0;
+                QuizState.answered = {};
+                QuizState.waiting = false;
+                document.getElementById('results-grade').textContent = '—';
+                document.getElementById('results-score').textContent = '0 / 6';
+                document.getElementById('results-message').textContent = 'Complete the quiz to calculate your grade.';
+                document.getElementById('results-meaning').textContent = '';
+                renderQuiz();
+                Reveal.slide(14);
+            });
+
+            renderQuiz();
+        }
+
+        function syncTitleRail(index) {
+            const title = document.querySelectorAll('.reveal .slides > section')[0];
+            if (!title) return;
+            const chapter = Number((document.querySelectorAll('.reveal .slides > section')[index] || {}).dataset.chapter || 0);
+            title.querySelectorAll('.chapter-list li').forEach((li, i) => {
+                li.classList.toggle('current', i === Math.max(0, chapter - 1) || (chapter === 0 && i === 0));
+            });
+        }
+
+        Reveal.on('ready', () => {
+            document.querySelectorAll('.reveal .slides > section').forEach((section) => {
+                initHud(section);
+            });
+            initConfidence(document);
+            initReveals(document);
+            initQuiz();
+            syncTitleRail(Reveal.getIndices().h);
+        });
+
+        Reveal.on('slidechanged', (event) => {
+            const section = event.currentSlide;
+            initHud(section);
+            syncTitleRail(event.indexh);
         });
     </script>
-    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
