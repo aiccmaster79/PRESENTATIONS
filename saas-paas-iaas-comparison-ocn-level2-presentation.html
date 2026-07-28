@@ -1,1425 +1,1855 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-scheme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>#72 | Level 2-3 | SaaS/PaaS/IaaS Comparison | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
+            --bg: #07080b;
+            --surface: #0d0f14;
+            --ink: #dbe0e8;
+            --ink-dim: #8c95a3;
+            --ink-faint: #4c5563;
+            --rule: rgba(255, 255, 255, 0.11);
+            --key: #F7931E;
+            --type: #8A2BE2;
+            --value: #00BDA5;
+            --you: #F7931E;
+            --provider: #8A2BE2;
+            --accent: #00BDA5;
+            --pass: #22c55e;
+            --fail: #ef4444;
             --brand-orange: #F7931E;
             --brand-purple: #8A2BE2;
             --brand-teal: #00BDA5;
-            --brand-orange-dark: #d47a0a;
-            --brand-purple-dark: #6a1fb2;
-            --brand-teal-dark: #008f7a;
-            --brand-orange-light: #ffb858;
-            --brand-purple-light: #a855f7;
-            --brand-teal-light: #3dd5c0;
-            --dark-bg: #0a0a1a;
-            --glass-bg: rgba(20, 20, 40, 0.85);
+        }
+
+        :root[data-scheme="light"] {
+            --bg: #f1f2f4;
+            --surface: #ffffff;
+            --ink: #0a0b0e;
+            --ink-dim: #5b6472;
+            --ink-faint: #8b93a0;
+            --rule: rgba(10, 11, 14, 0.24);
         }
 
         * { box-sizing: border-box; }
 
-        body {
-            background: radial-gradient(circle at top left, rgba(138, 43, 226, 0.24), transparent 36%),
-                        radial-gradient(circle at bottom right, rgba(0, 189, 165, 0.18), transparent 32%),
-                        var(--dark-bg);
+        html, body {
+            background: var(--bg);
+            color: var(--ink);
         }
 
-        .reveal { font-family: 'Poppins', sans-serif; }
-        .reveal .slides { text-align: left; }
-        .reveal .slides section { height: 100%; padding: 20px 40px; }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: -0.02em;
-        }
-        .reveal h1 { font-size: 2.8em; }
-        .reveal h2 { font-size: 1.92em; margin-bottom: 0.45em; }
-        .reveal h3 { font-size: 1.28em; }
-        .reveal p, .reveal li { font-size: 0.84em; line-height: 1.5; }
-        .reveal small { color: rgba(255, 255, 255, 0.66); }
-
-        .animated-gradient {
-            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 8s ease infinite;
+        .reveal {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--ink);
+            background: var(--bg);
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .reveal .slides {
+            text-align: left;
         }
 
-        .glass-card, .glass-card-small, .feature-card, .comparison-box, .bin, .chip-pool, .scenario-card, .table-wrap {
-            background: var(--glass-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-        }
-        .glass-card { border-radius: 20px; padding: 26px; }
-        .glass-card-small { border-radius: 15px; padding: 18px; }
-
-        .title-slide {
+        .reveal .slides section {
+            height: 100%;
+            padding: 64px 80px 72px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.045em;
+            color: var(--ink);
+            margin: 0;
+            text-shadow: none;
+        }
+
+        .reveal h1 {
+            font-size: 132px;
+            line-height: 0.95;
+        }
+
+        .reveal h2 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 28px;
+        }
+
+        .reveal h2 .prompt {
+            color: var(--value);
+            margin-right: 10px;
+        }
+
+        .reveal p, .reveal li {
+            font-size: 30px;
+            line-height: 1.5;
+        }
+
+        .prose {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 30px;
+            line-height: 1.5;
+            color: var(--ink-dim);
+            max-width: 70ch;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            height: 100%;
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 14px;
+            margin-bottom: 28px;
+            font-size: 23px;
+            color: var(--ink-dim);
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
         }
-        .title-slide h1 { font-size: 3.35em; margin: 0 0 18px; }
-        .title-slide .subtitle { font-size: 1.25em; color: rgba(255, 255, 255, 0.82); margin-bottom: 26px; }
-        .qualification {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px;
-            border-radius: 30px;
-            font-size: 0.86em;
-            font-weight: 600;
-        }
-        .demo-meta {
+
+        .status-bar .path {
             display: inline-flex;
             align-items: center;
-            gap: 0.55rem;
-            margin: 0 0 1.1rem;
-            padding: 0.45rem 0.95rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: #fff;
-            background: rgba(0, 189, 165, 0.18);
-            border: 1px solid rgba(0, 189, 165, 0.45);
+            gap: 12px;
         }
-        .demo-meta .demo-number { color: var(--brand-teal); }
-        .demo-meta .demo-level { color: rgba(255, 255, 255, 0.85); }
-        .demo-meta .sep { opacity: 0.45; }
+
+        .status-bar .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 0;
+            background: var(--value);
+            flex-shrink: 0;
+        }
+
+        .slide-body {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-footer {
+            margin-top: auto;
+            padding-top: 18px;
+            font-size: 23px;
+            color: var(--ink-faint);
+            border-top: 1px solid transparent;
+            flex-shrink: 0;
+        }
+
+        .comment {
+            font-size: 28px;
+            color: var(--type);
+            margin: 0 0 18px;
+        }
+
+        .cursor-block {
+            display: inline-block;
+            width: 56px;
+            height: 104px;
+            background: var(--value);
+            vertical-align: middle;
+            margin-left: 12px;
+            animation: blink 1.1s steps(1) infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .dash-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0 0;
+        }
+
+        .dash-list li {
+            font-size: 28px;
+            line-height: 1.85;
+            color: var(--ink);
+            max-width: 70ch;
+        }
+
+        .dash-list li::before {
+            content: '- ';
+            color: var(--key);
+        }
+
+        .quote-block {
+            border-left: 3px solid var(--value);
+            padding-left: 34px;
+            margin: 8px 0 0;
+        }
+
+        .quote-block p {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 30px;
+            line-height: 1.55;
+            color: var(--ink);
+            margin: 0 0 18px;
+            max-width: 68ch;
+        }
+
+        .quote-block .consequence {
+            color: var(--key);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 8px;
+            flex: 1;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .panel-head.saas { background: rgba(247, 147, 30, 0.16); color: var(--key); }
+        .panel-head.paas { background: rgba(138, 43, 226, 0.16); color: var(--type); }
+        .panel-head.iaas { background: rgba(0, 189, 165, 0.16); color: var(--value); }
+        .panel-head.generic { background: rgba(255, 255, 255, 0.04); color: var(--ink-dim); }
+
+        .panel-body {
+            padding: 18px 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .kv {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 12px;
+            font-size: 24px;
+            line-height: 1.55;
+        }
+
+        .kv .k { color: var(--key); }
+        .kv .v { color: var(--ink); word-break: break-word; }
+        .kv .v .str { color: var(--value); }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .plate-layout {
+            display: grid;
+            grid-template-columns: 1fr 520px;
+            gap: 30px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .fault-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .fault-list li {
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 14px;
+            font-size: 24px;
+            line-height: 1.55;
+        }
+
+        .fault-list .lbl {
+            color: var(--type);
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .fault-list .row { display: block; margin-bottom: 4px; }
+
+        .viewport {
+            border: 1px solid var(--rule);
+            background: var(--surface);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 420px;
+        }
+
+        .viewport-frame {
+            flex: 1;
+            border: 1px solid var(--rule);
+            background:
+                linear-gradient(var(--rule) 1px, transparent 1px) 0 0 / 100% 28px,
+                linear-gradient(90deg, var(--rule) 1px, transparent 1px) 0 0 / 28px 100%,
+                var(--bg);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            font-size: 23px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+        }
+
+        .viewport figcaption {
+            margin-top: 12px;
+            font-size: 23px;
+            color: var(--ink-faint);
+        }
+
+        .trade-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .trade-item {
+            border: 1px solid var(--rule);
+            background: var(--surface);
+            padding: 20px 22px;
+        }
+
+        .trade-item .label {
+            color: var(--key);
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .trade-item p {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 28px;
+            line-height: 1.45;
+            color: var(--ink-dim);
+            margin: 0;
+            max-width: 36ch;
+        }
+
+        /* REPL classifier */
+        .repl {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 22px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .repl-progress {
+            font-size: 24px;
+            color: var(--ink-dim);
+            margin: 0 0 18px;
+        }
+
+        .repl-call {
+            font-size: 32px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            max-width: 70ch;
+        }
+
+        .repl-call .fn { color: var(--type); }
+        .repl-call .str { color: var(--value); }
+
+        .repl-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .repl-actions button,
+        .scenario-actions button,
+        .console-actions button,
+        .scheme-toggle,
+        .back-to-index,
+        .glossary-close,
+        .quiz-retry {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            border-radius: 0;
+            padding: 10px 16px;
+            cursor: pointer;
+            box-shadow: none;
+        }
+
+        .repl-actions button:hover,
+        .repl-actions button:focus-visible,
+        .scenario-actions button:hover,
+        .scenario-actions button:focus-visible,
+        .console-actions button:hover,
+        .console-actions button:focus-visible,
+        .scheme-toggle:hover,
+        .scheme-toggle:focus-visible,
+        .back-to-index:hover,
+        .back-to-index:focus-visible,
+        .glossary-close:hover,
+        .glossary-close:focus-visible,
+        .quiz-retry:hover,
+        .quiz-retry:focus-visible {
+            outline: 2px solid var(--value);
+            outline-offset: 2px;
+            border-color: var(--value);
+            color: var(--ink);
+        }
+
+        .repl-actions button[data-choice="saas"] { color: var(--key); }
+        .repl-actions button[data-choice="paas"] { color: var(--type); }
+        .repl-actions button[data-choice="iaas"] { color: var(--value); }
+
+        .repl-out {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            overflow: hidden;
+            font-size: 24px;
+            line-height: 1.7;
+        }
+
+        .repl-out li {
+            font-size: 24px;
+            line-height: 1.7;
+            max-width: 90ch;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .repl-out .pass { color: var(--pass); }
+        .repl-out .fail { color: var(--fail); }
+        .repl-out .reason { color: var(--ink-dim); }
+
+        .repl-score {
+            margin: 14px 0 0;
+            font-size: 24px;
+            color: var(--ink-dim);
+        }
+
+        .repl-score span { color: var(--value); }
+
+        /* Scenario activity */
+        .scenario-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .scenario-card {
+            border: 1px solid var(--rule);
+            background: var(--surface);
+            padding: 16px 20px;
+        }
+
+        .scenario-card h3 {
+            font-size: 26px;
+            color: var(--type);
+            margin-bottom: 8px;
+        }
+
+        .scenario-card p {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 26px;
+            line-height: 1.4;
+            color: var(--ink-dim);
+            margin: 0 0 12px;
+            max-width: 80ch;
+        }
+
+        .scenario-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .scenario-actions button[data-choice="saas"] { color: var(--key); }
+        .scenario-actions button[data-choice="paas"] { color: var(--type); }
+        .scenario-actions button[data-choice="iaas"] { color: var(--value); }
+        .scenario-actions button.selected { border-color: var(--value); background: rgba(0, 189, 165, 0.08); }
+
+        .scenario-feedback {
+            font-size: 23px;
+            color: var(--ink-dim);
+            min-height: 1.4em;
+            margin: 0;
+        }
+
+        .scenario-feedback.pass { color: var(--pass); }
+        .scenario-feedback.fail { color: var(--fail); }
+
+        /* Console quiz */
+        .console {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 22px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .console-progress {
+            font-size: 24px;
+            color: var(--ink-dim);
+            margin: 0 0 16px;
+        }
+
+        .console-q {
+            font-size: 32px;
+            line-height: 1.55;
+            margin: 0 0 22px;
+            max-width: 70ch;
+        }
+
+        .console-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .console-options button {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 26px;
+            text-align: left;
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            border-radius: 0;
+            padding: 14px 18px;
+            cursor: pointer;
+            max-width: 70ch;
+        }
+
+        .console-options button .prefix {
+            color: var(--key);
+            margin-right: 12px;
+        }
+
+        .console-options button:hover,
+        .console-options button:focus-visible {
+            outline: 2px solid var(--value);
+            outline-offset: 2px;
+            border-color: var(--value);
+        }
+
+        .console-options button.correct {
+            border-color: var(--pass);
+            color: var(--pass);
+        }
+
+        .console-options button.incorrect {
+            border-color: var(--fail);
+            color: var(--fail);
+        }
+
+        .console-options button:disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+
+        .console-why {
+            font-size: 24px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+            min-height: 2.4em;
+            margin: 0;
+            max-width: 70ch;
+        }
+
+        .results-panel {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 28px 30px;
+            max-width: 820px;
+        }
+
+        .results-grade {
+            font-size: 96px;
+            font-weight: 700;
+            color: var(--value);
+            letter-spacing: -0.045em;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .results-panel p {
+            font-size: 28px;
+            line-height: 1.6;
+            color: var(--ink-dim);
+            margin: 0 0 16px;
+            max-width: 56ch;
+        }
+
+        .results-panel .score-line {
+            font-size: 26px;
+            color: var(--ink);
+            margin-bottom: 20px;
+        }
+
+        .takeaway-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .takeaway-list li {
+            border: 1px solid var(--rule);
+            background: var(--surface);
+            padding: 18px 22px;
+            font-size: 28px;
+            line-height: 1.55;
+            max-width: 70ch;
+        }
+
+        .takeaway-list .cmd {
+            color: var(--type);
+            display: block;
+            margin-bottom: 6px;
+            font-size: 24px;
+        }
+
+        .close-instruction {
+            border-left: 3px solid var(--value);
+            padding: 8px 0 8px 34px;
+            margin-top: 24px;
+        }
+
+        .close-instruction p {
+            font-size: 36px;
+            line-height: 1.5;
+            color: var(--ink);
+            margin: 0;
+            max-width: 48ch;
+        }
 
         .back-to-index {
             position: fixed;
             top: 16px;
             left: 16px;
-            z-index: 100;
+            z-index: 110;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.55rem 0.95rem;
-            border-radius: 999px;
-            text-decoration: none;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            background: rgba(20, 20, 40, 0.88);
-            border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--surface);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            font-size: 20px;
         }
-        .back-to-index:hover, .back-to-index:focus-visible {
-            border-color: #00BDA5;
-            background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px);
-            outline: none;
-            color: #fff;
+
+        .scheme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 110;
+            font-size: 20px;
+            padding: 8px 14px;
+            background: var(--surface);
         }
-        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
+
         .site-credit {
             position: fixed;
             left: 50%;
-            bottom: 14px;
+            bottom: 12px;
             transform: translateX(-50%);
             z-index: 100;
             margin: 0;
-            padding: 0.35rem 0.85rem;
-            border-radius: 999px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            color: var(--ink-faint);
             pointer-events: none;
             white-space: nowrap;
         }
 
-        #circuit-canvas {
+        .glossary-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            inset: 0;
+            z-index: 200;
+            background: rgba(7, 8, 11, 0.88);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
         }
 
-        .feature-grid, .model-grid, .deck-map, .glossary-list, .scenario-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 18px;
-            margin-top: 22px;
-        }
-        .feature-card {
-            border-radius: 16px;
-            padding: 21px;
-            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            transition: all 0.35s ease;
-        }
-        .feature-card:hover { transform: translateY(-6px); border-color: var(--brand-teal); box-shadow: 0 18px 36px rgba(0, 189, 165, 0.18); }
-        .feature-card i { display: block; font-size: 2.1em; margin-bottom: 12px; }
-        .feature-card.orange i { color: var(--brand-orange); }
-        .feature-card.purple i { color: var(--brand-purple); }
-        .feature-card.teal i { color: var(--brand-teal); }
-        .feature-card h3 { margin: 0 0 8px; font-size: 1.02em; }
-        .feature-card p { margin: 0; color: rgba(255, 255, 255, 0.72); font-size: 0.74em; }
+        .glossary-overlay.open { display: flex; }
 
-        .objectives-list, .criteria-list, .evidence-list, .tick-list {
-            list-style: none;
-            padding: 0;
+        :root[data-scheme="light"] .glossary-overlay {
+            background: rgba(241, 242, 244, 0.92);
+        }
+
+        .glossary-panel {
+            width: min(1100px, 100%);
+            max-height: 80vh;
+            overflow: auto;
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 28px 30px;
+        }
+
+        .glossary-panel header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            gap: 16px;
+        }
+
+        .glossary-panel h2 {
+            font-size: 32px;
             margin: 0;
         }
-        .objectives-list li, .tick-list li {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            padding: 13px 15px;
-            margin-bottom: 10px;
-            background: var(--glass-bg);
-            border-left: 4px solid var(--brand-orange);
-            border-radius: 10px;
-        }
-        .objectives-list i, .tick-list i { color: var(--brand-teal); margin-top: 4px; }
-
-        .two-col, .comparison-container, .responsibility-board, .classifier-board {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 18px;
-        }
-        .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
-        .comparison-box { border-radius: 16px; padding: 22px; border-width: 2px; }
-        .comparison-box.type1 { border-color: var(--brand-purple); }
-        .comparison-box.type2 { border-color: var(--brand-teal); }
-        .comparison-box.type3 { border-color: var(--brand-orange); }
-        .comparison-box h3 { margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
-        .comparison-box.type1 h3 { color: var(--brand-purple-light); }
-        .comparison-box.type2 h3 { color: var(--brand-teal-light); }
-        .comparison-box.type3 h3 { color: var(--brand-orange-light); }
-        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
-        .comparison-box li { position: relative; padding: 7px 0 7px 24px; font-size: 0.76em; }
-        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
-
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
-            background: var(--glass-bg);
-            border-radius: 16px;
-            padding: 22px;
-            margin-top: 18px;
-        }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 1.45em; font-weight: 700; color: var(--brand-teal); }
-        .stat-label { font-size: 0.72em; color: rgba(255, 255, 255, 0.62); }
-
-        .kbd-hint { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 20px; }
-        .kbd-item { display: flex; align-items: center; gap: 8px; font-size: 0.74em; color: rgba(255, 255, 255, 0.64); }
-        .kbd-item kbd { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; padding: 4px 10px; color: var(--brand-teal); font-family: 'Fira Code', monospace; }
-
-        .mode-tabs, .widget-actions, .scenario-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin: 12px 0;
-        }
-        button, .action-btn, .mode-tab, .quiz-option, .chip, .service-card, .scenario-btn, .bin {
-            font-family: 'Poppins', sans-serif;
-        }
-        .action-btn, .mode-tab, .scenario-btn {
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            padding: 9px 15px;
-            font-size: 0.72em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .action-btn:hover, .action-btn:focus-visible, .mode-tab:hover, .mode-tab:focus-visible, .scenario-btn:hover, .scenario-btn:focus-visible {
-            outline: none;
-            border-color: var(--brand-teal);
-            background: rgba(0, 189, 165, 0.16);
-            transform: translateY(-1px);
-        }
-        .mode-tab.active, .scenario-btn.selected { border-color: var(--brand-orange); background: rgba(247, 147, 30, 0.2); }
-
-        .chip-pool, .service-pool, .classifier-bin-wrap {
-            border-radius: 16px;
-            padding: 16px;
-            min-height: 140px;
-        }
-        .chip-list, .service-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-content: flex-start;
-        }
-        .chip, .service-card {
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.32);
-            color: #fff;
-            padding: 9px 13px;
-            font-size: 0.7em;
-            cursor: grab;
-            transition: all 0.2s ease;
-        }
-        .chip:hover, .chip:focus-visible, .service-card:hover, .service-card:focus-visible {
-            outline: none;
-            border-color: var(--brand-teal);
-            transform: translateY(-1px);
-        }
-        .chip.selected, .service-card.selected { border-color: var(--brand-orange); box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.16); }
-        .chip.correct, .service-card.correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.18); }
-        .chip.incorrect, .service-card.incorrect { border-color: #ef4444; background: rgba(239, 68, 68, 0.16); animation: chipShake 0.35s; }
-        .bin {
-            border-radius: 16px;
-            padding: 16px;
-            min-height: 160px;
-            border-style: dashed;
-            text-align: left;
-            color: #fff;
-            cursor: pointer;
-        }
-        .bin h3 { margin: 0 0 10px; font-size: 0.95em; color: var(--brand-teal-light); }
-        .bin:focus-visible, .bin:hover { outline: none; border-color: var(--brand-orange); }
-        .classifier-board { grid-template-columns: 0.85fr 1.15fr; }
-        .classifier-bins { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .classifier-bins .bin { min-height: 240px; }
-        .score-readout, .feedback {
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 0.76em;
-            min-height: 1.4em;
-            margin-top: 10px;
-        }
-        .score-readout strong, .feedback strong { color: var(--brand-teal-light); }
-        @keyframes chipShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-
-        .scenario-card {
-            border-radius: 16px;
-            padding: 18px;
-        }
-        .scenario-card h3 { margin: 0 0 8px; color: var(--brand-orange-light); }
-        .scenario-card p { font-size: 0.72em; color: rgba(255, 255, 255, 0.72); margin-bottom: 12px; }
-        .scenario-card.correct { border-color: #22c55e; }
-        .scenario-card.incorrect { border-color: #ef4444; }
-
-        .table-wrap { border-radius: 16px; padding: 18px; overflow-x: auto; }
-        .rule-table { width: 100%; border-collapse: collapse; font-size: 0.76em; }
-        .rule-table th, .rule-table td { padding: 11px 13px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top; }
-        .rule-table th { background: rgba(138, 43, 226, 0.3); color: var(--brand-teal-light); font-weight: 600; }
-        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.08); }
-
-        .criteria-list li, .evidence-list li {
-            position: relative;
-            padding: 7px 0 7px 28px;
-            font-size: 0.76em;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .criteria-list li::before { content: '☐'; position: absolute; left: 0; color: var(--brand-teal); }
-        .evidence-list li::before { content: '☑'; position: absolute; left: 0; color: var(--brand-orange); }
 
         .glossary-search {
             width: 100%;
-            max-width: 520px;
-            padding: 12px 18px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            background: rgba(0, 0, 0, 0.35);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.82em;
+            margin-bottom: 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            padding: 12px 14px;
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--rule);
+            border-radius: 0;
         }
-        .glossary-search:focus { outline: 2px solid var(--brand-teal); outline-offset: 2px; }
-        .glossary-item { background: var(--glass-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid var(--brand-purple); border-radius: 12px; padding: 12px 14px; }
-        .glossary-item.hidden { display: none; }
-        .glossary-item strong { color: var(--brand-teal-light); display: block; font-size: 0.8em; margin-bottom: 4px; }
-        .glossary-item span { color: rgba(255, 255, 255, 0.68); font-size: 0.68em; display: block; }
 
-        .deck-link {
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            background: var(--glass-bg);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 16px;
-            transition: all 0.25s ease;
-            min-height: 132px;
+        .glossary-search:focus {
+            outline: 2px solid var(--value);
+            outline-offset: 2px;
         }
-        .deck-link:hover, .deck-link:focus-visible { outline: none; border-color: var(--brand-teal); transform: translateY(-3px); color: #fff; }
-        .deck-link.current { border-color: var(--brand-orange); background: rgba(247, 147, 30, 0.12); }
-        .deck-link i { display: block; color: var(--brand-teal); font-size: 1.65em; margin-bottom: 8px; }
-        .deck-link h4 { font-size: 0.78em; margin: 0 0 5px; }
-        .deck-link p { font-size: 0.64em; color: rgba(255, 255, 255, 0.55); margin: 0; }
 
-        .quiz-progress {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 100;
-            background: rgba(20, 20, 40, 0.88);
-            border: 1px solid rgba(0, 189, 165, 0.45);
-            border-radius: 999px;
-            padding: 6px 14px;
-            font-size: 0.75em;
-            font-weight: 600;
-            color: var(--brand-teal);
-            display: none;
-        }
-        .quiz-progress.visible { display: block; }
-        .quiz-container { max-width: 900px; margin: 0 auto; }
-        .quiz-question { text-align: center; font-size: 1.2em; font-weight: 600; margin-bottom: 22px; }
-        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .quiz-option {
-            background: var(--glass-bg);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 17px 20px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            font-size: 0.82em;
-            display: flex;
-            align-items: center;
+        .glossary-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
-            color: #fff;
-            text-align: left;
         }
-        .quiz-option span { background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
-        .quiz-option:hover, .quiz-option:focus-visible { border-color: var(--brand-teal); transform: translateY(-2px); outline: none; }
-        .quiz-option.correct { border-color: #22c55e; background: rgba(34, 197, 94, 0.2); }
-        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239, 68, 68, 0.2); }
-        .score-bar-wrap { background: rgba(255, 255, 255, 0.08); border-radius: 10px; height: 12px; margin: 15px 0; overflow: hidden; }
-        .score-bar-fill { height: 100%; background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal)); border-radius: 10px; width: 0%; transition: width 0.45s ease; }
-        .score-label { text-align: center; color: rgba(255, 255, 255, 0.65); font-size: 0.8em; }
-        .results-card { text-align: center; padding: 30px; }
-        .results-grade { font-size: 4em; font-weight: 700; background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-        .career-path { display: flex; justify-content: space-between; align-items: stretch; margin-top: 26px; gap: 18px; position: relative; }
-        .career-step { background: var(--glass-bg); border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 18px; text-align: center; flex: 1; }
-        .career-step i { display: block; font-size: 1.9em; margin-bottom: 10px; color: var(--brand-teal); }
-        .career-step h4 { margin: 0 0 6px; font-size: 0.9em; }
-        .career-step p { font-size: 0.68em; color: rgba(255, 255, 255, 0.62); margin: 0; }
+        .glossary-item {
+            border: 1px solid var(--rule);
+            padding: 12px 14px;
+        }
 
-        .reveal .slides section .fragment.fade-up { transform: translateY(30px); opacity: 0; transition: all 0.5s ease; }
-        .reveal .slides section .fragment.fade-up.visible { transform: translateY(0); opacity: 1; }
+        .glossary-item.hidden { display: none; }
+
+        .glossary-item strong {
+            display: block;
+            color: var(--value);
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .glossary-item span {
+            display: block;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 24px;
+            line-height: 1.4;
+            color: var(--ink-dim);
+        }
+
+        .reveal .controls,
+        .reveal .progress {
+            color: var(--value);
+        }
+
+        .reveal .progress span {
+            background: var(--value);
+        }
 
         @media (prefers-reduced-motion: reduce) {
-            .animated-gradient, .chip.incorrect, .service-card.incorrect { animation: none; }
-            .feature-card, .deck-link, .quiz-option, .score-bar-fill, .chip, .service-card, .action-btn, .mode-tab, .scenario-btn { transition: none; }
+            .cursor-block { animation: none; opacity: 1; }
+            * { transition: none !important; }
         }
 
         @media (max-width: 768px) {
-            .reveal .slides section { padding: 18px 22px; }
-            .reveal h1 { font-size: 2.1em; }
-            .reveal h2 { font-size: 1.45em; }
-            .two-col, .three-col, .comparison-container, .responsibility-board, .classifier-board, .classifier-bins, .quiz-options, .career-path { grid-template-columns: 1fr; flex-direction: column; }
-            .feature-grid, .model-grid, .deck-map, .glossary-list, .scenario-grid { grid-template-columns: 1fr; }
+            .reveal .slides section { padding: 40px 28px 56px; }
+            .reveal h1 { font-size: 64px; }
+            .reveal h2 { font-size: 36px; }
+            .cursor-block { width: 28px; height: 52px; }
+            .panel-grid,
+            .two-col,
+            .plate-layout,
+            .trade-grid,
+            .glossary-list { grid-template-columns: 1fr; }
+            .kv { grid-template-columns: 90px 1fr; font-size: 22px; }
             .site-credit { display: none; }
+            .repl-out li { white-space: normal; }
         }
     </style>
 </head>
 <body>
-    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
-    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
-    <a class="back-to-index" href="index.html" aria-label="Back to index">
-        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-        <span>Back to index</span>
-    </a>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">← index</a>
+    <button class="scheme-toggle" type="button" aria-pressed="false">Light</button>
+    <p class="site-credit">OCN NI · deck 72 · terminal</p>
+
+    <div class="glossary-overlay" id="glossary-overlay" role="dialog" aria-modal="true" aria-labelledby="glossary-title" hidden>
+        <div class="glossary-panel">
+            <header>
+                <h2 id="glossary-title">? glossary</h2>
+                <button class="glossary-close" type="button" id="glossary-close">close [esc]</button>
+            </header>
+            <input id="glossary-search" class="glossary-search" type="search" placeholder="filter terms…" aria-label="Filter glossary terms">
+            <div class="glossary-list" id="glossary-list">
+                <div class="glossary-item" data-terms="saas software service app subscription"><strong>saas</strong><span>Software as a Service: a complete application delivered over the internet.</span></div>
+                <div class="glossary-item" data-terms="paas platform service deploy code runtime"><strong>paas</strong><span>Platform as a Service: managed environment where developers deploy code.</span></div>
+                <div class="glossary-item" data-terms="iaas infrastructure service virtual machine vm"><strong>iaas</strong><span>Infrastructure as a Service: rented compute, storage and networking.</span></div>
+                <div class="glossary-item" data-terms="shared responsibility security cloud"><strong>shared responsibility</strong><span>The split between what the provider secures and what the customer secures.</span></div>
+                <div class="glossary-item" data-terms="runtime node python java app"><strong>runtime</strong><span>The software environment that executes application code.</span></div>
+                <div class="glossary-item" data-terms="virtualisation hypervisor vm"><strong>virtualisation</strong><span>Technology that lets many virtual machines share physical hardware.</span></div>
+                <div class="glossary-item" data-terms="vm virtual machine server"><strong>virtual machine</strong><span>A software-defined computer with its own operating system.</span></div>
+                <div class="glossary-item" data-terms="tenant tenancy multi tenant"><strong>tenant</strong><span>An organisation's separated space inside a shared cloud service.</span></div>
+                <div class="glossary-item" data-terms="scaling scale autoscale"><strong>scaling</strong><span>Increasing or decreasing resources to match demand.</span></div>
+                <div class="glossary-item" data-terms="availability uptime sla"><strong>availability</strong><span>How reliably a service stays reachable for users.</span></div>
+                <div class="glossary-item" data-terms="lock in portability vendor"><strong>vendor lock-in</strong><span>When moving away from a provider becomes costly or difficult.</span></div>
+                <div class="glossary-item" data-terms="sla service level agreement"><strong>sla</strong><span>Service Level Agreement: provider promise about uptime or support.</span></div>
+                <div class="glossary-item" data-terms="region data residency location"><strong>region</strong><span>A geographic cloud location that affects latency and data rules.</span></div>
+                <div class="glossary-item" data-terms="identity access iam permissions"><strong>identity and access</strong><span>Controls for who can sign in and what they can do.</span></div>
+            </div>
+        </div>
+    </div>
 
     <div class="reveal">
         <div class="slides">
-            <section data-canvas-bg>
-                <div class="title-slide">
-                    <div class="demo-meta" aria-label="#72 Level 2-3 Cloud / collaboration">
-                        <span class="demo-number">#72</span><span class="sep">·</span><span class="demo-level">Level 2-3</span><span class="sep">·</span><span class="demo-level">Cloud / collaboration</span>
-                    </div>
-                    <h1 class="animated-gradient">SaaS/PaaS/IaaS Comparison</h1>
-                    <p class="subtitle">Choose the right cloud service model by understanding who manages each layer.</p>
-                    <span class="qualification">OCN NI Level 2-3 · Cloud and collaboration</span>
-                </div>
-                <aside class="notes">Timing: 2 minutes. Welcome learners, frame the session as a practical way to decode cloud service adverts and choose the right model for school or workplace systems.</aside>
-            </section>
 
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning objectives</h2>
-                <p style="color: rgba(255,255,255,0.7);">By the end of this session, you will be able to:</p>
-                <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Define</strong> SaaS, PaaS and IaaS using everyday service examples.</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Explain</strong> the shared responsibility split across apps, data, runtime, operating system and infrastructure.</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Classify</strong> common services such as Microsoft 365, Heroku, Cloud Run, EC2 and Azure VM.</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Recommend</strong> a model for simple business scenarios with reasons.</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Spot</strong> cost, control, support and security trade-offs before a cloud choice is made.</span></li>
-                </ul>
-                <aside class="notes">Timing: 3 minutes. Ask learners to give one cloud service they already use, then connect their examples to the objectives.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to use this deck</h2>
-                <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-hand-pointer" aria-hidden="true"></i><h3>Interact</h3><p>Drag, tap or keyboard-select chips in the responsibility and classifier activities.</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-eye" aria-hidden="true"></i><h3>Discuss</h3><p>Pause on each model and challenge the class to name what the provider manages.</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-chart-line" aria-hidden="true"></i><h3>Track</h3><p>The quiz has a progress pill, score bar, grade and retry button.</p></div>
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-universal-access" aria-hidden="true"></i><h3>Accessible</h3><p>Use Tab, Enter and Space. Motion reduces automatically when the system asks for it.</p></div>
+            <!-- 1 Title -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 01 / 18</span>
                 </div>
-                <div class="kbd-hint" aria-label="Keyboard hints">
-                    <span class="kbd-item"><kbd>Space</kbd> select chip or answer</span>
-                    <span class="kbd-item"><kbd>Enter</kbd> place or choose</span>
-                    <span class="kbd-item"><kbd>S</kbd> speaker notes</span>
-                </div>
-                <aside class="notes">Timing: 2 minutes. Demonstrate keyboard focus on one button so learners know the activities are clickable, tappable and keyboard operable.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-cloud" aria-hidden="true"></i> Why this matters</h2>
-                <div class="two-col">
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-orange-light);">The same word hides different jobs</h3>
-                        <p>"Cloud" might mean using a finished app, deploying code to a managed platform, or renting a virtual machine. Each choice changes who patches, backs up, monitors and supports the system.</p>
-                        <p><strong>Real consequence:</strong> If a school treats an IaaS VM like SaaS, OS patches and backups may be missed because everyone assumes the provider is doing them.</p>
-                    </div>
-                    <div class="stats-bar fragment fade-up" aria-label="Cloud model quick stats">
-                        <div class="stat-item"><span class="stat-number">SaaS</span><span class="stat-label">Fastest to adopt</span></div>
-                        <div class="stat-item"><span class="stat-number">PaaS</span><span class="stat-label">Fastest for code</span></div>
-                        <div class="stat-item"><span class="stat-number">IaaS</span><span class="stat-label">Most control</span></div>
-                        <div class="stat-item"><span class="stat-number">Shared</span><span class="stat-label">Security duties</span></div>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 4 minutes. Use the missed-patching consequence to make shared responsibility feel concrete, not just theoretical.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-layer-group" aria-hidden="true"></i> Core concept: the cloud model ladder</h2>
-                <div class="three-col">
-                    <div class="comparison-box type1 fragment fade-up"><h3>SaaS</h3><ul><li>Use a complete application</li><li>Provider manages app and platform</li><li>User manages data, access and settings</li><li>Examples: Gmail, Microsoft 365, Zoom</li></ul></div>
-                    <div class="comparison-box type2 fragment fade-up"><h3>PaaS</h3><ul><li>Deploy your code to a managed platform</li><li>Provider manages runtime and servers</li><li>Developer manages app and data</li><li>Examples: App Service, Heroku, Cloud Run</li></ul></div>
-                    <div class="comparison-box type3 fragment fade-up"><h3>IaaS</h3><ul><li>Rent infrastructure building blocks</li><li>You manage OS, runtime, app and data</li><li>Provider manages physical data centre layers</li><li>Examples: AWS EC2, Azure VM</li></ul></div>
-                </div>
-                <aside class="notes">Timing: 5 minutes. Emphasise the movement from convenience to control as you move from SaaS to IaaS.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-envelope-open-text" aria-hidden="true"></i> SaaS: software as a service</h2>
-                <div class="comparison-container">
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-purple-light);">Think: subscribe and use</h3>
-                        <p>SaaS gives users a ready-made application through a browser or app. You configure settings, manage accounts, protect data and train users.</p>
-                        <ul class="tick-list"><li><i class="fas fa-check" aria-hidden="true"></i><span>Great for email, documents, CRM, video calls and storage.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Fast rollout, little server expertise needed.</span></li><li><i class="fas fa-check" aria-hidden="true"></i><span>Less control over app internals and release schedule.</span></li></ul>
-                    </div>
-                    <div class="feature-grid">
-                        <div class="feature-card orange fragment fade-up"><i class="fas fa-at" aria-hidden="true"></i><h3>Gmail</h3><p>Provider runs the mail platform.</p></div>
-                        <div class="feature-card purple fragment fade-up"><i class="fas fa-file-word" aria-hidden="true"></i><h3>Microsoft 365</h3><p>Users create content and manage sharing.</p></div>
-                        <div class="feature-card teal fragment fade-up"><i class="fas fa-video" aria-hidden="true"></i><h3>Zoom</h3><p>Finished conferencing service.</p></div>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 4 minutes. Ask learners which parts of Microsoft 365 they can configure and which parts they cannot touch.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-code" aria-hidden="true"></i> PaaS: platform as a service</h2>
-                <div class="comparison-container">
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-teal-light);">Think: bring your code</h3>
-                        <p>PaaS is useful when a team wants to build and deploy an application without spending time building servers, patching operating systems or configuring load balancers.</p>
-                        <pre class="glass-card-small" style="font-family:'Fira Code', monospace; font-size:0.66em; white-space:pre-wrap;">Developer pushes code -> Platform builds -> Platform runs -> Team monitors app behaviour</pre>
-                    </div>
-                    <div class="feature-grid">
-                        <div class="feature-card teal fragment fade-up"><i class="fas fa-rocket" aria-hidden="true"></i><h3>Azure App Service</h3><p>Host a web API or website on a managed platform.</p></div>
-                        <div class="feature-card purple fragment fade-up"><i class="fas fa-cubes" aria-hidden="true"></i><h3>Google Cloud Run</h3><p>Run containers without managing virtual machines.</p></div>
-                        <div class="feature-card orange fragment fade-up"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i><h3>Heroku</h3><p>Deploy apps with simple platform workflows.</p></div>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 5 minutes. Relate PaaS to a student project: the class writes the API, but the platform handles the server plumbing.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-people-arrows" aria-hidden="true"></i> Interactive 1: responsibility split</h2>
-                <p style="color: rgba(255,255,255,0.72);">Choose a model, then place each layer into <strong>You</strong> or <strong>Provider</strong>. Drag, tap-to-select, or use keyboard focus with Enter/Space.</p>
-                <div class="mode-tabs" role="tablist" aria-label="Cloud model selector">
-                    <button class="mode-tab active" type="button" data-mode="saas" role="tab" aria-selected="true">SaaS</button>
-                    <button class="mode-tab" type="button" data-mode="paas" role="tab" aria-selected="false">PaaS</button>
-                    <button class="mode-tab" type="button" data-mode="iaas" role="tab" aria-selected="false">IaaS</button>
-                </div>
-                <div class="responsibility-board" aria-label="Responsibility split activity">
-                    <div class="chip-pool">
-                        <h3>Layers to place</h3>
-                        <div class="chip-list" id="split-chip-pool" aria-label="Unplaced responsibility chips"></div>
-                    </div>
-                    <div class="two-col" style="margin-top:0;">
-                        <div class="bin" id="split-you" data-owner="you" tabindex="0" role="button" aria-label="You responsibility bin"><h3>You</h3><div class="chip-list"></div></div>
-                        <div class="bin" id="split-provider" data-owner="provider" tabindex="0" role="button" aria-label="Provider responsibility bin"><h3>Provider</h3><div class="chip-list"></div></div>
-                    </div>
-                </div>
-                <div class="widget-actions">
-                    <button class="action-btn" type="button" id="split-check">Check split</button>
-                    <button class="action-btn" type="button" id="split-reset">Reset mode</button>
-                    <span class="score-readout" id="split-feedback" aria-live="polite">Place all 8 layers, then check.</span>
-                </div>
-                <aside class="notes">Timing: 8 minutes. Let pairs complete one mode each, then compare the answers and discuss why data remains a user responsibility even in SaaS.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-server" aria-hidden="true"></i> IaaS: infrastructure as a service</h2>
-                <div class="comparison-container">
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-orange-light);">Think: rent the building blocks</h3>
-                        <p>IaaS gives you virtual machines, disks and virtual networking. It feels closest to running your own server room, except the physical hardware and data centre are provided for you.</p>
-                    </div>
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-teal-light);">You still own key operations</h3>
-                        <ul class="tick-list"><li><i class="fas fa-shield-alt" aria-hidden="true"></i><span>Patch and harden the operating system.</span></li><li><i class="fas fa-save" aria-hidden="true"></i><span>Plan backups and recovery testing.</span></li><li><i class="fas fa-chart-area" aria-hidden="true"></i><span>Monitor CPU, memory, logs and costs.</span></li><li><i class="fas fa-user-lock" aria-hidden="true"></i><span>Manage admin access and application security.</span></li></ul>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 4 minutes. Explicitly correct the common misconception: renting a VM is IaaS, not SaaS email.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-balance-scale" aria-hidden="true"></i> Trade-offs: convenience, control and skill</h2>
-                <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-magic" aria-hidden="true"></i><h3>Convenience</h3><p>SaaS is quickest because the app already exists. Good for standard business needs.</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-sliders-h" aria-hidden="true"></i><h3>Control</h3><p>IaaS gives more control but adds patching, monitoring, backup and security work.</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-tools" aria-hidden="true"></i><h3>Skills</h3><p>PaaS needs developers who understand code deployment. IaaS needs infrastructure skills too.</p></div>
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-pound-sign" aria-hidden="true"></i><h3>Cost shape</h3><p>Subscriptions, platform usage and VM resources are priced differently. Check hidden operations time.</p></div>
-                </div>
-                <aside class="notes">Timing: 5 minutes. Ask the class to rank SaaS, PaaS and IaaS from easiest to most flexible, then reveal the trade-off cards.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-route" aria-hidden="true"></i> Worked example: launch a student events app</h2>
-                <div class="three-col">
-                    <div class="comparison-box type1 fragment fade-up"><h3>SaaS route</h3><ul><li>Use Microsoft Forms or SharePoint list</li><li>Fast and low maintenance</li><li>Limited custom workflow</li></ul></div>
-                    <div class="comparison-box type2 fragment fade-up"><h3>PaaS route</h3><ul><li>Build a small web app/API</li><li>Deploy to Azure App Service</li><li>Focus on code and data</li></ul></div>
-                    <div class="comparison-box type3 fragment fade-up"><h3>IaaS route</h3><ul><li>Install web server on Azure VM</li><li>Patch OS and secure firewall</li><li>Useful for legacy dependencies</li></ul></div>
-                </div>
-                <div class="glass-card-small fragment fade-up" style="margin-top:18px;"><strong style="color:var(--brand-teal-light);">Decision prompt:</strong> If the app is a learning project, PaaS usually gives enough control without the overhead of VM administration.</div>
-                <aside class="notes">Timing: 5 minutes. Invite learners to choose a route for the events app and justify it using responsibility, control and speed.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-gamepad" aria-hidden="true"></i> Interactive 2: service classifier game</h2>
-                <p style="color: rgba(255,255,255,0.72);">Classify each service into SaaS, PaaS or IaaS. Your best score is stored locally in this browser.</p>
-                <div class="classifier-board">
-                    <div class="service-pool glass-card-small">
-                        <h3>Service cards</h3>
-                        <div class="service-list" id="service-pool" aria-label="Unclassified service cards"></div>
-                    </div>
-                    <div class="classifier-bins" aria-label="Service model bins">
-                        <div class="bin" data-model="saas" tabindex="0" role="button" aria-label="SaaS bin"><h3>SaaS</h3><div class="service-list"></div></div>
-                        <div class="bin" data-model="paas" tabindex="0" role="button" aria-label="PaaS bin"><h3>PaaS</h3><div class="service-list"></div></div>
-                        <div class="bin" data-model="iaas" tabindex="0" role="button" aria-label="IaaS bin"><h3>IaaS</h3><div class="service-list"></div></div>
-                    </div>
-                </div>
-                <div class="widget-actions">
-                    <button class="action-btn" type="button" id="classifier-check">Check services</button>
-                    <button class="action-btn" type="button" id="classifier-reset">Reset game</button>
-                    <span class="score-readout" id="classifier-score" aria-live="polite">Score: 0 / 9 · Best: 0 / 9</span>
-                </div>
-                <aside class="notes">Timing: 8 minutes. Have learners work quickly, then pause on App Service, Cloud Run, EC2 and Azure VM because these are often confused.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-school" aria-hidden="true"></i> Case study: a school cloud migration</h2>
-                <div class="glass-card">
-                    <div class="stats-bar" aria-label="Case study cloud choices">
-                        <div class="stat-item"><span class="stat-number">SaaS</span><span class="stat-label">Microsoft 365 email</span></div>
-                        <div class="stat-item"><span class="stat-number">PaaS</span><span class="stat-label">Student API on Azure App Service</span></div>
-                        <div class="stat-item"><span class="stat-number">IaaS</span><span class="stat-label">Legacy exam VM on Azure</span></div>
-                    </div>
-                    <div class="three-col">
-                        <div class="comparison-box type1 fragment fade-up"><h3>Email move</h3><ul><li>On-prem mail server retired</li><li>Microsoft 365 handles app, runtime and infrastructure</li><li>School manages accounts, sharing and data retention</li></ul></div>
-                        <div class="comparison-box type2 fragment fade-up"><h3>Project API</h3><ul><li>Students deploy code to App Service</li><li>Platform scales and patches runtime</li><li>Team monitors app errors and data</li></ul></div>
-                        <div class="comparison-box type3 fragment fade-up"><h3>Exam system</h3><ul><li>Legacy software needs a VM</li><li>IT patches Windows Server</li><li>Backups and access controls are school duties</li></ul></div>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 7 minutes. Walk through the three decisions and ask what would go wrong if the same support checklist was used for all three.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Common faults and fixes</h2>
-                <div class="table-wrap">
-                    <table class="rule-table">
-                        <thead><tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr></thead>
-                        <tbody>
-                            <tr><td>VM is compromised after months online</td><td>IaaS server was treated like SaaS; OS patches were missed</td><td>Assign patch ownership, enable update management and monitor vulnerability reports</td></tr>
-                            <tr><td>Unexpected cloud bill</td><td>IaaS resources left running or PaaS scaling rules too broad</td><td>Add budgets, alerts, schedules and resource tagging</td></tr>
-                            <tr><td>Students cannot access shared files</td><td>SaaS permissions or group membership configured incorrectly</td><td>Check group membership, sharing links and conditional access settings</td></tr>
-                            <tr><td>App works locally but fails after deployment</td><td>PaaS runtime version or environment variable mismatch</td><td>Document runtime requirements and set platform configuration explicitly</td></tr>
-                            <tr><td>Business asks for deep customisation in SaaS</td><td>SaaS product does not expose the needed controls</td><td>Consider PaaS build, approved add-on or process change</td></tr>
-                            <tr><td>Backups assumed but restore fails</td><td>Responsibility split was not documented or tested</td><td>Create a restore runbook and test recovery for each model</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <aside class="notes">Timing: 6 minutes. Use this as a technician triage table: symptom first, then responsibility question, then fix.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-map-signs" aria-hidden="true"></i> Interactive 3: scenario chooser</h2>
-                <p style="color: rgba(255,255,255,0.72);">Pick the best cloud model for each scenario. Each card can be answered once until reset.</p>
-                <div class="scenario-grid" id="scenario-grid">
-                    <div class="scenario-card" data-answer="saas"><h3>Staff email and shared calendars</h3><p>A school wants reliable email, calendars and document editing by Monday with minimal technical maintenance.</p><div class="scenario-actions"><button class="scenario-btn" type="button" data-choice="saas">SaaS</button><button class="scenario-btn" type="button" data-choice="paas">PaaS</button><button class="scenario-btn" type="button" data-choice="iaas">IaaS</button></div><div class="feedback" aria-live="polite"></div></div>
-                    <div class="scenario-card" data-answer="paas"><h3>Student project API</h3><p>A coding club has written a web API and needs to deploy it without managing Linux or Windows Server.</p><div class="scenario-actions"><button class="scenario-btn" type="button" data-choice="saas">SaaS</button><button class="scenario-btn" type="button" data-choice="paas">PaaS</button><button class="scenario-btn" type="button" data-choice="iaas">IaaS</button></div><div class="feedback" aria-live="polite"></div></div>
-                    <div class="scenario-card" data-answer="iaas"><h3>Legacy exam software</h3><p>An old exam system requires a specific Windows Server configuration and cannot be changed this term.</p><div class="scenario-actions"><button class="scenario-btn" type="button" data-choice="saas">SaaS</button><button class="scenario-btn" type="button" data-choice="paas">PaaS</button><button class="scenario-btn" type="button" data-choice="iaas">IaaS</button></div><div class="feedback" aria-live="polite"></div></div>
-                    <div class="scenario-card" data-answer="saas"><h3>Customer relationship tracking</h3><p>A small charity needs donor contact tracking, reports and reminders, but has no development team.</p><div class="scenario-actions"><button class="scenario-btn" type="button" data-choice="saas">SaaS</button><button class="scenario-btn" type="button" data-choice="paas">PaaS</button><button class="scenario-btn" type="button" data-choice="iaas">IaaS</button></div><div class="feedback" aria-live="polite"></div></div>
-                </div>
-                <div class="widget-actions"><button class="action-btn" type="button" id="scenario-reset">Reset scenarios</button><span class="score-readout" id="scenario-score" aria-live="polite">Scenario score: 0 / 4</span></div>
-                <aside class="notes">Timing: 7 minutes. Encourage learners to say the reason before pressing a model; reward reasoning, not just the label.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Practical task: choose a cloud model</h2>
-                <div class="two-col">
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-orange-light);">Brief</h3>
-                        <p>Your client is a training centre moving three services to cloud: staff email, a learner project portal, and an old attendance system. Recommend SaaS, PaaS or IaaS for each.</p>
-                        <ul class="criteria-list"><li>Include at least one reason based on responsibility split</li><li>Identify who patches and backs up each service</li><li>Mention one risk and one control for each choice</li><li>Use correct terms from the jargon buster</li></ul>
-                    </div>
-                    <div class="glass-card fragment fade-up">
-                        <h3 style="color: var(--brand-teal-light);">Evidence checklist</h3>
-                        <ul class="evidence-list"><li>Three-row recommendation table</li><li>Responsibility split diagram or notes</li><li>Cost/control trade-off paragraph</li><li>Screenshot or exported copy of your classifier score</li><li>Short reflection: what would you ask the client next?</li></ul>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 10 minutes. Set this as an individual or pair task; circulate and ask learners to defend one responsibility decision.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Jargon buster</h2>
-                <input id="glossary-search" class="glossary-search" type="search" placeholder="Search terms: SaaS, VM, runtime, tenancy..." aria-label="Search jargon buster">
-                <div class="glossary-list" id="glossary-list">
-                    <div class="glossary-item" data-terms="saas software service app subscription"><strong>SaaS</strong><span>Software as a Service: a complete application delivered over the internet.</span></div>
-                    <div class="glossary-item" data-terms="paas platform service deploy code runtime"><strong>PaaS</strong><span>Platform as a Service: managed environment where developers deploy code.</span></div>
-                    <div class="glossary-item" data-terms="iaas infrastructure service virtual machine vm"><strong>IaaS</strong><span>Infrastructure as a Service: rented compute, storage and networking.</span></div>
-                    <div class="glossary-item" data-terms="shared responsibility security cloud"><strong>Shared responsibility</strong><span>The split between what the provider secures and what the customer secures.</span></div>
-                    <div class="glossary-item" data-terms="runtime node python java app"><strong>Runtime</strong><span>The software environment that executes application code, such as Node.js or .NET.</span></div>
-                    <div class="glossary-item" data-terms="virtualisation hypervisor vm"><strong>Virtualisation</strong><span>Technology that lets many virtual machines share physical hardware.</span></div>
-                    <div class="glossary-item" data-terms="vm virtual machine server"><strong>Virtual machine</strong><span>A software-defined computer with its own operating system and resources.</span></div>
-                    <div class="glossary-item" data-terms="tenant tenancy multi tenant"><strong>Tenant</strong><span>An organisation's separated space inside a shared cloud service.</span></div>
-                    <div class="glossary-item" data-terms="scaling scale autoscale"><strong>Scaling</strong><span>Increasing or decreasing resources to match demand.</span></div>
-                    <div class="glossary-item" data-terms="availability uptime sla"><strong>Availability</strong><span>How reliably a service stays reachable for users.</span></div>
-                    <div class="glossary-item" data-terms="lock in portability vendor"><strong>Vendor lock-in</strong><span>When moving away from a provider becomes costly or difficult.</span></div>
-                    <div class="glossary-item" data-terms="sla service level agreement"><strong>SLA</strong><span>Service Level Agreement: provider promise about uptime or support response.</span></div>
-                    <div class="glossary-item" data-terms="region data residency location"><strong>Region</strong><span>A geographic cloud location that affects latency, resilience and data rules.</span></div>
-                    <div class="glossary-item" data-terms="identity access iam permissions"><strong>Identity and access</strong><span>Controls for who can sign in and what they can do.</span></div>
-                </div>
-                <aside class="notes">Timing: 6 minutes. Give learners two minutes to search three unfamiliar terms, then ask them to use one term in a sentence.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-compass" aria-hidden="true"></i> Where this fits: pathway map</h2>
-                <div class="deck-map">
-                    <a class="deck-link current" href="saas-paas-iaas-comparison-ocn-level2-presentation.html"><i class="fas fa-cloud" aria-hidden="true"></i><h4>SaaS/PaaS/IaaS sibling sense</h4><p>This deck: choose the right cloud service model.</p></a>
-                    <a class="deck-link" href="onedrive-sharepoint-permissions-ocn-level2-presentation.html"><i class="fas fa-user-shield" aria-hidden="true"></i><h4>OneDrive / SharePoint Permissions</h4><p>Apply SaaS responsibility to sharing and access.</p></a>
-                    <a class="deck-link" href="sharepoint-teams-setup-ocn-level2-presentation.html"><i class="fas fa-users-cog" aria-hidden="true"></i><h4>SharePoint / Teams Setup</h4><p>Plan collaboration spaces on a SaaS platform.</p></a>
-                    <a class="deck-link" href="cloud-sync-conflict-ocn-level2-presentation.html"><i class="fas fa-code-branch" aria-hidden="true"></i><h4>Cloud Sync Conflict</h4><p>Understand multi-user file sync and conflict copies.</p></a>
-                    <a class="deck-link" href="storage-quota-management-ocn-level2-presentation.html"><i class="fas fa-database" aria-hidden="true"></i><h4>Storage Quota Management</h4><p>Manage consumption, cost and cleanup in cloud storage.</p></a>
-                    <a class="deck-link" href="version-history-restore-ocn-level2-presentation.html"><i class="fas fa-history" aria-hidden="true"></i><h4>Version History Restore</h4><p>Recover files and explain SaaS data protection limits.</p></a>
-                    <a class="deck-link" href="cloud-collaboration-ocn-level2-presentation.html"><i class="fas fa-people-group" aria-hidden="true"></i><h4>Cloud Collaboration</h4><p>Connect service models to daily teamwork workflows.</p></a>
-                </div>
-                <aside class="notes">Timing: 4 minutes. Show learners this topic is a hub: service model decisions shape permissions, sync, quota and recovery lessons.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-circle-question" aria-hidden="true"></i> Knowledge check: 6-question quiz</h2>
-                <div class="glass-card quiz-container">
-                    <p style="text-align:center; color: rgba(255,255,255,0.74);">Answer each question once. The progress pill updates as you go; visit the results slide for your grade.</p>
-                    <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
-                    <div class="score-label" id="quiz-score-label" aria-live="polite">Score: 0 / 6</div>
-                    <div class="kbd-hint"><span class="kbd-item"><kbd>Tab</kbd> focus answers</span><span class="kbd-item"><kbd>Enter</kbd> choose answer</span><span class="kbd-item"><kbd>Space</kbd> choose answer</span></div>
-                </div>
-                <aside class="notes">Timing: 2 minutes. Explain that the quiz checks the same distinctions learners used in the three activities.</aside>
-            </section>
-
-            <section data-quiz="1">
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: Gmail is usually an example of...</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" type="button" data-correct="true"><span>A</span>SaaS</button>
-                        <button class="quiz-option" type="button"><span>B</span>IaaS only</button>
-                        <button class="quiz-option" type="button"><span>C</span>A VLAN</button>
-                        <button class="quiz-option" type="button"><span>D</span>A virtualisation layer</button>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 1 minute. Correct answer A. Gmail is a finished app delivered as a cloud service.</aside>
-            </section>
-
-            <section data-quiz="2">
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: Renting a virtual machine from Azure or AWS is typically...</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" type="button" data-correct="true"><span>A</span>IaaS</button>
-                        <button class="quiz-option" type="button"><span>B</span>SaaS email</button>
-                        <button class="quiz-option" type="button"><span>C</span>A spreadsheet function</button>
-                        <button class="quiz-option" type="button"><span>D</span>Only a collaboration setting</button>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 1 minute. Correct answer A. This fixes the old deck error: a rented VM is IaaS, not SaaS email.</aside>
-            </section>
-
-            <section data-quiz="3">
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: PaaS is most useful when a team wants to...</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" type="button"><span>A</span>Use a finished email app only</button>
-                        <button class="quiz-option" type="button" data-correct="true"><span>B</span>Deploy code without managing servers</button>
-                        <button class="quiz-option" type="button"><span>C</span>Buy physical network switches</button>
-                        <button class="quiz-option" type="button"><span>D</span>Avoid writing any application code</button>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 1 minute. Correct answer B. PaaS removes much of the server operations work while leaving the app to the developer.</aside>
-            </section>
-
-            <section data-quiz="4">
-                <div class="quiz-container">
-                    <p class="quiz-question">Q4: In the simplified SaaS split used today, the customer is still responsible for...</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" type="button"><span>A</span>Replacing provider storage disks</button>
-                        <button class="quiz-option" type="button"><span>B</span>Maintaining provider data centre networking</button>
-                        <button class="quiz-option" type="button" data-correct="true"><span>C</span>Managing data, users and access settings</button>
-                        <button class="quiz-option" type="button"><span>D</span>Patching the provider's application code</button>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 1 minute. Correct answer C. Even with SaaS, organisations must manage identity, data handling and configuration.</aside>
-            </section>
-
-            <section data-quiz="5">
-                <div class="quiz-container">
-                    <p class="quiz-question">Q5: Which pair is classified correctly?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" type="button"><span>A</span>Dropbox = IaaS, Azure VM = SaaS</button>
-                        <button class="quiz-option" type="button"><span>B</span>Zoom = PaaS, AWS EC2 = SaaS</button>
-                        <button class="quiz-option" type="button" data-correct="true"><span>C</span>Salesforce = SaaS, Azure App Service = PaaS</button>
-                        <button class="quiz-option" type="button"><span>D</span>Cloud Run = IaaS, Gmail = PaaS</button>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 1 minute. Correct answer C. Salesforce is a finished SaaS application; Azure App Service is a managed app platform.</aside>
-            </section>
-
-            <section data-quiz="6">
-                <div class="quiz-container">
-                    <p class="quiz-question">Q6: A legacy exam system needs a custom Windows Server build. Which model is most likely?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" type="button"><span>A</span>SaaS, because no one manages anything</button>
-                        <button class="quiz-option" type="button"><span>B</span>PaaS, because it is always cheaper</button>
-                        <button class="quiz-option" type="button" data-correct="true"><span>C</span>IaaS, because the school can control the VM and OS</button>
-                        <button class="quiz-option" type="button"><span>D</span>No cloud model can run software</button>
-                    </div>
-                </div>
-                <aside class="notes">Timing: 1 minute. Correct answer C. IaaS is suitable when OS-level control is required, but operations duties increase.</aside>
-            </section>
-
-            <section id="slide-quiz-results" data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-award" aria-hidden="true"></i> Quiz results</h2>
-                <div class="glass-card results-card">
-                    <div class="results-grade" id="results-grade" aria-live="polite">R</div>
-                    <p id="results-message">Answer the quiz questions to calculate your grade.</p>
-                    <div class="score-bar-wrap" aria-hidden="true"><div class="score-bar-fill" id="results-score-bar"></div></div>
-                    <div class="score-label">Final score: <span id="results-score-label" aria-live="polite">0 / 6</span></div>
-                    <button class="action-btn" type="button" id="quiz-retry" style="margin-top:18px;"><i class="fas fa-rotate-right" aria-hidden="true"></i> Retry quiz</button>
-                </div>
-                <aside class="notes">Timing: 3 minutes. Celebrate improvement, use the retry button for a second attempt if misconceptions remain, and revisit Q2 if needed.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Key takeaways</h2>
-                <div class="feature-grid">
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-user-check" aria-hidden="true"></i><h3>SaaS = use</h3><p>You use the finished app and manage users, settings and data.</p></div>
-                    <div class="feature-card purple fragment fade-up"><i class="fas fa-code" aria-hidden="true"></i><h3>PaaS = build</h3><p>You bring the application code; the platform handles much of the runtime stack.</p></div>
-                    <div class="feature-card teal fragment fade-up"><i class="fas fa-server" aria-hidden="true"></i><h3>IaaS = host</h3><p>You manage the operating system and applications on rented infrastructure.</p></div>
-                    <div class="feature-card orange fragment fade-up"><i class="fas fa-clipboard-list" aria-hidden="true"></i><h3>Ask "who manages?"</h3><p>The best model depends on responsibility, speed, control, skills, risk and cost.</p></div>
-                </div>
-                <aside class="notes">Timing: 4 minutes. Ask learners to summarise each model in three words, then compare with the slide wording.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Career pathways</h2>
-                <p style="text-align:center; color: rgba(255,255,255,0.72);">Understanding service models helps in support, development, security and architecture roles.</p>
-                <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-headset" aria-hidden="true"></i><h4>Cloud support technician</h4><p>Explains service responsibility, checks settings and escalates provider issues.</p></div>
-                    <div class="career-step"><i class="fas fa-laptop-code" aria-hidden="true"></i><h4>Junior developer</h4><p>Deploys apps to PaaS and understands runtime configuration.</p></div>
-                    <div class="career-step"><i class="fas fa-shield-alt" aria-hidden="true"></i><h4>Cloud security analyst</h4><p>Audits identity, data protection and shared responsibility controls.</p></div>
-                    <div class="career-step"><i class="fas fa-sitemap" aria-hidden="true"></i><h4>Solutions architect</h4><p>Chooses service models that balance cost, resilience and business needs.</p></div>
-                </div>
-                <div class="stats-bar fragment fade-up"><div class="stat-item"><span class="stat-number">Use</span><span class="stat-label">SaaS admin</span></div><div class="stat-item"><span class="stat-number">Build</span><span class="stat-label">PaaS developer</span></div><div class="stat-item"><span class="stat-number">Run</span><span class="stat-label">IaaS engineer</span></div></div>
-                <aside class="notes">Timing: 4 minutes. Link the topic to realistic entry points: support starts with classification and escalation; engineering adds automation and design.</aside>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next steps and further reading</h2>
-                <div class="glass-card">
-                    <h3 style="color: var(--brand-teal-light);"><i class="fas fa-tasks" aria-hidden="true"></i> Your action plan</h3>
-                    <ul class="tick-list">
-                        <li><i class="fas fa-play" aria-hidden="true"></i><span><strong>Redo</strong> the responsibility split for all three models without hints.</span></li>
-                        <li><i class="fas fa-search" aria-hidden="true"></i><span><strong>Research</strong> one real product page and identify whether it is SaaS, PaaS or IaaS.</span></li>
-                        <li><i class="fas fa-table" aria-hidden="true"></i><span><strong>Create</strong> a three-column comparison with examples, duties and risks.</span></li>
-                        <li><i class="fas fa-arrow-right" aria-hidden="true"></i><span><strong>Continue</strong> with SharePoint/Teams Setup, Cloud Sync Conflict or Cloud Collaboration.</span></li>
+                <div class="slide-body">
+                    <p class="comment">// module: cloud service models</p>
+                    <h1>saas / paas / iaas<span class="cursor-block" aria-hidden="true"></span></h1>
+                    <ul class="dash-list">
+                        <li>define each model with real service examples</li>
+                        <li>explain who manages app, data, runtime, os, infra</li>
+                        <li>classify common products into the right model</li>
+                        <li>recommend a model for a simple business case</li>
                     </ul>
                 </div>
-                <aside class="notes">Timing: 3 minutes. Set the research action as homework or as the first task in the next lesson.</aside>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 2 minutes. Welcome learners. Frame the session as reading cloud adverts like a terminal: who owns which field?</aside>
             </section>
 
-            <section data-canvas-bg>
-                <div class="title-slide">
-                    <h1 class="animated-gradient">Thank you!</h1>
-                    <p class="subtitle">Questions? Which model would you choose for your next cloud project?</p>
-                    <div style="margin-top: 30px;">
-                        <p style="color: rgba(255,255,255,0.72); margin-bottom: 18px;"><i class="fas fa-info-circle" aria-hidden="true"></i> Demo #72 · SaaS/PaaS/IaaS Comparison</p>
-                        <span class="qualification">OCN NI Level 2-3 · Cloud / collaboration</span>
-                    </div>
-                    <div style="margin-top: 42px;"><i class="fas fa-cloud" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i><i class="fas fa-code" style="font-size: 3em; color: var(--brand-purple); margin: 0 15px;" aria-hidden="true"></i><i class="fas fa-server" style="font-size: 3em; color: var(--brand-orange); margin: 0 15px;" aria-hidden="true"></i></div>
+            <!-- 2 Hook -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 02 / 18</span>
                 </div>
-                <aside class="notes">Timing: 2 minutes. Close by asking learners to name one service they now classify differently and why.</aside>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>warn --missed-patch</h2>
+                    <div class="quote-block">
+                        <p>"Cloud" might mean a finished app, a managed platform for your code, or a rented virtual machine. Each choice changes who patches, backs up, monitors and supports the system.</p>
+                        <p class="consequence">// real consequence: treat an iaas vm like saas and os patches get skipped — because everyone assumes the provider is doing them.</p>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 4 minutes. Use the missed-patching story. Ask who learners think patches Gmail vs an Azure VM.</aside>
             </section>
+
+            <!-- 3 Objectives -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 03 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>objectives --verb-led</h2>
+                    <div class="quote-block">
+                        <ul class="dash-list" style="margin:0;">
+                            <li><strong style="color:var(--key)">define</strong> saas, paas and iaas using everyday services</li>
+                            <li><strong style="color:var(--key)">explain</strong> the shared responsibility split across layers</li>
+                            <li><strong style="color:var(--key)">classify</strong> products such as m365, app service, ec2</li>
+                            <li><strong style="color:var(--key)">recommend</strong> a model with reasons, risks and controls</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 3 minutes. Collect one cloud service each learner already uses; map it to an objective verb.</aside>
+            </section>
+
+            <!-- 4 Core concept -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 04 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>describe --all</h2>
+                    <div class="panel-grid" aria-label="Cloud model comparison">
+                        <article class="panel">
+                            <div class="panel-head saas"><span>saas.model</span><span>01</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">data, users, access</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">app + full stack</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">finished application</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">less control of releases</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">gmail</span>, <span class="str">m365</span>, <span class="str">zoom</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head paas"><span>paas.model</span><span>02</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">app code + data</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">runtime → networking</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">managed deploy platform</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">runtime / config drift</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">app service</span>, <span class="str">heroku</span>, <span class="str">cloud run</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head iaas"><span>iaas.model</span><span>03</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">os, runtime, app, data</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">virt → physical layers</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">vms, disks, networks</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">missed patches / cost</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">aws ec2</span>, <span class="str">azure vm</span></span></div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 5 minutes. Scan the five fields vertically across panels. Convenience → control as you move saas → iaas.</aside>
+            </section>
+
+            <!-- 5 SaaS -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 05 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>inspect saas.model</h2>
+                    <div class="two-col">
+                        <article class="panel">
+                            <div class="panel-head saas"><span>saas.model</span><span>subscribe</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">accounts, settings, data, training</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">app, runtime, os, infra</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">ready-made browser / app service</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">vendor schedule; limited internals</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v">email, crm, docs, video</span></div>
+                            </div>
+                        </article>
+                        <div class="quote-block" style="align-self:center;">
+                            <p>Fast rollout. Little server expertise. You still own identity, sharing and retention — even when the provider owns the app.</p>
+                            <p class="consequence">// ask: which m365 settings can you change, and which can you not?</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 4 minutes. Push the point that SaaS still leaves data and access with the customer.</aside>
+            </section>
+
+            <!-- 6 PaaS -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 06 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>inspect paas.model</h2>
+                    <div class="two-col">
+                        <article class="panel">
+                            <div class="panel-head paas"><span>paas.model</span><span>deploy</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">application code + data</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">runtime, os, servers, scale</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">managed build-and-run platform</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">env vars / runtime mismatch</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">azure app service</span>, <span class="str">cloud run</span>, <span class="str">heroku</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head generic"><span>pipeline.log</span><span>stdout</span></div>
+                            <div class="panel-body" style="font-size:24px; line-height:1.85; color:var(--ink-dim);">
+                                <div><span style="color:var(--value)">$</span> git push origin main</div>
+                                <div><span style="color:var(--type)">build</span> → platform packages runtime</div>
+                                <div><span style="color:var(--type)">run</span> → platform hosts the process</div>
+                                <div><span style="color:var(--key)">you</span> → monitor app behaviour + data</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 5 minutes. Relate to a student API: class writes code; platform owns the plumbing.</aside>
+            </section>
+
+            <!-- 7 IaaS -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 07 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>inspect iaas.model</h2>
+                    <div class="two-col">
+                        <article class="panel">
+                            <div class="panel-head iaas"><span>iaas.model</span><span>rent</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">os, runtime, app, data, access</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">virtualisation, servers, storage, net</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">vm + disk + virtual network</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">unpatched os; runaway cost</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">aws ec2</span>, <span class="str">azure vm</span></span></div>
+                            </div>
+                        </article>
+                        <div class="quote-block" style="align-self:center;">
+                            <p>Closest to your own server room — without owning the building. You still patch, back up, monitor and lock down admin access.</p>
+                            <p class="consequence">// misconception check: a rented vm is iaas, not saas email.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 4 minutes. Explicitly correct: renting a VM is IaaS. List the ops duties aloud.</aside>
+            </section>
+
+            <!-- 8 Activity 1 — REPL classifier -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 08 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>classify(service)</h2>
+                    <div class="repl" aria-label="REPL service classifier">
+                        <p class="repl-progress" id="repl-progress" aria-live="polite">card 1 of 9 · pick a model</p>
+                        <div class="repl-call" id="repl-call"><span class="fn">classify</span>(<span class="str">"…"</span>) → ?</div>
+                        <div class="repl-actions">
+                            <button type="button" data-choice="saas">saas</button>
+                            <button type="button" data-choice="paas">paas</button>
+                            <button type="button" data-choice="iaas">iaas</button>
+                            <button type="button" data-action="reset">reset</button>
+                        </div>
+                        <ol class="repl-out" id="repl-out" aria-live="polite"></ol>
+                        <p class="repl-score">score <span id="repl-score">0 / 0</span> · best <span id="repl-best">0 / 9</span></p>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 8 minutes. Pause on App Service, Cloud Run, EC2 and Azure VM — those are the common mix-ups.</aside>
+            </section>
+
+            <!-- 9 Worked example -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 09 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>route --events-app</h2>
+                    <div class="panel-grid">
+                        <article class="panel">
+                            <div class="panel-head saas"><span>route.saas</span><span>fast</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">form design + data</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">forms / sharepoint stack</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">ready tools</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">limited custom workflow</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">microsoft forms</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head paas"><span>route.paas</span><span>balanced</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">web app / api + data</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">runtime + hosting</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">deploy without servers</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">config must be explicit</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">azure app service</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head iaas"><span>route.iaas</span><span>control</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">os, web server, app</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">vm hardware layers</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">full stack control</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">patch + firewall work</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">azure vm</span></span></div>
+                            </div>
+                        </article>
+                    </div>
+                    <p class="consequence" style="margin-top:18px; font-size:24px; color:var(--key);">// decision: for a learning project, paas usually wins — enough control, less vm admin.</p>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 5 minutes. Learners pick a route and justify with responsibility, control and speed.</aside>
+            </section>
+
+            <!-- 10 Trade-offs -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 10 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>compare --tradeoffs</h2>
+                    <div class="trade-grid">
+                        <div class="trade-item">
+                            <div class="label">convenience:</div>
+                            <p>saas is quickest — the app already exists. Best for standard business needs.</p>
+                        </div>
+                        <div class="trade-item">
+                            <div class="label">control:</div>
+                            <p>iaas gives more control but adds patching, monitoring, backup and security work.</p>
+                        </div>
+                        <div class="trade-item">
+                            <div class="label">skills:</div>
+                            <p>paas needs developers who can deploy. iaas needs infrastructure skills too.</p>
+                        </div>
+                        <div class="trade-item">
+                            <div class="label">cost_shape:</div>
+                            <p>subscriptions, platform usage and vm hours price differently — count ops time.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 5 minutes. Rank saas → paas → iaas from easiest to most flexible, then open each trade-off.</aside>
+            </section>
+
+            <!-- 11 Activity 2 — scenarios -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 11 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>choose --scenario</h2>
+                    <div class="scenario-stack" id="scenario-stack">
+                        <div class="scenario-card" data-answer="saas" data-why="finished collaboration apps — you manage users and data, not servers">
+                            <h3>choose("staff email + calendars") → ?</h3>
+                            <p>Reliable email and documents by Monday with minimal technical maintenance.</p>
+                            <div class="scenario-actions">
+                                <button type="button" data-choice="saas">saas</button>
+                                <button type="button" data-choice="paas">paas</button>
+                                <button type="button" data-choice="iaas">iaas</button>
+                            </div>
+                            <p class="scenario-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="scenario-card" data-answer="paas" data-why="you push code; the platform patches the runtime and hosts the process">
+                            <h3>choose("student project api") → ?</h3>
+                            <p>Coding club has a web API and must deploy without managing Linux or Windows Server.</p>
+                            <div class="scenario-actions">
+                                <button type="button" data-choice="saas">saas</button>
+                                <button type="button" data-choice="paas">paas</button>
+                                <button type="button" data-choice="iaas">iaas</button>
+                            </div>
+                            <p class="scenario-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="scenario-card" data-answer="iaas" data-why="legacy needs a specific windows server build — os-level control required">
+                            <h3>choose("legacy exam software") → ?</h3>
+                            <p>Old exam system needs a specific Windows Server configuration this term.</p>
+                            <div class="scenario-actions">
+                                <button type="button" data-choice="saas">saas</button>
+                                <button type="button" data-choice="paas">paas</button>
+                                <button type="button" data-choice="iaas">iaas</button>
+                            </div>
+                            <p class="scenario-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="scenario-card" data-answer="saas" data-why="no development team — buy a finished crm, configure users and data">
+                            <h3>choose("charity donor tracking") → ?</h3>
+                            <p>Small charity needs contacts, reports and reminders with no developers on staff.</p>
+                            <div class="scenario-actions">
+                                <button type="button" data-choice="saas">saas</button>
+                                <button type="button" data-choice="paas">paas</button>
+                                <button type="button" data-choice="iaas">iaas</button>
+                            </div>
+                            <p class="scenario-feedback" aria-live="polite"></p>
+                        </div>
+                    </div>
+                    <p class="repl-score" style="margin-top:12px;">scenario score <span id="scenario-score">0 / 0</span>
+                        <button type="button" data-action="scenario-reset" id="scenario-reset" style="margin-left:12px;">reset</button>
+                    </p>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 7 minutes. Ask for the reason before the press. Reward the // why, not just the label.</aside>
+            </section>
+
+            <!-- 12 Case study A -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 12 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>case --school-migration</h2>
+                    <div class="panel-grid">
+                        <article class="panel">
+                            <div class="panel-head saas"><span>email.saas</span><span>m365</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">accounts, sharing, retention</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">app + platform + infra</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">retire on-prem mail</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">misconfigured permissions</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">microsoft 365</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head paas"><span>api.paas</span><span>app-service</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">student code + data</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">scale + patch runtime</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">deploy without servers</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">unmonitored app errors</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">azure app service</span></span></div>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-head iaas"><span>exam.iaas</span><span>legacy-vm</span></div>
+                            <div class="panel-body">
+                                <div class="kv"><span class="k">you:</span><span class="v">windows server + app + backups</span></div>
+                                <div class="kv"><span class="k">provider:</span><span class="v">vm hardware layers</span></div>
+                                <div class="kv"><span class="k">buy:</span><span class="v">os-level control</span></div>
+                                <div class="kv"><span class="k">risk:</span><span class="v">missed patches</span></div>
+                                <div class="kv"><span class="k">examples:</span><span class="v"><span class="str">azure vm</span></span></div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 5 minutes. One school, three different models. Ask what breaks if the same support checklist is used for all three.</aside>
+            </section>
+
+            <!-- 13 Case study B -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 13 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>case --what-went-wrong</h2>
+                    <div class="quote-block">
+                        <p>IT used one checklist for every cloud workload. The exam VM was treated like Microsoft 365: "provider patches it." After four months online, an unpatched Windows Server was compromised.</p>
+                        <p class="consequence">// fix: document the responsibility split per workload. test restores. assign named patch owners for every iaas instance.</p>
+                    </div>
+                    <ul class="dash-list">
+                        <li>saas email: check groups, sharing links, retention — not os updates</li>
+                        <li>paas api: watch runtime config, app logs, data backups</li>
+                        <li>iaas exam vm: patch os, harden access, schedule backups</li>
+                    </ul>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 4 minutes. Link back to the hook. This is the same consequence, now named and sequenced.</aside>
+            </section>
+
+            <!-- 14 Common faults -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 14 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>triage --faults</h2>
+                    <div class="plate-layout">
+                        <ul class="fault-list">
+                            <li>
+                                <span class="row"><span class="lbl">symptom</span> vm compromised after months online</span>
+                                <span class="row"><span class="lbl">cause</span> iaas treated like saas; os patches skipped</span>
+                                <span class="row"><span class="lbl">fix</span> assign patch owner; enable update management</span>
+                            </li>
+                            <li>
+                                <span class="row"><span class="lbl">symptom</span> unexpected cloud bill</span>
+                                <span class="row"><span class="lbl">cause</span> idle vms or broad paas scale rules</span>
+                                <span class="row"><span class="lbl">fix</span> budgets, alerts, schedules, tags</span>
+                            </li>
+                            <li>
+                                <span class="row"><span class="lbl">symptom</span> students cannot open shared files</span>
+                                <span class="row"><span class="lbl">cause</span> saas permissions / group membership</span>
+                                <span class="row"><span class="lbl">fix</span> check groups, links, conditional access</span>
+                            </li>
+                            <li>
+                                <span class="row"><span class="lbl">symptom</span> app fails after deploy</span>
+                                <span class="row"><span class="lbl">cause</span> paas runtime or env mismatch</span>
+                                <span class="row"><span class="lbl">fix</span> pin runtime; set config explicitly</span>
+                            </li>
+                            <li>
+                                <span class="row"><span class="lbl">symptom</span> restore fails when needed</span>
+                                <span class="row"><span class="lbl">cause</span> split never documented or tested</span>
+                                <span class="row"><span class="lbl">fix</span> runbook + restore test per model</span>
+                            </li>
+                        </ul>
+                        <figure class="viewport">
+                            <div class="viewport-frame">
+                                patch-report.txt · 84 × 48<br>
+                                CRITICAL  windows server 2019 · 47 days since last update<br>
+                                OWNER     unset<br>
+                                MODEL     iaas (assumed saas)
+                            </div>
+                            <figcaption>img/72-patch-report.txt · console capture · author plate</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 6 minutes. Use as a technician triage table: symptom → responsibility question → fix.</aside>
+            </section>
+
+            <!-- 15 Activity 3 — console quiz -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 15 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>quiz --console</h2>
+                    <div class="console" id="console-quiz" aria-label="Console quiz">
+                        <p class="console-progress" id="console-progress" aria-live="polite">q 1 of 6 · score 0</p>
+                        <p class="console-q" id="console-q"></p>
+                        <div class="console-options" id="console-options"></div>
+                        <p class="console-why" id="console-why" aria-live="polite"></p>
+                        <div class="console-actions" style="margin-top:auto;">
+                            <button type="button" id="console-next" hidden>next</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 8 minutes. Six console questions. Wrong answers print a // reason — do not skip the why.</aside>
+            </section>
+
+            <!-- 16 Results -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 16 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>results</h2>
+                    <div class="results-panel">
+                        <div class="results-grade" id="results-grade" aria-live="polite">—</div>
+                        <p class="score-line">final score: <span id="results-score" aria-live="polite">0 / 6</span></p>
+                        <p id="results-message">complete the console quiz to calculate your grade.</p>
+                        <p id="results-meaning" style="color:var(--ink-faint); font-size:24px;"></p>
+                        <button class="quiz-retry" type="button" id="quiz-retry">retry quiz</button>
+                    </div>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 3 minutes. Read the "what a wrong answer means" line. Retry if misconceptions remain.</aside>
+            </section>
+
+            <!-- 17 Takeaways -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 17 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>takeaways</h2>
+                    <ul class="takeaway-list">
+                        <li><span class="cmd">saas = use</span>finished app; you manage users, settings and data</li>
+                        <li><span class="cmd">paas = build</span>you bring the code; platform owns much of the stack</li>
+                        <li><span class="cmd">iaas = host</span>you manage os + apps on rented infrastructure</li>
+                        <li><span class="cmd">ask who_manages()</span>best model depends on duty, speed, control, skill, risk, cost</li>
+                    </ul>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 4 minutes. Learners summarise each model in three words, then compare with the slide.</aside>
+            </section>
+
+            <!-- 18 Close -->
+            <section>
+                <div class="status-bar">
+                    <span class="path"><span class="dot" aria-hidden="true"></span> ocnni/level-2 ▸ deck-72 ▸ cloud-models</span>
+                    <span class="sheet-num">sheet 18 / 18</span>
+                </div>
+                <div class="slide-body">
+                    <h2><span class="prompt">></span>next</h2>
+                    <p class="comment">// one instruction</p>
+                    <div class="close-instruction">
+                        <p>Pick one real product page tonight. Write whether it is saas, paas or iaas — and name who patches what.</p>
+                    </div>
+                    <ul class="dash-list">
+                        <li>optional path: sharepoint/teams setup · cloud sync conflict · cloud collaboration</li>
+                    </ul>
+                </div>
+                <p class="slide-footer">press S for notes · ← → to move · ? for the glossary</p>
+                <aside class="notes">Timing: 2 minutes. Set the product-page task as homework. Close by asking one service they now classify differently.</aside>
+            </section>
+
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
             controls: true,
             progress: true,
-            center: true,
-            transition: 'slide',
-            backgroundTransition: 'fade',
+            center: false,
+            transition: 'none',
+            backgroundTransition: 'none',
             width: 1920,
             height: 1080,
             margin: 0.04,
             minScale: 0.2,
             maxScale: 2.0,
-            autoAnimateEasing: 'ease-out',
-            autoAnimateDuration: 0.8,
-            plugins: [RevealNotes, RevealHighlight, RevealZoom]
+            plugins: [RevealNotes, RevealZoom]
         });
 
-        const AppState = {
-            splitMode: 'saas',
-            selectedSplitChip: null,
-            draggedSplitChip: null,
-            selectedService: null,
-            draggedService: null,
-            quizScore: 0,
-            quizAnswered: {},
-            quizBound: false,
-            scenarioScore: 0
-        };
+        /* —— scheme toggle —— */
+        (function initScheme() {
+            const t = document.querySelector('.scheme-toggle');
+            const set = (v) => {
+                document.documentElement.dataset.scheme = v;
+                t.setAttribute('aria-pressed', v === 'light' ? 'true' : 'false');
+                t.textContent = v === 'light' ? 'Dark' : 'Light';
+                localStorage.setItem('ocn-scheme', v);
+            };
+            set(localStorage.getItem('ocn-scheme') || 'dark');
+            t.addEventListener('click', () => {
+                set(document.documentElement.dataset.scheme === 'light' ? 'dark' : 'light');
+            });
+        })();
 
-        const LAYERS = ['App', 'Data', 'Runtime', 'OS', 'Virtualisation', 'Servers', 'Storage', 'Networking'];
-        const SPLIT_ANSWERS = {
-            saas: { you: ['Data'], provider: ['App', 'Runtime', 'OS', 'Virtualisation', 'Servers', 'Storage', 'Networking'] },
-            paas: { you: ['App', 'Data'], provider: ['Runtime', 'OS', 'Virtualisation', 'Servers', 'Storage', 'Networking'] },
-            iaas: { you: ['App', 'Data', 'Runtime', 'OS'], provider: ['Virtualisation', 'Servers', 'Storage', 'Networking'] }
-        };
-        const SERVICES = [
-            { name: 'Gmail', model: 'saas' },
-            { name: 'Microsoft 365', model: 'saas' },
-            { name: 'Heroku / Azure App Service', model: 'paas' },
-            { name: 'AWS EC2', model: 'iaas' },
-            { name: 'Dropbox', model: 'saas' },
-            { name: 'Google Cloud Run', model: 'paas' },
-            { name: 'Azure VM', model: 'iaas' },
-            { name: 'Zoom', model: 'saas' },
-            { name: 'Salesforce', model: 'saas' }
+        /* —— glossary overlay (? key) —— */
+        (function initGlossary() {
+            const overlay = document.getElementById('glossary-overlay');
+            const search = document.getElementById('glossary-search');
+            const closeBtn = document.getElementById('glossary-close');
+            const items = () => overlay.querySelectorAll('.glossary-item');
+
+            function open() {
+                overlay.hidden = false;
+                overlay.classList.add('open');
+                search.value = '';
+                items().forEach((el) => el.classList.remove('hidden'));
+                search.focus();
+            }
+
+            function close() {
+                overlay.classList.remove('open');
+                overlay.hidden = true;
+            }
+
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) close();
+            });
+
+            search.addEventListener('input', () => {
+                const q = search.value.trim().toLowerCase();
+                items().forEach((el) => {
+                    const hay = (el.dataset.terms + ' ' + el.textContent).toLowerCase();
+                    el.classList.toggle('hidden', q !== '' && !hay.includes(q));
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
+                    const tag = (e.target && e.target.tagName) || '';
+                    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+                    e.preventDefault();
+                    if (overlay.classList.contains('open')) close();
+                    else open();
+                }
+                if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                    e.preventDefault();
+                    close();
+                }
+            });
+        })();
+
+        /* —— REPL classifier —— */
+        const CLASSIFIER_CARDS = [
+            { name: 'Gmail', model: 'saas', why: 'finished mail app — you own accounts and data' },
+            { name: 'Microsoft 365', model: 'saas', why: 'a finished application — you only own data and accounts' },
+            { name: 'Azure App Service', model: 'paas', why: 'you push code, the platform patches the runtime' },
+            { name: 'AWS EC2', model: 'iaas', why: 'rented virtual machine — you manage the os' },
+            { name: 'Dropbox', model: 'saas', why: 'finished storage/sync product' },
+            { name: 'Google Cloud Run', model: 'paas', why: 'managed container platform — you bring the image/code' },
+            { name: 'Azure VM', model: 'iaas', why: 'infrastructure building block with os-level duties' },
+            { name: 'Zoom', model: 'saas', why: 'finished conferencing service' },
+            { name: 'Salesforce', model: 'saas', why: 'finished crm application delivered as a service' }
         ];
 
-        function activateButtonKeyboard(event, callback) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                callback(event);
+        const ReplState = {
+            index: 0,
+            score: 0,
+            answered: 0,
+            locked: false,
+            lines: []
+        };
+
+        function getClassifierBest() {
+            const n = Number(localStorage.getItem('deck-72-classifier-best') || 0);
+            return Number.isFinite(n) ? n : 0;
+        }
+
+        function setClassifierBest(score) {
+            const best = Math.max(getClassifierBest(), score);
+            localStorage.setItem('deck-72-classifier-best', String(best));
+            return best;
+        }
+
+        function renderReplCall() {
+            const card = CLASSIFIER_CARDS[ReplState.index];
+            const call = document.getElementById('repl-call');
+            const progress = document.getElementById('repl-progress');
+            if (!card) {
+                call.innerHTML = '<span class="fn">classify</span>(done) → session complete';
+                progress.textContent = 'card 9 of 9 · complete';
+                return;
             }
+            call.innerHTML = '<span class="fn">classify</span>(<span class="str">"' + card.name + '"</span>) → ?';
+            progress.textContent = 'card ' + (ReplState.index + 1) + ' of 9 · pick a model';
         }
 
-        function clearSelection(selector) {
-            document.querySelectorAll(selector).forEach(el => el.classList.remove('selected'));
-        }
-
-        function selectSplitChip(chip) {
-            if (!chip) return;
-            clearSelection('.chip');
-            AppState.selectedSplitChip = chip;
-            chip.classList.add('selected');
-            const feedback = document.getElementById('split-feedback');
-            if (feedback) feedback.textContent = 'Selected ' + chip.dataset.layer + '. Choose You or Provider.';
-        }
-
-        function placeSplitChip(chip, bin) {
-            if (!chip || !bin) return;
-            const list = bin.querySelector('.chip-list');
-            if (!list) return;
-            list.appendChild(chip);
-            chip.classList.remove('selected', 'correct', 'incorrect');
-            AppState.selectedSplitChip = null;
-        }
-
-        function resetSplit(mode) {
-            AppState.splitMode = mode || AppState.splitMode;
-            const pool = document.getElementById('split-chip-pool');
-            if (!pool) return;
-            pool.innerHTML = '';
-            document.querySelectorAll('#split-you .chip-list, #split-provider .chip-list').forEach(list => list.innerHTML = '');
-            LAYERS.forEach(layer => {
-                const chip = document.createElement('button');
-                chip.type = 'button';
-                chip.className = 'chip';
-                chip.draggable = true;
-                chip.dataset.layer = layer;
-                chip.textContent = layer;
-                chip.setAttribute('aria-label', 'Responsibility layer ' + layer);
-                pool.appendChild(chip);
+        function renderReplOut() {
+            const out = document.getElementById('repl-out');
+            out.innerHTML = '';
+            ReplState.lines.slice(-4).forEach((line) => {
+                const li = document.createElement('li');
+                li.innerHTML = line;
+                out.appendChild(li);
             });
-            const feedback = document.getElementById('split-feedback');
-            if (feedback) feedback.textContent = 'Mode: ' + AppState.splitMode.toUpperCase() + '. Place all 8 layers, then check.';
-            bindSplitChips();
+            document.getElementById('repl-score').textContent = ReplState.score + ' / ' + ReplState.answered;
+            document.getElementById('repl-best').textContent = getClassifierBest() + ' / 9';
         }
 
-        function checkSplit() {
-            const answer = SPLIT_ANSWERS[AppState.splitMode];
-            let placed = 0;
-            let correct = 0;
-            document.querySelectorAll('#split-you .chip, #split-provider .chip').forEach(chip => {
-                placed++;
-                const owner = chip.closest('.bin').dataset.owner;
-                const ok = answer[owner].includes(chip.dataset.layer);
-                chip.classList.toggle('correct', ok);
-                chip.classList.toggle('incorrect', !ok);
-                if (ok) correct++;
-            });
-            const feedback = document.getElementById('split-feedback');
-            if (!feedback) return;
-            if (placed < LAYERS.length) {
-                feedback.textContent = 'Place all 8 layers first. Currently placed: ' + placed + ' / 8.';
-            } else if (correct === LAYERS.length) {
-                feedback.innerHTML = '<strong>Perfect:</strong> ' + correct + ' / 8 correct for ' + AppState.splitMode.toUpperCase() + '.';
-            } else {
-                feedback.innerHTML = '<strong>Score:</strong> ' + correct + ' / 8. Red chips need moving.';
-            }
+        function resetRepl() {
+            ReplState.index = 0;
+            ReplState.score = 0;
+            ReplState.answered = 0;
+            ReplState.locked = false;
+            ReplState.lines = [];
+            renderReplCall();
+            renderReplOut();
         }
 
-        function bindSplitChips() {
-            document.querySelectorAll('.chip').forEach(chip => {
-                if (chip.dataset.bound) return;
-                chip.dataset.bound = 'true';
-                chip.addEventListener('click', () => selectSplitChip(chip));
-                chip.addEventListener('keydown', event => activateButtonKeyboard(event, () => selectSplitChip(chip)));
-                chip.addEventListener('dragstart', event => {
-                    AppState.draggedSplitChip = chip;
-                    event.dataTransfer.setData('text/plain', chip.dataset.layer);
-                });
-                chip.addEventListener('dragend', () => { AppState.draggedSplitChip = null; });
-            });
-        }
-
-        function initResponsibilitySplit() {
-            const pool = document.getElementById('split-chip-pool');
-            if (!pool) return;
-            if (!pool.children.length) resetSplit('saas');
-            document.querySelectorAll('.mode-tab').forEach(tab => {
-                if (tab.dataset.bound) return;
-                tab.dataset.bound = 'true';
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.mode-tab').forEach(t => {
-                        t.classList.toggle('active', t === tab);
-                        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
-                    });
-                    resetSplit(tab.dataset.mode);
-                });
-            });
-            document.querySelectorAll('#split-you, #split-provider').forEach(bin => {
-                if (bin.dataset.bound) return;
-                bin.dataset.bound = 'true';
-                bin.addEventListener('click', () => placeSplitChip(AppState.selectedSplitChip, bin));
-                bin.addEventListener('keydown', event => activateButtonKeyboard(event, () => placeSplitChip(AppState.selectedSplitChip, bin)));
-                bin.addEventListener('dragover', event => event.preventDefault());
-                bin.addEventListener('drop', event => {
-                    event.preventDefault();
-                    const chip = AppState.draggedSplitChip;
-                    placeSplitChip(chip, bin);
-                    AppState.draggedSplitChip = null;
-                });
-            });
-            const check = document.getElementById('split-check');
-            const reset = document.getElementById('split-reset');
-            if (check && !check.dataset.bound) {
-                check.dataset.bound = 'true';
-                check.addEventListener('click', checkSplit);
-            }
-            if (reset && !reset.dataset.bound) {
-                reset.dataset.bound = 'true';
-                reset.addEventListener('click', () => resetSplit(AppState.splitMode));
-            }
-        }
-
-        function getBestClassifierScore() {
-            const raw = localStorage.getItem('saasPaasIaasClassifierBest');
-            const score = Number(raw || 0);
-            return Number.isFinite(score) ? score : 0;
-        }
-
-        function setClassifierScore(score) {
-            const best = Math.max(getBestClassifierScore(), score);
-            localStorage.setItem('saasPaasIaasClassifierBest', String(best));
-            const label = document.getElementById('classifier-score');
-            if (label) label.textContent = 'Score: ' + score + ' / 9 · Best: ' + best + ' / 9';
-        }
-
-        function selectService(card) {
+        function answerRepl(choice) {
+            if (ReplState.locked) return;
+            const card = CLASSIFIER_CARDS[ReplState.index];
             if (!card) return;
-            clearSelection('.service-card');
-            AppState.selectedService = card;
-            card.classList.add('selected');
-        }
-
-        function placeService(card, bin) {
-            if (!card || !bin) return;
-            const list = bin.querySelector('.service-list');
-            if (!list) return;
-            list.appendChild(card);
-            card.classList.remove('selected', 'correct', 'incorrect');
-            AppState.selectedService = null;
-        }
-
-        function resetClassifier() {
-            const pool = document.getElementById('service-pool');
-            if (!pool) return;
-            pool.innerHTML = '';
-            document.querySelectorAll('.classifier-bins .service-list').forEach(list => list.innerHTML = '');
-            SERVICES.forEach(service => {
-                const card = document.createElement('button');
-                card.type = 'button';
-                card.className = 'service-card';
-                card.draggable = true;
-                card.dataset.model = service.model;
-                card.textContent = service.name;
-                card.setAttribute('aria-label', 'Classify ' + service.name);
-                pool.appendChild(card);
-            });
-            setClassifierScore(0);
-            bindServiceCards();
-        }
-
-        function checkClassifier() {
-            let score = 0;
-            document.querySelectorAll('.classifier-bins .service-card').forEach(card => {
-                const binModel = card.closest('.bin').dataset.model;
-                const ok = binModel === card.dataset.model;
-                card.classList.toggle('correct', ok);
-                card.classList.toggle('incorrect', !ok);
-                if (ok) score++;
-            });
-            const placed = document.querySelectorAll('.classifier-bins .service-card').length;
-            setClassifierScore(score);
-            if (placed < SERVICES.length) {
-                const label = document.getElementById('classifier-score');
-                if (label) label.textContent += ' · Place all 9 cards for a full attempt.';
+            ReplState.locked = true;
+            ReplState.answered += 1;
+            const ok = choice === card.model;
+            if (ok) {
+                ReplState.score += 1;
+                ReplState.lines.push(
+                    '<span class="pass">PASS</span>  ' + card.name + ' → ' + card.model.toUpperCase() +
+                    '  <span class="reason">// ' + card.why + '</span>'
+                );
+            } else {
+                ReplState.lines.push(
+                    '<span class="fail">FAIL</span>  ' + card.name + ' is ' + card.model.toUpperCase() +
+                    ', not ' + choice.toUpperCase() +
+                    '  <span class="reason">// ' + card.why + '</span>'
+                );
             }
-        }
-
-        function bindServiceCards() {
-            document.querySelectorAll('.service-card').forEach(card => {
-                if (card.dataset.bound) return;
-                card.dataset.bound = 'true';
-                card.addEventListener('click', () => selectService(card));
-                card.addEventListener('keydown', event => activateButtonKeyboard(event, () => selectService(card)));
-                card.addEventListener('dragstart', event => {
-                    AppState.draggedService = card;
-                    event.dataTransfer.setData('text/plain', card.textContent);
-                });
-                card.addEventListener('dragend', () => { AppState.draggedService = null; });
-            });
-        }
-
-        function initClassifier() {
-            const pool = document.getElementById('service-pool');
-            if (!pool) return;
-            if (!pool.children.length && !document.querySelector('.classifier-bins .service-card')) resetClassifier();
-            document.querySelectorAll('.classifier-bins .bin').forEach(bin => {
-                if (bin.dataset.bound) return;
-                bin.dataset.bound = 'true';
-                bin.addEventListener('click', () => placeService(AppState.selectedService, bin));
-                bin.addEventListener('keydown', event => activateButtonKeyboard(event, () => placeService(AppState.selectedService, bin)));
-                bin.addEventListener('dragover', event => event.preventDefault());
-                bin.addEventListener('drop', event => {
-                    event.preventDefault();
-                    placeService(AppState.draggedService, bin);
-                    AppState.draggedService = null;
-                });
-            });
-            const check = document.getElementById('classifier-check');
-            const reset = document.getElementById('classifier-reset');
-            if (check && !check.dataset.bound) {
-                check.dataset.bound = 'true';
-                check.addEventListener('click', checkClassifier);
+            if (ReplState.index >= CLASSIFIER_CARDS.length - 1) {
+                setClassifierBest(ReplState.score);
+                ReplState.index = CLASSIFIER_CARDS.length;
+            } else {
+                ReplState.index += 1;
             }
-            if (reset && !reset.dataset.bound) {
-                reset.dataset.bound = 'true';
-                reset.addEventListener('click', resetClassifier);
-            }
-            const label = document.getElementById('classifier-score');
-            if (label && !label.dataset.bestLoaded) {
-                label.dataset.bestLoaded = 'true';
-                label.textContent = 'Score: 0 / 9 · Best: ' + getBestClassifierScore() + ' / 9';
-            }
+            renderReplOut();
+            renderReplCall();
+            ReplState.locked = false;
         }
 
-        function initScenarioChooser() {
-            document.querySelectorAll('.scenario-card').forEach(card => {
-                card.querySelectorAll('.scenario-btn').forEach(btn => {
-                    if (btn.dataset.bound) return;
-                    btn.dataset.bound = 'true';
-                    btn.addEventListener('click', () => answerScenario(card, btn));
-                });
+        function initRepl() {
+            const root = document.querySelector('.repl');
+            if (!root) return;
+            root.querySelectorAll('button[data-choice]').forEach((btn) => {
+                btn.addEventListener('click', () => answerRepl(btn.dataset.choice));
             });
-            const reset = document.getElementById('scenario-reset');
-            if (reset && !reset.dataset.bound) {
-                reset.dataset.bound = 'true';
-                reset.addEventListener('click', resetScenarios);
-            }
+            root.querySelector('[data-action="reset"]').addEventListener('click', resetRepl);
+            resetRepl();
+            document.getElementById('repl-best').textContent = getClassifierBest() + ' / 9';
         }
 
-        function answerScenario(card, btn) {
-            if (card.dataset.answered === 'true') return;
-            const ok = btn.dataset.choice === card.dataset.answer;
-            card.dataset.answered = 'true';
-            card.classList.add(ok ? 'correct' : 'incorrect');
-            btn.classList.add('selected');
-            card.querySelectorAll('.scenario-btn').forEach(b => { b.disabled = true; });
-            const feedback = card.querySelector('.feedback');
-            if (feedback) feedback.innerHTML = ok ? '<strong>Correct.</strong> Good model choice.' : '<strong>Review.</strong> Best fit: ' + card.dataset.answer.toUpperCase() + '.';
-            if (ok) AppState.scenarioScore++;
-            updateScenarioScore();
-        }
-
-        function resetScenarios() {
-            AppState.scenarioScore = 0;
-            document.querySelectorAll('.scenario-card').forEach(card => {
-                delete card.dataset.answered;
-                card.classList.remove('correct', 'incorrect');
-                card.querySelectorAll('.scenario-btn').forEach(btn => {
-                    btn.disabled = false;
-                    btn.classList.remove('selected');
-                });
-                const feedback = card.querySelector('.feedback');
-                if (feedback) feedback.textContent = '';
-            });
-            updateScenarioScore();
-        }
+        /* —— scenario chooser —— */
+        const ScenarioState = { score: 0, answered: 0 };
 
         function updateScenarioScore() {
-            const label = document.getElementById('scenario-score');
-            if (label) label.textContent = 'Scenario score: ' + AppState.scenarioScore + ' / 4';
+            document.getElementById('scenario-score').textContent =
+                ScenarioState.score + ' / ' + ScenarioState.answered;
         }
 
-        function initGlossary() {
-            const search = document.getElementById('glossary-search');
-            if (!search || search.dataset.bound) return;
-            search.dataset.bound = 'true';
-            search.addEventListener('input', () => {
-                const q = search.value.toLowerCase();
-                document.querySelectorAll('.glossary-item').forEach(item => {
-                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
-                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+        function initScenarios() {
+            const stack = document.getElementById('scenario-stack');
+            if (!stack) return;
+
+            stack.querySelectorAll('.scenario-card').forEach((card) => {
+                const feedback = card.querySelector('.scenario-feedback');
+                card.querySelectorAll('button[data-choice]').forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        if (card.dataset.done === 'true') return;
+                        card.dataset.done = 'true';
+                        ScenarioState.answered += 1;
+                        const choice = btn.dataset.choice;
+                        const ok = choice === card.dataset.answer;
+                        btn.classList.add('selected');
+                        card.querySelectorAll('button[data-choice]').forEach((b) => { b.disabled = true; });
+                        if (ok) {
+                            ScenarioState.score += 1;
+                            feedback.className = 'scenario-feedback pass';
+                            feedback.textContent = 'PASS  → ' + card.dataset.answer.toUpperCase() +
+                                '  // ' + card.dataset.why;
+                        } else {
+                            feedback.className = 'scenario-feedback fail';
+                            feedback.textContent = 'FAIL  expected ' + card.dataset.answer.toUpperCase() +
+                                '  // ' + card.dataset.why;
+                        }
+                        updateScenarioScore();
+                    });
                 });
             });
+
+            document.getElementById('scenario-reset').addEventListener('click', () => {
+                ScenarioState.score = 0;
+                ScenarioState.answered = 0;
+                stack.querySelectorAll('.scenario-card').forEach((card) => {
+                    card.dataset.done = 'false';
+                    card.querySelectorAll('button[data-choice]').forEach((b) => {
+                        b.disabled = false;
+                        b.classList.remove('selected');
+                    });
+                    const feedback = card.querySelector('.scenario-feedback');
+                    feedback.className = 'scenario-feedback';
+                    feedback.textContent = '';
+                });
+                updateScenarioScore();
+            });
+
+            updateScenarioScore();
         }
 
-        function updateQuizUI() {
-            const pct = (AppState.quizScore / 6) * 100;
-            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.width = pct + '%';
-            });
-            const label = document.getElementById('quiz-score-label');
-            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
-            const progress = document.getElementById('quiz-progress');
-            if (progress) {
-                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
-                progress.classList.toggle('visible', AppState.quizScore > 0 || Object.keys(AppState.quizAnswered).length > 0);
+        /* —— console quiz —— */
+        const QUIZ = [
+            {
+                q: 'classify("Gmail") → ?',
+                options: [
+                    { key: 'A', text: 'saas', correct: true },
+                    { key: 'B', text: 'iaas only', correct: false },
+                    { key: 'C', text: 'a vlan', correct: false },
+                    { key: 'D', text: 'a virtualisation layer', correct: false }
+                ],
+                why: 'gmail is a finished app delivered as a cloud service.'
+            },
+            {
+                q: 'classify("Azure VM" | "AWS EC2") → ?',
+                options: [
+                    { key: 'A', text: 'iaas', correct: true },
+                    { key: 'B', text: 'saas email', correct: false },
+                    { key: 'C', text: 'a spreadsheet function', correct: false },
+                    { key: 'D', text: 'only a collaboration setting', correct: false }
+                ],
+                why: 'a rented virtual machine is iaas — you still manage the os.'
+            },
+            {
+                q: 'paas is most useful when a team wants to…',
+                options: [
+                    { key: 'A', text: 'use a finished email app only', correct: false },
+                    { key: 'B', text: 'deploy code without managing servers', correct: true },
+                    { key: 'C', text: 'buy physical network switches', correct: false },
+                    { key: 'D', text: 'avoid writing any application code', correct: false }
+                ],
+                why: 'paas removes much server ops while leaving the app to the developer.'
+            },
+            {
+                q: 'in saas, the customer is still responsible for…',
+                options: [
+                    { key: 'A', text: 'replacing provider storage disks', correct: false },
+                    { key: 'B', text: 'maintaining provider data-centre networking', correct: false },
+                    { key: 'C', text: 'managing data, users and access settings', correct: true },
+                    { key: 'D', text: 'patching the provider application code', correct: false }
+                ],
+                why: 'even with saas, organisations manage identity, data and configuration.'
+            },
+            {
+                q: 'which pair is classified correctly?',
+                options: [
+                    { key: 'A', text: 'dropbox = iaas, azure vm = saas', correct: false },
+                    { key: 'B', text: 'zoom = paas, aws ec2 = saas', correct: false },
+                    { key: 'C', text: 'salesforce = saas, azure app service = paas', correct: true },
+                    { key: 'D', text: 'cloud run = iaas, gmail = paas', correct: false }
+                ],
+                why: 'salesforce is finished saas; app service is a managed app platform.'
+            },
+            {
+                q: 'legacy exam system needs a custom windows server build → ?',
+                options: [
+                    { key: 'A', text: 'saas, because no one manages anything', correct: false },
+                    { key: 'B', text: 'paas, because it is always cheaper', correct: false },
+                    { key: 'C', text: 'iaas, because the school controls the vm and os', correct: true },
+                    { key: 'D', text: 'no cloud model can run software', correct: false }
+                ],
+                why: 'iaas fits when os-level control is required — ops duties increase.'
             }
+        ];
+
+        const QuizState = {
+            index: 0,
+            score: 0,
+            answered: {},
+            waitingNext: false
+        };
+
+        function gradeLetter(score, total) {
+            const pct = (score / total) * 100;
+            if (pct >= 90) return 'A';
+            if (pct >= 80) return 'B';
+            if (pct >= 70) return 'C';
+            if (pct >= 60) return 'D';
+            return 'R';
+        }
+
+        function meaningFor(score, total) {
+            if (score === total) {
+                return '// every wrong answer avoided: you can name who patches what.';
+            }
+            if (score >= total - 1) {
+                return '// a wrong answer usually means mixing paas deploy with iaas ops duties.';
+            }
+            if (score >= Math.ceil(total / 2)) {
+                return '// wrong answers often treat rented vms as saas — revisit sheets 07 and 13.';
+            }
+            return '// rewind to describe --all and re-run classify(service) before retrying.';
         }
 
         function showResults() {
-            const grade = document.getElementById('results-grade');
-            const msg = document.getElementById('results-message');
-            const label = document.getElementById('results-score-label');
-            if (!grade || !msg || !label) return;
-            const s = AppState.quizScore;
-            label.textContent = s + ' / 6';
-            if (s >= 5) {
-                grade.textContent = 'A';
-                msg.textContent = 'Excellent. You can classify models and explain the responsibility split clearly.';
-            } else if (s === 4) {
-                grade.textContent = 'B';
-                msg.textContent = 'Good. Revisit the examples that separate PaaS from IaaS.';
-            } else if (s === 3) {
-                grade.textContent = 'C';
-                msg.textContent = 'Secure pass. Practise the classifier and responsibility split again.';
-            } else if (s === 2) {
-                grade.textContent = 'D';
-                msg.textContent = 'Developing. Review the core concept ladder before retrying.';
-            } else {
-                grade.textContent = 'R';
-                msg.textContent = 'Retry recommended. Focus on SaaS vs PaaS vs IaaS examples first.';
+            const total = QUIZ.length;
+            const grade = gradeLetter(QuizState.score, total);
+            document.getElementById('results-grade').textContent = grade;
+            document.getElementById('results-score').textContent = QuizState.score + ' / ' + total;
+            document.getElementById('results-message').textContent =
+                grade === 'R'
+                    ? 'retry recommended — responsibility splits are still fuzzy.'
+                    : 'grade ' + grade + ' — check the meaning line before moving on.';
+            document.getElementById('results-meaning').textContent = meaningFor(QuizState.score, total);
+        }
+
+        function renderQuiz() {
+            const q = QUIZ[QuizState.index];
+            const progress = document.getElementById('console-progress');
+            const qEl = document.getElementById('console-q');
+            const opts = document.getElementById('console-options');
+            const why = document.getElementById('console-why');
+            const next = document.getElementById('console-next');
+
+            if (!q) {
+                progress.textContent = 'q 6 of 6 · score ' + QuizState.score + ' · complete';
+                qEl.textContent = 'quiz complete → open results';
+                opts.innerHTML = '';
+                why.textContent = '// advance to the results sheet for grade + meaning.';
+                next.hidden = true;
+                showResults();
+                return;
             }
-            updateQuizUI();
+
+            progress.textContent = 'q ' + (QuizState.index + 1) + ' of ' + QUIZ.length +
+                ' · score ' + QuizState.score;
+            qEl.textContent = q.q;
+            why.textContent = '';
+            next.hidden = true;
+            QuizState.waitingNext = false;
+            opts.innerHTML = '';
+
+            q.options.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerHTML = '<span class="prefix">' + opt.key + '</span>' + opt.text;
+                btn.addEventListener('click', () => {
+                    if (QuizState.answered[QuizState.index] != null) return;
+                    QuizState.answered[QuizState.index] = opt.correct;
+                    if (opt.correct) QuizState.score += 1;
+                    opts.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+                    btn.classList.add(opt.correct ? 'correct' : 'incorrect');
+                    if (!opt.correct) {
+                        const correctBtn = Array.from(opts.querySelectorAll('button'))[
+                            q.options.findIndex((o) => o.correct)
+                        ];
+                        if (correctBtn) correctBtn.classList.add('correct');
+                    }
+                    why.textContent = (opt.correct ? 'PASS  // ' : 'FAIL  // ') + q.why;
+                    progress.textContent = 'q ' + (QuizState.index + 1) + ' of ' + QUIZ.length +
+                        ' · score ' + QuizState.score;
+                    next.hidden = false;
+                    next.textContent = QuizState.index >= QUIZ.length - 1 ? 'show results' : 'next';
+                    QuizState.waitingNext = true;
+                });
+                opts.appendChild(btn);
+            });
         }
 
         function initQuiz() {
-            if (AppState.quizBound) return;
-            AppState.quizBound = true;
-            const activate = option => {
-                const section = option.closest('section[data-quiz]');
-                if (!section) return;
-                const qNum = section.dataset.quiz;
-                if (AppState.quizAnswered[qNum]) return;
-                const container = option.closest('.quiz-options');
-                const isCorrect = option.dataset.correct === 'true';
-                option.classList.add(isCorrect ? 'correct' : 'incorrect');
-                container.querySelectorAll('.quiz-option').forEach(opt => {
-                    opt.disabled = true;
-                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
-                });
-                AppState.quizAnswered[qNum] = true;
-                if (isCorrect) AppState.quizScore++;
-                updateQuizUI();
-            };
-            document.addEventListener('click', event => {
-                const option = event.target.closest('.quiz-option');
-                if (!option) return;
-                activate(option);
-            });
-            document.addEventListener('keydown', event => {
-                if (event.key !== 'Enter' && event.key !== ' ') return;
-                const option = event.target.closest && event.target.closest('.quiz-option');
-                if (!option) return;
-                event.preventDefault();
-                activate(option);
-            });
-            const retryBtn = document.getElementById('quiz-retry');
-            if (retryBtn && !retryBtn.dataset.bound) {
-                retryBtn.dataset.bound = 'true';
-                retryBtn.addEventListener('click', () => {
-                    AppState.quizScore = 0;
-                    AppState.quizAnswered = {};
-                    document.querySelectorAll('.quiz-option').forEach(opt => {
-                        opt.classList.remove('correct', 'incorrect');
-                        opt.disabled = false;
-                    });
-                    updateQuizUI();
+            const next = document.getElementById('console-next');
+            next.addEventListener('click', () => {
+                if (!QuizState.waitingNext) return;
+                if (QuizState.index >= QUIZ.length - 1) {
+                    QuizState.index = QUIZ.length;
+                    renderQuiz();
                     showResults();
-                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
-                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h);
-                });
-            }
-        }
-
-        function initCanvas() {
-            const canvas = document.getElementById('circuit-canvas');
-            if (!canvas || canvas.dataset.bound) return;
-            canvas.dataset.bound = 'true';
-            const ctx = canvas.getContext('2d');
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-            const particles = [];
-            for (let i = 0; i < 42; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 2 + 1
-                });
-            }
-            function draw() {
-                const slide = Reveal.getCurrentSlide();
-                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
-                canvas.style.opacity = showCanvas ? '0.4' : '0';
-                if (!showCanvas || reducedMotion) {
-                    requestAnimationFrame(draw);
+                    const resultsSlide = Array.from(document.querySelectorAll('.reveal .slides > section'))[15];
+                    if (resultsSlide) Reveal.slide(15);
                     return;
                 }
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach((p, i) => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
-                    ctx.fill();
-                    particles.forEach((p2, j) => {
-                        if (j <= i) return;
-                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                        if (dist < 120) {
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(p2.x, p2.y);
-                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
-                            ctx.stroke();
-                        }
-                    });
-                });
-                requestAnimationFrame(draw);
-            }
-            draw();
-        }
+                QuizState.index += 1;
+                renderQuiz();
+            });
 
-        function refreshWidgets() {
-            initResponsibilitySplit();
-            initClassifier();
-            initScenarioChooser();
-            initGlossary();
-        }
+            document.getElementById('quiz-retry').addEventListener('click', () => {
+                QuizState.index = 0;
+                QuizState.score = 0;
+                QuizState.answered = {};
+                QuizState.waitingNext = false;
+                document.getElementById('results-grade').textContent = '—';
+                document.getElementById('results-score').textContent = '0 / 6';
+                document.getElementById('results-message').textContent =
+                    'complete the console quiz to calculate your grade.';
+                document.getElementById('results-meaning').textContent = '';
+                renderQuiz();
+                Reveal.slide(14);
+            });
 
-        Reveal.on('slidechanged', event => {
-            refreshWidgets();
-            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
-        });
+            renderQuiz();
+        }
 
         Reveal.on('ready', () => {
-            refreshWidgets();
+            initRepl();
+            initScenarios();
             initQuiz();
-            initCanvas();
-            updateQuizUI();
-            updateScenarioScore();
         });
     </script>
-    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
 </body>
 </html>
