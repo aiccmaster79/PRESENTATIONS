@@ -562,7 +562,7 @@ a mandate — swap them if something fits the topic better.
   - Before/after diff slider, code smell spotter, behaviour-preservation check
 - [x] **#56 Git Version Control Basics** — `git-version-control-basics-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Command → repo state simulator, staging area animation, log timeline
-- [ ] **#88 GitHub & CI/CD** — `github-cicd-ocn-level2-presentation.html` · small · 16 → 30
+- [~] **#88 GitHub & CI/CD** — `github-cicd-ocn-level2-presentation.html` · small · 16 → 30 · `cursor/upgrade-github-cicd-05fb`
   - PR review simulator, workflow builder, pipeline status animation, branch protection
 
 ### Website Development — Demos
