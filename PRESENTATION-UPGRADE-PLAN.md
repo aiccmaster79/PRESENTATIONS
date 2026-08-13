@@ -80,8 +80,9 @@ A deck is only ticked when **all** of the following are true.
 **Index**
 
 - The deck's card in `index.html` has `data-updated` bumped to the upgrade date
-  (this drives the "Recently added" widget) and its `<p>` blurb refreshed if the
-  scope changed.
+  (this drives the "Recently added" widget), `data-upgraded="true"` (this drives
+  the index **Upgraded** filter), and its `<p>` blurb refreshed if the scope
+  changed.
 
 ---
 
@@ -228,8 +229,8 @@ Content is already strong; interactivity is not.
    work. This stops parallel agents colliding.
 2. **Branch.** `cursor/upgrade-<topic>-<suffix>`. Take 3–6 decks per branch and PR.
 3. **Upgrade** each deck against [section 1](#1-definition-of-done).
-4. **Update `index.html`** — bump the card's `data-updated`, refresh the blurb if
-   the scope changed.
+4. **Update `index.html`** — bump the card's `data-updated`, set
+   `data-upgraded="true"`, and refresh the blurb if the scope changed.
 5. **Verify** — open the file in a browser (or headless with a console listener),
    exercise every widget, run the quiz through to the results slide, press **S**
    for speaker view, and resize to mobile width.
