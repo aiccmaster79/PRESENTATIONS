@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 29 / 143 presentations complete**
+**Progress: 30 / 143 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -562,7 +562,7 @@ a mandate — swap them if something fits the topic better.
   - Before/after diff slider, code smell spotter, behaviour-preservation check
 - [x] **#56 Git Version Control Basics** — `git-version-control-basics-ocn-level2-presentation.html` · small · 15 → 28 · (#33)
   - Command → repo state simulator, staging area animation, log timeline
-- [~] **#88 GitHub & CI/CD** — `github-cicd-ocn-level2-presentation.html` · small · 16 → 30 · `cursor/upgrade-github-cicd-05fb`
+- [x] **#88 GitHub & CI/CD** — `github-cicd-ocn-level2-presentation.html` · small · 16 → 30 · (#46)
   - PR review simulator, workflow builder, pipeline status animation, branch protection
 
 ### Website Development — Demos
