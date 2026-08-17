@@ -3,14 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Computers | OCN NI Level 2 IT</title>
+    <title>#93 | Level 2 | Building Computers | OCN NI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ====== BRAND COLORS ====== */
         :root {
             --brand-orange: #F7931E;
             --brand-purple: #8A2BE2;
@@ -25,618 +24,500 @@
             --glass-bg: rgba(20, 20, 40, 0.85);
         }
 
-        /* ====== GLOBAL STYLES ====== */
-        .reveal {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .reveal .slides {
-            text-align: left;
-        }
-
-        .reveal .slides section {
-            height: 100%;
-            padding: 20px 40px;
-        }
-
+        .reveal { font-family: 'Poppins', sans-serif; }
+        .reveal .slides { text-align: left; }
+        .reveal .slides section { height: 100%; padding: 20px 40px; }
         .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: -0.02em;
+            font-family: 'Poppins', sans-serif; font-weight: 700;
+            text-transform: none; letter-spacing: -0.02em;
         }
-
         .reveal h1 { font-size: 2.8em; }
         .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
         .reveal h3 { font-size: 1.4em; }
         .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
 
-        /* ====== ANIMATED GRADIENT TITLE ====== */
         .animated-gradient {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
             background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 8s ease infinite;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; animation: gradientShift 8s ease infinite;
         }
-
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
 
-        /* ====== GLASSMORPHISM CARDS ====== */
         .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
-
         .glass-card-small {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            background: var(--glass-bg); backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* ====== FEATURE GRID ====== */
         .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px; margin-top: 24px;
         }
-
         .feature-card {
             background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px; padding: 22px; border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--brand-teal);
+            transform: translateY(-8px); border-color: var(--brand-teal);
             box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
         }
-
-        .feature-card i {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
+        .feature-card i { font-size: 2.3em; margin-bottom: 12px; display: block; }
         .feature-card.orange i { color: var(--brand-orange); }
         .feature-card.purple i { color: var(--brand-purple); }
         .feature-card.teal i { color: var(--brand-teal); }
+        .feature-card h3 { font-size: 1.1em; margin-bottom: 8px; color: #fff; }
+        .feature-card p { font-size: 0.82em; color: rgba(255, 255, 255, 0.7); margin: 0; }
 
-        .feature-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .feature-card p {
-            font-size: 0.85em;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 0;
-        }
-
-        /* ====== COMPARISON TABLE ====== */
-        .comparison-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .comparison-box {
-            background: var(--glass-bg);
-            border-radius: 16px;
-            padding: 25px;
-            border: 2px solid;
-        }
-
+        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 22px; border: 2px solid; }
         .comparison-box.type1 { border-color: var(--brand-purple); }
         .comparison-box.type2 { border-color: var(--brand-teal); }
-
         .comparison-box h3 {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            text-align: center; margin-bottom: 16px; padding-bottom: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .comparison-box.type1 h3 { color: var(--brand-purple); }
         .comparison-box.type2 h3 { color: var(--brand-teal); }
+        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
+        .comparison-box li { padding: 7px 0 7px 25px; position: relative; font-size: 0.82em; }
+        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
 
-        .comparison-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+        .benefit-item {
+            display: flex; gap: 14px; align-items: flex-start; background: var(--glass-bg);
+            border-radius: 12px; padding: 16px; border: 1px solid rgba(255,255,255,0.08);
         }
+        .benefit-item i { font-size: 1.6em; color: var(--brand-teal); margin-top: 4px; }
+        .benefit-item h4 { margin: 0 0 4px 0; font-size: 0.95em; }
+        .benefit-item p { margin: 0; font-size: 0.78em; color: rgba(255,255,255,0.7); }
 
-        .comparison-box li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.85em;
+        .stats-bar {
+            display: flex; justify-content: space-around; margin: 24px 0; flex-wrap: wrap; gap: 16px;
         }
-
-        .comparison-box li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--brand-orange);
+        .stat-item { text-align: center; padding: 12px; }
+        .stat-number {
+            font-size: 2.2em; font-weight: 700; display: block;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
+        .stat-label { font-size: 0.78em; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ====== ARCHITECTURE DIAGRAM ====== */
-        .architecture-diagram {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .arch-layer {
-            width: 100%;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: transform 0.3s ease;
-        }
-
-        .arch-layer:hover { transform: scale(1.02); }
-
-        .layer-app { background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark)); }
-        .layer-os { background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark)); }
-        .layer-hypervisor { background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark)); }
-        .layer-hardware { background: linear-gradient(135deg, #444, #222); border: 2px solid #666; }
-
-        .arch-label {
-            font-size: 0.7em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ====== CLOUD SERVICE MODELS ====== */
-        .cloud-models {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-        }
-
+        .cloud-models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
         .cloud-model {
-            background: var(--glass-bg);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            border-top: 4px solid;
-            transition: all 0.3s ease;
+            background: var(--glass-bg); border-radius: 16px; padding: 22px; text-align: center;
+            border-top: 4px solid; transition: all 0.3s ease;
         }
-
         .cloud-model:hover { transform: translateY(-5px); }
-
         .cloud-model.iaas { border-color: var(--brand-orange); }
         .cloud-model.paas { border-color: var(--brand-purple); }
         .cloud-model.saas { border-color: var(--brand-teal); }
-
-        .cloud-model h3 { font-size: 1.3em; margin-bottom: 10px; }
-
+        .cloud-model h3 { font-size: 1.2em; margin-bottom: 8px; }
         .cloud-model.iaas h3 { color: var(--brand-orange); }
         .cloud-model.paas h3 { color: var(--brand-purple); }
         .cloud-model.saas h3 { color: var(--brand-teal); }
+        .cloud-model p { font-size: 0.8em; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+        .cloud-model .examples { font-size: 0.72em; color: rgba(255,255,255,0.5); font-style: italic; }
 
-        .cloud-model p {
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 15px;
-        }
-
-        .cloud-model .examples {
-            font-size: 0.75em;
-            color: rgba(255, 255, 255, 0.5);
-            font-style: italic;
-        }
-
-        /* ====== QUIZ STYLES ====== */
-        .quiz-container { max-width: 800px; margin: 0 auto; }
-
-        .quiz-question {
-            font-size: 1.2em;
-            margin-bottom: 25px;
-            color: var(--brand-orange);
-        }
-
-        .quiz-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .quiz-option {
-            background: var(--glass-bg);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .quiz-option:hover {
-            border-color: var(--brand-teal);
-            background: rgba(0, 189, 165, 0.1);
-        }
-
-        .quiz-option.correct {
-            border-color: #22c55e;
-            background: rgba(34, 197, 94, 0.2);
-        }
-
-        .quiz-option.incorrect {
-            border-color: #ef4444;
-            background: rgba(239, 68, 68, 0.2);
-        }
-
-        .quiz-option span {
-            display: block;
-            font-weight: 600;
-            color: var(--brand-purple);
-            margin-bottom: 5px;
-        }
-
-        /* ====== STATS BAR ====== */
-        .stats-bar {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .stat-item { text-align: center; padding: 20px; }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: 700;
-            display: block;
-            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.85em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ====== SOFTWARE LOGOS ====== */
-        .software-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .software-item {
-            background: var(--glass-bg);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .software-item:hover {
-            transform: scale(1.05);
-            border-color: var(--brand-teal);
-        }
-
-        .software-item i { font-size: 3em; margin-bottom: 15px; }
-        .software-item h4 { font-size: 1.1em; margin-bottom: 8px; color: #fff; }
-
-        .software-item .type-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7em;
-            margin-bottom: 10px;
-        }
-
-        .type-badge.type1 { background: var(--brand-purple); }
-        .type-badge.type2 { background: var(--brand-teal); }
-
-        .software-item p {
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.6);
-            margin: 0;
-        }
-
-        /* ====== BENEFITS LIST ====== */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 20px;
-            background: var(--glass-bg);
-            border-radius: 12px;
-            border-left: 4px solid var(--brand-teal);
-        }
-
-        .benefit-item i {
-            font-size: 1.5em;
-            color: var(--brand-orange);
-            flex-shrink: 0;
-        }
-
-        .benefit-item h4 { font-size: 1em; margin: 0 0 5px 0; color: #fff; }
-        .benefit-item p { font-size: 0.8em; color: rgba(255, 255, 255, 0.7); margin: 0; }
-
-        /* ====== VPN / FLOW DIAGRAM ====== */
-        .vpn-diagram {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .vpn-element {
-            background: var(--glass-bg);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            min-width: 120px;
-        }
-
-        .vpn-element i { font-size: 2.5em; display: block; margin-bottom: 10px; }
-        .vpn-element.user i { color: var(--brand-orange); }
-        .vpn-element.tunnel i { color: var(--brand-teal); }
-        .vpn-element.server i { color: var(--brand-purple); }
-
-        .vpn-arrow { font-size: 2em; color: var(--brand-teal); }
-
-        /* ====== CAREER PATHWAY ====== */
         .career-path {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            position: relative;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 30px; position: relative;
         }
-
         .career-path::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            right: 10%;
-            height: 4px;
+            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
             background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
             z-index: 0;
         }
-
         .career-step {
-            background: var(--glass-bg);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            z-index: 1;
-            min-width: 150px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
+            z-index: 1; min-width: 150px; border: 2px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
-
-        .career-step:hover {
-            transform: translateY(-10px);
-            border-color: var(--brand-teal);
-        }
-
+        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
         .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
         .career-step:nth-child(1) i { color: var(--brand-orange); }
         .career-step:nth-child(2) i { color: var(--brand-purple); }
         .career-step:nth-child(3) i { color: var(--brand-teal); }
-
         .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
         .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
 
-        /* ====== TITLE SLIDE ====== */
         .title-slide {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; height: 100%;
         }
-
-        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; }
-        .title-slide .subtitle { font-size: 1.4em; color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; }
-
+        .title-slide h1 { font-size: 3.4em; margin-bottom: 16px; }
+        .title-slide .subtitle { font-size: 1.3em; color: rgba(255, 255, 255, 0.8); margin-bottom: 28px; }
         .title-slide .qualification {
             display: inline-block;
             background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
-            padding: 10px 30px;
-            border-radius: 30px;
-            font-size: 0.9em;
-            font-weight: 600;
+            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
         }
 
-        /* ====== LEARNING OBJECTIVES ====== */
-        .objectives-list { list-style: none; padding: 0; margin: 0; }
+        .demo-meta {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            margin: 0 0 1.1rem; padding: 0.45rem 0.95rem; border-radius: 999px;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em; color: #fff;
+            background: rgba(0, 189, 165, 0.18); border: 1px solid rgba(0, 189, 165, 0.45);
+        }
+        .demo-meta .demo-number { color: var(--brand-teal); }
+        .demo-meta .demo-level { color: rgba(255, 255, 255, 0.85); }
+        .demo-meta .sep { opacity: 0.45; }
 
+        .section-badge {
+            display: inline-block; background: rgba(138,43,226,0.3); color: var(--brand-purple-light);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: 600;
+            margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .objectives-list { list-style: none; padding: 0; margin: 0; }
         .objectives-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: var(--glass-bg);
-            border-radius: 10px;
+            display: flex; align-items: flex-start; gap: 15px; padding: 14px;
+            margin-bottom: 8px; background: var(--glass-bg); border-radius: 10px;
             border-left: 4px solid var(--brand-orange);
         }
-
         .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
 
-        /* ====== HIGHLIGHT BOX ====== */
         .highlight-box {
             background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
-            border: 2px solid var(--brand-orange);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
+            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 18px; margin: 16px 0;
+        }
+        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 8px 0; }
+
+        .flip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+        .flip-card { perspective: 1000px; height: 150px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; inset: 0; backface-visibility: hidden; border-radius: 14px;
+            padding: 16px; display: flex; flex-direction: column; align-items: center;
+            justify-content: center; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .flip-card-front { background: linear-gradient(145deg, rgba(30,30,60,0.95), rgba(20,20,40,0.98)); }
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(0,189,165,0.15), rgba(20,20,40,0.98));
+            transform: rotateY(180deg); border-color: var(--brand-teal);
+        }
+        .flip-card-front i { font-size: 1.8em; margin-bottom: 6px; }
+        .flip-card-front h4 { font-size: 0.95em; margin: 0; color: #fff; }
+        .flip-card-back p { font-size: 0.72em; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.45; }
+
+        /* ====== SVG FLY-IN BUILD ====== */
+        .build-widget { display: grid; grid-template-columns: 1.5fr 0.5fr; gap: 14px; align-items: stretch; }
+        .build-stage {
+            background: radial-gradient(ellipse at 30% 20%, rgba(0,189,165,0.08), transparent 50%), var(--glass-bg);
+            border-radius: 16px; padding: 6px 8px 4px; border: 1px solid rgba(255,255,255,0.1);
+            position: relative; overflow: hidden;
+        }
+        .build-stage svg { width: 100%; height: auto; display: block; max-height: 520px; }
+        .build-rail { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+        .build-info {
+            background: var(--glass-bg); border-radius: 14px; padding: 14px 16px;
+            border-left: 4px solid var(--brand-teal); flex: 1; min-height: 160px;
+        }
+        .build-step-pill {
+            font-size: 0.68em; color: var(--brand-orange); font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 6px;
+        }
+        .build-info h3 { margin: 0 0 8px; font-size: 1em; color: var(--brand-teal); }
+        .build-info p { margin: 0; font-size: 0.74em; color: rgba(255,255,255,0.8); line-height: 1.5; }
+        .build-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .build-tray {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 8px; grid-column: 1 / -1;
+        }
+        .build-dots { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+        .build-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .build-dot.done { background: var(--brand-teal); border-color: var(--brand-teal); }
+        .build-dot.current { background: var(--brand-orange); border-color: var(--brand-orange); box-shadow: 0 0 8px var(--brand-orange); }
+
+        .dnd-btn {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none; color: #fff; padding: 8px 16px; border-radius: 20px;
+            font-size: 0.78em; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;
+        }
+        .dnd-btn:hover, .dnd-btn:focus-visible { opacity: 0.92; transform: translateY(-1px); outline: none; }
+        .dnd-btn.secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+        .dnd-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+        .dnd-btn.power-ready { background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal)); }
+
+        .part-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, rgba(138,43,226,0.35), rgba(0,189,165,0.22));
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+            padding: 6px 12px; font-size: 0.72em; cursor: pointer; user-select: none;
+            font-family: 'Poppins', sans-serif; color: #fff;
+        }
+        .part-chip i { font-size: 0.9em; color: var(--brand-teal); }
+        .part-chip:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 2px; }
+        .part-chip.next {
+            border-color: var(--brand-orange); box-shadow: 0 0 0 2px rgba(247,147,30,0.35);
+            animation: chipPulse 1.6s ease-in-out infinite;
+        }
+        .part-chip.seated { opacity: 0.4; pointer-events: none; filter: grayscale(0.4); }
+        .part-chip.wrong { animation: shake 0.4s; border-color: #ef4444; background: rgba(239,68,68,0.3); }
+        @keyframes chipPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
         }
 
-        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 10px 0; }
-
-        /* ====== RULE TABLE ====== */
-        .rule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 0.85em;
-        }
-
-        .rule-table th, .rule-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .rule-table th {
-            background: rgba(138, 43, 226, 0.3);
-            color: var(--brand-teal);
-            font-weight: 600;
-        }
-
-        .rule-table tr:hover td {
-            background: rgba(0, 189, 165, 0.1);
-        }
-
-        .rule-allow { color: #22c55e; font-weight: 600; }
-        .rule-deny { color: #ef4444; font-weight: 600; }
-
-        /* ====== RESPONSIVE ====== */
-        @media (max-width: 768px) {
-            .feature-grid, .cloud-models, .software-grid { grid-template-columns: 1fr; }
-            .comparison-container, .benefits-grid, .quiz-options { grid-template-columns: 1fr; }
-            .career-path { flex-direction: column; gap: 20px; }
-            .career-path::before { display: none; }
-        }
-
-        /* ====== FRAGMENT ANIMATIONS ====== */
-        .reveal .slides section .fragment.fade-up {
-            transform: translateY(30px);
+        .pc-part {
             opacity: 0;
-            transition: all 0.5s ease;
+            transform-box: fill-box;
+            transform-origin: center;
+            transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.35s ease;
+            pointer-events: none;
+        }
+        .pc-part[data-part="ioshield"] { transform: translate(-140px, 10px); }
+        .pc-part[data-part="motherboard"] { transform: translate(-220px, 50px) rotate(-10deg) scale(0.72); }
+        .pc-part[data-part="cpu"] { transform: translate(20px, -230px) scale(1.7); }
+        .pc-part[data-part="ram"] { transform: translate(260px, -150px) rotate(22deg); }
+        .pc-part[data-part="cooler"] { transform: translate(-10px, -250px) scale(1.35); }
+        .pc-part[data-part="ssd"] { transform: translate(280px, 90px) rotate(-18deg); }
+        .pc-part[data-part="psu"] { transform: translate(0, 230px) scale(0.85); }
+        .pc-part[data-part="gpu"] { transform: translate(300px, 30px) rotate(7deg); }
+        .pc-part[data-part="cables"] { transform: scale(0.4); }
+        .pc-part[data-part="frontpanel"] { transform: translate(200px, 80px); }
+        .pc-part.is-flying { opacity: 1; }
+        .pc-part.is-seated {
+            opacity: 1; transform: none; pointer-events: auto; cursor: pointer;
+            filter: drop-shadow(0 0 6px rgba(0,189,165,0.0));
+        }
+        .pc-part.is-lit { filter: drop-shadow(0 0 8px rgba(0,189,165,0.85)); }
+
+        .pc-ghost {
+            fill: none; stroke: var(--brand-teal); stroke-width: 1.6; stroke-dasharray: 6 4;
+            opacity: 0; pointer-events: none;
+        }
+        .pc-ghost.is-waiting {
+            opacity: 0.7; pointer-events: auto; cursor: pointer;
+            animation: ghostPulse 1.8s ease-in-out infinite;
+        }
+        @keyframes ghostPulse {
+            0%, 100% { opacity: 0.35; }
+            50% { opacity: 0.85; }
         }
 
-        .reveal .slides section .fragment.fade-up.visible {
-            transform: translateY(0);
-            opacity: 1;
+        .fan-blades { transform-box: fill-box; transform-origin: center; }
+        .is-powered .fan-blades { animation: fanSpin 0.65s linear infinite; }
+        @keyframes fanSpin { to { transform: rotate(360deg); } }
+        .power-led { fill: #2a2a38; }
+        .is-powered .power-led { fill: #00BDA5; filter: drop-shadow(0 0 6px #00BDA5); }
+        .post-overlay { opacity: 0; transition: opacity 0.5s ease; }
+        .is-powered .post-overlay { opacity: 1; }
+
+        .compat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+        .compat-field label { display: block; font-size: 0.72em; color: var(--brand-teal); margin-bottom: 4px; font-weight: 600; }
+        .compat-field select {
+            width: 100%; padding: 10px 12px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15); background: rgba(10,10,26,0.8);
+            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.78em;
+        }
+        .compat-field select:focus { outline: none; border-color: var(--brand-teal); }
+        .compat-verdict {
+            margin-top: 14px; border-radius: 12px; padding: 16px 18px; border: 2px solid rgba(255,255,255,0.12);
+            min-height: 90px;
+        }
+        .compat-verdict.ok { border-color: #22c55e; background: rgba(34,197,94,0.12); }
+        .compat-verdict.warn { border-color: var(--brand-orange); background: rgba(247,147,30,0.12); }
+        .compat-verdict.bad { border-color: #ef4444; background: rgba(239,68,68,0.12); }
+        .compat-verdict h4 { margin: 0 0 6px; font-size: 1em; }
+        .compat-verdict p { margin: 0; font-size: 0.78em; color: rgba(255,255,255,0.8); }
+
+        .triage-card {
+            background: var(--glass-bg); border-radius: 16px; padding: 22px;
+            border: 1px solid rgba(255,255,255,0.1); min-height: 280px;
+        }
+        .triage-q { font-size: 1.15em; color: #fff; margin: 0 0 18px; }
+        .triage-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .triage-path { font-size: 0.72em; color: rgba(255,255,255,0.5); margin-top: 16px; min-height: 1.4em; }
+        .triage-verdict { margin-top: 16px; padding: 14px; border-radius: 10px; font-size: 0.85em; }
+        .triage-verdict.fix { background: rgba(0,189,165,0.15); border: 1px solid var(--brand-teal); }
+        .triage-verdict.alert { background: rgba(247,147,30,0.15); border: 1px solid var(--brand-orange); }
+
+        .timer-display {
+            font-size: 1.5em; font-weight: 700; color: var(--brand-orange);
+            font-family: 'Fira Code', monospace;
+        }
+        .timer-display.warning { color: #ef4444; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+        .best-time { font-size: 0.75em; color: rgba(255,255,255,0.5); }
+
+        .quiz-container { max-width: 900px; margin: 0 auto; }
+        .quiz-question { font-size: 1.2em; margin-bottom: 22px; color: var(--brand-orange); }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .quiz-option {
+            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 18px; cursor: pointer; transition: all 0.3s ease;
+            text-align: left; font-family: 'Poppins', sans-serif; color: #fff;
+        }
+        .quiz-option span { display: block; font-weight: 600; color: var(--brand-purple); margin-bottom: 4px; }
+        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
+        .quiz-option:focus-visible { outline: 2px solid var(--brand-teal); outline-offset: 2px; }
+        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
+
+        .score-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 10px; height: 12px; margin: 15px 0; overflow: hidden; }
+        .score-bar-fill {
+            height: 100%; background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px; transition: width 0.5s ease; width: 0%;
+        }
+        .score-label { font-size: 0.8em; color: rgba(255,255,255,0.6); text-align: center; }
+        .quiz-progress {
+            position: fixed; top: 16px; right: 16px; z-index: 100;
+            background: rgba(20,20,40,0.88); border: 1px solid rgba(0,189,165,0.45);
+            border-radius: 999px; padding: 6px 14px; font-size: 0.75em; font-weight: 600;
+            color: var(--brand-teal); display: none;
+        }
+        .quiz-progress.visible { display: block; }
+        .results-card { text-align: center; padding: 30px; }
+        .results-grade {
+            font-size: 4em; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        /* ====== BACKGROUND OVERLAY ====== */
-        .reveal .slides section[data-background-image]::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(10, 10, 26, 0.85);
-            z-index: -1;
+        .glossary-search {
+            width: 100%; max-width: 500px; padding: 12px 18px; border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.15); background: var(--glass-bg);
+            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.9em; margin-bottom: 18px;
+        }
+        .glossary-search:focus { outline: none; border-color: var(--brand-teal); }
+        .glossary-list {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 10px; max-height: 380px; overflow-y: auto;
+        }
+        .glossary-item {
+            background: var(--glass-bg); border-radius: 10px; padding: 12px 16px;
+            border-left: 3px solid var(--brand-purple);
+        }
+        .glossary-item.hidden { display: none; }
+        .glossary-item dt { font-weight: 600; color: var(--brand-teal); font-size: 0.85em; margin-bottom: 4px; }
+        .glossary-item dd { font-size: 0.75em; color: rgba(255,255,255,0.7); margin: 0; }
+
+        .fault-table { width: 100%; border-collapse: collapse; font-size: 0.78em; margin-top: 15px; }
+        .fault-table th, .fault-table td {
+            padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .fault-table th { background: rgba(138,43,226,0.25); color: var(--brand-teal); font-weight: 600; }
+        .fault-table tr:hover td { background: rgba(0,189,165,0.08); }
+        .fault-symptom { color: var(--brand-orange); font-weight: 600; }
+        .fault-part { color: var(--brand-purple); }
+
+        .deck-map { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+        .deck-link {
+            background: var(--glass-bg); border-radius: 12px; padding: 16px;
+            text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.25s; text-align: center;
+        }
+        .deck-link:hover, .deck-link:focus-visible {
+            border-color: var(--brand-teal); transform: translateY(-3px); outline: none;
+        }
+        .deck-link i { font-size: 1.8em; color: var(--brand-teal); display: block; margin-bottom: 8px; }
+        .deck-link h4 { font-size: 0.82em; margin: 0 0 4px; }
+        .deck-link p { font-size: 0.68em; color: rgba(255,255,255,0.5); margin: 0; }
+        .deck-link.current { border-color: var(--brand-orange); background: rgba(247,147,30,0.1); }
+
+        .kbd-hint { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .kbd-item { display: flex; align-items: center; gap: 8px; font-size: 0.75em; color: rgba(255,255,255,0.6); }
+        .kbd-item kbd {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px; padding: 4px 10px; font-family: 'Fira Code', monospace;
+            font-size: 0.9em; color: var(--brand-teal);
         }
 
-        /* ====== BACK TO INDEX ====== */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+        .criteria-list, .evidence-list { list-style: none; padding: 0; margin: 10px 0 0; }
+        .criteria-list li, .evidence-list li {
+            padding: 8px 0 8px 8px; font-size: 0.8em; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .evidence-list label, .criteria-list label { cursor: pointer; display: flex; gap: 8px; align-items: flex-start; }
+        .case-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0 18px; }
+        .case-pill {
+            background: rgba(138,43,226,0.25); color: var(--brand-purple-light);
+            padding: 4px 12px; border-radius: 999px; font-size: 0.72em; font-weight: 600;
+        }
+
+        .sr-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+        #circuit-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+        }
+
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
+        }
+        .reveal .slides section .fragment.fade-up.visible { transform: translateY(0); opacity: 1; }
+
         .back-to-index {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 100;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.55rem 0.95rem;
-            border-radius: 999px;
-            text-decoration: none;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            background: rgba(20, 20, 40, 0.88);
-            border: 1px solid rgba(0, 189, 165, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            position: fixed; top: 16px; left: 16px; z-index: 100;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.55rem 0.95rem; border-radius: 999px; text-decoration: none;
+            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
+            background: rgba(20, 20, 40, 0.88); border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
         }
-
-        .back-to-index:hover,
-        .back-to-index:focus-visible {
-            border-color: #00BDA5;
-            background: rgba(0, 189, 165, 0.22);
-            transform: translateY(-1px);
-            outline: none;
-            color: #fff;
+        .back-to-index:hover, .back-to-index:focus-visible {
+            border-color: #00BDA5; background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px); outline: none; color: #fff;
         }
+        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
 
-        .back-to-index i {
-            color: #00BDA5;
-            font-size: 0.9rem;
-        }
-
-
-        /* ====== SITE CREDIT ====== */
         .site-credit {
-            position: fixed;
-            left: 50%;
-            bottom: 14px;
-            transform: translateX(-50%);
-            z-index: 100;
-            margin: 0;
-            padding: 0.35rem 0.85rem;
-            border-radius: 999px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            color: rgba(255, 255, 255, 0.72);
-            background: rgba(20, 20, 40, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            pointer-events: none;
-            white-space: nowrap;
+            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+            z-index: 100; margin: 0; padding: 0.35rem 0.85rem; border-radius: 999px;
+            font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            pointer-events: none; white-space: nowrap;
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient { animation: none; }
+            .pc-part { transition: opacity 0.2s ease; transform: none !important; }
+            .pc-ghost, .part-chip.next, .fan-blades, .timer-display.warning { animation: none !important; }
+            .is-powered .fan-blades { transform: rotate(25deg); }
+            .flip-card-inner { transition: none; }
+            .feature-card, .career-step, .deck-link, .quiz-option, .part-chip { transition: none; }
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid, .cloud-models, .flip-grid, .deck-map, .compat-grid { grid-template-columns: 1fr; }
+            .comparison-container, .benefits-grid, .quiz-options, .two-col, .build-widget, .glossary-list { grid-template-columns: 1fr; }
+            .career-path { flex-direction: column; gap: 20px; }
+            .career-path::before { display: none; }
+            .build-stage svg { max-height: 280px; }
+        }
     </style>
 </head>
 <body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
     <a class="back-to-index" href="index.html" aria-label="Back to index">
         <i class="fas fa-arrow-left" aria-hidden="true"></i>
         <span>Back to index</span>
@@ -644,263 +525,807 @@
     <div class="reveal">
         <div class="slides">
 
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
+                    <span class="demo-meta"><span class="demo-number">#93</span><span class="sep">·</span><span class="demo-level">Level 2</span><span class="sep">·</span><span class="demo-level">Hardware</span></span>
                     <h1 class="animated-gradient">Building Computers</h1>
-                    <p class="subtitle">Choose parts, assemble, and boot with confidence</p>
+                    <p class="subtitle">Watch every component fly into place — then assemble, cable and boot with confidence</p>
                     <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                 </div>
+                <aside class="notes">Open on the empty-case idea: today they will see a full desktop assemble on screen, then do it for real. Ask who has opened a case before. Delivery: energetic. ~2 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</h2>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">By the end of this session, you will be able to:</p>
                 <ul class="objectives-list">
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Identify</strong> major PC components and what each one does</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Select</strong> compatible parts for a given budget and purpose</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Follow</strong> a safe assembly sequence for a desktop PC</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Install</strong> essentials: BIOS/UEFI checks, OS and drivers</span></li>
-                    <li class="fragment fade-up"><i class="fas fa-check-circle"></i><span><strong>Troubleshoot</strong> common build issues methodically</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Identify</strong> each major part and the slot or bay it lands in</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Follow</strong> a safe assembly sequence as components seat in the case</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Check</strong> compatibility — socket, RAM generation, form factor and PSU watts</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Cable</strong> 24-pin, CPU 8-pin, PCIe, SATA and front-panel headers without forcing</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Triage</strong> a first-boot failure before swapping expensive parts</span></li>
                 </ul>
+                <aside class="notes">Read the five verbs. Flag that the SVG build is the spine of the lesson — every later slide refers back to a flying part. ~2 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-desktop"></i> Why Build a PC?</h2>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to use this deck</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Interactives are clickable and tappable — try them, don't just watch</p>
+                <div class="kbd-hint">
+                    <div class="kbd-item"><kbd>→</kbd> Next slide</div>
+                    <div class="kbd-item"><kbd>←</kbd> Previous slide</div>
+                    <div class="kbd-item"><kbd>S</kbd> Speaker notes</div>
+                    <div class="kbd-item"><kbd>F</kbd> Fullscreen</div>
+                    <div class="kbd-item"><kbd>O</kbd> Overview</div>
+                    <div class="kbd-item"><kbd>Esc</kbd> Exit overview</div>
+                </div>
+                <div class="highlight-box fragment fade-up" style="margin-top: 28px; text-align: center;">
+                    <p style="margin:0;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> On the live build, click a <strong>part chip</strong> (or its ghost outline) to fly it into the case. Wrong order shakes. Keyboard: Tab, then Enter or Space.</p>
+                </div>
+                <aside class="notes">Show S yourself. Tell them the fly-in tray works on a phone by tapping. ~1 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-desktop" aria-hidden="true"></i> Why a build still matters</h2>
                 <div class="glass-card fragment fade-up">
-                    <p>Building a computer teaches how hardware works together, can save money versus pre-builts, and lets you match the machine to the job—study, gaming, editing or office work.</p>
+                    <p>A pre-built PC hides the joins. The first time a helpdesk ticket is “no display after a RAM upgrade”, you need to know where each part <em>sits</em> and which cable <em>must</em> click. Building once makes every later repair faster — and stops a £180 board being written off by one missing standoff.</p>
                 </div>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-puzzle-piece"></i><h3>Compatibility Skills</h3><p>CPU, motherboard, RAM and PSU must match</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-pound-sign"></i><h3>Value</h3><p>Pay for the performance you need</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-tools"></i><h3>Repair Ready</h3><p>Easier upgrades and fault finding later</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-briefcase"></i><h3>Employability</h3><p>Core skill for IT support roles</p></div>
-            </div>
+                <div class="stats-bar fragment fade-up">
+                    <div class="stat-item"><span class="stat-number">9</span><span class="stat-label">Standoffs on a typical ATX tray</span></div>
+                    <div class="stat-item"><span class="stat-number">8-pin</span><span class="stat-label">CPU power — the cable people forget</span></div>
+                    <div class="stat-item"><span class="stat-number">30V</span><span class="stat-label">Static that can kill a CPU</span></div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-puzzle-piece" aria-hidden="true"></i><h3>Compatibility</h3><p>Socket, DDR gen, case size and watts have to match</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-pound-sign" aria-hidden="true"></i><h3>Value</h3><p>Pay for the job — study box, creator box, or 1440p gaming</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-tools" aria-hidden="true"></i><h3>Repair ready</h3><p>You can reseat, recable and upgrade without fear</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-briefcase" aria-hidden="true"></i><h3>Employability</h3><p>Hardware technician and helpdesk interviews still ask this</p></div>
+                </div>
+                <aside class="notes">Hook with the standoff cost. Ask: “Who has seen a PC that fans-spin but never posts?” ~3 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-microchip"></i> Core Components</h2>
-                <div class="software-grid">
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-microchip" style="color: var(--brand-orange);"></i>
-                        <span class="type-badge type2">Brain</span>
-                        <h4>CPU</h4>
-                        <p>Processes instructions</p>
+                <span class="section-badge">Parts</span>
+                <h2 class="animated-gradient"><i class="fas fa-microchip" aria-hidden="true"></i> The parts that will fly in</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em; margin-bottom: 8px;"><i class="fas fa-hand-pointer" aria-hidden="true"></i> Click or press Enter/Space to flip a card</p>
+                <div class="flip-grid" id="component-flip-cards">
+                    <div class="flip-card" tabindex="0" role="button" aria-label="CPU - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-microchip" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>CPU</h4></div>
+                            <div class="flip-card-back"><p>Drops into the socket. Align the gold triangle. Close the load plate — never press the contacts.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-server" style="color: var(--brand-purple);"></i>
-                        <span class="type-badge type1">Base</span>
-                        <h4>Motherboard</h4>
-                        <p>Connects all parts</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Motherboard - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-server" style="color: var(--brand-purple);" aria-hidden="true"></i><h4>Motherboard</h4></div>
+                            <div class="flip-card-back"><p>The road network. Sits on standoffs. I/O shield first, then the board, then every other part plugs into it.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-memory" style="color: var(--brand-teal);"></i>
-                        <span class="type-badge type2">Speed</span>
-                        <h4>RAM</h4>
-                        <p>Fast short-term memory</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="RAM - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-memory" style="color: var(--brand-teal);" aria-hidden="true"></i><h4>RAM</h4></div>
+                            <div class="flip-card-back"><p>DIMM slots — usually 2 and 4 for dual channel. Both end clips must click. Hold the edges only.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-hdd" style="color: #78BE20;"></i>
-                        <span class="type-badge type1">Storage</span>
-                        <h4>SSD / HDD</h4>
-                        <p>Keeps files and the OS</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="SSD - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-save" style="color: #FCC624;" aria-hidden="true"></i><h4>M.2 SSD</h4></div>
+                            <div class="flip-card-back"><p>Slides into the M.2 slot at an angle, then screws down. No SATA cable — it lives on the board.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-fan" style="color: #FCC624;"></i>
-                        <span class="type-badge type2">Power</span>
-                        <h4>PSU</h4>
-                        <p>Safe, adequate wattage</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="PSU - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-bolt" style="color: var(--brand-orange);" aria-hidden="true"></i><h4>PSU</h4></div>
+                            <div class="flip-card-back"><p>Slides into the bottom bay. Switch off while cabling. Never open it — capacitors hold a lethal charge.</p></div>
+                        </div>
                     </div>
-                    <div class="software-item fragment fade-up">
-                        <i class="fas fa-tv" style="color: #FF6600;"></i>
-                        <span class="type-badge type1">Visuals</span>
-                        <h4>GPU (optional)</h4>
-                        <p>Graphics / display output</p>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="GPU - click to flip">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-tv" style="color: #FF6600;" aria-hidden="true"></i><h4>GPU</h4></div>
+                            <div class="flip-card-back"><p>Seats in the long PCIe x16 slot. May need its own 8-pin from the PSU. Monitor cable goes in the GPU, not the board.</p></div>
+                        </div>
                     </div>
                 </div>
+                <aside class="notes">Flip two or three as a class. Hold up real parts if you have them. Cooler and I/O shield appear in the fly-in even though they are not on these cards. ~4 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-link"></i> Compatibility Checklist</h2>
-
+                <span class="section-badge">Before you buy</span>
+                <h2 class="animated-gradient"><i class="fas fa-link" aria-hidden="true"></i> Compatibility — the five matches</h2>
                 <div class="benefits-grid">
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-microchip"></i><div><h4>Socket &amp; chipset</h4><p>CPU must fit motherboard socket</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-memory"></i><div><h4>RAM type</h4><p>DDR4 vs DDR5; speed and slots</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-expand"></i><div><h4>Form factor</h4><p>ATX / mATX / ITX case fit</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-bolt"></i><div><h4>PSU capacity</h4><p>Enough watts + correct connectors</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-wind"></i><div><h4>Cooling clearance</h4><p>CPU cooler height vs case</p></div></div>
-                    <div class="benefit-item fragment fade-up"><i class="fas fa-desktop"></i><div><h4>GPU length</h4><p>Fits case and PCIe power available</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-microchip" aria-hidden="true"></i><div><h4>Socket &amp; chipset</h4><p>LGA1700 CPU only fits LGA1700. AM5 only fits AM5. The box must agree.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-memory" aria-hidden="true"></i><div><h4>RAM generation</h4><p>DDR4 will not clip into DDR5 slots. Check the QVL if you push speed.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-expand" aria-hidden="true"></i><div><h4>Form factor</h4><p>ATX board needs an ATX tray. Mini-ITX fits almost anything; E-ATX may not.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-bolt" aria-hidden="true"></i><div><h4>PSU watts &amp; plugs</h4><p>CPU + GPU + ~150 W headroom. You also need the right 8-pin and PCIe leads.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-wind" aria-hidden="true"></i><div><h4>Cooler height</h4><p>A 165 mm tower will not close a small case. Check the case spec.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-desktop" aria-hidden="true"></i><div><h4>GPU length</h4><p>A 320 mm card needs clearance past the front fans and PSU shroud.</p></div></div>
                 </div>
+                <aside class="notes">Walk socket first — it is the most expensive mismatch. The live checker comes after the fly-in. ~3 min.</aside>
+            </section>
 
+            <section id="slide-flyin">
+                <span class="section-badge">Signature interactive</span>
+                <h2 class="animated-gradient" style="margin-bottom: 8px;"><i class="fas fa-magic" aria-hidden="true"></i> Live PC build — fly the parts in</h2>
+                <div class="build-widget" id="pc-build-widget">
+                    <div class="build-stage" data-stage="lesson">
+                        <div class="pc-svg-host"></div>
+                    </div>
+                    <div class="build-rail">
+                        <div class="build-info" id="pc-build-info">
+                            <p class="build-step-pill">Step 0 / 10</p>
+                            <h3>Empty case</h3>
+                            <p>Strap up. The dashed teal ghosts show where the next part lands. Click that chip — or Play to watch the whole build.</p>
+                        </div>
+                        <div class="build-controls">
+                            <button class="dnd-btn" type="button" data-act="play" aria-label="Play the build animation"><i class="fas fa-play" aria-hidden="true"></i> Play</button>
+                            <button class="dnd-btn secondary" type="button" data-act="next" aria-label="Seat the next part">Next</button>
+                            <button class="dnd-btn secondary" type="button" data-act="back" aria-label="Remove the last part">Back</button>
+                            <button class="dnd-btn secondary" type="button" data-act="reset" aria-label="Reset the build">Reset</button>
+                            <button class="dnd-btn secondary" type="button" data-act="power" disabled aria-label="Power on the PC">Power on</button>
+                        </div>
+                        <div class="build-dots" data-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="build-tray" data-tray></div>
+                    <span class="sr-live" data-live aria-live="polite"></span>
+                </div>
+                <aside class="notes">This is the headline. Play once all the way through (~12 s). Then Reset and have a learner click chips in order. Pause on CPU: “triangle to triangle”. Pause on cables: “24-pin AND the 8-pin”. Note: in the lab, CPU/RAM/cooler often go on the bench first — the animation shows final landing spots. ~10 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-list-ol"></i> Assembly Sequence</h2>
-                <div class="glass-card fragment fade-up">
-                    <ol style="font-size:0.9em; line-height:1.7;">
-                        <li class="fragment">Prepare anti-static workspace; ground yourself</li>
-                        <li class="fragment">Install CPU → cooler (or stock cooler) on motherboard</li>
-                        <li class="fragment">Install RAM in correct slots</li>
-                        <li class="fragment">Mount motherboard I/O shield and board in case</li>
-                        <li class="fragment">Fit storage (M.2 / SATA) and GPU if needed</li>
-                        <li class="fragment">Install PSU; connect 24‑pin, CPU, SATA, PCIe power</li>
-                        <li class="fragment">Front-panel cables, tidy, double-check, power on</li>
-                    </ol>
-                </div>
-                <div class="highlight-box fragment fade-up">
-                    <h4><i class="fas fa-bolt"></i> Safety</h4>
-                    <p>Unplug power when working. Don’t force connectors. Mind sharp case edges and CPU pins/pads.</p>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-power-off"></i> First Boot &amp; Setup</h2>
-                <div class="vpn-diagram fragment fade-up">
-                    <div class="vpn-element user"><i class="fas fa-tv"></i><p>POST / BIOS</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element tunnel"><i class="fas fa-memory"></i><p>Check RAM/CPU</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element server"><i class="fas fa-compact-disc"></i><p>Install OS</p></div>
-                    <span class="vpn-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="vpn-element" style="background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple));"><i class="fas fa-download" style="color:white;"></i><p>Drivers / Updates</p></div>
-                </div>
-                <div class="glass-card-small fragment fade-up">
-                    <p>Confirm CPU temperature, enable XMP/EXPO if appropriate, set boot order, then install Windows/Linux and chipset/GPU drivers.</p>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-bug"></i> Common Build Problems</h2>
-
+                <h2 class="animated-gradient"><i class="fas fa-list-ol" aria-hidden="true"></i> Why they fly in that order</h2>
                 <div class="comparison-container">
                     <div class="comparison-box type1 fragment fade-up">
-                        <h3><i class="fas fa-exclamation-circle"></i> Symptom</h3>
+                        <h3>On the bench (common)</h3>
                         <ul>
-                            <li>No power / no lights</li>
-                            <li>Powers on, no display</li>
-                            <li>Random restarts</li>
-                            <li>RAM not detected</li>
-                            <li>USB ports dead</li>
+                            <li>CPU into the board on a flat mat</li>
+                            <li>RAM clicks while you can see both clips</li>
+                            <li>Cooler mounted before the board is in the case</li>
+                            <li>Then I/O shield, then board into the tray</li>
                         </ul>
                     </div>
                     <div class="comparison-box type2 fragment fade-up">
-                        <h3><i class="fas fa-stethoscope"></i> First checks</h3>
+                        <h3>What the animation shows</h3>
                         <ul>
-                            <li>PSU switch, cables, outlet</li>
-                            <li>GPU power, monitor input, reseat GPU/RAM</li>
-                            <li>Overheating / inadequate PSU</li>
-                            <li>Reseat sticks; try one slot</li>
-                            <li>Front-panel USB headers</li>
+                            <li>I/O shield — you cannot fit it after the board</li>
+                            <li>Board on standoffs — every hole needs a foot</li>
+                            <li>CPU → RAM → cooler → M.2 in their final homes</li>
+                            <li>PSU, GPU, then cables last so nothing snags</li>
                         </ul>
                     </div>
                 </div>
-
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-info-circle" aria-hidden="true"></i> Same landing spots</h4>
+                    <p style="margin:0;">Bench-first is often safer. In-case is fine if you have clear access. Either way, the socket, DIMMs, M.2 screw and 8-pin do not move.</p>
+                </div>
+                <aside class="notes">Reconcile the animation with lab practice so nobody thinks the SVG is the only legal order. ~3 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-store"></i> Example Builds</h2>
+                <h2 class="animated-gradient"><i class="fas fa-plug" aria-hidden="true"></i> Cables that must click</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-th" aria-hidden="true"></i><h3>24-pin ATX</h3><p>Main board power. The latch faces the clip. If it is not fully home, you get no lights at all.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-microchip" aria-hidden="true"></i><h3>CPU 8-pin (EPS)</h3><p>Top-left of the board. The forgotten cable. Fans may twitch; the CPU never really starts.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-tv" aria-hidden="true"></i><h3>PCIe GPU power</h3><p>6-pin or 8-pin into the card — not the board. A 6+2 can split; listen for the click.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-hdd" aria-hidden="true"></i><h3>SATA data + power</h3><p>L-shaped data plug. Power is a separate daisy-chain from the PSU. M.2 skips both.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-power-off" aria-hidden="true"></i><h3>Front panel</h3><p>PWR SW, HDD LED, RESET. One pin pair each. The manual’s tiny diagram is not optional.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-fan" aria-hidden="true"></i><h3>Fan headers</h3><p>CPU_FAN is required or many boards refuse to POST. Case fans on SYS_FAN or a hub.</p></div>
+                </div>
+                <aside class="notes">Hold up a 24-pin and an 8-pin. Ask which one sits by the CPU socket. ~3 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-shield-alt" aria-hidden="true"></i> ESD, standoffs and things you never force</h2>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-bolt" aria-hidden="true"></i> Safety</h4>
+                    <p style="margin:0;">Unplug the PSU. Switch on the back to O. Wrist strap to bare metal. Do not open the PSU. Mind case edges and CPU contacts.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-dot-circle" aria-hidden="true"></i><div><h4>Standoffs = feet</h4><p>Every motherboard screw hole needs a brass standoff. A screw into a bare tray can short the board on first power.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-hand" aria-hidden="true"></i><div><h4>No force</h4><p>If a connector will not seat, it is the wrong way round. RAM notches, 24-pin latch, USB 3 header key.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-tint" aria-hidden="true"></i><div><h4>Thermal paste</h4><p>Pea-size in the centre of the IHS unless the cooler ships pre-pasted. Do not smear with a finger.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-box" aria-hidden="true"></i><div><h4>Bags until needed</h4><p>Keep the CPU, RAM and GPU in anti-static bags. Do not stack boards on a wooden bench without a mat.</p></div></div>
+                </div>
+                <aside class="notes">Demonstrate strap clip. Preview the case study — missing standoff. Cross-link Safe Working &amp; ESD. ~3 min.</aside>
+            </section>
+
+            <section id="slide-compat">
+                <span class="section-badge">Doing widget</span>
+                <h2 class="animated-gradient"><i class="fas fa-balance-scale" aria-hidden="true"></i> Compatibility checker</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.82em; margin: 0 0 8px;">Pick a parts list. The verdict updates live — socket, RAM gen and a simple watt budget (CPU + GPU + 150 W headroom).</p>
+                <div class="compat-grid" id="compat-widget">
+                    <div class="compat-field">
+                        <label for="compat-cpu">CPU</label>
+                        <select id="compat-cpu" aria-label="Choose a CPU">
+                            <option value="i5-12400|lga1700|ddr4|65">Intel Core i5-12400 · LGA1700 · DDR4 · 65 W</option>
+                            <option value="i5-14600k|lga1700|ddr5|125">Intel Core i5-14600K · LGA1700 · DDR5 · 125 W</option>
+                            <option value="r5-5600|am4|ddr4|65">AMD Ryzen 5 5600 · AM4 · DDR4 · 65 W</option>
+                            <option value="r5-7600|am5|ddr5|65">AMD Ryzen 5 7600 · AM5 · DDR5 · 65 W</option>
+                        </select>
+                    </div>
+                    <div class="compat-field">
+                        <label for="compat-mobo">Motherboard</label>
+                        <select id="compat-mobo" aria-label="Choose a motherboard">
+                            <option value="b660|lga1700|ddr4|atx">B660 ATX · LGA1700 · DDR4</option>
+                            <option value="b760|lga1700|ddr5|atx">B760 ATX · LGA1700 · DDR5</option>
+                            <option value="b550|am4|ddr4|atx">B550 ATX · AM4 · DDR4</option>
+                            <option value="b650|am5|ddr5|atx">B650 ATX · AM5 · DDR5</option>
+                        </select>
+                    </div>
+                    <div class="compat-field">
+                        <label for="compat-ram">RAM</label>
+                        <select id="compat-ram" aria-label="Choose RAM">
+                            <option value="ddr4">2×8 GB DDR4-3200</option>
+                            <option value="ddr5">2×16 GB DDR5-5600</option>
+                        </select>
+                    </div>
+                    <div class="compat-field">
+                        <label for="compat-gpu">GPU</label>
+                        <select id="compat-gpu" aria-label="Choose a GPU">
+                            <option value="0">Integrated / none</option>
+                            <option value="170">GeForce RTX 3060 · ~170 W</option>
+                            <option value="200">GeForce RTX 4070 · ~200 W</option>
+                        </select>
+                    </div>
+                    <div class="compat-field">
+                        <label for="compat-psu">PSU</label>
+                        <select id="compat-psu" aria-label="Choose a PSU">
+                            <option value="450">450 W 80+ Bronze</option>
+                            <option value="650" selected>650 W 80+ Gold</option>
+                            <option value="850">850 W 80+ Gold</option>
+                        </select>
+                    </div>
+                    <div class="compat-field">
+                        <label for="compat-case">Case</label>
+                        <select id="compat-case" aria-label="Choose a case">
+                            <option value="atx">ATX mid-tower</option>
+                            <option value="matx">Micro-ATX</option>
+                            <option value="itx">Mini-ITX</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="compat-verdict ok" id="compat-verdict" aria-live="polite">
+                    <h4>Compatible</h4>
+                    <p>Change a dropdown to stress-test the list.</p>
+                </div>
+                <aside class="notes">Start with the default (works). Then switch CPU to Ryzen 7600 and leave B660 — socket fail. Then 14600K + 4070 + 450 W — watts fail. Then DDR4 RAM on a DDR5 board. ~6 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-store" aria-hidden="true"></i> Three example landing zones</h2>
                 <div class="cloud-models">
                     <div class="cloud-model iaas fragment fade-up">
-                        <h3>Office / Study</h3>
-                        <p>Efficient CPU, 16&nbsp;GB RAM, 500&nbsp;GB+ SSD, integrated graphics.</p>
-                        <p class="examples">Quiet, low power, reliable</p>
+                        <h3>Office / study</h3>
+                        <p>Efficient CPU, 16 GB RAM, 500 GB+ SSD, integrated graphics. Quiet 450–550 W is enough.</p>
+                        <p class="examples">Low heat, low noise, reliable</p>
                     </div>
                     <div class="cloud-model paas fragment fade-up">
                         <h3>Creator</h3>
-                        <p>Strong CPU, 32&nbsp;GB RAM, fast NVMe, capable GPU.</p>
-                        <p class="examples">Editing, 3D, multitasking</p>
+                        <p>Strong CPU, 32 GB RAM, fast NVMe, capable GPU. Budget the 8-pin and a 650 W+ PSU.</p>
+                        <p class="examples">Editing, 3D, lots of tabs</p>
                     </div>
                     <div class="cloud-model saas fragment fade-up">
                         <h3>Gaming</h3>
-                        <p>Modern CPU + discrete GPU, 16–32&nbsp;GB RAM, good cooling.</p>
+                        <p>Modern CPU + discrete GPU, 16–32 GB, serious cooling. GPU length and PCIe power decide the case.</p>
                         <p class="examples">1080p / 1440p targets</p>
                     </div>
                 </div>
+                <aside class="notes">Ask the class which profile the lab PCs match (usually office). ~2 min.</aside>
             </section>
 
             <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-question-circle"></i> Test Your Knowledge!</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 30px;">Let's see what you've learned about building computers</p>
-                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);"></i></div>
-            </section>
-
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q1: Which component is the main circuit board?</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>PSU</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Motherboard</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Case fan only</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Monitor</div>
-                    </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — The motherboard connects CPU, RAM, storage and expansion cards.</div>
-                </div>
-            </section>
-
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q2: Before buying parts you should check…</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Only the box colour</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Compatibility (socket, RAM type, case size, PSU power)</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Whether the shop has snacks</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>The wallpaper preview</div>
-                    </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Incompatible parts won’t work together—even if each is “good”.</div>
-                </div>
-            </section>
-
-            <section>
-                <div class="quiz-container">
-                    <p class="quiz-question">Q3: A sensible first troubleshooting step for no display is…</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>A</span>Throw away the CPU</div><div class="quiz-option fragment" onclick="this.classList.add('correct')"><span>B</span>Check monitor cable/input and reseat GPU/RAM</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>C</span>Delete System32</div><div class="quiz-option fragment" onclick="this.classList.add('incorrect')"><span>D</span>Ignore POST beeps forever</div>
-                    </div>
-                    <div class="fragment" style="margin-top: 20px; padding: 15px; background: rgba(0, 189, 165, 0.2); border-radius: 10px;"><strong style="color: var(--brand-teal);"><i class="fas fa-lightbulb"></i> Answer: B</strong> — Most no-display issues are cable, power, or seating related.</div>
-                </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key Takeaways</h2>
-            <div class="feature-grid">
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip"></i><h3>Know the parts</h3><p>CPU, mobo, RAM, storage, PSU, GPU, case</p></div>
-                <div class="feature-card purple fragment fade-up"><i class="fas fa-link"></i><h3>Compatibility first</h3><p>Socket, DDR gen, size, wattage</p></div>
-                <div class="feature-card teal fragment fade-up"><i class="fas fa-list-ol"></i><h3>Orderly assembly</h3><p>Static-safe, patient, double-check cables</p></div>
-                <div class="feature-card orange fragment fade-up"><i class="fas fa-stethoscope"></i><h3>Test methodically</h3><p>POST → OS → drivers → stress/temps</p></div>
-            </div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-road"></i> Career Pathways</h2>
-                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">These skills support real IT career routes</p>
-                <div class="career-path fragment fade-up">
-                    <div class="career-step"><i class="fas fa-graduation-cap"></i><h4>Entry Level</h4><p>PC Build / Helpdesk</p></div>
-                    <div class="career-step"><i class="fas fa-user-cog"></i><h4>Mid Level</h4><p>Hardware Technician</p></div>
-                    <div class="career-step"><i class="fas fa-star"></i><h4>Senior Level</h4><p>Infrastructure / Field Engineer</p></div>
-                </div>
-                <div class="stats-bar fragment fade-up" style="margin-top: 30px;"><div class="stat-item"><span class="stat-number">A+</span><span class="stat-label">CompTIA Path</span></div><div class="stat-item"><span class="stat-number">Hands-on</span><span class="stat-label">Portfolio Builds</span></div><div class="stat-item"><span class="stat-number">£28-75K</span><span class="stat-label">Early Range</span></div></div>
-            </section>
-
-            <section data-auto-animate>
-                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next Steps</h2>
+                <h2 class="animated-gradient"><i class="fas fa-power-off" aria-hidden="true"></i> First boot — POST then OS</h2>
                 <div class="glass-card fragment fade-up">
-                    <h3 style="color: var(--brand-teal); margin-bottom: 20px;"><i class="fas fa-tasks"></i> Your Action Plan</h3>
+                    <p>When the Power chip lights the case in the animation, that is <strong>POST</strong> — firmware counting CPU, RAM and storage before any Windows or Linux logo. No beep / no display is a hardware conversation, not an OS one yet.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-tv" aria-hidden="true"></i><div><h4>1. Picture</h4><p>Cable in the GPU if you fitted one. Confirm the monitor input.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-temperature-half" aria-hidden="true"></i><div><h4>2. BIOS / UEFI</h4><p>CPU temp sane, XMP/EXPO if appropriate, boot order = USB installer then NVMe.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-compact-disc" aria-hidden="true"></i><div><h4>3. OS</h4><p>Install to the SSD you just flew in. Do not leave a leftover HDD as disk 0 by accident.</p></div></div>
+                    <div class="benefit-item fragment fade-up"><i class="fas fa-download" aria-hidden="true"></i><div><h4>4. Drivers</h4><p>Chipset, GPU, LAN. Then Windows Update. Then a 10-minute stress / temp check.</p></div></div>
+                </div>
+                <aside class="notes">Link BIOS/UEFI and Installing an OS decks. ~3 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Case study — Saturday Build Club</h2>
+                <div class="case-meta">
+                    <span class="case-pill">Belfast Met</span>
+                    <span class="case-pill">February 2025</span>
+                    <span class="case-pill">ATX office PC</span>
+                    <span class="case-pill">£180 board written off</span>
+                </div>
+                <div class="glass-card fragment fade-up">
+                    <p>Twelve learners built the same study PC. Eleven posted. One went <strong>click, smell, dark</strong> the moment the front-panel button was pressed. The 24-pin was seated. The PSU switch was on. Fans never moved.</p>
+                </div>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>What they found</h3>
+                        <ul>
+                            <li>Only four of nine standoffs were fitted</li>
+                            <li>One screw went through a hole with no foot</li>
+                            <li>The board shorted against the tray</li>
+                            <li>The 24-pin area of the PCB was scorched</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>The five-second habit</h3>
+                        <ul>
+                            <li>Count standoffs against the manual diagram</li>
+                            <li>Finger-check: no extra brass, no missing brass</li>
+                            <li>Board should sit level before any screw</li>
+                            <li>Power on only after a second pair of eyes</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Named classroom scenario. Ask: “Would a paperclip PSU test have saved this board?” (No — the short is on the tray.) ~4 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-stethoscope" aria-hidden="true"></i> Common build faults</h2>
+                <table class="fault-table fragment fade-up">
+                    <thead><tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr></thead>
+                    <tbody>
+                        <tr><td class="fault-symptom">Nothing — no LEDs, no fans</td><td class="fault-part">PSU switch, wall, 24-pin</td><td>I = on, known-good lead, reseat 24-pin until it clicks</td></tr>
+                        <tr><td class="fault-symptom">Fans twitch, no POST</td><td class="fault-part">CPU 8-pin missing</td><td>Fit EPS 8-pin at the top of the board</td></tr>
+                        <tr><td class="fault-symptom">Powers on, no picture</td><td class="fault-part">GPU / RAM / monitor</td><td>Cable in GPU, reseat RAM, try one stick in slot 2</td></tr>
+                        <tr><td class="fault-symptom">RAM not detected</td><td class="fault-part">Wrong generation or not clicked</td><td>DDR4 vs DDR5; both clips; QVL if needed</td></tr>
+                        <tr><td class="fault-symptom">USB / power button dead</td><td class="fault-part">Front-panel header</td><td>PWR SW on the two pins in the manual</td></tr>
+                        <tr><td class="fault-symptom">Click + smell on first power</td><td class="fault-part">Standoff short</td><td>Power off. Count feet. Do not retry a scorched board</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Walk three rows. Then go to the triage widget so they practise the questions. ~3 min.</aside>
+            </section>
+
+            <section id="slide-triage">
+                <span class="section-badge">Doing widget</span>
+                <h2 class="animated-gradient"><i class="fas fa-sitemap" aria-hidden="true"></i> First-boot triage</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.82em;">Answer yes or no. The tree ends in a next action — not a guess.</p>
+                <div class="triage-card" id="triage-widget">
+                    <p class="triage-q" id="triage-q">Does anything light up or spin when you press the case power button?</p>
+                    <div class="triage-actions">
+                        <button class="dnd-btn" type="button" data-choice="yes" aria-label="Yes">Yes</button>
+                        <button class="dnd-btn secondary" type="button" data-choice="no" aria-label="No">No</button>
+                        <button class="dnd-btn secondary" type="button" data-choice="reset" aria-label="Restart the triage">Restart</button>
+                    </div>
+                    <p class="triage-path" id="triage-path"></p>
+                    <div class="triage-verdict" id="triage-verdict" hidden></div>
+                </div>
+                <aside class="notes">Run the silent-PC path as a class (No → switch → cables). Then a volunteer takes the “lights but no picture” branch. ~5 min.</aside>
+            </section>
+
+            <section id="slide-timed">
+                <span class="section-badge">Timed challenge</span>
+                <h2 class="animated-gradient"><i class="fas fa-stopwatch" aria-hidden="true"></i> Beat the clock — seat every part</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.82em; margin: 0 0 8px;">Same fly-in, 60 seconds, correct order only. Best time is stored in this browser.</p>
+                <div style="display:flex; gap:16px; align-items:baseline; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="timer-display" id="timer-display">60</span>
+                    <span style="font-size:0.8em; color:rgba(255,255,255,0.5);">seconds</span>
+                    <p class="best-time" id="best-time-display"></p>
+                </div>
+                <div class="build-widget" id="pc-timed-widget">
+                    <div class="build-stage" data-stage="timed">
+                        <div class="pc-svg-host"></div>
+                    </div>
+                    <div class="build-rail">
+                        <div class="build-info" id="pc-timed-info">
+                            <p class="build-step-pill">Ready</p>
+                            <h3>Press Start</h3>
+                            <p>Click the glowing chip — or its ghost — in build order. Wrong parts shake and cost you time.</p>
+                        </div>
+                        <div class="build-controls">
+                            <button class="dnd-btn" type="button" data-act="start" aria-label="Start the timed build"><i class="fas fa-play" aria-hidden="true"></i> Start</button>
+                            <button class="dnd-btn secondary" type="button" data-act="reset" aria-label="Reset the timed build">Reset</button>
+                        </div>
+                        <div class="build-dots" data-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="build-tray" data-tray></div>
+                    <span class="sr-live" data-live aria-live="polite"></span>
+                </div>
+                <aside class="notes">Competitive energiser. Who can seat all ten before the warning colour at 10 s? ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-tasks" aria-hidden="true"></i> Practical task — supervised lab build</h2>
+                <div class="glass-card fragment fade-up">
+                    <p>In pairs, assemble a training PC from the parts trolley. One builder, one reader (manual + this sequence). Swap halfway. Wrist straps on before any bag is opened.</p>
+                </div>
+                <div class="two-col">
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="color: var(--brand-teal); font-size: 1.05em;">Success criteria</h3>
+                        <ul class="criteria-list">
+                            <li><label><input type="checkbox"> I/O shield seated before the board</label></li>
+                            <li><label><input type="checkbox"> Standoff count matches the board holes</label></li>
+                            <li><label><input type="checkbox"> CPU latch closed; RAM clips clicked both ends</label></li>
+                            <li><label><input type="checkbox"> 24-pin and CPU 8-pin fully home</label></li>
+                            <li><label><input type="checkbox"> POST picture on the correct monitor input</label></li>
+                        </ul>
+                    </div>
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="color: var(--brand-orange); font-size: 1.05em;">Evidence checklist</h3>
+                        <ul class="evidence-list">
+                            <li><label><input type="checkbox"> Photo of standoffs before the board goes in</label></li>
+                            <li><label><input type="checkbox"> Photo of cable routing (24-pin, 8-pin, GPU)</label></li>
+                            <li><label><input type="checkbox"> Photo of BIOS CPU temp under 50 °C idle</label></li>
+                            <li><label><input type="checkbox"> Note: who did which steps, and one fault you caught</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">This is the long classroom block (~25–40 min). The slide is the brief; circulate for ESD and 8-pin. ~4 min briefing.</aside>
+            </section>
+
+            <section id="slide-glossary">
+                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Jargon buster</h2>
+                <input type="text" class="glossary-search" id="glossary-search" placeholder="Type to filter terms..." aria-label="Filter glossary terms">
+                <dl class="glossary-list">
+                    <div class="glossary-item" data-terms="cpu socket lga am5"><dt>CPU socket</dt><dd>The keyed hole the processor drops into (e.g. LGA1700, AM5)</dd></div>
+                    <div class="glossary-item" data-terms="motherboard standoff tray"><dt>Standoff</dt><dd>Brass foot that holds the board off the metal tray so it cannot short</dd></div>
+                    <div class="glossary-item" data-terms="io shield rear panel"><dt>I/O shield</dt><dd>Metal plate that clicks into the case rear before the motherboard</dd></div>
+                    <div class="glossary-item" data-terms="dimm ram ddr4 ddr5"><dt>DIMM</dt><dd>Desktop RAM module. DDR4 and DDR5 are different notches — they do not mix</dd></div>
+                    <div class="glossary-item" data-terms="dual channel ram slots"><dt>Dual channel</dt><dd>Two matched sticks in the slots the manual paints (often 2 and 4)</dd></div>
+                    <div class="glossary-item" data-terms="atx form factor itx matx"><dt>Form factor</dt><dd>Physical size standard: ATX, micro-ATX, mini-ITX for boards and cases</dd></div>
+                    <div class="glossary-item" data-terms="psu 24-pin atx power"><dt>24-pin ATX</dt><dd>Main motherboard power connector from the PSU</dd></div>
+                    <div class="glossary-item" data-terms="eps 8-pin cpu power"><dt>EPS 8-pin</dt><dd>Dedicated CPU power, usually at the top-left of the board</dd></div>
+                    <div class="glossary-item" data-terms="pcie gpu slot x16"><dt>PCIe x16</dt><dd>Long expansion slot the graphics card seats in</dd></div>
+                    <div class="glossary-item" data-terms="m2 nvme ssd"><dt>M.2 / NVMe</dt><dd>Stick-style SSD that screws into the board — no SATA data cable</dd></div>
+                    <div class="glossary-item" data-terms="sata storage cable"><dt>SATA</dt><dd>L-shaped data (and separate power) for 2.5&quot; SSDs and HDDs</dd></div>
+                    <div class="glossary-item" data-terms="post bios uefi firmware"><dt>POST</dt><dd>Power-On Self-Test — firmware inventory before the OS loads</dd></div>
+                    <div class="glossary-item" data-terms="xmp expo ram speed"><dt>XMP / EXPO</dt><dd>Profiles that run RAM at the speed on the box, if the board allows it</dd></div>
+                    <div class="glossary-item" data-terms="front panel pwr sw header"><dt>Front-panel header</dt><dd>Tiny pins for power switch, reset and LEDs — match the manual</dd></div>
+                    <div class="glossary-item" data-terms="esd static strap"><dt>ESD</dt><dd>Electrostatic discharge — a shock you may not feel that can kill a chip</dd></div>
+                    <div class="glossary-item" data-terms="thermal paste cooler ihs"><dt>Thermal paste</dt><dd>Heat-conductive compound between CPU lid and cooler base</dd></div>
+                    <div class="glossary-item" data-terms="qvl ram motherboard list"><dt>QVL</dt><dd>Qualified Vendor List — RAM kits the board maker has tested</dd></div>
+                    <div class="glossary-item" data-terms="tdp wattage psu budget"><dt>TDP / watt budget</dt><dd>How much heat/power a part draws; PSU must cover CPU + GPU + headroom</dd></div>
+                </dl>
+                <aside class="notes">Self-paced revision. Filter “8-pin” and “standoff”. ~2 min or homework.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-map" aria-hidden="true"></i> Where this fits</h2>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Hardware pathway — you are on the assembly deck</p>
+                <div class="deck-map">
+                    <a class="deck-link" href="safe-working-esd-ocn-level2-presentation.html"><i class="fas fa-shield-alt" aria-hidden="true"></i><h4>Safe Working &amp; ESD</h4><p>Strap up before the bags open</p></a>
+                    <a class="deck-link" href="inside-the-pc-components-ocn-level2-presentation.html"><i class="fas fa-microchip" aria-hidden="true"></i><h4>Inside the PC</h4><p>Name every part by sight</p></a>
+                    <a class="deck-link current" href="building-computers-ocn-level2-presentation.html"><i class="fas fa-tools" aria-hidden="true"></i><h4>Building Computers</h4><p>You are here — fly-in build</p></a>
+                    <a class="deck-link" href="bios-uefi-setup-ocn-level2-presentation.html"><i class="fas fa-cog" aria-hidden="true"></i><h4>BIOS / UEFI Setup</h4><p>After POST, before the OS</p></a>
+                    <a class="deck-link" href="installing-an-os-ocn-level2-presentation.html"><i class="fas fa-download" aria-hidden="true"></i><h4>Installing an OS</h4><p>Windows / Linux onto the NVMe</p></a>
+                    <a class="deck-link" href="storage-showdown-ocn-level2-presentation.html"><i class="fas fa-hdd" aria-hidden="true"></i><h4>Storage Showdown</h4><p>Why that M.2 beat a spinning disk</p></a>
+                </div>
+                <aside class="notes">Recommend Inside the PC if they still mix RAM and GPU. BIOS next if they posted today. ~1 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-question-circle" aria-hidden="true"></i> Test your knowledge</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 20px;">6 questions — score is tracked across slides</p>
+                <div class="score-bar-wrap"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                <p class="score-label" id="quiz-score-label">Score: 0 / 6</p>
+                <div style="text-align: center;"><i class="fas fa-brain" style="font-size: 5em; color: var(--brand-purple);" aria-hidden="true"></i></div>
+                <aside class="notes">Aim for 5/6. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="1">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q1: Which part is the main circuit board everything else plugs into?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button"><span>A</span>PSU</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>Motherboard</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>C</span>I/O shield</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>D</span>Case fan</div>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="2">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q2: You should fit the I/O shield…</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>A</span>Into the case rear, before the motherboard goes in</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>B</span>After the GPU, because it is cosmetic</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>C</span>Onto the PSU honeycomb</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>D</span>Only if the PC will be used for gaming</div>
+                    </div>
+                </div>
+                <aside class="notes">Answer A — you cannot seat it once the board is in. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="3">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q3: Fans twitch but the PC never POSTs. Which cable is the usual miss?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button"><span>A</span>HDMI to the monitor</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>CPU 8-pin (EPS) at the top of the board</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>C</span>SATA data to an unused HDD</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>D</span>Front USB 2.0 header</div>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="4">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q4: Before buying parts, the non-negotiable check is…</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button"><span>A</span>Whether the boxes are the same colour</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>Compatibility — socket, RAM gen, case size, PSU watts</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>C</span>That the shop has RGB fans in stock</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>D</span>The wallpaper preview on the side of the case</div>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q5: A screw through a motherboard hole with no standoff can…</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button"><span>A</span>Make dual-channel RAM faster</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>B</span>Replace thermal paste</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>C</span>Short the board against the tray on first power</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>D</span>Unlock XMP automatically</div>
+                    </div>
+                </div>
+                <aside class="notes">Answer C — Saturday Build Club. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q6: A sensible first check for power-on but no display is…</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" tabindex="0" role="button"><span>A</span>Throw away the CPU</div>
+                        <div class="quiz-option" tabindex="0" role="button" data-correct="true"><span>B</span>Monitor cable/input, then reseat GPU and RAM</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>C</span>Delete System32</div>
+                        <div class="quiz-option" tabindex="0" role="button"><span>D</span>Ignore POST beeps and install the OS anyway</div>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. ~1 min.</aside>
+            </section>
+
+            <section id="slide-quiz-results">
+                <div class="results-card">
+                    <h2 class="animated-gradient">Results</h2>
+                    <div class="results-grade" id="results-grade">–</div>
+                    <p class="score-label" id="results-score-label">0 / 6</p>
+                    <div class="score-bar-wrap"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <p id="results-message" style="color: rgba(255,255,255,0.75); margin: 18px 0 24px;">Complete the six questions to see your grade.</p>
+                    <button class="dnd-btn" type="button" id="quiz-retry" aria-label="Retry the quiz">Retry quiz</button>
+                </div>
+                <aside class="notes">Celebrate A/A+. Retry for anyone under 4. ~1 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Key takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-magic" aria-hidden="true"></i><h3>See the landing spots</h3><p>Every part has a home — socket, DIMM, M.2, PCIe, PSU bay</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-link" aria-hidden="true"></i><h3>Match before you buy</h3><p>Socket, DDR gen, size, watts — the checker is the habit</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-plug" aria-hidden="true"></i><h3>Cables click</h3><p>24-pin and CPU 8-pin. Front-panel from the manual</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-dot-circle" aria-hidden="true"></i><h3>Count the feet</h3><p>Standoffs first. Then POST, then OS, then drivers</p></div>
+                </div>
+                <aside class="notes">Four pillars. Point back at the SVG. ~2 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-road" aria-hidden="true"></i> Career pathways</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 12px;">These skills show up in real IT routes</p>
+                <div class="career-path fragment fade-up">
+                    <div class="career-step"><i class="fas fa-graduation-cap" aria-hidden="true"></i><h4>Entry</h4><p>PC build / helpdesk</p></div>
+                    <div class="career-step"><i class="fas fa-user-cog" aria-hidden="true"></i><h4>Mid</h4><p>Hardware technician</p></div>
+                    <div class="career-step"><i class="fas fa-star" aria-hidden="true"></i><h4>Senior</h4><p>Field / infrastructure engineer</p></div>
+                </div>
+                <div class="stats-bar fragment fade-up">
+                    <div class="stat-item"><span class="stat-number">A+</span><span class="stat-label">CompTIA path</span></div>
+                    <div class="stat-item"><span class="stat-number">Hands-on</span><span class="stat-label">Portfolio photos</span></div>
+                    <div class="stat-item"><span class="stat-number">£28–75k</span><span class="stat-label">Early NI range</span></div>
+                </div>
+                <aside class="notes">Portfolio photos from the evidence checklist are interview gold. ~2 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next steps</h2>
+                <div class="glass-card fragment fade-up">
+                    <h3 style="color: var(--brand-teal); margin-bottom: 16px;"><i class="fas fa-tasks" aria-hidden="true"></i> Your action plan</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-list" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Parts picker</strong> — Plan a budget build with a compatibility checklist</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-tools" style="color: var(--brand-purple); margin-right: 15px;"></i><strong>Lab build</strong> — Assemble a training PC under supervision</li>
-                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-book" style="color: var(--brand-teal); margin-right: 15px;"></i><strong>Docs</strong> — Photograph cable routing for your portfolio</li>
-                        <li style="padding: 12px 0; "><i class="fas fa-network-wired" style="color: var(--brand-orange); margin-right: 15px;"></i><strong>Extend</strong> — Add the finished PC to a practice network</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-list" style="color: var(--brand-orange); margin-right: 15px;" aria-hidden="true"></i><strong>Parts picker</strong> — plan a budget build and run it through the checker</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-tools" style="color: var(--brand-purple); margin-right: 15px;" aria-hidden="true"></i><strong>Lab build</strong> — assemble a training PC; photograph standoffs and cables</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-stopwatch" style="color: var(--brand-teal); margin-right: 15px;" aria-hidden="true"></i><strong>Replay</strong> — beat your fly-in time until the order is muscle memory</li>
+                        <li style="padding: 12px 0;"><i class="fas fa-cog" style="color: var(--brand-orange); margin-right: 15px;" aria-hidden="true"></i><strong>Next deck</strong> — BIOS / UEFI once you have a POST screen</li>
                     </ul>
                 </div>
+                <aside class="notes">Assign the photo log. Point at BIOS deck. ~2 min.</aside>
             </section>
 
-            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
                 <div class="title-slide">
-                    <h1 class="animated-gradient">Thank You!</h1>
-                    <p class="subtitle">Questions? Let's discuss!</p>
+                    <h1 class="animated-gradient">Thank you</h1>
+                    <p class="subtitle">Questions? Let's discuss — then go strap up.</p>
                     <div style="margin-top: 40px;">
-                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle"></i> IT Essentials / IT Systems — Hardware</p>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;"><i class="fas fa-info-circle" aria-hidden="true"></i> IT Essentials / IT Systems — Hardware</p>
                         <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
                     </div>
-                    <div style="margin-top: 50px;"><i class="fas fa-microchip" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-tools" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i> <i class="fas fa-laptop" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;"></i></div>
+                    <div style="margin-top: 50px;">
+                        <i class="fas fa-microchip" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i>
+                        <i class="fas fa-tools" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i>
+                        <i class="fas fa-bolt" style="font-size: 3em; color: var(--brand-teal); margin: 0 15px;" aria-hidden="true"></i>
+                    </div>
                 </div>
+                <aside class="notes">Open floor. Remind: 8-pin and standoffs. ~2 min.</aside>
             </section>
 
         </div>
     </div>
+
+    <template id="pc-build-svg-tpl">
+        <svg viewBox="0 0 740 530" role="img" aria-label="Cutaway PC case. Parts fly from the tray into their slots.">
+            <rect x="28" y="22" width="575" height="478" rx="16" fill="#10101c" stroke="#3a3a58" stroke-width="3"/>
+            <rect x="44" y="38" width="500" height="360" rx="8" fill="#0a0a14"/>
+            <rect x="548" y="22" width="70" height="478" rx="8" fill="#161624" stroke="#3a3a58" stroke-width="2"/>
+            <rect x="562" y="48" width="42" height="70" rx="4" fill="#0c0c16" stroke="#444"/>
+            <rect x="562" y="130" width="42" height="70" rx="4" fill="#0c0c16" stroke="#444"/>
+            <circle class="power-led" cx="583" cy="430" r="8"/>
+            <text x="583" y="458" text-anchor="middle" fill="#666" font-size="9" font-family="Poppins, sans-serif">PWR</text>
+            <rect x="44" y="400" width="500" height="84" rx="6" fill="#12121e" stroke="#2a2a40"/>
+            <circle cx="70" cy="210" r="28" fill="#151522" stroke="#444"/>
+            <g class="fan-blades" transform="translate(70 210)">
+                <circle r="26" fill="transparent"/>
+                <ellipse cx="0" cy="-9" rx="6" ry="13" fill="#00BDA5" opacity="0.55"/>
+                <ellipse cx="0" cy="-9" rx="6" ry="13" fill="#00BDA5" opacity="0.55" transform="rotate(120)"/>
+                <ellipse cx="0" cy="-9" rx="6" ry="13" fill="#00BDA5" opacity="0.55" transform="rotate(240)"/>
+                <circle r="6" fill="#2a2a3a"/>
+            </g>
+            <circle cx="500" cy="120" r="26" fill="#151522" stroke="#444"/>
+            <g class="fan-blades" transform="translate(500 120)">
+                <circle r="24" fill="transparent"/>
+                <ellipse cx="0" cy="-8" rx="5" ry="12" fill="#8A2BE2" opacity="0.5"/>
+                <ellipse cx="0" cy="-8" rx="5" ry="12" fill="#8A2BE2" opacity="0.5" transform="rotate(120)"/>
+                <ellipse cx="0" cy="-8" rx="5" ry="12" fill="#8A2BE2" opacity="0.5" transform="rotate(240)"/>
+                <circle r="5" fill="#2a2a3a"/>
+            </g>
+            <circle cx="500" cy="280" r="26" fill="#151522" stroke="#444"/>
+            <g class="fan-blades" transform="translate(500 280)">
+                <circle r="24" fill="transparent"/>
+                <ellipse cx="0" cy="-8" rx="5" ry="12" fill="#8A2BE2" opacity="0.5"/>
+                <ellipse cx="0" cy="-8" rx="5" ry="12" fill="#8A2BE2" opacity="0.5" transform="rotate(120)"/>
+                <ellipse cx="0" cy="-8" rx="5" ry="12" fill="#8A2BE2" opacity="0.5" transform="rotate(240)"/>
+                <circle r="5" fill="#2a2a3a"/>
+            </g>
+            <g fill="#3a3a50">
+                <circle cx="92" cy="70" r="3.5"/><circle cx="350" cy="70" r="3.5"/>
+                <circle cx="92" cy="200" r="3.5"/><circle cx="350" cy="200" r="3.5"/>
+                <circle cx="92" cy="330" r="3.5"/><circle cx="220" cy="330" r="3.5"/>
+                <circle cx="350" cy="330" r="3.5"/><circle cx="220" cy="70" r="3.5"/>
+                <circle cx="220" cy="200" r="3.5"/>
+            </g>
+
+            <rect class="pc-ghost" data-ghost="ioshield" x="36" y="72" width="14" height="158" rx="2"/>
+            <rect class="pc-ghost" data-ghost="motherboard" x="78" y="58" width="300" height="300" rx="6"/>
+            <rect class="pc-ghost" data-ghost="cpu" x="128" y="108" width="68" height="68" rx="4"/>
+            <rect class="pc-ghost" data-ghost="ram" x="300" y="78" width="48" height="168" rx="3"/>
+            <rect class="pc-ghost" data-ghost="cooler" x="118" y="78" width="92" height="118" rx="6"/>
+            <rect class="pc-ghost" data-ghost="ssd" x="210" y="248" width="92" height="16" rx="2"/>
+            <rect class="pc-ghost" data-ghost="psu" x="58" y="412" width="210" height="68" rx="6"/>
+            <rect class="pc-ghost" data-ghost="gpu" x="90" y="268" width="250" height="62" rx="6"/>
+            <rect class="pc-ghost" data-ghost="cables" x="70" y="348" width="40" height="22" rx="2"/>
+            <rect class="pc-ghost" data-ghost="frontpanel" x="170" y="338" width="36" height="16" rx="2"/>
+
+            <g class="pc-part" data-part="ioshield">
+                <rect x="36" y="72" width="14" height="158" rx="2" fill="#2a2a38" stroke="#00BDA5" stroke-width="1.5"/>
+                <rect x="39" y="80" width="8" height="10" fill="#111"/>
+                <rect x="39" y="96" width="8" height="18" fill="#111"/>
+                <rect x="39" y="120" width="8" height="8" fill="#1a1a28"/>
+                <rect x="39" y="134" width="8" height="8" fill="#1a1a28"/>
+                <rect x="39" y="150" width="8" height="22" fill="#111"/>
+                <rect x="39" y="180" width="8" height="10" fill="#003"/>
+            </g>
+
+            <g class="pc-part" data-part="motherboard">
+                <rect x="78" y="58" width="300" height="300" rx="6" fill="#0d4a32" stroke="#1a7a52" stroke-width="2"/>
+                <path d="M90 80 H360 M90 120 H360 M90 200 H360 M90 280 H250" stroke="#1a6b48" stroke-width="0.6" fill="none"/>
+                <rect x="124" y="104" width="76" height="76" rx="3" fill="#1a1a24" stroke="#c9a227" stroke-width="2"/>
+                <rect x="302" y="78" width="14" height="160" rx="1" fill="#2a1540" stroke="#8A2BE2"/>
+                <rect x="320" y="78" width="14" height="160" rx="1" fill="#2a1540" stroke="#8A2BE2"/>
+                <rect x="338" y="78" width="14" height="160" rx="1" fill="#151520" stroke="#444"/>
+                <rect x="356" y="78" width="14" height="160" rx="1" fill="#151520" stroke="#444"/>
+                <rect x="92" y="278" width="230" height="14" rx="2" fill="#1a1a28" stroke="#F7931E"/>
+                <rect x="210" y="248" width="92" height="14" rx="2" fill="#152018" stroke="#00BDA5"/>
+                <rect x="88" y="330" width="52" height="16" rx="2" fill="#333" stroke="#F7931E"/>
+                <rect x="148" y="64" width="28" height="14" rx="2" fill="#333" stroke="#FCC624"/>
+                <rect x="300" y="300" width="48" height="36" rx="3" fill="#1a3328" stroke="#2a6a48"/>
+                <text x="324" y="322" text-anchor="middle" fill="#7a9" font-size="8" font-family="Poppins, sans-serif">CHIPSET</text>
+                <rect x="250" y="320" width="18" height="10" rx="1" fill="#222" stroke="#666"/>
+                <rect x="272" y="320" width="18" height="10" rx="1" fill="#222" stroke="#666"/>
+                <rect x="294" y="320" width="18" height="10" rx="1" fill="#222" stroke="#666"/>
+            </g>
+
+            <g class="pc-part" data-part="cpu">
+                <rect x="128" y="108" width="68" height="68" rx="4" fill="#d5dae3" stroke="#8a93a3" stroke-width="1.5"/>
+                <rect x="142" y="122" width="40" height="40" fill="#a8b0bc"/>
+                <text x="162" y="146" text-anchor="middle" fill="#333" font-size="9" font-weight="700" font-family="Poppins, sans-serif">CPU</text>
+                <polygon points="132,112 138,112 132,118" fill="#F7931E"/>
+            </g>
+
+            <g class="pc-part" data-part="ram">
+                <rect x="300" y="82" width="12" height="152" rx="1" fill="#1a1a28" stroke="#00BDA5"/>
+                <rect x="301" y="90" width="10" height="8" fill="#F7931E"/>
+                <rect x="318" y="82" width="12" height="152" rx="1" fill="#1a1a28" stroke="#00BDA5"/>
+                <rect x="319" y="90" width="10" height="8" fill="#F7931E"/>
+            </g>
+
+            <g class="pc-part" data-part="cooler">
+                <rect x="118" y="78" width="88" height="110" rx="5" fill="#1c1c2a" stroke="#555"/>
+                <rect x="122" y="82" width="80" height="8" fill="#2a2a3a"/>
+                <rect x="122" y="94" width="80" height="8" fill="#2a2a3a"/>
+                <rect x="122" y="106" width="80" height="8" fill="#2a2a3a"/>
+                <rect x="122" y="118" width="80" height="8" fill="#2a2a3a"/>
+                <rect x="122" y="130" width="80" height="8" fill="#2a2a3a"/>
+                <circle cx="162" cy="158" r="22" fill="#12121c" stroke="#00BDA5"/>
+                <g class="fan-blades" transform="translate(162 158)">
+                    <circle r="20" fill="transparent"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#00BDA5" opacity="0.75"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#00BDA5" opacity="0.75" transform="rotate(120)"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#00BDA5" opacity="0.75" transform="rotate(240)"/>
+                    <circle r="5" fill="#2a2a3a"/>
+                </g>
+            </g>
+
+            <g class="pc-part" data-part="ssd">
+                <rect x="210" y="248" width="92" height="14" rx="2" fill="#1a1a24" stroke="#FCC624"/>
+                <rect x="216" y="251" width="14" height="8" rx="1" fill="#00BDA5"/>
+                <rect x="234" y="251" width="14" height="8" rx="1" fill="#00BDA5"/>
+                <text x="278" y="258" fill="#FCC624" font-size="8" font-family="Poppins, sans-serif">M.2</text>
+            </g>
+
+            <g class="pc-part" data-part="psu">
+                <rect x="58" y="412" width="210" height="68" rx="6" fill="#1a1a24" stroke="#F7931E" stroke-width="1.5"/>
+                <rect x="70" y="424" width="90" height="44" rx="3" fill="#0e0e16"/>
+                <g fill="#333">
+                    <circle cx="82" cy="436" r="3"/><circle cx="94" cy="436" r="3"/><circle cx="106" cy="436" r="3"/>
+                    <circle cx="82" cy="448" r="3"/><circle cx="94" cy="448" r="3"/><circle cx="106" cy="448" r="3"/>
+                    <circle cx="82" cy="460" r="3"/><circle cx="94" cy="460" r="3"/><circle cx="106" cy="460" r="3"/>
+                </g>
+                <text x="200" y="452" text-anchor="middle" fill="#F7931E" font-size="12" font-weight="700" font-family="Poppins, sans-serif">PSU</text>
+            </g>
+
+            <g class="pc-part" data-part="gpu">
+                <rect x="90" y="268" width="250" height="62" rx="6" fill="#1a1228" stroke="#8A2BE2" stroke-width="1.8"/>
+                <circle cx="150" cy="299" r="22" fill="#12101c" stroke="#a855f7"/>
+                <g class="fan-blades" transform="translate(150 299)">
+                    <circle r="20" fill="transparent"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#a855f7" opacity="0.7"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#a855f7" opacity="0.7" transform="rotate(120)"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#a855f7" opacity="0.7" transform="rotate(240)"/>
+                    <circle r="5" fill="#2a2a3a"/>
+                </g>
+                <circle cx="220" cy="299" r="22" fill="#12101c" stroke="#a855f7"/>
+                <g class="fan-blades" transform="translate(220 299)">
+                    <circle r="20" fill="transparent"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#a855f7" opacity="0.7"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#a855f7" opacity="0.7" transform="rotate(120)"/>
+                    <ellipse cx="0" cy="-7" rx="5" ry="11" fill="#a855f7" opacity="0.7" transform="rotate(240)"/>
+                    <circle r="5" fill="#2a2a3a"/>
+                </g>
+                <text x="300" y="304" fill="#c4b5fd" font-size="11" font-weight="700" font-family="Poppins, sans-serif">GPU</text>
+            </g>
+
+            <g class="pc-part" data-part="cables" fill="none" stroke-width="4" stroke-linecap="round">
+                <path d="M120 420 C 100 390, 92 360, 112 338" stroke="#F7931E"/>
+                <path d="M150 418 C 155 300, 150 140, 162 78" stroke="#FCC624"/>
+                <path d="M170 430 C 240 410, 300 360, 300 320" stroke="#8A2BE2"/>
+                <path d="M190 428 C 260 400, 330 360, 340 330" stroke="#ef4444"/>
+            </g>
+
+            <g class="pc-part" data-part="frontpanel">
+                <path d="M560 280 C 420 270, 280 330, 188 346" fill="none" stroke="#00BDA5" stroke-width="2.5" stroke-dasharray="5 3" stroke-linecap="round"/>
+                <rect x="170" y="338" width="36" height="16" rx="2" fill="#12121c" stroke="#00BDA5"/>
+                <text x="188" y="350" text-anchor="middle" fill="#00BDA5" font-size="7" font-family="Poppins, sans-serif">FP</text>
+            </g>
+
+            <g class="post-overlay">
+                <rect x="430" y="48" width="100" height="44" rx="6" fill="rgba(10,10,26,0.92)" stroke="#00BDA5"/>
+                <text x="480" y="66" text-anchor="middle" fill="#00BDA5" font-size="11" font-weight="700" font-family="Fira Code, monospace">POST OK</text>
+                <text x="480" y="82" text-anchor="middle" fill="#9aa" font-size="8" font-family="Fira Code, monospace">16GB · NVMe</text>
+            </g>
+        </svg>
+    </template>
+
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
@@ -913,12 +1338,603 @@
             autoAnimateEasing: 'ease-out', autoAnimateDuration: 0.8,
             plugins: [RevealNotes, RevealHighlight, RevealZoom]
         });
-        document.querySelectorAll('.quiz-option').forEach(option => {
-            option.addEventListener('click', function() {
-                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
-                const container = this.closest('.quiz-options');
-                container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+
+        const AppState = {
+            quizScore: 0,
+            quizAnswered: {},
+            quizBound: false,
+            reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+            timerInterval: null,
+            timerSeconds: 60,
+            timedRunning: false
+        };
+
+        const BUILD_PARTS = [
+            { id: 'ioshield', label: 'I/O shield', icon: 'fa-th', title: 'I/O shield', body: 'Press it into the rear cut-out from inside the case until it clicks. You cannot fit this after the motherboard is in.' },
+            { id: 'motherboard', label: 'Motherboard', icon: 'fa-server', title: 'Motherboard', body: 'Lower it onto the standoffs. Every screw hole needs a brass foot. The rear ports should peek through the I/O shield.' },
+            { id: 'cpu', label: 'CPU', icon: 'fa-microchip', title: 'CPU', body: 'Gold triangle to triangle. Lower — do not slide. Close the load plate. Never touch the contacts. Many techs do this on the bench first.' },
+            { id: 'ram', label: 'RAM', icon: 'fa-memory', title: 'RAM', body: 'Notch lines up with the slot key. Push until both end clips click. Dual-channel is usually slots 2 and 4 — check the board paint.' },
+            { id: 'cooler', label: 'Cooler', icon: 'fa-fan', title: 'CPU cooler', body: 'Pea of paste (or pre-applied). Backplate / push-pins even. Plug the fan into CPU_FAN or the board may refuse to POST.' },
+            { id: 'ssd', label: 'M.2 SSD', icon: 'fa-save', title: 'M.2 NVMe', body: 'Insert at a slight angle, then screw the far end down. No SATA cable. Watch for a heatsink shroud on gaming boards.' },
+            { id: 'psu', label: 'PSU', icon: 'fa-bolt', title: 'Power supply', body: 'Slide into the bay, fan toward a vent. Switch to O while you cable. Never open the PSU.' },
+            { id: 'gpu', label: 'GPU', icon: 'fa-tv', title: 'Graphics card', body: 'Open the PCIe clip, seat the card fully, screw the bracket. Monitor cable goes in the GPU, not the motherboard HDMI.' },
+            { id: 'cables', label: 'Power cables', icon: 'fa-plug', title: 'Power cables', body: '24-pin into the board, 8-pin EPS by the CPU, PCIe into the GPU, SATA power if you used a 2.5" drive. Listen for clicks.' },
+            { id: 'frontpanel', label: 'Front panel', icon: 'fa-power-off', title: 'Front-panel header', body: 'PWR SW, HDD LED, RESET — two pins each. The tiny diagram in the manual is the map. Then tidy cables and close the side.' }
+        ];
+
+        function prefixSvgIds(svg, prefix) {
+            const ids = Array.from(svg.querySelectorAll('[id]')).map(el => el.id);
+            svg.querySelectorAll('[id]').forEach(el => { el.id = prefix + el.id; });
+            svg.querySelectorAll('*').forEach(el => {
+                ['fill', 'stroke', 'href', 'clip-path', 'filter', 'style'].forEach(name => {
+                    const v = el.getAttribute(name);
+                    if (!v) return;
+                    let next = v;
+                    ids.forEach(id => { next = next.split('#' + id).join('#' + prefix + id); });
+                    if (next !== v) el.setAttribute(name, next);
+                });
             });
+        }
+
+        function mountSvg(host, prefix) {
+            const tpl = document.getElementById('pc-build-svg-tpl');
+            host.innerHTML = '';
+            const clone = tpl.content.cloneNode(true);
+            const svg = clone.querySelector('svg');
+            if (svg) prefixSvgIds(svg, prefix);
+            host.appendChild(clone);
+            return host.querySelector('svg');
+        }
+
+        function createBuildController(root, options) {
+            const host = root.querySelector('.pc-svg-host');
+            const tray = root.querySelector('[data-tray]');
+            const info = root.querySelector('.build-info');
+            const live = root.querySelector('[data-live]');
+            const dotsWrap = root.querySelector('[data-dots]');
+            const stage = root.querySelector('.build-stage');
+            const timed = options && options.timed;
+            let step = 0;
+            let autoplay = null;
+            let svg = null;
+
+            function partByIndex(i) { return BUILD_PARTS[i]; }
+
+            function setInfo(title, body, pill) {
+                if (!info) return;
+                info.innerHTML = '<p class="build-step-pill">' + pill + '</p><h3>' + title + '</h3><p>' + body + '</p>';
+            }
+
+            function announce(msg) {
+                if (live) live.textContent = msg;
+            }
+
+            function renderDots() {
+                if (!dotsWrap) return;
+                dotsWrap.innerHTML = BUILD_PARTS.map((_, i) => {
+                    const cls = i < step ? 'done' : (i === step ? 'current' : '');
+                    return '<span class="build-dot ' + cls + '"></span>';
+                }).join('');
+            }
+
+            function renderTray() {
+                tray.innerHTML = '';
+                BUILD_PARTS.forEach((p, i) => {
+                    const chip = document.createElement('button');
+                    chip.type = 'button';
+                    chip.className = 'part-chip';
+                    chip.dataset.part = p.id;
+                    chip.innerHTML = '<i class="fas ' + p.icon + '" aria-hidden="true"></i>' + p.label;
+                    chip.setAttribute('aria-label', 'Seat ' + p.label);
+                    if (i < step) chip.classList.add('seated');
+                    if (i === step && step < BUILD_PARTS.length) chip.classList.add('next');
+                    chip.addEventListener('click', () => trySeat(p.id));
+                    tray.appendChild(chip);
+                });
+            }
+
+            function syncParts() {
+                svg.querySelectorAll('.pc-part').forEach(g => {
+                    const idx = BUILD_PARTS.findIndex(p => p.id === g.dataset.part);
+                    g.classList.remove('is-flying', 'is-seated', 'is-lit');
+                    if (idx >= 0 && idx < step) g.classList.add('is-seated');
+                });
+                svg.querySelectorAll('.pc-ghost').forEach(g => {
+                    const idx = BUILD_PARTS.findIndex(p => p.id === g.dataset.ghost);
+                    g.classList.toggle('is-waiting', idx === step);
+                });
+                stage.classList.toggle('is-powered', step >= BUILD_PARTS.length && stage.dataset.powered === '1');
+                const powerBtn = root.querySelector('[data-act="power"]');
+                if (powerBtn) {
+                    powerBtn.disabled = step < BUILD_PARTS.length;
+                    powerBtn.classList.toggle('power-ready', step >= BUILD_PARTS.length && stage.dataset.powered !== '1');
+                }
+                renderTray();
+                renderDots();
+                if (step >= BUILD_PARTS.length) {
+                    setInfo('Build complete', 'Every part is home. Hit Power on — fans should spin and POST should count RAM and the NVMe.', '10 / 10');
+                } else if (step === 0) {
+                    setInfo('Empty case', 'Dashed teal ghosts mark the next landing spot. Click that chip — or Play to watch them fly.', 'Step 0 / 10');
+                } else {
+                    const p = partByIndex(step);
+                    setInfo(p.title, p.body, 'Next ' + (step + 1) + ' / 10');
+                }
+            }
+
+            function flyIn(id) {
+                const g = svg.querySelector('.pc-part[data-part="' + id + '"]');
+                if (!g) return;
+                if (AppState.reducedMotion) {
+                    g.classList.add('is-seated');
+                    return;
+                }
+                g.classList.remove('is-seated');
+                g.classList.add('is-flying');
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => g.classList.add('is-seated'));
+                });
+            }
+
+            function trySeat(id) {
+                if (timed && !AppState.timedRunning && options.requireStart) {
+                    announce('Press Start to begin the timed build.');
+                    return false;
+                }
+                if (step >= BUILD_PARTS.length) return false;
+                const expected = BUILD_PARTS[step].id;
+                const chip = tray.querySelector('[data-part="' + id + '"]');
+                if (id !== expected) {
+                    if (chip) {
+                        chip.classList.add('wrong');
+                        setTimeout(() => chip.classList.remove('wrong'), 450);
+                    }
+                    announce('Not yet — next is the ' + BUILD_PARTS[step].label + '.');
+                    return false;
+                }
+                flyIn(id);
+                step += 1;
+                announce(BUILD_PARTS[step - 1].label + ' seated.');
+                syncParts();
+                if (timed && step >= BUILD_PARTS.length) {
+                    stopTimed(true);
+                    powerOn();
+                }
+                return true;
+            }
+
+            function next() {
+                if (step >= BUILD_PARTS.length) return;
+                trySeat(BUILD_PARTS[step].id);
+            }
+
+            function back() {
+                stopPlay();
+                if (step <= 0) return;
+                step -= 1;
+                stage.dataset.powered = '0';
+                syncParts();
+                announce('Removed ' + BUILD_PARTS[step].label + '.');
+            }
+
+            function reset() {
+                stopPlay();
+                step = 0;
+                stage.dataset.powered = '0';
+                syncParts();
+                announce('Case emptied.');
+            }
+
+            function powerOn() {
+                if (step < BUILD_PARTS.length) return;
+                stage.dataset.powered = '1';
+                stage.classList.add('is-powered');
+                setInfo('POST OK', 'Fans spinning, power LED lit, 16 GB and NVMe counted. Next: BIOS temps, boot order, then the OS installer.', 'Powered');
+                announce('Power on. POST OK.');
+            }
+
+            function stopPlay() {
+                if (autoplay) { clearInterval(autoplay); autoplay = null; }
+                const playBtn = root.querySelector('[data-act="play"]');
+                if (playBtn) playBtn.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i> Play';
+            }
+
+            function play() {
+                if (autoplay) { stopPlay(); return; }
+                if (step >= BUILD_PARTS.length) reset();
+                const playBtn = root.querySelector('[data-act="play"]');
+                if (playBtn) playBtn.innerHTML = '<i class="fas fa-pause" aria-hidden="true"></i> Pause';
+                autoplay = setInterval(() => {
+                    if (step >= BUILD_PARTS.length) {
+                        stopPlay();
+                        powerOn();
+                        return;
+                    }
+                    next();
+                }, AppState.reducedMotion ? 400 : 1050);
+            }
+
+            function stopTimed(success) {
+                if (AppState.timerInterval) {
+                    clearInterval(AppState.timerInterval);
+                    AppState.timerInterval = null;
+                }
+                AppState.timedRunning = false;
+                if (!success) return;
+                const elapsed = 60 - AppState.timerSeconds;
+                const bestEl = document.getElementById('best-time-display');
+                const prev = parseInt(localStorage.getItem('pc-flyin-best-time') || '999', 10);
+                if (elapsed < prev) {
+                    localStorage.setItem('pc-flyin-best-time', String(elapsed));
+                    if (bestEl) bestEl.textContent = 'New best: ' + elapsed + 's';
+                } else if (bestEl) {
+                    bestEl.textContent = 'Finished in ' + elapsed + 's · best ' + (Number.isFinite(prev) ? prev + 's' : '—');
+                }
+                announce('Build complete in ' + elapsed + ' seconds.');
+            }
+
+            function startTimed() {
+                reset();
+                AppState.timedRunning = true;
+                AppState.timerSeconds = 60;
+                const display = document.getElementById('timer-display');
+                if (display) {
+                    display.textContent = '60';
+                    display.classList.remove('warning');
+                }
+                AppState.timerInterval = setInterval(() => {
+                    AppState.timerSeconds -= 1;
+                    if (display) {
+                        display.textContent = String(AppState.timerSeconds);
+                        if (AppState.timerSeconds <= 10) display.classList.add('warning');
+                    }
+                    if (AppState.timerSeconds <= 0) {
+                        stopTimed(false);
+                        announce('Time up. Reset and try again.');
+                        setInfo('Time up', 'Reset and go again — order is I/O, board, CPU, RAM, cooler, M.2, PSU, GPU, cables, front panel.', '0:00');
+                    }
+                }, 1000);
+            }
+
+            svg = mountSvg(host, options.prefix || 'b-');
+            svg.addEventListener('click', e => {
+                const ghost = e.target.closest('.pc-ghost');
+                if (ghost && ghost.classList.contains('is-waiting')) {
+                    trySeat(ghost.dataset.ghost);
+                    return;
+                }
+                const part = e.target.closest('.pc-part.is-seated');
+                if (part) {
+                    svg.querySelectorAll('.pc-part').forEach(g => g.classList.remove('is-lit'));
+                    part.classList.add('is-lit');
+                    const meta = BUILD_PARTS.find(p => p.id === part.dataset.part);
+                    if (meta) setInfo(meta.title, meta.body, 'Seated');
+                }
+            });
+
+            root.addEventListener('click', e => {
+                const btn = e.target.closest('[data-act]');
+                if (!btn || !root.contains(btn)) return;
+                const act = btn.dataset.act;
+                if (act === 'play') play();
+                if (act === 'next') { stopPlay(); next(); }
+                if (act === 'back') back();
+                if (act === 'reset') {
+                    if (timed) stopTimed(false);
+                    reset();
+                    const display = document.getElementById('timer-display');
+                    if (timed && display) {
+                        display.textContent = '60';
+                        display.classList.remove('warning');
+                    }
+                }
+                if (act === 'power') powerOn();
+                if (act === 'start') startTimed();
+            });
+
+            syncParts();
+            return { reset: reset, stopPlay: stopPlay };
+        }
+
+        let lessonBuild = null;
+        let timedBuild = null;
+
+        function initBuilds() {
+            const lesson = document.getElementById('pc-build-widget');
+            const timed = document.getElementById('pc-timed-widget');
+            if (lesson && !lesson.dataset.bound) {
+                lesson.dataset.bound = 'true';
+                lessonBuild = createBuildController(lesson, { prefix: 'lesson-', timed: false });
+            }
+            if (timed && !timed.dataset.bound) {
+                timed.dataset.bound = 'true';
+                timedBuild = createBuildController(timed, { prefix: 'timed-', timed: true, requireStart: true });
+                const bestEl = document.getElementById('best-time-display');
+                const best = localStorage.getItem('pc-flyin-best-time');
+                if (best && bestEl) bestEl.textContent = 'Best time: ' + best + 's';
+            }
+        }
+
+        function parseSel(id) {
+            const el = document.getElementById(id);
+            return el ? el.value.split('|') : [];
+        }
+
+        function initCompat() {
+            const root = document.getElementById('compat-widget');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            const verdict = document.getElementById('compat-verdict');
+
+            function evaluate() {
+                const cpu = parseSel('compat-cpu');
+                const mobo = parseSel('compat-mobo');
+                const ram = document.getElementById('compat-ram').value;
+                const gpuW = parseInt(document.getElementById('compat-gpu').value, 10);
+                const psu = parseInt(document.getElementById('compat-psu').value, 10);
+                const caseFf = document.getElementById('compat-case').value;
+                const issues = [];
+                const warns = [];
+                if (cpu[1] !== mobo[1]) issues.push('Socket mismatch: ' + cpu[0] + ' needs ' + cpu[1].toUpperCase() + ', this board is ' + mobo[1].toUpperCase() + '.');
+                if (cpu[2] !== ram) issues.push('RAM generation mismatch: this CPU/board pairing expects ' + cpu[2].toUpperCase() + '.');
+                if (mobo[2] !== ram) issues.push('This motherboard is ' + mobo[2].toUpperCase() + ' — that kit will not clip in.');
+                if (mobo[3] === 'atx' && caseFf === 'itx') issues.push('An ATX board will not mount in a mini-ITX case.');
+                if (mobo[3] === 'atx' && caseFf === 'matx') warns.push('A full ATX board needs an ATX tray — micro-ATX cases are usually too short.');
+                const need = parseInt(cpu[3], 10) + gpuW + 150;
+                if (psu < need) issues.push('Watt budget: CPU ' + cpu[3] + ' W + GPU ' + gpuW + ' W + 150 W headroom = ' + need + ' W. This PSU is ' + psu + ' W.');
+                else if (psu < need + 50) warns.push('Tight on watts (' + need + ' W needed, ' + psu + ' W in the bay). A Gold 650 W would be more comfortable.');
+                if (gpuW >= 170 && psu < 650) warns.push('Discrete GPUs want a dedicated PCIe 8-pin — check the PSU has that lead, not just the watt number.');
+
+                verdict.className = 'compat-verdict';
+                if (issues.length) {
+                    verdict.classList.add('bad');
+                    verdict.innerHTML = '<h4>Incompatible</h4><p>' + issues.join(' ') + (warns.length ? ' ' + warns.join(' ') : '') + '</p>';
+                } else if (warns.length) {
+                    verdict.classList.add('warn');
+                    verdict.innerHTML = '<h4>Works — with caveats</h4><p>' + warns.join(' ') + '</p>';
+                } else {
+                    verdict.classList.add('ok');
+                    verdict.innerHTML = '<h4>Compatible</h4><p>' + cpu[0] + ' on ' + mobo[0].toUpperCase() + ' with ' + ram.toUpperCase() + ', ' + psu + ' W PSU (' + need + ' W budget) in a ' + caseFf.toUpperCase() + ' case. Ready to fly in.</p>';
+                }
+            }
+
+            root.querySelectorAll('select').forEach(sel => sel.addEventListener('change', evaluate));
+            evaluate();
+        }
+
+        const TRIAGE = {
+            start: { q: 'Does anything light up or spin when you press the case power button?', yes: 'picture', no: 'switch' },
+            switch: { q: 'Is the PSU rear switch set to I (on), and is the wall cable fully in?', yes: 'cables', no: { verdict: 'fix', text: 'Set the switch to I and reseat the kettle lead in a known-good outlet. Then try the button again.' } },
+            cables: { q: 'Are the 24-pin and the CPU 8-pin both fully clicked?', yes: 'standoff', no: { verdict: 'fix', text: 'Reseat 24-pin and EPS 8-pin until the latches click. The 8-pin by the CPU is the usual miss.' } },
+            standoff: { q: 'Did you count standoffs against the board holes before the first power?', yes: { verdict: 'alert', text: 'Try a known-good PSU or outlet with a tutor. Do not paperclip-test unless you have been shown how. If you smelled smoke, stop — the board may already be shorted.' }, no: { verdict: 'alert', text: 'Power off. Lift the board and count brass feet. A screw in a hole with no standoff can short the tray — do not retry if you smelled smoke.' } },
+            picture: { q: 'Is there an image on the monitor?', yes: 'bios', no: 'gpu' },
+            gpu: { q: 'Is the monitor cable in the GPU (not the motherboard) and is RAM clicked in both ends?', yes: { verdict: 'fix', text: 'Try one RAM stick in the slot the manual paints as first. Reseat the GPU. Confirm the monitor input (HDMI / DP).' }, no: { verdict: 'fix', text: 'Move the cable to the GPU if you fitted one. Reseat RAM until both clips click. Then power on again.' } },
+            bios: { q: 'Can you enter BIOS / UEFI (Del or F2)?', yes: { verdict: 'fix', text: 'Check CPU temp, enable XMP/EXPO if appropriate, set boot order to the USB installer then the NVMe. Then install the OS and chipset/GPU drivers.' }, no: { verdict: 'alert', text: 'You have power and picture but no firmware UI — try a different keyboard, Clear CMOS with a tutor, then check CPU cooler is plugged into CPU_FAN.' } }
+        };
+
+        function initTriage() {
+            const root = document.getElementById('triage-widget');
+            if (!root || root.dataset.bound) return;
+            root.dataset.bound = 'true';
+            const qEl = document.getElementById('triage-q');
+            const pathEl = document.getElementById('triage-path');
+            const verdictEl = document.getElementById('triage-verdict');
+            let node = 'start';
+            const crumbs = [];
+
+            function show(key) {
+                node = key;
+                const item = TRIAGE[key];
+                verdictEl.hidden = true;
+                root.querySelector('[data-choice="yes"]').style.display = '';
+                root.querySelector('[data-choice="no"]').style.display = '';
+                qEl.textContent = item.q;
+                pathEl.textContent = crumbs.length ? 'Path: ' + crumbs.join(' → ') : '';
+            }
+
+            function end(result) {
+                qEl.textContent = 'Triage complete';
+                root.querySelector('[data-choice="yes"]').style.display = 'none';
+                root.querySelector('[data-choice="no"]').style.display = 'none';
+                verdictEl.hidden = false;
+                verdictEl.className = 'triage-verdict ' + result.verdict;
+                verdictEl.textContent = result.text;
+                pathEl.textContent = 'Path: ' + crumbs.join(' → ');
+            }
+
+            function choose(which) {
+                const item = TRIAGE[node];
+                if (!item || !item[which]) return;
+                crumbs.push(which === 'yes' ? 'Yes' : 'No');
+                const next = item[which];
+                if (typeof next === 'string') show(next);
+                else end(next);
+            }
+
+            root.addEventListener('click', e => {
+                const btn = e.target.closest('[data-choice]');
+                if (!btn) return;
+                if (btn.dataset.choice === 'reset') {
+                    crumbs.length = 0;
+                    show('start');
+                    return;
+                }
+                choose(btn.dataset.choice);
+            });
+            show('start');
+        }
+
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                if (card.dataset.bound) return;
+                card.dataset.bound = 'true';
+                const toggle = () => card.classList.toggle('flipped');
+                card.addEventListener('click', toggle);
+                card.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
+            });
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = document.getElementById('quiz-score-label');
+            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+            const progress = document.getElementById('quiz-progress');
+            if (progress) {
+                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+                progress.classList.toggle('visible', Object.keys(AppState.quizAnswered).length > 0);
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s === 6) { grade.textContent = 'A+'; msg.textContent = 'Outstanding — you can see where every part lands.'; }
+            else if (s >= 5) { grade.textContent = 'A'; msg.textContent = 'Excellent. Replay the fly-in once more before the lab.'; }
+            else if (s >= 4) { grade.textContent = 'B'; msg.textContent = 'Solid — revisit standoffs, the 8-pin and the checker.'; }
+            else if (s >= 2) { grade.textContent = 'C'; msg.textContent = 'Keep practising. Play the SVG build, then retry.'; }
+            else { grade.textContent = 'D'; msg.textContent = 'Walk the live build together, then try the quiz again.'; }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (AppState.quizBound) return;
+            AppState.quizBound = true;
+            const activate = option => {
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            };
+            document.addEventListener('click', e => {
+                const option = e.target.closest('.quiz-option');
+                if (option) activate(option);
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                const option = e.target.closest && e.target.closest('.quiz-option');
+                if (!option) return;
+                e.preventDefault();
+                activate(option);
+            });
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.style.pointerEvents = '';
+                    });
+                    updateQuizUI();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h, Reveal.getIndices(firstQuiz).v);
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+                if (!showCanvas || AppState.reducedMotion) return requestAnimationFrame(draw);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        Reveal.on('slidechanged', event => {
+            initFlipCards();
+            initBuilds();
+            initCompat();
+            initTriage();
+            initGlossary();
+            if (lessonBuild && event.currentSlide && event.currentSlide.id !== 'slide-flyin') {
+                lessonBuild.stopPlay();
+            }
+            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
+        });
+
+        Reveal.on('ready', () => {
+            initFlipCards();
+            initBuilds();
+            initCompat();
+            initTriage();
+            initGlossary();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
         });
     </script>
     <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
