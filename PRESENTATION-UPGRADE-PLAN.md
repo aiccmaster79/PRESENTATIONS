@@ -371,8 +371,8 @@ a mandate — swap them if something fits the topic better.
   - Drag-to-build designer, IP plan generator, topology compare
 - [ ] **#92 Making 568B Cables** — `making-568b-network-cables-ocn-level2-presentation.html` · medium · 16 → 30
   - Colour-order drag, crimp sequencer, tester diagnosis, straight vs crossover
-- [ ] **#93 Building Computers** — `building-computers-ocn-level2-presentation.html` · medium · 17 → 32
-  - Build-order sequencer, compatibility checker (socket, RAM, PSU wattage), first-boot triage
+- [~] **#93 Building Computers** — `building-computers-ocn-level2-presentation.html` · medium · 17 → 32 · cursor/upgrade-building-computers-6d74
+  - SVG fly-in assembler, compatibility checker (socket, RAM, PSU wattage), first-boot triage
 - [x] **#94 Inside the PC** — `inside-the-pc-components-ocn-level2-presentation.html` · **reference deck** · 33 slides (#31)
   - Flip cards, motherboard hotspot explorer with quiz mode, drag-and-drop sort, timed challenge, 6-question quiz, glossary, particle canvas
 - [ ] **#95 Storage Showdown** — `storage-showdown-ocn-level2-presentation.html` · medium · 16 → 30
