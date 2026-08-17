@@ -307,16 +307,17 @@
         .pc-part.is-lit { filter: drop-shadow(0 0 8px rgba(0,189,165,0.85)); }
 
         .pc-ghost {
-            fill: none; stroke: var(--brand-teal); stroke-width: 1.6; stroke-dasharray: 6 4;
-            opacity: 0; pointer-events: none;
+            fill: rgba(0, 189, 165, 0.06); stroke: var(--brand-teal); stroke-width: 2.2;
+            stroke-dasharray: 7 5; opacity: 0; pointer-events: none;
         }
         .pc-ghost.is-waiting {
-            opacity: 0.7; pointer-events: auto; cursor: pointer;
+            opacity: 1; pointer-events: auto; cursor: pointer;
+            fill: rgba(0, 189, 165, 0.2);
             animation: ghostPulse 1.8s ease-in-out infinite;
         }
         @keyframes ghostPulse {
-            0%, 100% { opacity: 0.35; }
-            50% { opacity: 0.85; }
+            0%, 100% { opacity: 0.45; }
+            50% { opacity: 1; }
         }
 
         .fan-blades { transform-box: fill-box; transform-origin: center; }
@@ -1195,7 +1196,7 @@
                 <circle cx="220" cy="200" r="3.5"/>
             </g>
 
-            <rect class="pc-ghost" data-ghost="ioshield" x="36" y="72" width="14" height="158" rx="2"/>
+            <rect class="pc-ghost" data-ghost="ioshield" x="32" y="70" width="22" height="162" rx="3"/>
             <rect class="pc-ghost" data-ghost="motherboard" x="78" y="58" width="300" height="300" rx="6"/>
             <rect class="pc-ghost" data-ghost="cpu" x="128" y="108" width="68" height="68" rx="4"/>
             <rect class="pc-ghost" data-ghost="ram" x="300" y="78" width="48" height="168" rx="3"/>
@@ -1207,13 +1208,14 @@
             <rect class="pc-ghost" data-ghost="frontpanel" x="170" y="338" width="36" height="16" rx="2"/>
 
             <g class="pc-part" data-part="ioshield">
-                <rect x="36" y="72" width="14" height="158" rx="2" fill="#2a2a38" stroke="#00BDA5" stroke-width="1.5"/>
-                <rect x="39" y="80" width="8" height="10" fill="#111"/>
-                <rect x="39" y="96" width="8" height="18" fill="#111"/>
-                <rect x="39" y="120" width="8" height="8" fill="#1a1a28"/>
-                <rect x="39" y="134" width="8" height="8" fill="#1a1a28"/>
-                <rect x="39" y="150" width="8" height="22" fill="#111"/>
-                <rect x="39" y="180" width="8" height="10" fill="#003"/>
+                <rect x="32" y="70" width="22" height="162" rx="3" fill="#2a2a38" stroke="#00BDA5" stroke-width="1.8"/>
+                <rect x="36" y="80" width="14" height="12" fill="#111"/>
+                <rect x="36" y="98" width="14" height="22" fill="#111"/>
+                <rect x="36" y="126" width="14" height="10" fill="#1a1a28"/>
+                <rect x="36" y="142" width="14" height="10" fill="#1a1a28"/>
+                <rect x="36" y="158" width="14" height="24" fill="#111"/>
+                <rect x="36" y="190" width="14" height="12" fill="#003344"/>
+                <text x="43" y="220" text-anchor="middle" fill="#00BDA5" font-size="7" font-family="Poppins, sans-serif">I/O</text>
             </g>
 
             <g class="pc-part" data-part="motherboard">
