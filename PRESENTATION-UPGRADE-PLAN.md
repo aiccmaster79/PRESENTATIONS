@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 31 / 143 presentations complete**
+**Progress: 31 / 144 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -548,6 +548,8 @@ a mandate — swap them if something fits the topic better.
   - Build step sequencer, motor and port config simulator, driver control mapping, challenge course
 - [ ] **#143 VEXcode Tutorial** — `vexcode-tutorial.html` · **scroll page, not a deck**
   - Keep the scroll format and VEX palette. Add a sticky progress rail, section checkpoint questions, copy-code buttons, block assembly interactive
+- [~] **#144 Introducing Strawbees** — `strawbees-intro-ocn-level2-presentation.html` · **new** · 32 · `cursor/strawbees-intro-4ad9`
+  - Connector flip cards, joint hotspot explorer, rigidity load simulator, tetrahedron sequence builder, kit-role sort + timed challenge
 
 ### Programming — Demos
 
