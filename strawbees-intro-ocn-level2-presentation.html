@@ -1609,7 +1609,7 @@
 
             binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
                 bin.addEventListener('dragover', e => { e.preventDefault(); bin.classList.add('drag-over'); });
-                bin.addEventListener('dragleave', () => bin.classList.remove('drag-over'); });
+                bin.addEventListener('dragleave', () => bin.classList.remove('drag-over'));
                 bin.addEventListener('drop', e => {
                     e.preventDefault();
                     bin.classList.remove('drag-over');
@@ -1756,6 +1756,14 @@
             const label = document.getElementById('results-score-label');
             if (!grade) return;
             const s = AppState.quizScore;
+            const attempted = Object.keys(AppState.quizAnswered).length;
+            if (attempted === 0) {
+                grade.textContent = '—';
+                msg.textContent = 'Complete the quiz to see your score';
+                label.textContent = '0 / 6';
+                updateQuizUI();
+                return;
+            }
             label.textContent = s + ' / 6';
             if (s === 6) { grade.textContent = 'A+'; msg.textContent = 'Outstanding — you are ready to run the tower challenge.'; }
             else if (s >= 5) { grade.textContent = 'A'; msg.textContent = 'Excellent. One lock or colour to recap, then build.'; }
