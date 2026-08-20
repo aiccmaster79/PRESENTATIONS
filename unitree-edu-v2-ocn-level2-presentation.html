@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#147 | Level 2 | Unitree EDU at SRC (v2) | OCN NI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e0e10;
+            --ink: #ffffff;
+            --ink-dim: rgba(255, 255, 255, 0.78);
+            --ink-faint: rgba(255, 255, 255, 0.55);
+            --rule: rgba(255, 255, 255, 0.18);
+            --you: #F7931E;
+            --provider: #8A2BE2;
+            --accent: #00BDA5;
+        }
+
+        .reveal {
+            font-family: 'Poppins', sans-serif;
+            color: var(--ink);
+            font-size: 28px;
+        }
+        .reveal .slides { text-align: left; }
+        .reveal .slides section {
+            height: 100%;
+            padding: 48px 64px 72px;
+            box-sizing: border-box;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+        }
+        .reveal h1 { font-size: 72px; line-height: 1.05; margin: 0 0 20px; }
+        .reveal h2 { font-size: 48px; line-height: 1.12; margin: 0 0 28px; }
+        .reveal h3 { font-size: 28px; margin: 0 0 10px; }
+        .reveal p, .reveal li { font-size: 28px; line-height: 1.45; color: var(--ink-dim); }
+        .reveal strong { color: var(--ink); font-weight: 600; }
+
+        .eyebrow {
+            display: block;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 0 0 12px;
+        }
+        .standfirst {
+            font-size: 32px;
+            color: var(--ink-dim);
+            max-width: 52rem;
+            margin: 0 0 28px;
+        }
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 28px;
+            font-size: 24px;
+            color: var(--ink-faint);
+            margin-bottom: 24px;
+        }
+        .rule {
+            height: 1px;
+            background: var(--rule);
+            border: 0;
+            margin: 0 0 28px;
+        }
+
+        .title-grid {
+            display: grid;
+            grid-template-columns: 1fr 520px;
+            gap: 48px;
+            align-items: end;
+            height: 100%;
+        }
+        .title-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 0;
+        }
+        .title-copy .logo {
+            width: 196px;
+            height: 56px;
+            margin-bottom: 28px;
+        }
+        .title-kicks {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 36px;
+        }
+        .kick {
+            border-top: 4px solid var(--you);
+            padding-top: 12px;
+        }
+        .kick:nth-child(2) { border-top-color: var(--provider); }
+        .kick:nth-child(3) { border-top-color: var(--accent); }
+        .kick span {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 6px;
+        }
+        .kick strong { font-size: 26px; }
+
+        .plate {
+            margin: 0;
+        }
+        .plate img {
+            display: block;
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .plate figcaption {
+            margin-top: 10px;
+            font-size: 24px;
+            color: var(--ink-faint);
+            line-height: 1.35;
+        }
+        .plate.landscape img { height: 420px; }
+        .plate.inline img { height: 520px; }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .two-col.photo-right {
+            grid-template-columns: 1.15fr 0.85fr;
+        }
+        .two-col.photo-left {
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+
+        .obj-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 36px;
+        }
+        .obj-list li {
+            border-left: 4px solid var(--you);
+            padding: 8px 0 8px 18px;
+            font-size: 26px;
+        }
+        .obj-list li:nth-child(2) { border-left-color: var(--provider); }
+        .obj-list li:nth-child(3) { border-left-color: var(--accent); }
+        .obj-list li:nth-child(4) { border-left-color: var(--you); }
+        .obj-map {
+            display: block;
+            font-size: 24px;
+            color: var(--ink-faint);
+            margin-top: 8px;
+        }
+
+        .ladder {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 8px;
+        }
+        .ladder-step {
+            padding: 20px 24px 8px 0;
+            border-top: 4px solid var(--you);
+        }
+        .ladder-step:nth-child(2) { border-top-color: var(--provider); padding-left: 24px; }
+        .ladder-step:nth-child(3) { border-top-color: var(--accent); padding-left: 24px; }
+        .ladder-step:nth-child(4) { border-top-color: var(--you); padding-left: 24px; }
+        .ladder-step .n {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 8px;
+        }
+        .ladder-step h3 { font-size: 32px; }
+        .ladder-step p { font-size: 24px; margin: 0; }
+
+        .label-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 40px;
+        }
+        .label-item {
+            border-top: 1px solid var(--rule);
+            padding-top: 16px;
+        }
+        .label-item .tag {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--you);
+            margin-bottom: 6px;
+        }
+        .label-item:nth-child(2) .tag { color: var(--provider); }
+        .label-item:nth-child(3) .tag { color: var(--accent); }
+        .label-item:nth-child(4) .tag { color: var(--you); }
+        .label-item p { margin: 0; font-size: 26px; }
+
+        .callout-wrap {
+            position: relative;
+        }
+        .callout-wrap img {
+            display: block;
+            width: 100%;
+            height: 560px;
+            object-fit: cover;
+            object-position: center 15%;
+        }
+        .callouts {
+            margin: 16px 0 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 24px;
+        }
+        .callouts li {
+            font-size: 24px;
+            list-style: none;
+        }
+        .callouts {
+            list-style: none;
+            padding: 0;
+        }
+        .num-dot {
+            display: inline-block;
+            min-width: 28px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .spec-rows {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 12px 20px;
+            align-items: baseline;
+        }
+        .spec-rows dt {
+            font-size: 24px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 0;
+        }
+        .spec-rows dd {
+            font-size: 26px;
+            color: var(--ink-dim);
+            margin: 0;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+            gap: 8px;
+            align-items: stretch;
+            margin: 8px 0 28px;
+        }
+        .flow-node {
+            border: 1px solid var(--rule);
+            padding: 16px 14px;
+        }
+        .flow-node span {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--you);
+            margin-bottom: 6px;
+        }
+        .flow-node p { font-size: 24px; margin: 0; color: var(--ink); }
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--ink-faint);
+            font-size: 28px;
+            padding: 0 4px;
+        }
+
+        .case-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+            margin: 0 0 20px;
+            font-size: 24px;
+            color: var(--ink-faint);
+        }
+        .case-pills span {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2px;
+        }
+
+        .check-list, .no-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .check-list li, .no-list li {
+            font-size: 26px;
+            padding: 8px 0 8px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        .mark {
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        .mark.yes { color: var(--accent); }
+        .mark.no { color: var(--you); }
+
+        .limits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .limit {
+            padding: 20px 32px 20px 0;
+            border-top: 1px solid var(--rule);
+        }
+        .limit:nth-child(even) { padding: 20px 0 20px 32px; }
+        .limit h3 { color: var(--ink); }
+        .limit p { margin: 0; font-size: 26px; }
+
+        table.faults {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 24px;
+        }
+        table.faults th {
+            text-align: left;
+            font-size: 24px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            font-weight: 600;
+            padding: 0 16px 12px 0;
+            border-bottom: 2px solid var(--rule);
+        }
+        table.faults td {
+            padding: 14px 16px 14px 0;
+            border-bottom: 1px solid var(--rule);
+            vertical-align: top;
+            color: var(--ink-dim);
+            font-size: 24px;
+            line-height: 1.35;
+        }
+        table.faults td:first-child { color: var(--ink); font-weight: 600; width: 28%; }
+        table.faults td:last-child { color: var(--accent); width: 36%; }
+
+        .takes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 40px;
+        }
+        .takes article {
+            border-top: 4px solid var(--you);
+            padding-top: 14px;
+        }
+        .takes article:nth-child(2) { border-top-color: var(--provider); }
+        .takes article:nth-child(3) { border-top-color: var(--accent); }
+        .takes article:nth-child(4) { border-top-color: var(--you); }
+        .takes h3 { font-size: 30px; }
+        .takes p { margin: 0; font-size: 26px; }
+
+        .close-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            max-width: 58rem;
+        }
+        .next-do {
+            font-size: 36px;
+            color: var(--ink);
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        .back-to-index {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 10px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            background: rgba(14, 14, 16, 0.92);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+        }
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            outline: none;
+            color: #fff;
+        }
+
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(14, 14, 16, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .jargon-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 120;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            background: #0e0e10;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .jargon-btn:focus-visible { outline: 2px solid var(--you); outline-offset: 3px; }
+        .jargon-panel {
+            position: fixed;
+            right: 18px;
+            bottom: 76px;
+            z-index: 120;
+            width: 520px;
+            max-height: 70vh;
+            overflow: auto;
+            background: #0e0e10;
+            border: 1px solid var(--rule);
+            padding: 20px 22px;
+            display: none;
+        }
+        .jargon-panel.open { display: block; }
+        .jargon-panel h2 {
+            font-size: 28px;
+            margin: 0 0 12px;
+        }
+        .jargon-panel input {
+            width: 100%;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 24px;
+            padding: 8px 10px;
+            margin-bottom: 14px;
+            background: #000;
+            color: #fff;
+            border: 1px solid var(--rule);
+        }
+        .jargon-panel dt {
+            font-size: 24px;
+            color: var(--accent);
+            margin-top: 12px;
+        }
+        .jargon-panel dd {
+            font-size: 24px;
+            color: var(--ink-dim);
+            margin: 4px 0 0;
+        }
+
+        .hook-quote {
+            font-size: 40px;
+            line-height: 1.25;
+            color: var(--ink);
+            margin: 0 0 24px;
+            max-width: 46rem;
+        }
+        .hook-body { max-width: 46rem; margin: 0; }
+
+        @media (max-width: 900px) {
+            .title-grid, .two-col, .two-col.photo-right, .two-col.photo-left,
+            .obj-list, .ladder, .label-grid, .takes, .limits, .flow {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow { display: none; }
+            .plate img, .plate.inline img, .callout-wrap img { height: 280px; }
+            .jargon-panel { width: calc(100vw - 36px); }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-to-index" href="index.html">← Back to index</a>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <div class="title-grid">
+                    <div class="title-copy">
+                        <img class="logo" src="logos/src_logo_on_black.svg" alt="Southern Regional College">
+                        <span class="eyebrow">No. 147 · Level 2 · Project &amp; Maker · Explainer v2</span>
+                        <h1>Unitree EDU at SRC</h1>
+                        <p class="standfirst">Two G1 EDU humanoids on campus — what they are, what they can do, and how a walking skill is trained before it ever steps on the parquet.</p>
+                        <div class="title-kicks">
+                            <div class="kick"><span>Course</span><strong>OCN NI Level 2 IT</strong></div>
+                            <div class="kick"><span>Fit</span><strong>Emerging technology</strong></div>
+                            <div class="kick"><span>Kit</span><strong>2 × G1 EDU</strong></div>
+                        </div>
+                    </div>
+                    <figure class="plate">
+                        <img src="img/unitree/high-kick.jpg" alt="SRC-branded Unitree G1 EDU kicking one leg high in a college hall, orange Southern Regional College logo on the chest.">
+                        <figcaption>Fig. 1 — G1 EDU, Urban Square hall, SRC vinyls on chest and thighs.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">The hook</span>
+                <h2>Call both of them “the robot” and the next demo is already a fault.</h2>
+                <div class="two-col photo-right">
+                    <div>
+                        <p class="hook-quote">SRC has two physical units. They do not share a battery, a log, or a bruise.</p>
+                        <p class="hook-body">If a hall walk goes wrong, the technician who mixed the serials cannot say which policy, which pack, or which last service applied. If you also treat a 1.32 m education humanoid like a film stunt or a factory cell, the likely outcome is a fall into a person — not a viral clip.</p>
+                    </div>
+                    <figure class="plate inline">
+                        <img src="img/unitree/running-stride.jpg" alt="A Unitree G1 EDU mid-stride on a wooden hall floor, with a person in a high-visibility vest watching from a balcony.">
+                        <figcaption>Fig. 2 — Campus demo, August 2026. The hi-vis person is the safety model, not decoration.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">Objectives</span>
+                <h2>By the end of this explainer you will be able to:</h2>
+                <ul class="obj-list">
+                    <li>
+                        <strong>Identify</strong> SRC’s robots as Unitree G1 EDU humanoids — not Atlas, not the taller H1, not a VEX Base Bot in vinyl.
+                        <span class="obj-map">Emerging technology — name the kit accurately</span>
+                    </li>
+                    <li>
+                        <strong>Contrast</strong> this programmable humanoid with factory automation that repeats one job in a cage.
+                        <span class="obj-map">Robotics vs automation</span>
+                    </li>
+                    <li>
+                        <strong>State</strong> hall-ready skills (walk, kick, sit, map) and hard limits (payload, battery, unsupervised people).
+                        <span class="obj-map">Responsible use of kit</span>
+                    </li>
+                    <li>
+                        <strong>Sequence</strong> how a gait is trained: simulate, reward, randomise, then sim-to-real on the metal.
+                        <span class="obj-map">Emerging technology — how the skill arrived</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <span class="eyebrow">Core concept</span>
+                <h2>Four rungs. Hang every photo on this ladder.</h2>
+                <p style="margin: 0 0 28px; max-width: 52rem;">A humanoid on Open Day is not a mascot costume. It is a <strong>platform</strong>: sensors in, motors out, a trained policy in the middle, and a human still owning the floor.</p>
+                <div class="ladder">
+                    <div class="ladder-step">
+                        <span class="n">01 · Name it</span>
+                        <h3>G1 EDU</h3>
+                        <p>Compact education humanoid. SDK, extra joints, on-board AI. Two serials at SRC.</p>
+                    </div>
+                    <div class="ladder-step">
+                        <span class="n">02 · Body</span>
+                        <h3>See · think · move</h3>
+                        <p>LiDAR and cameras, Jetson Orin, hip–knee–ankle plus hands. Balance is computed, not posed.</p>
+                    </div>
+                    <div class="ladder-step">
+                        <span class="n">03 · Train</span>
+                        <h3>Sim-to-real</h3>
+                        <p>Nobody types every joint. A policy is practised in simulation, then transferred to the hall.</p>
+                    </div>
+                    <div class="ladder-step">
+                        <span class="n">04 · Run</span>
+                        <h3>Spotter + names</h3>
+                        <p>Clear floor, e-stop, two shoutable names. That is operations, not a branding contest.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">01 · Name it</span>
+                <h2>Four labels on the same machine</h2>
+                <div class="two-col">
+                    <div class="label-grid">
+                        <div class="label-item">
+                            <span class="tag">Unitree</span>
+                            <p>The manufacturer. Known for quadruped “robot dogs” and compact humanoids. SRC bought the education humanoid line, not a toy.</p>
+                        </div>
+                        <div class="label-item">
+                            <span class="tag">G1</span>
+                            <p>The compact model: about <strong>132 cm</strong>, about <strong>35 kg</strong>, two legs. Walks, kicks, sits, folds for a crate. Not the ~180 cm H1.</p>
+                        </div>
+                        <div class="label-item">
+                            <span class="tag">EDU</span>
+                            <p>Education pack: extra degrees of freedom, ~<strong>3 kg</strong> arm payload, NVIDIA Jetson Orin, SDK (Python, C++, ROS 2). The show-only Standard does not give you that kit.</p>
+                        </div>
+                        <div class="label-item">
+                            <span class="tag">SRC</span>
+                            <p>Southern Regional College. Orange, blue and purple vinyls on chest and thighs. Two units — treat them as two assets.</p>
+                        </div>
+                    </div>
+                    <figure class="plate inline">
+                        <img src="img/unitree/walking-pose.jpg" alt="SRC-branded Unitree G1 EDU standing in a walking pose in a wooden college hall, chest logo reading Southern Regional College.">
+                        <figcaption>Fig. 3 — College machine, not a stock render. Read the chest before you guess the model.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">02 · Body</span>
+                <h2>What has to work for a kick to land</h2>
+                <div class="two-col photo-left">
+                    <div>
+                        <div class="callout-wrap">
+                            <img src="img/unitree/one-leg-balance.jpg" alt="SRC-branded Unitree G1 EDU balancing on one leg in a college hall with arms out, blue visor glowing.">
+                        </div>
+                        <ul class="callouts">
+                            <li><span class="num-dot">1</span> Head — depth camera and 3D LiDAR map the room.</li>
+                            <li><span class="num-dot">2</span> Chest — SRC asset mark; inside, compute and battery path.</li>
+                            <li><span class="num-dot">3</span> Hands — five-finger (dexterous) grip, not a stump.</li>
+                            <li><span class="num-dot">4</span> Knees — EDU actuators, about 120 N·m. Strong, not a forklift.</li>
+                            <li><span class="num-dot">5</span> Feet — the whole pose is a live balance problem.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <dl class="spec-rows">
+                            <dt>See</dt>
+                            <dd>Depth camera plus Livox-class 3D LiDAR.</dd>
+                            <dt>Think</dt>
+                            <dd>8-core CPU plus Jetson Orin on EDU for on-board AI.</dd>
+                            <dt>Talk</dt>
+                            <dd>Wi-Fi 6, Bluetooth 5.2, four mics, a speaker.</dd>
+                            <dt>Power</dt>
+                            <dd>9,000 mAh quick-swap pack — about two hours, then a ~30 s swap.</dd>
+                            <dt>DoF</dt>
+                            <dd>About 23–43 independent joints, depending on wrists and hands.</dd>
+                            <dt>Move</dt>
+                            <dd>Walk about 2 m/s on the flat; sit; fold to roughly 69 cm.</dd>
+                        </dl>
+                        <p style="margin: 28px 0 0; font-size: 26px;">This is <strong>robotics</strong>: sense, decide, act in a human building. It is not a caged arm that only paints the same door all shift (<strong>automation</strong>).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">03 · Train</span>
+                <h2>A gait is a policy, not a typed routine</h2>
+                <p style="margin: 0 0 20px;">Nobody ships <code style="font-size: 26px; color: var(--accent);">walk_nicely()</code> for every joint. The G1 runs a <strong>policy</strong>: if I sense this, move the motors like that.</p>
+                <div class="flow">
+                    <div class="flow-node"><span>1 Demo</span><p>A human teleoperates or records a motion.</p></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node"><span>2 Simulate</span><p>Thousands of falls on a GPU, not on parquet.</p></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node"><span>3 Reward</span><p>Stay up and move forward scores. Fall does not.</p></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node"><span>4 Randomise</span><p>Friction, mass, light — so it is not only good in the fake world.</p></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node"><span>5 Sim-to-real</span><p>Same policy on the metal G1. A human still spots.</p></div>
+                </div>
+                <p style="margin: 0; font-size: 26px; max-width: 58rem;">Imitation learning copies a demonstration. Reinforcement learning searches by score. EDU’s SDK is how SRC students will eventually talk to the robot; the hall photos are already the transfer step working in a real building.</p>
+            </section>
+
+            <section>
+                <span class="eyebrow">Worked example</span>
+                <h2>Urban Square hall, 13 August 2026</h2>
+                <div class="case-pills">
+                    <span>Southern Regional College</span>
+                    <span>G1 EDU · SRC vinyls</span>
+                    <span>Open parquet, glass, balcony</span>
+                </div>
+                <div class="two-col photo-left">
+                    <figure class="plate inline">
+                        <img src="img/unitree/standing-hall.jpg" alt="Unitree G1 EDU standing in the Urban Square hall with glass doors and a balcony behind it.">
+                        <figcaption>Fig. 4 — Human building, not a motion-capture studio. Scale: teen-height in a public hall.</figcaption>
+                    </figure>
+                    <div>
+                        <p style="margin-top: 0;">SRC took the EDU units out of the workshop and onto a real floor. The photos in this deck are that session: kicks, a backbend, a walking gait, a spotter in hi-vis above.</p>
+                        <ul class="check-list">
+                            <li><span class="mark yes">Did</span> Large clear floor — room to fall without hitting desks.</li>
+                            <li><span class="mark yes">Did</span> Spotter present — yellow vest in the running shot.</li>
+                            <li><span class="mark yes">Did</span> Branding on — college assets, not a loaner still in foam.</li>
+                            <li><span class="mark no">Not</span> A crowded corridor, stairs, or “let the class crowd it.”</li>
+                        </ul>
+                        <p style="margin: 20px 0 0; font-size: 26px;">Caption the evidence like a technician: this is a <strong>supervised demo</strong>, not “the robot now covers the lesson.”</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">Trade-offs</span>
+                <h2>What the spec sheet will not shout</h2>
+                <div class="limits">
+                    <div class="limit">
+                        <h3>Bipedal vs wheels</h3>
+                        <p>Two legs fit doors and stairs made for people. They also fall. A wheeled trolley would not kick — and would not need the same exclusion zone.</p>
+                    </div>
+                    <div class="limit">
+                        <h3>EDU vs Standard</h3>
+                        <p>EDU is why you can write Python / ROS 2. A show-only unit is a demo appliance. If the SDK will not connect, first ask which pack you actually have.</p>
+                    </div>
+                    <div class="limit">
+                        <h3>3 kg, not a person</h3>
+                        <p>Arm payload is a tool or a bottle. Asking it to carry a classmate is a use-of-kit failure, not a stretch goal.</p>
+                    </div>
+                    <div class="limit">
+                        <h3>Robot vs automation</h3>
+                        <p>A paint-shop arm repeats a known path behind a fence. The G1 is sold as a general platform in human spaces. That is more interesting — and more of a duty of care.</p>
+                    </div>
+                    <div class="limit">
+                        <h3>~2 hours, then swap</h3>
+                        <p>Open Day is not an all-day unsupervised shift. Plan packs the way you plan extension leads.</p>
+                    </div>
+                    <div class="limit">
+                        <h3>Two names or mixed logs</h3>
+                        <p>Identical vinyls. Different serials. If both are “the robot,” fault history is fiction.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <span class="eyebrow">Common faults</span>
+                <h2>Symptom → likely cause → fix</h2>
+                <table class="faults">
+                    <thead>
+                        <tr>
+                            <th>Symptom</th>
+                            <th>Likely cause</th>
+                            <th>Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Won’t stand / limp joints</td>
+                            <td>E-stop, flat pack, or motors not enabled</td>
+                            <td>Find the emergency stop, swap the 9,000 mAh pack, follow EDU power-up order</td>
+                        </tr>
+                        <tr>
+                            <td>Falls mid-demo</td>
+                            <td>Uneven floor, crowd in the policy, or a trick that only worked in sim</td>
+                            <td>Clear the floor, spotter in reach, do not improvise new skills live</td>
+                        </tr>
+                        <tr>
+                            <td>SDK will not connect</td>
+                            <td>Show-only Standard, or Wi-Fi / power off</td>
+                            <td>Confirm EDU pack, same network, robot powered, Unitree / ROS 2 docs</td>
+                        </tr>
+                        <tr>
+                            <td>Motors hot / shutdown</td>
+                            <td>Long high-torque sequence without rest</td>
+                            <td>Pause between routines; air cooling is not magic</td>
+                        </tr>
+                        <tr>
+                            <td>“It can replace the lecturer”</td>
+                            <td>Confusing a demo gait with a job</td>
+                            <td>3 kg payload, 2 h battery, needs a human owner — it is a platform</td>
+                        </tr>
+                        <tr>
+                            <td>Both units called “the robot”</td>
+                            <td>No asset names, mixed logs</td>
+                            <td>Give each G1 a unique shoutable name before the next hall walk</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <span class="eyebrow">Key takeaways</span>
+                <h2>Four things to keep</h2>
+                <div class="takes">
+                    <article>
+                        <h3>G1 EDU, two of them</h3>
+                        <p>Compact education humanoids with an SDK. Not Atlas, not H1, not a costume.</p>
+                    </article>
+                    <article>
+                        <h3>They already move</h3>
+                        <p>Walk, kick, sit, backbend, map a hall. Payload and battery still cap the brief.</p>
+                    </article>
+                    <article>
+                        <h3>Trained, then spotted</h3>
+                        <p>Simulate, reward, randomise, sim-to-real. A human still owns the exclusion zone.</p>
+                    </article>
+                    <article>
+                        <h3>Names are operations</h3>
+                        <p>Two shoutable names keep batteries, logs and risk assessments from colliding.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section>
+                <div class="close-block">
+                    <span class="eyebrow">Close</span>
+                    <h2>What to do next</h2>
+                    <p class="next-do">Before the next hall demo, write <strong>two different shoutable names</strong> and <strong>one safety line</strong>: who spots, and where each G1 may walk. Do not start the gait until both exist on paper.</p>
+                    <hr class="rule" style="margin-top: 36px;">
+                    <p style="margin: 0; font-size: 24px; color: var(--ink-faint);">Workshop version with naming studio and quiz: #146 · <a href="unitree-edu-ocn-level2-presentation.html" style="color: var(--accent);">unitree-edu-ocn-level2-presentation.html</a></p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <button type="button" class="jargon-btn" id="jargon-btn" aria-expanded="false" aria-controls="jargon-panel" title="Jargon">?</button>
+    <div class="jargon-panel" id="jargon-panel" role="region" aria-label="Jargon">
+        <h2>Jargon</h2>
+        <input type="search" id="jargon-search" placeholder="Search terms…" aria-label="Search jargon">
+        <dl id="jargon-list">
+            <div class="j-item" data-terms="g1 edu unitree humanoid"><dt>G1 EDU</dt><dd>Unitree’s compact education humanoid (~132 cm). EDU adds SDK access, extra joints, payload and an on-board AI module.</dd></div>
+            <div class="j-item" data-terms="h1 adult humanoid"><dt>H1</dt><dd>Unitree’s taller adult-size humanoid (~180 cm). SRC’s photos are G1-scale, not H1.</dd></div>
+            <div class="j-item" data-terms="dof degrees of freedom joints"><dt>Degree of freedom (DoF)</dt><dd>One independent joint motion. More DoF means more poses — and more things to control.</dd></div>
+            <div class="j-item" data-terms="lidar depth camera mapping"><dt>LiDAR</dt><dd>A laser scanner that builds a 3D point cloud so the robot knows where walls are.</dd></div>
+            <div class="j-item" data-terms="actuator motor torque knee"><dt>Actuator</dt><dd>Motor-plus-gearbox at a joint. EDU knees can push about 120 N·m.</dd></div>
+            <div class="j-item" data-terms="payload arm 3kg"><dt>Payload</dt><dd>Mass an arm can hold usefully. About 3 kg on G1 EDU.</dd></div>
+            <div class="j-item" data-terms="policy neural network control"><dt>Policy</dt><dd>The trained “if I sense this, move like that” function from learning.</dd></div>
+            <div class="j-item" data-terms="reinforcement learning rl reward"><dt>Reinforcement learning</dt><dd>Trial and error with a score. Stay upright and move forward = points.</dd></div>
+            <div class="j-item" data-terms="imitation learning demonstration"><dt>Imitation learning</dt><dd>Copy a human demonstration instead of discovering the skill from scratch.</dd></div>
+            <div class="j-item" data-terms="teleoperation controller"><dt>Teleoperation</dt><dd>A person drives the robot live. Useful for demos and for recording data.</dd></div>
+            <div class="j-item" data-terms="sim to real sim2real domain randomisation"><dt>Sim-to-real</dt><dd>Train in a physics simulator, then run the same policy on the metal robot.</dd></div>
+            <div class="j-item" data-terms="sdk ros2 python jetson orin"><dt>SDK / ROS 2</dt><dd>EDU software kit. Students can write Python or C++; ROS 2 is common robotics middleware.</dd></div>
+            <div class="j-item" data-terms="e-stop emergency stop safety"><dt>E-stop</dt><dd>Emergency stop. First thing you locate before a demo.</dd></div>
+            <div class="j-item" data-terms="bipedal two legs gait"><dt>Bipedal</dt><dd>Walks on two legs. Easy to fall compared with four wheels or four legs.</dd></div>
+            <div class="j-item" data-terms="automation factory cage"><dt>Automation (here)</dt><dd>A machine repeating a known job, often in a fixed cell. Contrast with a general humanoid platform.</dd></div>
+        </dl>
+    </div>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            slideNumber: true,
+            transition: 'fade'
+        });
+
+        (function () {
+            var btn = document.getElementById('jargon-btn');
+            var panel = document.getElementById('jargon-panel');
+            var search = document.getElementById('jargon-search');
+            var items = panel.querySelectorAll('.j-item');
+            btn.addEventListener('click', function () {
+                var open = panel.classList.toggle('open');
+                btn.setAttribute('aria-expanded', String(open));
+                if (open) search.focus();
+            });
+            search.addEventListener('input', function () {
+                var q = search.value.trim().toLowerCase();
+                items.forEach(function (el) {
+                    var hay = (el.getAttribute('data-terms') + ' ' + el.textContent).toLowerCase();
+                    el.style.display = !q || hay.indexOf(q) !== -1 ? '' : 'none';
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
