@@ -484,7 +484,7 @@ a mandate — swap them if something fits the topic better.
   - Task automatability calculator, new-jobs generator, automation history timeline
 - [ ] **#129 Green IT** — `green-it-ocn-level2-presentation.html` · medium · 16 → 30
   - kWh to cost and CO₂ calculator, e-waste routing game, lifecycle extension planner
-- [x] **#145 Terafab** — `terafab-ocn-level2-presentation.html` · **new** · 32
+- [x] **#145 Terafab** — `terafab-ocn-level2-presentation.html` · **new** · 32 · (#50)
   - Site hotspot explorer on the Grimes County overlay, chip-loop sequence builder, Earth vs orbit sort + timed round, 100M sq ft scale calculator
 
 ### Digital Skills & Employability

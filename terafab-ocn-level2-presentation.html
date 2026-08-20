@@ -1524,7 +1524,7 @@
 
             binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
                 bin.addEventListener('dragover', e => { e.preventDefault(); bin.classList.add('drag-over'); });
-                bin.addEventListener('dragleave', () => bin.classList.remove('drag-over'); });
+                bin.addEventListener('dragleave', () => bin.classList.remove('drag-over'));
                 bin.addEventListener('drop', e => {
                     e.preventDefault();
                     bin.classList.remove('drag-over');
