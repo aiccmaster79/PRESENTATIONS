@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 33 / 145 presentations complete**
+**Progress: 34 / 146 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -552,7 +552,7 @@ a mandate — swap them if something fits the topic better.
   - Keep the scroll format and VEX palette. Add a sticky progress rail, section checkpoint questions, copy-code buttons, block assembly interactive
 - [x] **#144 Introducing Strawbees** — `strawbees-intro-ocn-level2-presentation.html` · **new** · 32 · (#49)
   - Connector flip cards, joint hotspot explorer, rigidity load simulator, tetrahedron sequence builder, kit-role sort + timed challenge
-- [~] **#146 Unitree EDU at SRC** — `unitree-edu-ocn-level2-presentation.html` · **new** · 32 · (cursor/unitree-edu-presentation-9443)
+- [x] **#146 Unitree EDU at SRC** — `unitree-edu-ocn-level2-presentation.html` · **new** · 32 · (#51)
   - Anatomy hotspot tour on the SRC G1 EDU photos, sim-to-real training sequencer, can/cannot sort + timed round, two-robot naming studio
 
 ### Programming — Demos
