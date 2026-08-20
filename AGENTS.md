@@ -57,7 +57,10 @@ or the upgrade plan include them.
    example, takeaways, close.”
 3. **Colour?** No default until they pick. “Should this use **white text on a
    black background**, or **college brand colours** (orange `#F7931E`, purple
-   `#8A2BE2`, teal `#00BDA5`)?”
+   `#8A2BE2`, teal `#00BDA5`)?” College mark lives in [`logos/`](logos/):
+   `src_logo.svg` / `src_logo.png` (brand letters, black wordmark for light
+   grounds), `src_logo_on_black.svg` (white wordmark for dark grounds),
+   `src_logo_mobile.svg` (letters only).
 4. **Speaker notes?** Default **no**. “Do you need `aside.notes` on slides for
    presenter view (S key)?”
 
