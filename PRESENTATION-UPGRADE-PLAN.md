@@ -554,6 +554,8 @@ a mandate — swap them if something fits the topic better.
   - Connector flip cards, joint hotspot explorer, rigidity load simulator, tetrahedron sequence builder, kit-role sort + timed challenge
 - [x] **#146 Unitree EDU at SRC** — `unitree-edu-ocn-level2-presentation.html` · **new** · 32 · (#51)
   - Anatomy hotspot tour on the SRC G1 EDU photos, sim-to-real training sequencer, can/cannot sort + timed round, two-robot naming studio
+- [x] **#147 Unitree EDU at SRC (v2)** — `unitree-edu-v2-ocn-level2-presentation.html` · **new** · 12 · explainer spine
+  - Same SRC G1 EDU content as #146 mapped to the 12-slide explainer: ladder, hall case, faults table; jargon as `?` overlay; no widgets, quiz, or speaker notes
 
 ### Programming — Demos
 

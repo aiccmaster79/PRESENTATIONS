@@ -189,6 +189,7 @@ course out.
 - **Practical hook:** Learners study SRC’s two Unitree G1 EDU robots (campus photos), sort can/cannot tasks, sequence sim-to-real training, then propose a unique shoutable name for each unit.
 - **Kit needed:** This deck (photos are in-repo); optional live demo if the robots are on site with a spotter.
 - **Assessment fit:** Emerging technology, robotics vs automation, responsible use of kit, and a named classroom brief.
+- **Decks:** #146 workshop (`unitree-edu-ocn-level2-presentation.html`); #147 explainer v2 (`unitree-edu-v2-ocn-level2-presentation.html`) — same kit and outcomes, 12-slide spine, close is the naming/safety brief on paper.
 
 ---
 
