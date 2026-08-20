@@ -105,6 +105,10 @@ checkable.
 Ask: **white text on black** or **college brand colours** (see [`AGENTS.md`](AGENTS.md)).
 Do not ship both until they ask for a toggle.
 
+College mark files: [`logos/src_logo.svg`](logos/src_logo.svg) (light grounds),
+[`logos/src_logo_on_black.svg`](logos/src_logo_on_black.svg) (dark grounds),
+[`logos/src_logo.png`](logos/src_logo.png), [`logos/src_logo_mobile.svg`](logos/src_logo_mobile.svg).
+
 ### Theme toggle (only if they asked for both looks)
 
 One `data-scheme` attribute on `<html>`; every colour in the deck reads from CSS custom
