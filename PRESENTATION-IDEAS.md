@@ -185,6 +185,11 @@ course out.
 - **Kit needed:** Cables/crimp tool (already in library), a switch, PCs.
 - **Assessment fit:** Ties together *Making 568B Cables*, *Building Networks*, and internet fundamentals.
 
+### 31. Unitree EDU at SRC — Name the Two Humanoids
+- **Practical hook:** Learners study SRC’s two Unitree G1 EDU robots (campus photos), sort can/cannot tasks, sequence sim-to-real training, then propose a unique shoutable name for each unit.
+- **Kit needed:** This deck (photos are in-repo); optional live demo if the robots are on site with a spotter.
+- **Assessment fit:** Emerging technology, robotics vs automation, responsible use of kit, and a named classroom brief.
+
 ---
 
 ## Quick pick — highest practical value first
