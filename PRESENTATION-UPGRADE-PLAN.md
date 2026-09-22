@@ -1,6 +1,6 @@
 # Presentation Upgrade Plan — Tracker
 
-**Progress: 34 / 146 presentations complete**
+**Progress: 35 / 147 presentations complete**
 
 Every Reveal.js deck in this repo is being rebuilt to the same "feature rich and
 engaging" standard set by
@@ -486,6 +486,8 @@ a mandate — swap them if something fits the topic better.
   - kWh to cost and CO₂ calculator, e-waste routing game, lifecycle extension planner
 - [x] **#145 Terafab** — `terafab-ocn-level2-presentation.html` · **new** · 32 · (#50)
   - Site hotspot explorer on the Grimes County overlay, chip-loop sequence builder, Earth vs orbit sort + timed round, 100M sq ft scale calculator
+- [x] **#147 SpaceX** — `spacex-ocn-level2-presentation.html` · **new** · 32 · (#52)
+  - Falcon 9 stack hotspot tour, recovery-loop sequencer, cost-per-kg calculator, reuse vs expend sort + timed round
 
 ### Digital Skills & Employability
 
