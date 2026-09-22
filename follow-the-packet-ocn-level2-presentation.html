@@ -565,11 +565,15 @@
             .packet-dot, .score-bar-fill, .fragment { transition: none !important; }
         }
         @media (max-width: 768px) {
-            .feature-grid, .stats-row, .quiz-options, .glossary-list, .deck-map, .career-path, .case-grid, .wrap-grid, .lab-grid, .readout-row, .link-cards {
+            /* Reveal lays the slide out at 1920×1080 and scales it. Stacking the
+               dense widgets here makes them taller than the slide, so those stay
+               in their designed columns. These stacks still fit the slide height. */
+            .feature-grid, .stats-row, .quiz-options, .glossary-list, .career-path, .case-grid {
                 grid-template-columns: 1fr;
             }
-            .hop-row { grid-template-columns: repeat(2, 1fr); }
+            .deck-map { grid-template-columns: 1fr 1fr; }
             .title-slide h1 { font-size: 2.2em; }
+            .site-credit { font-size: 0.62rem; max-width: 92vw; white-space: normal; text-align: center; }
         }
     </style>
 </head>
@@ -1610,7 +1614,8 @@
             AppState.summaryDebounce = window.setTimeout(function () {
                 const feel = document.getElementById('link-feel');
                 if (!feel) return;
-                if (lat > 200 && bw >= 50) feel.textContent = 'Fat and slow. A large file can finish. A conversation will not enjoy the wait.';
+                if (lat > 200 && bw < 20) feel.textContent = 'Slow and thin. A large file drags, and a live call will talk over itself.';
+                else if (lat > 200 && bw >= 50) feel.textContent = 'Fat and slow. A large file can finish. A conversation will not enjoy the wait.';
                 else if (lat < 40 && bw < 20) feel.textContent = 'Thin and quick. Calls feel fine. A big download will drag.';
                 else if (lat < 50 && bw >= 50) feel.textContent = 'Enough width and a short wait. Both a call and a download are reasonable.';
                 else feel.textContent = 'A mix. Decide from the job, not from a single Mbps number.';
