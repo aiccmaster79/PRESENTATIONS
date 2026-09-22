@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#148 | Level 2 | Follow the Packet | OCN NI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-orange: #F7931E;
+            --brand-purple: #8A2BE2;
+            --brand-teal: #00BDA5;
+            --brand-orange-dark: #d47a0a;
+            --brand-purple-dark: #6a1fb2;
+            --brand-teal-dark: #008f7a;
+            --brand-orange-light: #ffb858;
+            --brand-purple-light: #a855f7;
+            --brand-teal-light: #3dd5c0;
+            --dark-bg: #0a0a1a;
+            --glass-bg: rgba(20, 20, 40, 0.85);
+        }
+
+        .reveal { font-family: 'Poppins', sans-serif; }
+        .reveal .slides { text-align: left; }
+        .reveal .slides section { height: 100%; padding: 20px 40px; }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 1.7em; margin-bottom: 0.35em; }
+        .reveal h2 i { color: var(--brand-teal); margin-right: 10px; }
+        .reveal h3 { font-size: 1.15em; }
+        .reveal p, .reveal li { font-size: 0.82em; line-height: 1.45; }
+        .reveal button { font-family: 'Poppins', sans-serif; }
+
+        .animated-gradient {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .glass-card, .glass-card-small {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+        .glass-card { padding: 22px; }
+        .glass-card-small { padding: 16px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+        .feature-card {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .feature-card i { font-size: 1.8em; margin-bottom: 8px; display: block; }
+        .feature-card.orange i { color: var(--brand-orange); }
+        .feature-card.purple i { color: var(--brand-purple); }
+        .feature-card.teal i { color: var(--brand-teal); }
+        .feature-card h3 { font-size: 1em; margin: 0 0 6px; color: #fff; }
+        .feature-card p { font-size: 0.78em; color: rgba(255, 255, 255, 0.72); margin: 0; }
+
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+        .title-slide h1 { font-size: 3.2em; margin: 0 0 12px; }
+        .title-slide .subtitle { font-size: 1.2em; color: rgba(255, 255, 255, 0.82); margin: 0 0 22px; max-width: 16em; }
+        .title-slide .qualification, .qualification {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            padding: 10px 26px;
+            border-radius: 30px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .demo-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin: 0 0 1rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(0, 189, 165, 0.18);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+        }
+        .demo-meta .demo-number { color: var(--brand-teal); }
+        .demo-meta .sep { opacity: 0.45; }
+
+        .objectives-list { list-style: none; padding: 0; margin: 0; }
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+        .objectives-list li i { color: var(--brand-teal); font-size: 1.05em; margin-top: 3px; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin: 14px 0;
+        }
+        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 6px; font-size: 0.95em; }
+
+        .kbd-hint { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
+        .kbd-item { display: flex; align-items: center; gap: 8px; font-size: 0.75em; color: rgba(255,255,255,0.65); }
+        .kbd-item kbd {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-family: 'Fira Code', monospace;
+            color: var(--brand-teal);
+        }
+
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+        .stat {
+            background: var(--glass-bg);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .stat strong { display: block; font-size: 1.45em; color: var(--brand-orange); line-height: 1.2; }
+        .stat span { display: block; margin-top: 6px; font-size: 0.72em; color: rgba(255,255,255,0.72); }
+
+        .info-table, .fault-table { width: 100%; border-collapse: collapse; font-size: 0.74em; margin-top: 10px; }
+        .info-table th, .info-table td, .fault-table th, .fault-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .info-table th, .fault-table th { background: rgba(138,43,226,0.25); color: var(--brand-teal); font-weight: 600; }
+        .fault-symptom { color: var(--brand-orange); font-weight: 600; }
+        .table-scroll { overflow-x: auto; }
+
+        .muted { color: rgba(255,255,255,0.72); }
+        .lead { color: rgba(255,255,255,0.78); margin-top: 0; }
+
+        .back-to-index {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .back-to-index:hover, .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            outline: none;
+            color: #fff;
+        }
+        .back-to-index i { color: #00BDA5; }
+
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        #circuit-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .quiz-progress {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(20,20,40,0.88);
+            border: 1px solid rgba(0,189,165,0.45);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--brand-teal);
+            display: none;
+        }
+        .quiz-progress.visible { display: block; }
+
+        .score-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 10px; height: 12px; margin: 12px 0; overflow: hidden; }
+        .score-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px;
+            transition: width 0.45s ease;
+        }
+        .score-label { font-size: 0.78em; color: rgba(255,255,255,0.65); text-align: center; }
+
+        .quiz-container { max-width: 920px; margin: 0 auto; }
+        .quiz-question { font-size: 1.05em; margin-bottom: 16px; color: var(--brand-orange); }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .quiz-option {
+            background: var(--glass-bg);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+            color: #fff;
+            text-align: center;
+            font-size: 0.78em;
+            line-height: 1.4;
+        }
+        .quiz-option:hover, .quiz-option:focus-visible { border-color: var(--brand-teal); background: rgba(0,189,165,0.1); }
+        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
+        .quiz-option span { display: block; font-weight: 700; color: var(--brand-teal); margin-bottom: 4px; }
+        .quiz-option:disabled { cursor: default; }
+
+        .results-card { text-align: center; padding: 10px 20px 0; }
+        .results-grade {
+            font-size: 4em;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glossary-search {
+            width: 100%;
+            max-width: 480px;
+            padding: 10px 16px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: var(--glass-bg);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85em;
+            margin-bottom: 12px;
+        }
+        .glossary-search:focus { outline: none; border-color: var(--brand-teal); }
+        .glossary-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            max-height: 460px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .glossary-item {
+            background: var(--glass-bg);
+            border-radius: 10px;
+            padding: 10px 12px;
+            border-left: 3px solid var(--brand-purple);
+        }
+        .glossary-item.hidden { display: none; }
+        .glossary-item strong { display: block; color: var(--brand-teal); font-size: 0.78em; }
+        .glossary-item span { display: block; font-size: 0.7em; color: rgba(255,255,255,0.72); }
+
+        .deck-map { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+        .deck-link {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 14px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .deck-link:hover, .deck-link:focus-visible { border-color: var(--brand-teal); outline: none; }
+        .deck-link i { font-size: 1.4em; color: var(--brand-teal); display: block; margin-bottom: 6px; }
+        .deck-link h4 { font-size: 0.78em; margin: 0 0 4px; }
+        .deck-link p { font-size: 0.65em; color: rgba(255,255,255,0.55); margin: 0; }
+        .deck-link.current { border-color: var(--brand-orange); background: rgba(247,147,30,0.12); }
+
+        .career-path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+        .career-step {
+            background: var(--glass-bg);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .career-step i { font-size: 1.6em; display: block; margin-bottom: 6px; }
+        .career-step:nth-child(1) i { color: var(--brand-orange); }
+        .career-step:nth-child(2) i { color: var(--brand-purple); }
+        .career-step:nth-child(3) i { color: var(--brand-teal); }
+        .career-step h4 { margin: 0 0 4px; font-size: 0.9em; }
+        .career-step p { margin: 0; font-size: 0.72em; color: rgba(255,255,255,0.68); }
+
+        .action-btn, .dnd-btn {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.78em;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .action-btn.secondary, .dnd-btn.secondary {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .action-btn:focus-visible, .dnd-btn:focus-visible, .chip:focus-visible, .choice-btn:focus-visible, .journey-btn:focus-visible {
+            outline: 2px solid var(--brand-teal);
+            outline-offset: 2px;
+        }
+
+        .wrap-grid, .lab-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; align-items: start; }
+        .wrap-stack { min-height: 220px; }
+        .wrap-empty {
+            border: 2px dashed rgba(255,255,255,0.25);
+            border-radius: 14px;
+            padding: 28px 16px;
+            text-align: center;
+            color: rgba(255,255,255,0.65);
+        }
+        .wrap-layer {
+            border-radius: 14px;
+            padding: 8px 12px 10px;
+            margin-bottom: 0;
+        }
+        .wrap-layer.app { background: rgba(0,189,165,0.16); border: 2px solid var(--brand-teal); }
+        .wrap-layer.tcp { background: rgba(0,189,165,0.08); border: 2px solid var(--brand-teal-light); padding: 8px; }
+        .wrap-layer.ip { background: rgba(138,43,226,0.12); border: 2px solid var(--brand-purple-light); padding: 8px; }
+        .wrap-layer.eth { background: rgba(247,147,30,0.1); border: 2px solid var(--brand-orange); padding: 8px; }
+        .wrap-layer span { display: block; font-size: 0.62em; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+        .wrap-layer strong { font-size: 0.82em; }
+        .wrap-layer em { display: block; font-style: normal; font-size: 0.7em; color: rgba(255,255,255,0.7); }
+        .chip-list { display: flex; flex-direction: column; gap: 8px; }
+        .chip {
+            text-align: left;
+            background: var(--glass-bg);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 0.78em;
+        }
+        .chip small { display: block; color: rgba(255,255,255,0.6); font-size: 0.85em; }
+        .chip.placed { opacity: 0.4; }
+        .chip:disabled { cursor: default; }
+
+        .journey-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        .journey-btn {
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 999px;
+            padding: 7px 14px;
+            cursor: pointer;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        .journey-btn[aria-pressed="true"] {
+            background: rgba(0,189,165,0.22);
+            border-color: var(--brand-teal);
+        }
+        .hop-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+        .hop {
+            text-align: center;
+            background: rgba(20,20,40,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 8px 4px;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.7);
+        }
+        .hop i { display: block; font-size: 1.3em; margin-bottom: 4px; color: rgba(255,255,255,0.45); }
+        .hop.now { border-color: var(--brand-orange); color: #fff; }
+        .hop.now i, .hop.done i { color: var(--brand-teal); }
+        .hop.done { border-color: rgba(0,189,165,0.45); }
+        .packet-track {
+            position: relative;
+            height: 28px;
+            margin: 4px 8px 8px;
+        }
+        .packet-track::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 12px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            border-radius: 3px;
+            opacity: 0.7;
+        }
+        .packet-dot {
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--brand-orange);
+            box-shadow: 0 0 12px rgba(247,147,30,0.8);
+            transition: left 0.45s ease;
+        }
+        .choice-list { display: flex; flex-direction: column; gap: 6px; }
+        .choice-btn {
+            text-align: left;
+            background: var(--glass-bg);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.74em;
+        }
+        .choice-btn.is-right { border-color: #22c55e; background: rgba(34,197,94,0.18); }
+        .choice-btn.is-wrong { border-color: #ef4444; background: rgba(239,68,68,0.18); }
+        .choice-btn:disabled { cursor: default; }
+        .widget-status { min-height: 2.4em; font-size: 0.75em; color: rgba(255,255,255,0.8); margin: 8px 0 0; }
+        .widget-score { font-family: 'Fira Code', monospace; font-size: 0.75em; color: var(--brand-teal); margin: 0; }
+
+        .slider-label { display: flex; justify-content: space-between; font-size: 0.75em; margin-top: 8px; }
+        .slider-label strong { color: var(--brand-orange); }
+        input[type="range"] { width: 100%; accent-color: var(--brand-teal); }
+        .readout-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+        .readout {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+        }
+        .readout strong { display: block; color: var(--brand-teal); font-size: 1em; }
+        .readout span { font-size: 0.65em; color: rgba(255,255,255,0.65); }
+        .pipe {
+            position: relative;
+            height: 36px;
+            margin-top: 10px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,189,165,0.35);
+            overflow: hidden;
+        }
+        .pkt {
+            position: absolute;
+            top: 9px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--brand-orange);
+            animation: travel var(--trip, 1.6s) linear infinite;
+            animation-delay: var(--delay, 0s);
+        }
+        @keyframes travel {
+            0% { left: -8%; opacity: 0; }
+            12% { opacity: 1; }
+            100% { left: 102%; opacity: 1; }
+        }
+        .link-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .link-card {
+            border-radius: 10px;
+            padding: 8px;
+            font-size: 0.68em;
+            background: rgba(255,255,255,0.04);
+        }
+        .link-card.sat { border: 1px solid var(--brand-orange); }
+        .link-card.dsl { border: 1px solid var(--brand-teal); }
+        .link-card strong { display: block; font-size: 1.05em; }
+        .timer-display { font-family: 'Fira Code', monospace; font-size: 1.15em; font-weight: 700; color: var(--brand-orange); }
+        .timer-display.warning { color: #ef4444; }
+        .lab-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .job-card {
+            background: rgba(138,43,226,0.15);
+            border-radius: 10px;
+            padding: 8px 10px;
+            min-height: 3.2em;
+            font-size: 0.78em;
+        }
+
+        .evidence-list { list-style: none; padding: 0; margin: 8px 0 0; }
+        .evidence-list li { margin: 0 0 6px; }
+        .evidence-list label {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+        .evidence-list input { margin-top: 4px; accent-color: var(--brand-teal); width: 1.05em; height: 1.05em; }
+
+        .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+        .case-col { border-radius: 14px; padding: 14px; }
+        .case-col h3 { margin: 0 0 8px; font-size: 0.95em; }
+        .case-col ul { margin: 0; padding-left: 1.1em; }
+        .case-col.saw { background: rgba(247,147,30,0.12); border: 1px solid var(--brand-orange); }
+        .case-col.meant { background: rgba(138,43,226,0.12); border: 1px solid var(--brand-purple); }
+        .case-col.fixed { background: rgba(0,189,165,0.12); border: 1px solid var(--brand-teal); }
+
+        .shake { animation: shake 0.4s linear; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .reveal .slides section .fragment.fade-up { transform: translateY(24px); opacity: 0; transition: all 0.45s ease; }
+        .reveal .slides section .fragment.fade-up.visible { transform: translateY(0); opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient, .pkt, .shake, .timer-display.warning { animation: none !important; }
+            .pkt { left: 42%; opacity: 1; }
+            .packet-dot, .score-bar-fill, .fragment { transition: none !important; }
+        }
+        @media (max-width: 768px) {
+            /* Reveal lays the slide out at 1920×1080 and scales it. Stacking the
+               dense widgets here makes them taller than the slide, so those stay
+               in their designed columns. These stacks still fit the slide height. */
+            .feature-grid, .stats-row, .quiz-options, .glossary-list, .career-path, .case-grid {
+                grid-template-columns: 1fr;
+            }
+            .deck-map { grid-template-columns: 1fr 1fr; }
+            .title-slide h1 { font-size: 2.2em; }
+            .site-credit { font-size: 0.62rem; max-width: 92vw; white-space: normal; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to index</span>
+    </a>
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
+                <div class="title-slide">
+                    <span class="demo-meta"><span class="demo-number">#148</span><span class="sep">·</span><span>Level 2</span><span class="sep">·</span><span>Intro to Networking</span></span>
+                    <h1 class="animated-gradient">Follow the Packet</h1>
+                    <p class="subtitle">Wrap a message, walk it hop by hop, and feel the difference between a fat pipe and a quick one.</p>
+                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                </div>
+                <aside class="notes">
+                    Welcome the group. Tell them this lesson is a journey, not a list of definitions: one click becomes headers, hops, and a wait. Point at the three activities coming up — wrap, predict, then choose a link. About 2 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning objectives</h2>
+                <p class="lead">By the end of this session you will be able to:</p>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Name</strong> the three addresses a computer uses: name, IP address, and MAC address</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Wrap</strong> a message in the right order: segment, packet, then frame</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Predict</strong> what a switch, a router, and NAT each do to a packet</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Choose</strong> a link for a job by comparing bandwidth and latency</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Explain</strong> a “the internet is broken” ticket that is really delay, not a dead connection</span></li>
+                </ul>
+                <aside class="notes">
+                    Read the five objectives. Ask who has said “the Wi-Fi is down” when a page still loaded. That story returns in the case study. About 3 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to use this deck</h2>
+                <div class="kbd-hint">
+                    <div class="kbd-item"><kbd>→</kbd> Next</div>
+                    <div class="kbd-item"><kbd>←</kbd> Back</div>
+                    <div class="kbd-item"><kbd>S</kbd> Speaker notes</div>
+                    <div class="kbd-item"><kbd>F</kbd> Fullscreen</div>
+                    <div class="kbd-item"><kbd>O</kbd> Overview</div>
+                    <div class="kbd-item"><kbd>Esc</kbd> Leave overview</div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-hand-pointer" aria-hidden="true"></i> Three things you will do</h4>
+                    <p style="margin:0;">Wrap a message from the inside out. Predict the next hop before the packet moves. Drag the delay and bandwidth sliders, then pick a link for five real jobs. Every control is a button or a slider — Enter and Space work as well as a tap.</p>
+                </div>
+                <aside class="notes">
+                    Show speaker view with S if you are presenting from a second screen. Tell learners the widgets are the lesson, not a decoration. About 2 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-mouse-pointer" aria-hidden="true"></i> A click is a journey</h2>
+                <p class="lead">Opening a page feels instant. Between your laptop and the server the message is wrapped, renamed, and handed from device to device. When something feels “slow” or “down”, you are debugging that journey.</p>
+                <div class="stats-row">
+                    <div class="stat fragment fade-up"><strong>192.168…</strong><span>A private address. The public internet will not route it. Your router hides it.</span></div>
+                    <div class="stat fragment fade-up"><strong>Port 443</strong><span>The usual door for HTTPS. The IP finds the computer. The port finds the service.</span></div>
+                    <div class="stat fragment fade-up"><strong>~600 ms</strong><span>A traditional satellite round trip. Enough delay for two people to talk over each other.</span></div>
+                </div>
+                <aside class="notes">
+                    Stress the consequence: a helpdesk that only says “turn it off and on” cannot tell a naming fault from a delay fault. These three numbers come back later. About 4 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-id-card" aria-hidden="true"></i> Three ways to name a computer</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-font" aria-hidden="true"></i>
+                        <h3>Name</h3>
+                        <p><strong>portal.example</strong> is for people. DNS turns it into an IP address before a packet can be addressed.</p>
+                    </div>
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <h3>IP address</h3>
+                        <p><strong>192.168.10.25</strong> is the logical address on this network. Routers forward packets by destination IP.</p>
+                    </div>
+                    <div class="feature-card teal fragment fade-up">
+                        <i class="fas fa-ethernet" aria-hidden="true"></i>
+                        <h3>MAC address</h3>
+                        <p><strong>3C:22:FB:…</strong> is burned into the network interface. Switches forward frames to a MAC on the local link only.</p>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <p style="margin:0;">Same laptop, three labels. Use the name with a person, the IP with a router, and the MAC with a switch. Mixing them up is how “it works on the IP but not the name” tickets start.</p>
+                </div>
+                <aside class="notes">
+                    Write the three labels on the board as learners say them. Use portal.example — the .example domain is reserved for teaching. About 4 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-layer-group" aria-hidden="true"></i> Four layers you can actually see</h2>
+                <p class="lead">Posters sometimes show seven OSI layers. The packet you can describe in class carries four. Each layer adds a header and does not replace the one inside it.</p>
+                <div class="table-scroll">
+                    <table class="info-table">
+                        <thead>
+                            <tr><th>Layer</th><th>What it adds</th><th>Classroom example</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment fade-up"><td>Application</td><td>The message itself</td><td>GET /index.html</td></tr>
+                            <tr class="fragment fade-up"><td>Transport</td><td>A port, and TCP or UDP</td><td>TCP port 443 for HTTPS</td></tr>
+                            <tr class="fragment fade-up"><td>Internet</td><td>Source and destination IP</td><td>192.168.10.25 → 203.0.113.50</td></tr>
+                            <tr class="fragment fade-up"><td>Link</td><td>Source and destination MAC, for this hop only</td><td>The switch’s job</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="muted">203.0.113.50 is a documentation address. It stands in for “a public server” so we never invent a real one.</p>
+                <aside class="notes">
+                    Do not make them memorise OSI numbers today. The four rows are the ones the next widget builds. Mention that a router strips the link header and writes a new one for the next cable. About 4 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-door-open" aria-hidden="true"></i> Ports are door numbers</h2>
+                <p class="lead">An IP address finds the computer. A port finds the program listening on it. HTTPS, DNS, and a lab printer can share one machine because they use different doors.</p>
+                <div class="table-scroll">
+                    <table class="info-table">
+                        <thead>
+                            <tr><th>Port</th><th>Usual service</th><th>Why you care</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment fade-up"><td>443 / TCP</td><td>HTTPS</td><td>The padlock in the browser</td></tr>
+                            <tr class="fragment fade-up"><td>80 / TCP</td><td>HTTP</td><td>A site with no encryption</td></tr>
+                            <tr class="fragment fade-up"><td>53 / UDP or TCP</td><td>DNS</td><td>Names become IP addresses</td></tr>
+                            <tr class="fragment fade-up"><td>25 / TCP</td><td>SMTP</td><td>Sending email</td></tr>
+                            <tr class="fragment fade-up"><td>9100 / TCP</td><td>Raw printing</td><td>Many lab printers listen here</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <aside class="notes">
+                    Use the apartment analogy once, then drop it. Emphasise 443 versus 80, because the quiz asks. Printing stays on the LAN in the theatre activity. About 3 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-box-open" aria-hidden="true"></i> Wrap the message</h2>
+                <p class="lead">Build the parcel from the inside out. A wrong layer shakes — that header goes on later.</p>
+                <div class="wrap-grid">
+                    <div>
+                        <p class="widget-score" style="margin-bottom:6px;">Outside — what this cable carries — is the top bar</p>
+                        <div class="wrap-stack" id="wrap-stack" aria-live="polite"></div>
+                    </div>
+                    <div>
+                        <div class="chip-list" id="wrap-chips"></div>
+                        <p class="widget-status" id="wrap-status" aria-live="polite"></p>
+                        <button type="button" class="action-btn secondary" id="wrap-reset">Shuffle again</button>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Let a learner drive. If they grab Ethernet first, pause on the shake and say “the cable header is the wrapping paper, not the gift.” When it completes, say the next router will throw the frame away and build a new one. About 6 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-network-wired" aria-hidden="true"></i> On the LAN, the switch uses MAC</h2>
+                <div class="feature-grid">
+                    <div class="feature-card teal fragment fade-up">
+                        <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                        <h3>One local link</h3>
+                        <p>A switch learns which MAC sits on which port and forwards the frame only there. It does not read the website name.</p>
+                    </div>
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <h3>ARP finds the next MAC</h3>
+                        <p>If the destination IP is on your subnet, ARP asks “who has this IP?”. If it is elsewhere, ARP asks for the gateway’s MAC instead.</p>
+                    </div>
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-print" aria-hidden="true"></i>
+                        <h3>A lab printer stays home</h3>
+                        <p>Same subnet means the frame never needs NAT or the internet. The IP finds the printer. Port 9100 finds the print service.</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Draw two PCs and a printer on one switch. Then draw a cloud beyond the router. Ask which job needs the gateway. ARP is “the shout across the room”, not a routing protocol. About 3 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-random" aria-hidden="true"></i> The gateway and NAT</h2>
+                <p class="lead">Your laptop often has a private address — 10.x, 172.16–172.31, or 192.168.x. The public internet does not route those. The default gateway is the router that knows the way out.</p>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-home" aria-hidden="true"></i>
+                        <h3>Private source</h3>
+                        <p>192.168.10.25 is meaningful only on this LAN.</p>
+                    </div>
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+                        <h3>NAT rewrites it</h3>
+                        <p>The router swaps that source for its public address and remembers the mapping.</p>
+                    </div>
+                    <div class="feature-card teal fragment fade-up">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                        <h3>The reply comes home</h3>
+                        <p>Return traffic hits the public address. NAT looks up the map and delivers it to your laptop.</p>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <p style="margin:0;">The destination IP of the website stays the website. NAT changes <em>your</em> source address. That is why many laptops can share one college connection.</p>
+                </div>
+                <aside class="notes">
+                    Act it out with two learners sharing one “public” name badge. The router is the person at the door who remembers who asked. About 4 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-route" aria-hidden="true"></i> Routers, hops, and TTL</h2>
+                <div class="feature-grid">
+                    <div class="feature-card teal fragment fade-up">
+                        <i class="fas fa-unlink" aria-hidden="true"></i>
+                        <h3>Frames are local</h3>
+                        <p>Each router removes the Ethernet header, reads the destination IP, and builds a fresh frame for the next link.</p>
+                    </div>
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-hourglass-half" aria-hidden="true"></i>
+                        <h3>TTL counts hops</h3>
+                        <p>Every router subtracts 1 from Time To Live. At 0 the packet is dropped, so a routing loop cannot spin forever.</p>
+                    </div>
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-stopwatch" aria-hidden="true"></i>
+                        <h3>Delay adds up</h3>
+                        <p>Each hop costs a little time. Bandwidth can still be huge. Latency is the wait, not the width of the pipe.</p>
+                    </div>
+                </div>
+                <p class="muted">Traceroute maps a path by sending packets with TTL 1, then 2, then 3. The router that drops each one reports back. You will try a short trace in the practical.</p>
+                <aside class="notes">
+                    TTL is a safety counter, not a timer in seconds, despite the name. If someone asks about traceroute, keep it to “increasing TTL, authorised on a network you are allowed to test.” About 3 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-theater-masks" aria-hidden="true"></i> Packet theatre</h2>
+                <p class="lead">Pick a journey. Answer before the packet moves. A wrong guess still teaches — the note underneath is the reason.</p>
+                <div class="journey-row" id="journey-row">
+                    <button type="button" class="journey-btn" data-journey="web">College website</button>
+                    <button type="button" class="journey-btn" data-journey="print">Lab printer</button>
+                    <button type="button" class="journey-btn" data-journey="call">Voice call</button>
+                </div>
+                <div class="hop-row" id="hop-nodes"></div>
+                <div class="packet-track" aria-hidden="true"><div class="packet-dot" id="packet-dot"></div></div>
+                <p id="theatre-prompt" class="quiz-question" style="margin-bottom:8px;"></p>
+                <div class="choice-list" id="theatre-choices"></div>
+                <p class="widget-status" id="theatre-feedback" aria-live="polite"></p>
+                <p class="widget-score" id="theatre-score" aria-live="polite"></p>
+                <aside class="notes">
+                    Run the website journey together, then hand the keyboard over for the printer and the call. Ask why the printer never lights the ISP node. Celebrate predictions, including the misses. About 6 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-gamepad" aria-hidden="true"></i> Case study: games night</h2>
+                <p class="lead">Harbour College runs a Friday games night. This is a composite classroom case — typical faults, not a news report. The organiser says the internet is down because the match is unplayable.</p>
+                <div class="case-grid">
+                    <div class="case-col saw fragment fade-up">
+                        <h3>What they saw</h3>
+                        <ul>
+                            <li>Ranked match full of rubber-banding</li>
+                            <li>YouTube 1080p still played</li>
+                            <li>Speed test about 40 Mbps</li>
+                            <li>Ping swinging from 40 ms to 400 ms</li>
+                        </ul>
+                    </div>
+                    <div class="case-col meant fragment fade-up">
+                        <h3>What it meant</h3>
+                        <ul>
+                            <li>Bandwidth was enough for the game</li>
+                            <li>Latency and jitter were the fault</li>
+                            <li>Video can buffer; a live match cannot</li>
+                            <li>The access point sat on a busy 2.4 GHz channel</li>
+                        </ul>
+                    </div>
+                    <div class="case-col fixed fragment fade-up">
+                        <h3>What fixed it</h3>
+                        <ul>
+                            <li>Match PCs moved to wired ports</li>
+                            <li>The AP moved to a clearer 5 GHz channel</li>
+                            <li>The ticket was closed as delay, not “no internet”</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Say out loud that Harbour College is a teaching composite. Ask which number disproved “the internet is down” — the 40 Mbps result. Link forward to the Wi-Fi channels deck for the radio part. About 4 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-stethoscope" aria-hidden="true"></i> Common faults</h2>
+                <div class="table-scroll">
+                    <table class="fault-table">
+                        <thead>
+                            <tr><th>Symptom</th><th>Likely cause</th><th>Sensible next check</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="fault-symptom">Names fail, the raw IP loads</td><td>DNS</td><td>Check the DNS server address. The path itself may be fine.</td></tr>
+                            <tr><td class="fault-symptom">Address starts 169.254</td><td>No DHCP answer</td><td>Cable, Wi-Fi association, VLAN, and the DHCP service.</td></tr>
+                            <tr><td class="fault-symptom">Gateway pings, internet does not</td><td>WAN, DNS, or a filter</td><td>Compare gateway, then a public IP, then a name.</td></tr>
+                            <tr><td class="fault-symptom">Calls overlap, downloads finish</td><td>Latency or jitter</td><td>Try a wire. Look at delay, not only the Mbps figure.</td></tr>
+                            <tr><td class="fault-symptom">Printer works for half the room</td><td>VLAN or firewall</td><td>Same subnet, or a route that allows the print port.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <aside class="notes">
+                    Pick two rows and ask for the first check, not the whole fix. 169.254 is the bridge to the DHCP deck. Keep the tone practical. About 3 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Bandwidth versus latency</h2>
+                <p class="lead">Drag the sliders until the two numbers feel different. Then start the 50-second challenge. The two links on the right stay fixed — the sliders are for your intuition.</p>
+                <div class="lab-grid">
+                    <div>
+                        <label class="slider-label" for="bw-slider">Bandwidth <strong id="bw-read">100 Mbps</strong></label>
+                        <input id="bw-slider" type="range" min="5" max="500" step="5" value="100" aria-label="Bandwidth in megabits per second">
+                        <label class="slider-label" for="lat-slider">Delay to the first byte <strong id="lat-read">30 ms</strong></label>
+                        <input id="lat-slider" type="range" min="5" max="800" step="5" value="30" aria-label="Delay to the first byte in milliseconds">
+                        <div class="readout-row">
+                            <div class="readout"><strong id="ttfb-read">30 ms</strong><span>first byte</span></div>
+                            <div class="readout"><strong id="file-read">8.0 s</strong><span>a 100 MB file</span></div>
+                        </div>
+                        <div class="pipe" id="pipe" aria-hidden="true"></div>
+                        <p class="widget-status" id="link-feel"></p>
+                    </div>
+                    <div>
+                        <div class="lab-top">
+                            <span class="timer-display" id="link-timer">50s</span>
+                            <button type="button" class="action-btn" id="link-start">Start challenge</button>
+                        </div>
+                        <div class="link-cards">
+                            <div class="link-card sat"><strong>Fat and slow</strong>Traditional satellite<br>100 Mbps · 300 ms</div>
+                            <div class="link-card dsl"><strong>Thin and quick</strong>Old copper line<br>8 Mbps · 15 ms</div>
+                        </div>
+                        <div class="job-card" id="job-card">Five jobs. Pick the better link — or say that either is fine.</div>
+                        <div class="choice-list" id="job-choices" style="margin-top:8px;">
+                            <button type="button" class="choice-btn" data-pick="sat" disabled>Fat and slow — satellite</button>
+                            <button type="button" class="choice-btn" data-pick="dsl" disabled>Thin and quick — copper</button>
+                            <button type="button" class="choice-btn" data-pick="either" disabled>Either is fine</button>
+                        </div>
+                        <p class="widget-status" id="job-feedback" aria-live="polite"></p>
+                        <p class="widget-score" id="job-score" aria-live="polite">Best: not set yet</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Give them 30 seconds on the sliders before the timer. Ask someone to predict the 4K job before they click. The best score is remembered on this browser. About 6 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Practical: trace one click</h2>
+                <p class="lead">On a classroom PC you are allowed to use, follow one website request only as far as your gateway and a name lookup. Do not scan other people’s machines.</p>
+                <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="glass-card-small">
+                        <h3>Success looks like</h3>
+                        <ul>
+                            <li>You can point to your IP, subnet mask, and default gateway.</li>
+                            <li>You can say whether a name became an IP.</li>
+                            <li>You can mark one job as “bandwidth” or “latency”.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="margin-top:0;">Evidence checklist</h3>
+                        <ul class="evidence-list" id="evidence-list">
+                            <li><label><input type="checkbox"><span>Screenshot of <code>ipconfig</code> or <code>ip address</code> showing IP, mask, and gateway.</span></label></li>
+                            <li><label><input type="checkbox"><span>The IP that a name resolved to, from <code>nslookup</code> or the browser.</span></label></li>
+                            <li><label><input type="checkbox"><span>A four-box sketch: laptop, switch, gateway, server — with the address type used at each.</span></label></li>
+                            <li><label><input type="checkbox"><span>One sentence: would a voice call on this link suffer from bandwidth or from delay?</span></label></li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Set the boundary: their own PC, one site, no port scans. Windows uses ipconfig; Linux often uses ip address. The checkboxes are for the learner’s own tracking. About 4 minutes to brief, then they can finish after the quiz.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-book" aria-hidden="true"></i> Jargon buster</h2>
+                <input class="glossary-search" id="glossary-search" type="search" placeholder="Type to filter — try NAT, TTL, latency…" aria-label="Filter glossary terms">
+                <div class="glossary-list" id="glossary-list">
+                    <div class="glossary-item" data-terms="packet ip datagram"><strong>Packet</strong><span>Data plus an IP header. Routers forward packets using the destination IP.</span></div>
+                    <div class="glossary-item" data-terms="frame ethernet mac link"><strong>Frame</strong><span>A packet wrapped with a link header, usually Ethernet MAC addresses, for one hop only.</span></div>
+                    <div class="glossary-item" data-terms="segment tcp udp transport"><strong>Segment</strong><span>The transport wrapper. TCP segments and UDP datagrams carry a source and destination port.</span></div>
+                    <div class="glossary-item" data-terms="encapsulation wrap header"><strong>Encapsulation</strong><span>Adding a header around data. The sender wraps inside-out; each hop may replace the frame.</span></div>
+                    <div class="glossary-item" data-terms="ip address ipv4 logical"><strong>IP address</strong><span>The logical address of a host on a network, such as 192.168.10.25.</span></div>
+                    <div class="glossary-item" data-terms="mac address hardware nic"><strong>MAC address</strong><span>The hardware address of a network interface. Switches use it on the local link.</span></div>
+                    <div class="glossary-item" data-terms="port door 443 80 service"><strong>Port</strong><span>A number that picks a service on a host. HTTPS is usually TCP 443.</span></div>
+                    <div class="glossary-item" data-terms="dns name domain resolve"><strong>DNS</strong><span>The directory that turns a name such as portal.example into an IP address.</span></div>
+                    <div class="glossary-item" data-terms="nat translation public private"><strong>NAT</strong><span>Network Address Translation. A router shares one public IP by rewriting private source addresses.</span></div>
+                    <div class="glossary-item" data-terms="gateway router default"><strong>Default gateway</strong><span>The router a host sends to when the destination is not on the local subnet.</span></div>
+                    <div class="glossary-item" data-terms="arp mac who has"><strong>ARP</strong><span>Address Resolution Protocol. On a LAN it finds the MAC address for a known IP.</span></div>
+                    <div class="glossary-item" data-terms="ttl hop time to live traceroute"><strong>TTL</strong><span>A hop counter in the IP header. Routers subtract one. At zero the packet is dropped.</span></div>
+                    <div class="glossary-item" data-terms="bandwidth mbps throughput pipe"><strong>Bandwidth</strong><span>How much data can flow, often in Mbps. It decides how fast a large file finishes.</span></div>
+                    <div class="glossary-item" data-terms="latency delay ping milliseconds"><strong>Latency</strong><span>How long a packet takes to arrive. Live calls and games feel this immediately.</span></div>
+                    <div class="glossary-item" data-terms="tcp reliable retransmit web"><strong>TCP</strong><span>A transport protocol that checks delivery and resends loss. A good fit for web pages and email.</span></div>
+                    <div class="glossary-item" data-terms="udp voice call realtime"><strong>UDP</strong><span>A transport protocol that does not resend. Often used for voice, where a late packet is useless.</span></div>
+                </div>
+                <aside class="notes">
+                    Invite two searches: TTL and NAT. If a word from the fault table is missing, it is covered on the DHCP or Wi-Fi decks — say so. About 2 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-map-signs" aria-hidden="true"></i> Where this fits</h2>
+                <p class="lead">This deck sits between “what is an address?” and “draw the whole network”. VLANs are the next split once one LAN is no longer enough.</p>
+                <div class="deck-map">
+                    <a class="deck-link" href="switch-vs-router-ocn-level2-presentation.html"><i class="fas fa-random" aria-hidden="true"></i><h4>Switch vs Router</h4><p>#15 · who forwards what</p></a>
+                    <a class="deck-link" href="dhcp-ip-addressing-ocn-level2-presentation.html"><i class="fas fa-file-contract" aria-hidden="true"></i><h4>DHCP &amp; IP</h4><p>#16 · leases and 169.254</p></a>
+                    <a class="deck-link" href="dns-in-action-ocn-level2-presentation.html"><i class="fas fa-search" aria-hidden="true"></i><h4>DNS in Action</h4><p>#17 · names to numbers</p></a>
+                    <a class="deck-link current" href="follow-the-packet-ocn-level2-presentation.html"><i class="fas fa-paper-plane" aria-hidden="true"></i><h4>Follow the Packet</h4><p>#148 · you are here</p></a>
+                    <a class="deck-link" href="wifi-signal-channels-ocn-level2-presentation.html"><i class="fas fa-wifi" aria-hidden="true"></i><h4>Wi-Fi Channels</h4><p>#19 · the games-night radio fault</p></a>
+                    <a class="deck-link" href="cable-to-cloud-ocn-level2-presentation.html"><i class="fas fa-route" aria-hidden="true"></i><h4>Cable to Cloud</h4><p>#140 · crimp it, then load a page</p></a>
+                </div>
+                <aside class="notes">
+                    Recommend DNS next if names still feel magical, and Wi-Fi channels if the case study hooked them. About 2 minutes.
+                </aside>
+            </section>
+
+            <section id="slide-quiz-intro">
+                <h2 class="animated-gradient"><i class="fas fa-question-circle" aria-hidden="true"></i> Six-question check</h2>
+                <p class="lead">Answer on the slide. A skipped question scores as unanswered. You can retry from the results slide.</p>
+                <div class="score-bar-wrap"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                <p class="score-label" id="quiz-score-label">Score: 0 / 6</p>
+                <div class="highlight-box">
+                    <p style="margin:0;">Use what you wrapped, what you predicted, and which link you chose. The grade is a letter, not a surprise.</p>
+                </div>
+                <aside class="notes">
+                    Quiet room. Tell them the progress pill appears at the top right. About 1 minute, then straight into question 1.
+                </aside>
+            </section>
+
+            <section data-quiz="1">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q1. A switch on your LAN forwards a frame using which address?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="false"><span>A</span>The website name</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>B</span>The destination MAC address</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>C</span>The DNS port only</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>D</span>The public IP, and nothing else</button>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. Switches are link-layer. About 1 minute.</aside>
+            </section>
+
+            <section data-quiz="2">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q2. Which order wraps a web request from the inside out?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="false"><span>A</span>Ethernet frame, then the message, then DNS</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>B</span>Message, TCP segment, IP packet, Ethernet frame</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>C</span>MAC address, then a printer port, then the name</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>D</span>Public IP, then private IP, then the switch name</button>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. That is the wrap widget’s correct order. About 1 minute.</aside>
+            </section>
+
+            <section data-quiz="3">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q3. What does NAT do on a home or college router?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="false"><span>A</span>Gives every laptop a unique public IP with no sharing</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>B</span>Turns MAC addresses into website names</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>C</span>Rewrites private source addresses so many devices share one public IP</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>D</span>Raises bandwidth by compressing Wi-Fi</button>
+                    </div>
+                </div>
+                <aside class="notes">Answer C. Destination of the server stays the server. About 1 minute.</aside>
+            </section>
+
+            <section data-quiz="4">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q4. A video still plays, but a voice call is full of delay and people talking over each other. What fits best?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="false"><span>A</span>The laptop has no MAC address</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>B</span>Latency is high, even though bandwidth can move the video</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>C</span>Port 443 means the call cannot use IP</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>D</span>The switch has replaced the default gateway</button>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. This is the games-night diagnosis. About 1 minute.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q5. Which port does HTTPS normally use?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="false"><span>A</span>25</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>B</span>53</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>C</span>80</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>D</span>443</button>
+                    </div>
+                </div>
+                <aside class="notes">Answer D. 80 is plain HTTP, 53 is DNS, 25 is SMTP. About 1 minute.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <div class="quiz-container">
+                    <p class="quiz-question">Q6. A router reduces TTL to 0. What happens to the packet?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="false"><span>A</span>It is given a fresh MAC and forwarded forever</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>B</span>It is dropped, so a routing loop cannot last forever</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>C</span>NAT assigns it a private address</button>
+                        <button type="button" class="quiz-option" data-correct="false"><span>D</span>The cable is upgraded to fibre</button>
+                    </div>
+                </div>
+                <aside class="notes">Answer B. Mention traceroute only if they ask. About 1 minute.</aside>
+            </section>
+
+            <section id="slide-quiz-results">
+                <div class="results-card">
+                    <p class="score-label">Your grade</p>
+                    <p class="results-grade" id="results-grade">–</p>
+                    <p id="results-message" class="lead">Answer the six questions, then come back to this slide.</p>
+                    <div class="score-bar-wrap" style="max-width:420px;margin:16px auto;"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <p class="score-label" id="results-score-label">0 / 6</p>
+                    <button type="button" class="action-btn" id="quiz-retry">Retry the quiz</button>
+                </div>
+                <aside class="notes">
+                    Read the grade without ranking people aloud. Anyone on a C or D revisits the wrap widget and the theatre. About 2 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-star" aria-hidden="true"></i> Key takeaways</h2>
+                <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-box" aria-hidden="true"></i><h3>Wrap inside out</h3><p>Message, port, IP, then a MAC frame for this hop only.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-random" aria-hidden="true"></i><h3>Different devices, different addresses</h3><p>Switches read MAC. Routers read IP. NAT rewrites the private source.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-door-open" aria-hidden="true"></i><h3>Ports pick the program</h3><p>443 is the usual HTTPS door. The IP only finds the machine.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-stopwatch" aria-hidden="true"></i><h3>Mbps is not delay</h3><p>A fat, slow link downloads files and still ruins a live call.</p></div>
+                </div>
+                <aside class="notes">
+                    Four pillars, one sentence each. Ask the room to finish “a switch uses…”. About 2 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Career pathways</h2>
+                <div class="career-path">
+                    <div class="career-step fragment fade-up">
+                        <i class="fas fa-headset" aria-hidden="true"></i>
+                        <h4>IT support</h4>
+                        <p>First line for “no internet” tickets. You separate DNS, DHCP, and delay before you escalate.</p>
+                    </div>
+                    <div class="career-step fragment fade-up">
+                        <i class="fas fa-network-wired" aria-hidden="true"></i>
+                        <h4>Network technician</h4>
+                        <p>Cabling, switching, Wi-Fi, and evidence. College, council, NHS, and local IT employers all hire this skill.</p>
+                    </div>
+                    <div class="career-step fragment fade-up">
+                        <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                        <h4>Network engineer</h4>
+                        <p>Routing, firewalls, and design. This deck is the vocabulary those jobs assume you already have.</p>
+                    </div>
+                </div>
+                <p class="muted">Progression in Northern Ireland often runs through the Level 2 diploma, then an apprenticeship or a higher network course. The practical sketch is portfolio evidence.</p>
+                <aside class="notes">
+                    Keep salaries out of it — they go stale. Name the three roles and one local route: apprenticeship or the next college course. About 2 minutes.
+                </aside>
+            </section>
+
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next steps</h2>
+                <ul class="objectives-list">
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Finish the practical sketch and drop the screenshots in your evidence folder.</span></li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Open <strong>DNS in Action</strong> if names still feel like magic.</span></li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Open <strong>Wi-Fi Signal &amp; Channels</strong> to see why the games-night access point misbehaved.</span></li>
+                    <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Optional reading: private address ranges are written up as RFC 1918. You only need the three blocks from the NAT slide.</span></li>
+                </ul>
+                <aside class="notes">
+                    Set a deadline for the four evidence items. Point at the two sibling decks, not a long reading list. About 2 minutes.
+                </aside>
+            </section>
+
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)" data-canvas-bg="true">
+                <div class="title-slide">
+                    <h1 class="animated-gradient">The packet got home</h1>
+                    <p class="subtitle">You wrapped it, you predicted the hops, and you knew when delay mattered more than speed.</p>
+                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                    <p class="muted" style="margin-top:22px;">Questions welcome. Bring one real ticket from the practical if you want it pulled apart.</p>
+                </div>
+                <aside class="notes">
+                    Stop on questions. If time remains, replay one theatre journey with a volunteer. About 1 minute to close, then stay for questions.
+                </aside>
+            </section>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/zoom/zoom.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [RevealNotes, RevealHighlight, RevealZoom]
+        });
+
+        const AppState = {
+            quizScore: 0,
+            quizAnswered: {},
+            wrapNext: 0,
+            theatreId: 'web',
+            theatreStep: 0,
+            theatreCorrect: 0,
+            theatreAnswered: 0,
+            theatreLock: false,
+            theatreTimer: null,
+            linkTimer: null,
+            jobAdvance: null,
+            jobIndex: 0,
+            jobScore: 0,
+            jobLock: false,
+            jobRunning: false,
+            jobSeconds: 50,
+            jobStartedAt: 0,
+            jobs: [],
+            summaryDebounce: null
+        };
+
+        const LAYERS = [
+            { id: 'app', name: 'Application message', hint: 'GET /index.html' },
+            { id: 'tcp', name: 'TCP segment', hint: 'adds port 443' },
+            { id: 'ip', name: 'IP packet', hint: '192.168.10.25 → 203.0.113.50' },
+            { id: 'eth', name: 'Ethernet frame', hint: 'MAC addresses for this link only' }
+        ];
+
+        const JOURNEYS = {
+            web: {
+                nodes: [
+                    { name: 'Laptop', icon: 'fa-laptop' },
+                    { name: 'Switch', icon: 'fa-network-wired' },
+                    { name: 'Router', icon: 'fa-route' },
+                    { name: 'ISP', icon: 'fa-broadcast-tower' },
+                    { name: 'Server', icon: 'fa-server' }
+                ],
+                steps: [
+                    {
+                        prompt: 'The browser knows portal.example, not a number. What has to happen first?',
+                        choices: [
+                            ['DNS turns the name into an IP address', true],
+                            ['The switch invents a public IP', false],
+                            ['NAT runs on the laptop before anything is sent', false]
+                        ],
+                        why: 'People use names. DNS resolves portal.example so the packet has a destination IP.'
+                    },
+                    {
+                        prompt: 'The frame is on the classroom LAN, heading for the gateway. What does the switch use?',
+                        choices: [
+                            ['The destination MAC address', true],
+                            ['The website name', false],
+                            ['Only TCP port 443', false]
+                        ],
+                        why: 'A switch forwards frames by MAC address. The laptop uses ARP to learn the gateway MAC when the site is off-subnet.'
+                    },
+                    {
+                        prompt: 'The laptop’s address is 192.168.10.25. What does NAT change?',
+                        choices: [
+                            ['The private source IP becomes the router’s public IP', true],
+                            ['The website name becomes a MAC address', false],
+                            ['The destination port is removed', false]
+                        ],
+                        why: 'NAT lets many private addresses share one public address, and it remembers the map so the reply comes back.'
+                    },
+                    {
+                        prompt: 'Out on the ISP network, how does a router choose the next hop?',
+                        choices: [
+                            ['It reads the destination IP address', true],
+                            ['It keeps the classroom MAC address all the way', false],
+                            ['It follows the colour of the Ethernet cable', false]
+                        ],
+                        why: 'MAC addresses are rewritten on every link. Routers forward on the destination IP, and each one subtracts 1 from TTL.'
+                    },
+                    {
+                        prompt: 'The packet reaches the web server. Which door is HTTPS?',
+                        choices: [
+                            ['TCP port 443', true],
+                            ['TCP port 25', false],
+                            ['UDP port 53', false]
+                        ],
+                        why: '443 is the usual HTTPS port. The server answers, and NAT on the way home delivers the reply to the laptop.'
+                    }
+                ]
+            },
+            print: {
+                nodes: [
+                    { name: 'Laptop', icon: 'fa-laptop' },
+                    { name: 'Switch', icon: 'fa-network-wired' },
+                    { name: 'Printer', icon: 'fa-print' }
+                ],
+                steps: [
+                    {
+                        prompt: 'The printer is on the same subnet and you know its IP. Does this job need the internet?',
+                        choices: [
+                            ['No. It can stay inside the LAN', true],
+                            ['Yes. Every print goes to the cloud first', false],
+                            ['Yes. NAT must rewrite it or the printer ignores it', false]
+                        ],
+                        why: 'Same subnet: the laptop ARPs for the printer MAC and the switch delivers the frame. No gateway required.'
+                    },
+                    {
+                        prompt: 'What does the switch use to deliver the frame to the printer?',
+                        choices: [
+                            ['The printer’s MAC address', true],
+                            ['The college public IP', false],
+                            ['A DNS name and nothing else', false]
+                        ],
+                        why: 'The IP selected the printer. The MAC selects the switch port. DNS is optional if you already have the IP.'
+                    },
+                    {
+                        prompt: 'The printer listens on TCP 9100. What is 9100?',
+                        choices: [
+                            ['A port — the print service on that printer', true],
+                            ['A subnet mask', false],
+                            ['A MAC address', false]
+                        ],
+                        why: 'The IP finds the printer. The port finds the print service running on it.'
+                    }
+                ]
+            },
+            call: {
+                nodes: [
+                    { name: 'Laptop', icon: 'fa-laptop' },
+                    { name: 'Router', icon: 'fa-route' },
+                    { name: 'ISP', icon: 'fa-broadcast-tower' },
+                    { name: 'Friend', icon: 'fa-headset' }
+                ],
+                steps: [
+                    {
+                        prompt: 'A voice call sends many tiny packets. Why do calls often use UDP?',
+                        choices: [
+                            ['A late packet is useless, so resending it would arrive even later', true],
+                            ['UDP is encrypted and TCP is not', false],
+                            ['UDP does not need an IP address', false]
+                        ],
+                        why: 'TCP resends lost data, which suits a web page. Live voice would rather drop a syllable than play it half a second late.'
+                    },
+                    {
+                        prompt: 'YouTube still loads, but the call is full of delay. What is the better explanation?',
+                        choices: [
+                            ['Latency is high, even if there is enough bandwidth', true],
+                            ['The laptop has no IP address', false],
+                            ['DNS has replaced the MAC address', false]
+                        ],
+                        why: 'Bandwidth moves the bulk of a download. Latency is the wait before sound arrives. A fat, slow link can do both badly and well at once.'
+                    },
+                    {
+                        prompt: 'Each router subtracts 1 from TTL. What is that counter for?',
+                        choices: [
+                            ['To stop a packet looping forever', true],
+                            ['To pick the Wi-Fi channel', false],
+                            ['To choose TCP port 443', false]
+                        ],
+                        why: 'At zero the packet is dropped. Traceroute uses that on purpose, by starting TTL at 1 and climbing.'
+                    }
+                ]
+            }
+        };
+
+        const JOBS = [
+            {
+                text: 'Copy a 10 GB project folder overnight.',
+                answer: 'sat',
+                why: 'Ten gigabytes is about 80 gigabits. At 100 Mbps that is roughly 13 minutes. At 8 Mbps it is closer to three hours. The fat link wins, and the long delay does not matter overnight.'
+            },
+            {
+                text: 'Join a live voice call with your tutor.',
+                answer: 'dsl',
+                why: 'Voice is small but impatient. A 300 ms wait each way is about 600 ms before you hear a reply, so people talk over each other. The thin, quick link is the one you want.'
+            },
+            {
+                text: 'Play a ranked match. The packets are small. Reactions have to be instant.',
+                answer: 'dsl',
+                why: 'Games are a latency problem. A modest, quick link is playable. A fat link with a 300 ms first byte is not.'
+            },
+            {
+                text: 'Send a one-line email.',
+                answer: 'either',
+                why: 'A few kilobytes do not need a fat pipe, and a short wait does not matter. Either link is a fair answer — saying so is the precise one.'
+            },
+            {
+                text: 'Watch a 4K film that is allowed to buffer before it starts.',
+                answer: 'sat',
+                why: '4K wants on the order of 25 Mbps. The 8 Mbps line cannot keep the picture up. Buffering hides the satellite’s slow start, so the fat link is the one that works.'
+            }
+        ];
+
+        function shuffle(list) {
+            const copy = list.slice();
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const tmp = copy[i];
+                copy[i] = copy[j];
+                copy[j] = tmp;
+            }
+            return copy;
+        }
+
+        function readBest(key) {
+            try {
+                return JSON.parse(localStorage.getItem(key) || 'null');
+            } catch (err) {
+                return null;
+            }
+        }
+
+        function writeBest(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+            } catch (err) {
+                /* Private mode can block storage. The score still shows for this session. */
+            }
+        }
+
+        function renderWrapStack() {
+            const stack = document.getElementById('wrap-stack');
+            if (!stack) return;
+            const placed = LAYERS.slice(0, AppState.wrapNext);
+            if (!placed.length) {
+                stack.innerHTML = '<p class="wrap-empty">Nothing wrapped yet. Start with the message itself.</p>';
+                return;
+            }
+            const outerFirst = placed.slice().reverse();
+            stack.innerHTML = outerFirst.map(function (layer, index) {
+                const role = index === 0 ? 'Outermost right now' : 'Inside that';
+                return '<div class="wrap-layer ' + layer.id + '"><span>' + role + '</span><strong>' + layer.name + '</strong><em>' + layer.hint + '</em></div>';
+            }).join('');
+        }
+
+        function renderWrapChips() {
+            const holder = document.getElementById('wrap-chips');
+            if (!holder) return;
+            holder.innerHTML = shuffle(LAYERS).map(function (layer) {
+                return '<button type="button" class="chip" data-layer="' + layer.id + '">' + layer.name + '<small>' + layer.hint + '</small></button>';
+            }).join('');
+        }
+
+        function initWrap() {
+            const holder = document.getElementById('wrap-chips');
+            const reset = document.getElementById('wrap-reset');
+            if (!holder || holder.dataset.bound) return;
+            holder.dataset.bound = 'true';
+            const status = document.getElementById('wrap-status');
+            holder.addEventListener('click', function (event) {
+                const btn = event.target.closest('.chip');
+                if (!btn || btn.disabled) return;
+                const expected = LAYERS[AppState.wrapNext].id;
+                if (btn.dataset.layer !== expected) {
+                    btn.classList.remove('shake');
+                    void btn.offsetWidth;
+                    btn.classList.add('shake');
+                    status.textContent = 'That header goes on the outside. Wrap the inside first.';
+                    return;
+                }
+                btn.disabled = true;
+                btn.classList.add('placed');
+                AppState.wrapNext += 1;
+                renderWrapStack();
+                if (AppState.wrapNext === LAYERS.length) {
+                    status.textContent = 'The cable carries the Ethernet frame. The next router throws that frame away and builds a new one. The IP packet keeps going.';
+                } else {
+                    status.textContent = 'Good. Next layer: ' + LAYERS[AppState.wrapNext].name + '.';
+                }
+            });
+            if (reset) {
+                reset.addEventListener('click', function () {
+                    AppState.wrapNext = 0;
+                    renderWrapChips();
+                    renderWrapStack();
+                    status.textContent = 'Shuffled. Start again from the inside.';
+                });
+            }
+            renderWrapChips();
+            renderWrapStack();
+            status.textContent = 'Tap the layer that goes on first.';
+        }
+
+        function saveTheatreBest() {
+            const journey = JOURNEYS[AppState.theatreId];
+            const total = journey.steps.length;
+            const pct = Math.round((AppState.theatreCorrect / total) * 100);
+            const prev = readBest('follow-packet-theatre-best');
+            if (!prev || pct > prev.pct) writeBest('follow-packet-theatre-best', { pct: pct, id: AppState.theatreId });
+        }
+
+        function theatreBestLabel() {
+            const prev = readBest('follow-packet-theatre-best');
+            return prev ? 'Best prediction run: ' + prev.pct + '%' : 'Best prediction run: not set yet';
+        }
+
+        function renderTheatre() {
+            const journey = JOURNEYS[AppState.theatreId];
+            const nodes = document.getElementById('hop-nodes');
+            const dot = document.getElementById('packet-dot');
+            const prompt = document.getElementById('theatre-prompt');
+            const choices = document.getElementById('theatre-choices');
+            const feedback = document.getElementById('theatre-feedback');
+            const score = document.getElementById('theatre-score');
+            if (!nodes || !dot || !prompt || !choices) return;
+
+            document.querySelectorAll('[data-journey]').forEach(function (btn) {
+                btn.setAttribute('aria-pressed', btn.dataset.journey === AppState.theatreId ? 'true' : 'false');
+            });
+
+            const columns = Math.max(journey.nodes.length, 1);
+            nodes.style.gridTemplateColumns = 'repeat(' + columns + ', 1fr)';
+            nodes.innerHTML = journey.nodes.map(function (node, index) {
+                const cls = index < AppState.theatreStep ? 'done' : (index === Math.min(AppState.theatreStep, journey.nodes.length - 1) && AppState.theatreStep < journey.steps.length ? 'now' : (index < journey.nodes.length && AppState.theatreStep >= journey.steps.length ? 'done' : ''));
+                return '<div class="hop ' + cls + '"><i class="fas ' + node.icon + '" aria-hidden="true"></i><span>' + node.name + '</span></div>';
+            }).join('');
+
+            const max = Math.max(1, journey.nodes.length - 1);
+            const at = Math.min(AppState.theatreStep, journey.nodes.length - 1);
+            dot.style.left = 'calc(' + ((at / max) * 100) + '% - 11px)';
+
+            const done = AppState.theatreStep >= journey.steps.length;
+            if (done) {
+                prompt.textContent = 'Journey complete.';
+                choices.innerHTML = '<button type="button" class="action-btn" id="theatre-replay">Replay this journey</button>';
+                feedback.textContent = 'You predicted ' + AppState.theatreCorrect + ' of ' + journey.steps.length + ' hops.';
+            } else {
+                const step = journey.steps[AppState.theatreStep];
+                prompt.textContent = step.prompt;
+                choices.innerHTML = step.choices.map(function (choice, index) {
+                    return '<button type="button" class="choice-btn" data-choice="' + index + '">' + choice[0] + '</button>';
+                }).join('');
+                if (!AppState.theatreLock) feedback.textContent = '';
+            }
+            score.textContent = 'This journey: ' + AppState.theatreCorrect + ' / ' + AppState.theatreAnswered + ' so far. ' + theatreBestLabel();
+        }
+
+        function startJourney(id) {
+            window.clearTimeout(AppState.theatreTimer);
+            AppState.theatreId = id;
+            AppState.theatreStep = 0;
+            AppState.theatreCorrect = 0;
+            AppState.theatreAnswered = 0;
+            AppState.theatreLock = false;
+            const feedback = document.getElementById('theatre-feedback');
+            if (feedback) feedback.textContent = '';
+            renderTheatre();
+        }
+
+        function answerTheatre(index) {
+            const journey = JOURNEYS[AppState.theatreId];
+            if (AppState.theatreLock || AppState.theatreStep >= journey.steps.length) return;
+            const step = journey.steps[AppState.theatreStep];
+            const ok = step.choices[index][1] === true;
+            AppState.theatreLock = true;
+            AppState.theatreAnswered += 1;
+            if (ok) AppState.theatreCorrect += 1;
+            const buttons = document.querySelectorAll('#theatre-choices .choice-btn');
+            buttons.forEach(function (btn, i) {
+                btn.disabled = true;
+                if (step.choices[i][1]) btn.classList.add('is-right');
+                else if (i === index) btn.classList.add('is-wrong');
+            });
+            const feedback = document.getElementById('theatre-feedback');
+            if (feedback) feedback.textContent = step.why;
+            const score = document.getElementById('theatre-score');
+            if (score) score.textContent = 'This journey: ' + AppState.theatreCorrect + ' / ' + AppState.theatreAnswered + ' so far. ' + theatreBestLabel();
+            AppState.theatreTimer = window.setTimeout(function () {
+                AppState.theatreStep += 1;
+                AppState.theatreLock = false;
+                if (AppState.theatreStep >= journey.steps.length) saveTheatreBest();
+                renderTheatre();
+            }, 1700);
+        }
+
+        function initTheatre() {
+            const row = document.getElementById('journey-row');
+            const choices = document.getElementById('theatre-choices');
+            if (!row || row.dataset.bound) return;
+            row.dataset.bound = 'true';
+            row.addEventListener('click', function (event) {
+                const btn = event.target.closest('[data-journey]');
+                if (!btn) return;
+                startJourney(btn.dataset.journey);
+            });
+            choices.addEventListener('click', function (event) {
+                const choice = event.target.closest('[data-choice]');
+                if (choice) answerTheatre(Number(choice.dataset.choice));
+                if (event.target.closest('#theatre-replay')) startJourney(AppState.theatreId);
+            });
+            startJourney('web');
+        }
+
+        function fileSeconds(bw, latencyMs) {
+            return (latencyMs / 1000) + ((100 * 8) / bw);
+        }
+
+        function formatDuration(seconds) {
+            if (seconds < 10) return seconds.toFixed(1) + ' s';
+            if (seconds < 60) return Math.round(seconds) + ' s';
+            const minutes = Math.floor(seconds / 60);
+            const rem = Math.round(seconds % 60);
+            return minutes + ' min ' + rem + ' s';
+        }
+
+        function renderPipe(bw, latencyMs) {
+            const pipe = document.getElementById('pipe');
+            if (!pipe) return;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const count = reduce ? 1 : Math.max(1, Math.min(7, Math.round(bw / 70)));
+            const dur = Math.max(0.45, 0.3 + latencyMs / 220).toFixed(2);
+            let html = '';
+            for (let i = 0; i < count; i++) {
+                html += '<span class="pkt" style="--trip:' + dur + 's;--delay:' + (i * 0.18).toFixed(2) + 's"></span>';
+            }
+            pipe.innerHTML = html;
+        }
+
+        function updateLinkFeel() {
+            const bw = Number(document.getElementById('bw-slider').value);
+            const lat = Number(document.getElementById('lat-slider').value);
+            document.getElementById('bw-read').textContent = bw + ' Mbps';
+            document.getElementById('lat-read').textContent = lat + ' ms';
+            document.getElementById('ttfb-read').textContent = lat + ' ms';
+            document.getElementById('file-read').textContent = formatDuration(fileSeconds(bw, lat));
+            renderPipe(bw, lat);
+            window.clearTimeout(AppState.summaryDebounce);
+            AppState.summaryDebounce = window.setTimeout(function () {
+                const feel = document.getElementById('link-feel');
+                if (!feel) return;
+                if (lat > 200 && bw < 20) feel.textContent = 'Slow and thin. A large file drags, and a live call will talk over itself.';
+                else if (lat > 200 && bw >= 50) feel.textContent = 'Fat and slow. A large file can finish. A conversation will not enjoy the wait.';
+                else if (lat < 40 && bw < 20) feel.textContent = 'Thin and quick. Calls feel fine. A big download will drag.';
+                else if (lat < 50 && bw >= 50) feel.textContent = 'Enough width and a short wait. Both a call and a download are reasonable.';
+                else feel.textContent = 'A mix. Decide from the job, not from a single Mbps number.';
+            }, 200);
+        }
+
+        function jobBestLabel() {
+            const prev = readBest('follow-packet-link-best');
+            if (!prev) return 'Best: not set yet';
+            return 'Best: ' + prev.score + ' / 5 in ' + prev.time + 's';
+        }
+
+        function stopLinkTimer() {
+            if (AppState.linkTimer) {
+                window.clearInterval(AppState.linkTimer);
+                AppState.linkTimer = null;
+            }
+        }
+
+        function updateTimerUI() {
+            const el = document.getElementById('link-timer');
+            if (!el) return;
+            el.textContent = AppState.jobSeconds + 's';
+            el.classList.toggle('warning', AppState.jobRunning && AppState.jobSeconds <= 10);
+        }
+
+        function setJobButtonsEnabled(enabled) {
+            document.querySelectorAll('#job-choices .choice-btn').forEach(function (btn) {
+                btn.disabled = !enabled;
+                if (enabled) btn.classList.remove('is-right', 'is-wrong');
+            });
+        }
+
+        function resumeLinkTimer() {
+            if (AppState.linkTimer || !AppState.jobRunning) return;
+            AppState.linkTimer = window.setInterval(function () {
+                AppState.jobSeconds -= 1;
+                updateTimerUI();
+                if (AppState.jobSeconds <= 0) finishChallenge();
+            }, 1000);
+        }
+
+        function finishChallenge() {
+            if (!AppState.jobRunning) return;
+            AppState.jobRunning = false;
+            stopLinkTimer();
+            window.clearTimeout(AppState.jobAdvance);
+            setJobButtonsEnabled(false);
+            const elapsed = Math.max(1, Math.round((Date.now() - AppState.jobStartedAt) / 1000));
+            const prev = readBest('follow-packet-link-best');
+            const better = !prev || AppState.jobScore > prev.score || (AppState.jobScore === prev.score && elapsed < prev.time);
+            if (better) writeBest('follow-packet-link-best', { score: AppState.jobScore, time: elapsed });
+            const card = document.getElementById('job-card');
+            const feedback = document.getElementById('job-feedback');
+            if (card) card.textContent = 'Challenge over. You scored ' + AppState.jobScore + ' / 5 in ' + elapsed + 's.';
+            if (feedback && AppState.jobSeconds <= 0) feedback.textContent = 'Time up. Unanswered jobs stayed at zero.';
+            const score = document.getElementById('job-score');
+            if (score) score.textContent = jobBestLabel();
+            const start = document.getElementById('link-start');
+            if (start) start.textContent = 'Try again';
+            updateTimerUI();
+        }
+
+        function renderJob() {
+            const card = document.getElementById('job-card');
+            const feedback = document.getElementById('job-feedback');
+            if (!card) return;
+            if (AppState.jobIndex >= AppState.jobs.length) {
+                finishChallenge();
+                return;
+            }
+            const job = AppState.jobs[AppState.jobIndex];
+            card.textContent = 'Job ' + (AppState.jobIndex + 1) + ' of 5. ' + job.text;
+            if (feedback) feedback.textContent = '';
+            setJobButtonsEnabled(true);
+            AppState.jobLock = false;
+        }
+
+        function answerJob(pick) {
+            if (!AppState.jobRunning || AppState.jobLock) return;
+            const job = AppState.jobs[AppState.jobIndex];
+            if (!job) return;
+            AppState.jobLock = true;
+            const ok = pick === job.answer;
+            if (ok) AppState.jobScore += 1;
+            document.querySelectorAll('#job-choices .choice-btn').forEach(function (btn) {
+                btn.disabled = true;
+                if (btn.dataset.pick === job.answer) btn.classList.add('is-right');
+                else if (btn.dataset.pick === pick) btn.classList.add('is-wrong');
+            });
+            const feedback = document.getElementById('job-feedback');
+            if (feedback) feedback.textContent = job.why;
+            const score = document.getElementById('job-score');
+            if (score) score.textContent = 'This run: ' + AppState.jobScore + ' / ' + (AppState.jobIndex + 1) + '. ' + jobBestLabel();
+            stopLinkTimer();
+            AppState.jobAdvance = window.setTimeout(function () {
+                AppState.jobIndex += 1;
+                if (!AppState.jobRunning) return;
+                if (AppState.jobIndex >= AppState.jobs.length) finishChallenge();
+                else {
+                    renderJob();
+                    resumeLinkTimer();
+                }
+            }, 1800);
+        }
+
+        function startChallenge() {
+            stopLinkTimer();
+            window.clearTimeout(AppState.jobAdvance);
+            AppState.jobs = shuffle(JOBS);
+            AppState.jobIndex = 0;
+            AppState.jobScore = 0;
+            AppState.jobLock = false;
+            AppState.jobRunning = true;
+            AppState.jobSeconds = 50;
+            AppState.jobStartedAt = Date.now();
+            const start = document.getElementById('link-start');
+            if (start) start.textContent = 'Restart';
+            updateTimerUI();
+            renderJob();
+            resumeLinkTimer();
+        }
+
+        function initLinkLab() {
+            const bw = document.getElementById('bw-slider');
+            const start = document.getElementById('link-start');
+            if (!bw || bw.dataset.bound) return;
+            bw.dataset.bound = 'true';
+            bw.addEventListener('input', updateLinkFeel);
+            document.getElementById('lat-slider').addEventListener('input', updateLinkFeel);
+            start.addEventListener('click', startChallenge);
+            document.getElementById('job-choices').addEventListener('click', function (event) {
+                const btn = event.target.closest('[data-pick]');
+                if (!btn || btn.disabled) return;
+                answerJob(btn.dataset.pick);
+            });
+            document.getElementById('job-score').textContent = jobBestLabel();
+            updateLinkFeel();
+            updateTimerUI();
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', function () {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(function (item) {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && terms.indexOf(q) === -1);
+                });
+            });
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(function (id) {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = 'Score: ' + AppState.quizScore + ' / 6';
+            const scoreLabel = document.getElementById('quiz-score-label');
+            if (scoreLabel) scoreLabel.textContent = label;
+            const progress = document.getElementById('quiz-progress');
+            const slide = (typeof Reveal !== 'undefined' && Reveal.getCurrentSlide) ? Reveal.getCurrentSlide() : null;
+            const inQuiz = slide && (slide.hasAttribute('data-quiz') || slide.id === 'slide-quiz-results' || slide.id === 'slide-quiz-intro');
+            if (progress) {
+                progress.textContent = label;
+                progress.classList.toggle('visible', !!(inQuiz || AppState.quizScore > 0));
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade || !msg || !label) return;
+            const s = AppState.quizScore;
+            label.textContent = s + ' / 6';
+            if (s === 6) { grade.textContent = 'A+'; msg.textContent = 'Outstanding. You can walk a packet from the message to the far server.'; }
+            else if (s >= 5) { grade.textContent = 'A'; msg.textContent = 'Excellent. One idea to revisit — check the explanation on that question.'; }
+            else if (s >= 4) { grade.textContent = 'B'; msg.textContent = 'Good. Replay the wrap widget and one theatre journey.'; }
+            else if (s >= 3) { grade.textContent = 'C'; msg.textContent = 'You have the shape of it. Spend time on NAT and on bandwidth versus latency.'; }
+            else { grade.textContent = 'D'; msg.textContent = 'Let’s rebuild it. Start with the three addresses, then wrap the message again.'; }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (document.body.dataset.quizBound) return;
+            document.body.dataset.quizBound = 'true';
+            document.addEventListener('click', function (event) {
+                const option = event.target.closest('.quiz-option');
+                if (!option) return;
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(function (opt) {
+                    opt.disabled = true;
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore += 1;
+                updateQuizUI();
+            });
+            const retry = document.getElementById('quiz-retry');
+            if (retry) {
+                retry.addEventListener('click', function () {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(function (opt) {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.disabled = false;
+                    });
+                    updateQuizUI();
+                    const first = document.querySelector('section[data-quiz="1"]');
+                    if (first) {
+                        const indices = Reveal.getIndices(first);
+                        Reveal.slide(indices.h, indices.v);
+                    }
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound) return;
+            canvas.dataset.bound = 'true';
+            const ctx = canvas.getContext('2d');
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const show = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = show ? '0.4' : '0';
+                if (!show || reduced) {
+                    window.requestAnimationFrame(draw);
+                    return;
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(function (p, i) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    }
+                });
+                window.requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function boot() {
+            initWrap();
+            initTheatre();
+            initLinkLab();
+            initGlossary();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
+            const slide = Reveal.getCurrentSlide();
+            if (slide && slide.id === 'slide-quiz-results') showResults();
+        }
+
+        Reveal.on('ready', boot);
+        Reveal.on('slidechanged', function (event) {
+            updateQuizUI();
+            if (event.currentSlide && event.currentSlide.id === 'slide-quiz-results') showResults();
+        });
+    </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+</body>
+</html>
