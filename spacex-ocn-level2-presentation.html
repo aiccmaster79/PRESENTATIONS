@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#147 | Level 2 | SpaceX | OCN NI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/monokai.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-orange: #F7931E;
+            --brand-purple: #8A2BE2;
+            --brand-teal: #00BDA5;
+            --brand-orange-dark: #d47a0a;
+            --brand-purple-dark: #6a1fb2;
+            --brand-teal-dark: #008f7a;
+            --brand-orange-light: #ffb858;
+            --brand-purple-light: #a855f7;
+            --brand-teal-light: #3dd5c0;
+            --dark-bg: #0a0a1a;
+            --glass-bg: rgba(20, 20, 40, 0.85);
+        }
+
+        .reveal { font-family: 'Poppins', sans-serif; }
+        .reveal .slides { text-align: left; }
+        .reveal .slides section { height: 100%; padding: 20px 40px; }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Poppins', sans-serif; font-weight: 700;
+            text-transform: none; letter-spacing: -0.02em;
+        }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2em; margin-bottom: 0.5em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p, .reveal li { font-size: 0.9em; line-height: 1.6; }
+
+        .animated-gradient {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
+            background-size: 400% 400%;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; animation: gradientShift 8s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .glass-card {
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .glass-card-small {
+            background: var(--glass-bg); backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; margin-top: 24px;
+        }
+        .feature-card {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
+            border-radius: 16px; padding: 22px; border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px); border-color: var(--brand-teal);
+            box-shadow: 0 20px 40px rgba(0, 189, 165, 0.2);
+        }
+        .feature-card i { font-size: 2.2em; margin-bottom: 12px; display: block; }
+        .feature-card.orange i { color: var(--brand-orange); }
+        .feature-card.purple i { color: var(--brand-purple); }
+        .feature-card.teal i { color: var(--brand-teal); }
+        .feature-card h3 { font-size: 1.1em; margin-bottom: 8px; color: #fff; }
+        .feature-card p { font-size: 0.82em; color: rgba(255, 255, 255, 0.7); margin: 0; }
+
+        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 24px; }
+        .comparison-box { background: var(--glass-bg); border-radius: 16px; padding: 24px; border: 2px solid; }
+        .comparison-box.type1 { border-color: var(--brand-orange); }
+        .comparison-box.type2 { border-color: var(--brand-teal); }
+        .comparison-box h3 {
+            text-align: center; margin-bottom: 16px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comparison-box.type1 h3 { color: var(--brand-orange); }
+        .comparison-box.type2 h3 { color: var(--brand-teal); }
+        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
+        .comparison-box li { padding: 7px 0; padding-left: 25px; position: relative; font-size: 0.82em; }
+        .comparison-box li::before { content: '✓'; position: absolute; left: 0; color: var(--brand-orange); }
+
+        .stats-bar {
+            display: flex; justify-content: center; gap: 36px; flex-wrap: wrap;
+            background: var(--glass-bg); border-radius: 16px; padding: 22px; margin: 18px 0;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { display: block; font-size: 1.45em; font-weight: 700; color: var(--brand-teal); }
+        .stat-label { font-size: 0.72em; color: rgba(255, 255, 255, 0.6); }
+
+        .career-path {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 30px; position: relative;
+        }
+        .career-path::before {
+            content: ''; position: absolute; top: 50%; left: 10%; right: 10%; height: 4px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-purple), var(--brand-teal));
+            z-index: 0;
+        }
+        .career-step {
+            background: var(--glass-bg); border-radius: 16px; padding: 20px; text-align: center;
+            z-index: 1; min-width: 180px; border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .career-step:hover { transform: translateY(-10px); border-color: var(--brand-teal); }
+        .career-step i { font-size: 2em; margin-bottom: 10px; display: block; }
+        .career-step:nth-child(1) i { color: var(--brand-orange); }
+        .career-step:nth-child(2) i { color: var(--brand-purple); }
+        .career-step:nth-child(3) i { color: var(--brand-teal); }
+        .career-step h4 { font-size: 0.9em; margin: 0 0 5px 0; }
+        .career-step p { font-size: 0.7em; color: rgba(255, 255, 255, 0.6); margin: 0; }
+
+        .title-slide {
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; height: 100%;
+        }
+        .title-slide h1 { font-size: 3.4em; margin-bottom: 18px; }
+        .title-slide .subtitle { font-size: 1.3em; color: rgba(255, 255, 255, 0.8); margin-bottom: 28px; }
+        .title-slide .qualification {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            padding: 10px 30px; border-radius: 30px; font-size: 0.9em; font-weight: 600;
+        }
+
+        .objectives-list { list-style: none; padding: 0; margin: 0; }
+        .objectives-list li {
+            display: flex; align-items: flex-start; gap: 15px; padding: 14px;
+            margin-bottom: 10px; background: var(--glass-bg); border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+        .objectives-list li i { color: var(--brand-teal); font-size: 1.2em; margin-top: 2px; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange); border-radius: 12px; padding: 18px; margin: 16px 0;
+        }
+        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 8px 0; }
+
+        .demo-meta {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            margin: 0 0 1.1rem; padding: 0.45rem 0.95rem; border-radius: 999px;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em; color: #fff;
+            background: rgba(0, 189, 165, 0.18); border: 1px solid rgba(0, 189, 165, 0.45);
+        }
+        .demo-meta .demo-number { color: var(--brand-teal); }
+        .demo-meta .demo-level { color: rgba(255, 255, 255, 0.85); }
+        .demo-meta .sep { opacity: 0.45; }
+
+        .section-badge {
+            display: inline-block; background: rgba(138,43,226,0.3); color: var(--brand-purple-light);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: 600;
+            margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .back-to-index {
+            position: fixed; top: 16px; left: 16px; z-index: 100;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.55rem 0.95rem; border-radius: 999px; text-decoration: none;
+            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600;
+            background: rgba(20, 20, 40, 0.88); border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+        }
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5; background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px); outline: none; color: #fff;
+        }
+        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
+
+        .site-credit {
+            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+            z-index: 100; margin: 0; padding: 0.35rem 0.85rem; border-radius: 999px;
+            font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.02em; color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            pointer-events: none; white-space: nowrap;
+        }
+
+        .kbd-hint {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;
+        }
+        .kbd-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.75em; color: rgba(255,255,255,0.6);
+        }
+        .kbd-item kbd {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px; padding: 4px 10px; font-family: 'Fira Code', monospace;
+            font-size: 0.9em; color: var(--brand-teal);
+        }
+
+        .flip-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 16px; margin-top: 18px;
+        }
+        .flip-card { perspective: 1000px; height: 210px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; inset: 0; backface-visibility: hidden;
+            border-radius: 14px; padding: 16px; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .flip-card-front { background: linear-gradient(145deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.98)); }
+        .flip-card-back {
+            background: linear-gradient(145deg, rgba(0, 189, 165, 0.15), rgba(20, 20, 40, 0.98));
+            transform: rotateY(180deg); border-color: var(--brand-teal);
+        }
+        .flip-card-front i { font-size: 2em; margin-bottom: 10px; color: var(--brand-teal); }
+        .flip-card-front h4 { font-size: 1em; margin: 0 0 4px; color: #fff; }
+        .flip-card-front .hint { font-size: 0.7em; color: rgba(255,255,255,0.5); margin: 0; }
+        .flip-card-back p { font-size: 0.72em; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.45; }
+
+        .mb-tour {
+            display: grid; grid-template-columns: 1.15fr 0.85fr;
+            gap: 20px; align-items: start; margin-top: 8px;
+        }
+        .photo-map {
+            position: relative; border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: radial-gradient(ellipse at 50% 12%, rgba(0,189,165,0.18), #050510 62%);
+        }
+        .photo-map svg { display: block; width: 100%; height: auto; max-height: 520px; }
+        .photo-hotspot {
+            position: absolute; width: 34px; height: 34px; border-radius: 50%;
+            border: 2px solid #fff; background: var(--brand-orange); color: #fff;
+            font-weight: 700; font-size: 0.85em; cursor: pointer;
+            transform: translate(-50%, -50%); font-family: 'Poppins', sans-serif;
+            box-shadow: 0 0 0 6px rgba(247,147,30,0.25);
+        }
+        .photo-hotspot:hover, .photo-hotspot.active, .photo-hotspot:focus-visible {
+            background: var(--brand-teal); box-shadow: 0 0 0 6px rgba(0,189,165,0.35);
+            outline: none;
+        }
+        .mb-info-panel {
+            background: var(--glass-bg); border-radius: 16px; padding: 22px;
+            border-left: 4px solid var(--brand-teal); min-height: 220px;
+        }
+        .mb-info-panel h4 { color: var(--brand-teal); margin: 0 0 10px; font-size: 1.1em; }
+        .mb-info-panel p { font-size: 0.82em; color: rgba(255,255,255,0.8); margin: 0 0 8px; }
+        .mb-info-panel .hint { font-size: 0.72em; color: rgba(255,255,255,0.5); font-style: italic; }
+        .mb-mode-toggle { display: inline-flex; gap: 8px; margin-bottom: 12px; }
+        .mb-mode-btn {
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+            color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.75em;
+            cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.2s;
+        }
+        .mb-mode-btn.active, .mb-mode-btn:hover {
+            background: rgba(0, 189, 165, 0.25); border-color: var(--brand-teal);
+        }
+        .mb-mode-btn:focus-visible { outline: 2px solid var(--brand-teal); outline-offset: 2px; }
+
+        .seq-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 18px; margin-top: 10px; }
+        .seq-pool {
+            background: var(--glass-bg); border-radius: 14px; padding: 14px;
+            border: 2px dashed rgba(255,255,255,0.15); min-height: 280px;
+        }
+        .seq-pool h4, .seq-slots h4 { font-size: 0.78em; color: var(--brand-orange); margin: 0 0 10px; }
+        .seq-slots { display: flex; flex-direction: column; gap: 8px; }
+        .seq-slot {
+            min-height: 48px; border-radius: 10px; padding: 8px 12px;
+            background: rgba(0,0,0,0.35); border: 2px dashed rgba(255,255,255,0.15);
+            display: flex; align-items: center; gap: 10px; transition: border-color 0.2s, background 0.2s;
+        }
+        .seq-slot.drag-over { border-color: var(--brand-teal); background: rgba(0,189,165,0.12); }
+        .seq-slot.filled { border-style: solid; border-color: rgba(255,255,255,0.25); }
+        .seq-slot.correct { border-color: #22c55e; }
+        .seq-slot.wrong { border-color: #ef4444; animation: shake 0.4s; }
+        .seq-slot .slot-num {
+            width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+            background: var(--brand-purple); display: flex; align-items: center; justify-content: center;
+            font-size: 0.7em; font-weight: 700;
+        }
+
+        .dnd-board { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-top: 12px; }
+        .dnd-pool {
+            background: var(--glass-bg); border-radius: 14px; padding: 16px;
+            border: 2px dashed rgba(255,255,255,0.15); min-height: 260px;
+        }
+        .dnd-pool h4 { font-size: 0.85em; color: var(--brand-orange); margin: 0 0 12px; }
+        .dnd-bins { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .dnd-bin {
+            background: var(--glass-bg); border-radius: 12px; padding: 12px;
+            border: 2px solid rgba(255,255,255,0.1); min-height: 140px; transition: all 0.25s;
+        }
+        .dnd-bin.drag-over { border-color: var(--brand-teal); background: rgba(0,189,165,0.1); }
+        .dnd-bin h4 { font-size: 0.78em; margin: 0 0 8px; text-align: center; }
+        .dnd-bin[data-cat="reuse"] h4 { color: var(--brand-teal); }
+        .dnd-bin[data-cat="expend"] h4 { color: var(--brand-orange); }
+
+        .dnd-chip {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(138,43,226,0.4), rgba(0,189,165,0.3));
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+            padding: 6px 14px; margin: 4px; font-size: 0.75em; cursor: grab;
+            user-select: none; transition: all 0.2s; touch-action: none; color: #fff;
+        }
+        .dnd-chip:active { cursor: grabbing; }
+        .dnd-chip.selected { outline: 2px solid var(--brand-orange); transform: scale(1.05); }
+        .dnd-chip.correct { background: rgba(34,197,94,0.3); border-color: #22c55e; }
+        .dnd-chip.incorrect { background: rgba(239,68,68,0.3); border-color: #ef4444; animation: shake 0.4s; }
+        .dnd-chip.placed { cursor: default; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .dnd-controls, .sim-controls {
+            display: flex; gap: 12px; align-items: center; margin-top: 12px; flex-wrap: wrap;
+        }
+        .dnd-btn, .sim-btn {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            border: none; color: #fff; padding: 8px 18px; border-radius: 20px;
+            font-size: 0.8em; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dnd-btn:hover, .sim-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .dnd-btn.secondary, .sim-btn.secondary {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .dnd-btn:focus-visible, .sim-btn:focus-visible {
+            outline: 2px solid var(--brand-teal); outline-offset: 2px;
+        }
+        .sim-status-line {
+            font-size: 0.78em; color: rgba(255,255,255,0.75); margin-top: 10px; min-height: 2.4em;
+        }
+        .timer-display {
+            font-size: 1.4em; font-weight: 700; color: var(--brand-orange);
+            font-family: 'Fira Code', monospace;
+        }
+        .timer-display.warning { color: #ef4444; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .best-time { font-size: 0.75em; color: rgba(255,255,255,0.5); }
+
+        .calc-card {
+            background: var(--glass-bg); border-radius: 16px; padding: 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .calc-card label { display: block; font-size: 0.78em; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+        .calc-card select, .calc-card input[type="range"] { width: 100%; font-family: 'Poppins', sans-serif; font-size: 0.85em; }
+        .calc-card select {
+            background: rgba(0,0,0,0.35); color: #fff; border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px; padding: 8px 12px;
+        }
+        .calc-readout {
+            margin-top: 14px; font-size: 1.35em; font-weight: 700; color: var(--brand-teal);
+        }
+        .calc-bar {
+            height: 12px; border-radius: 999px; background: rgba(255,255,255,0.08);
+            overflow: hidden; margin-top: 10px;
+        }
+        .calc-bar span {
+            display: block; height: 100%; width: 8%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+        }
+        .calc-note { font-size: 0.72em; color: rgba(255,255,255,0.55); margin: 8px 0 0; }
+
+        .quiz-container { max-width: 900px; margin: 0 auto; }
+        .quiz-question { font-size: 1.3em; font-weight: 600; margin-bottom: 25px; text-align: center; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .quiz-option {
+            background: var(--glass-bg); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px;
+            padding: 18px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;
+            display: flex; align-items: center; gap: 12px; color: #fff; text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+        .quiz-option span {
+            background: var(--brand-purple); width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
+        }
+        .quiz-option:hover { border-color: var(--brand-teal); transform: translateY(-3px); }
+        .quiz-option:focus-visible { outline: 2px solid var(--brand-teal); outline-offset: 2px; }
+        .quiz-option.correct { border-color: #22c55e; background: rgba(34,197,94,0.2); }
+        .quiz-option.incorrect { border-color: #ef4444; background: rgba(239,68,68,0.2); }
+
+        .score-bar-wrap {
+            background: rgba(255,255,255,0.08); border-radius: 10px;
+            height: 12px; margin: 15px 0; overflow: hidden;
+        }
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-teal));
+            border-radius: 10px; transition: width 0.5s ease; width: 0%;
+        }
+        .score-label { font-size: 0.8em; color: rgba(255,255,255,0.6); text-align: center; }
+        .quiz-progress {
+            position: fixed; top: 16px; right: 16px; z-index: 100;
+            background: rgba(20,20,40,0.88); border: 1px solid rgba(0,189,165,0.45);
+            border-radius: 999px; padding: 6px 14px; font-size: 0.75em;
+            font-weight: 600; color: var(--brand-teal); display: none;
+        }
+        .quiz-progress.visible { display: block; }
+        .results-card { text-align: center; padding: 30px; }
+        .results-grade {
+            font-size: 4em; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-teal));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .glossary-search {
+            width: 100%; max-width: 500px; padding: 12px 18px; border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.15); background: var(--glass-bg);
+            color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.9em; margin-bottom: 18px;
+        }
+        .glossary-search:focus { outline: none; border-color: var(--brand-teal); }
+        .glossary-list {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 10px; max-height: 380px; overflow-y: auto;
+        }
+        .glossary-item {
+            background: var(--glass-bg); border-radius: 10px; padding: 12px 16px;
+            border-left: 3px solid var(--brand-purple);
+        }
+        .glossary-item.hidden { display: none; }
+        .glossary-item dt { font-weight: 600; color: var(--brand-teal); font-size: 0.85em; margin-bottom: 4px; }
+        .glossary-item dd { font-size: 0.75em; color: rgba(255,255,255,0.7); margin: 0; }
+
+        .fault-table { width: 100%; border-collapse: collapse; font-size: 0.78em; margin-top: 15px; }
+        .fault-table th, .fault-table td {
+            padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .fault-table th { background: rgba(138,43,226,0.25); color: var(--brand-teal); font-weight: 600; }
+        .fault-table tr:hover td { background: rgba(0,189,165,0.08); }
+        .fault-symptom { color: var(--brand-orange); font-weight: 600; }
+
+        .deck-map {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 14px; margin-top: 18px;
+        }
+        .deck-link {
+            background: var(--glass-bg); border-radius: 12px; padding: 16px;
+            text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.25s; text-align: center;
+        }
+        .deck-link:hover, .deck-link:focus-visible {
+            border-color: var(--brand-teal); transform: translateY(-3px); outline: none;
+        }
+        .deck-link i { font-size: 1.8em; color: var(--brand-teal); display: block; margin-bottom: 8px; }
+        .deck-link h4 { font-size: 0.82em; margin: 0 0 4px; }
+        .deck-link p { font-size: 0.68em; color: rgba(255,255,255,0.5); margin: 0; }
+        .deck-link.current { border-color: var(--brand-orange); background: rgba(247,147,30,0.1); }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; }
+        .criteria-list, .evidence-list { list-style: none; padding: 0; margin: 10px 0 0; }
+        .criteria-list li, .evidence-list li {
+            padding: 8px 0 8px 28px; position: relative; font-size: 0.82em;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .criteria-list li::before { content: '☐'; position: absolute; left: 0; color: var(--brand-teal); }
+        .evidence-list li::before { content: '☑'; position: absolute; left: 0; color: var(--brand-orange); }
+
+        .case-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0 18px; }
+        .case-pill {
+            background: rgba(138,43,226,0.25); color: var(--brand-purple-light);
+            padding: 4px 12px; border-radius: 999px; font-size: 0.72em; font-weight: 600;
+        }
+
+        .flow-strip {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            flex-wrap: wrap; margin-top: 18px;
+        }
+        .flow-node {
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px; padding: 10px 14px; text-align: center; min-width: 110px;
+        }
+        .flow-node i { display: block; color: var(--brand-teal); margin-bottom: 4px; }
+        .flow-node span { font-size: 0.72em; font-weight: 600; }
+        .flow-arrow { color: rgba(255,255,255,0.35); font-size: 1.1em; }
+
+        #circuit-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+        }
+
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(30px); opacity: 0; transition: all 0.5s ease;
+        }
+        .reveal .slides section .fragment.fade-up.visible {
+            transform: translateY(0); opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient { animation: none; }
+            .flip-card-inner, .feature-card, .career-step, .deck-link, .quiz-option, .dnd-chip { transition: none; }
+            .timer-display.warning { animation: none; }
+            .dnd-chip.incorrect, .seq-slot.wrong { animation: none; }
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid, .comparison-container, .quiz-options, .two-col,
+            .deck-map, .flip-grid, .mb-tour, .dnd-board, .seq-layout, .dnd-bins {
+                grid-template-columns: 1fr;
+            }
+            .career-path { flex-direction: column; gap: 20px; }
+            .career-path::before { display: none; }
+            .glossary-list { grid-template-columns: 1fr; }
+            .title-slide h1 { font-size: 2.2em; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="quiz-progress" id="quiz-progress" aria-live="polite">Score: 0 / 6</div>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to index</span>
+    </a>
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-background-color="#0a0a1a" data-canvas-bg="true">
+                <div class="title-slide">
+                    <span class="demo-meta"><span class="demo-number">#147</span><span class="sep">·</span><span class="demo-level">Level 2</span><span class="sep">·</span><span class="demo-level">Emerging Technology</span></span>
+                    <h1 class="animated-gradient">SpaceX</h1>
+                    <p class="subtitle">Reusable rockets, Starlink, and why landing a booster changes the cost of getting to orbit</p>
+                    <span class="qualification">OCN NI Level 2 Diploma in Information Technology</span>
+                </div>
+                <aside class="notes">Open with “rockets used to be thrown away after one flight.” Write reuse on the board. ~2 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye" aria-hidden="true"></i> Learning Objectives</h2>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 16px;">By the end of this session you will be able to:</p>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Identify</strong> SpaceX’s main vehicles and systems: Falcon 9, Falcon Heavy, Starship, Crew Dragon and Starlink</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Label</strong> the parts of a Falcon 9 stack and explain what the first stage does after MECO</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Sequence</strong> a reusable launch: stack, liftoff, staging, entry, landing, recovery</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Calculate</strong> a teaching estimate of cost per kilogram and explain why reuse matters for IT and connectivity</span></li>
+                </ul>
+                <aside class="notes">Verb-led. Lock MECO and first stage now. ~3 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard" aria-hidden="true"></i> How to Use This Deck</h2>
+                <div class="kbd-hint">
+                    <div class="kbd-item"><kbd>→</kbd> Next slide</div>
+                    <div class="kbd-item"><kbd>←</kbd> Previous</div>
+                    <div class="kbd-item"><kbd>F</kbd> Fullscreen</div>
+                    <div class="kbd-item"><kbd>S</kbd> Speaker notes</div>
+                    <div class="kbd-item"><kbd>Esc</kbd> Overview</div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-hand-pointer" aria-hidden="true"></i> Interactives are clickable and tappable</h4>
+                    <p style="margin:0;">Hotspots, flip cards, the mission sequencer, the cost calculator and the sort boards all work with a mouse, a keyboard (Enter / Space), or a tap. On a tablet: tap a chip, then tap the bin.</p>
+                </div>
+                <p class="fragment fade-up" style="color: rgba(255,255,255,0.65); font-size: 0.85em;">Press <strong>S</strong> for speaker view. Timing cues in the notes add up to a 60–90 minute lesson.</p>
+                <aside class="notes">Show S once. Confirm learners can tap chips. ~2 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-bolt" aria-hidden="true"></i> Why This Matters</h2>
+                <div class="two-col">
+                    <div class="glass-card fragment fade-up">
+                        <p>Getting mass to orbit used to mean throwing away a machine the size of an airliner after one use. SpaceX’s bet was that a <strong>first stage that lands</strong> turns launch from a firework into an airline: inspect, refuel, fly again.</p>
+                        <p style="margin-bottom:0;">That is why Starlink can be a dense LEO network, why NASA can buy crew seats commercially, and why IT careers now sit next to RF, software and factory telemetry — not only “space science.”</p>
+                    </div>
+                    <div class="fragment fade-up">
+                        <div class="glass-card-small">
+                            <h3 style="color:var(--brand-teal);margin-top:0;">The IT angle</h3>
+                            <p style="margin:0;">Constellations are software, ground stations, encryption, and operations dashboards. A satellite is a remote computer with a radio. If you can explain reuse and Starlink, you can talk about cloud-scale systems that happen to live in orbit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-bar fragment fade-up">
+                    <div class="stat-item"><span class="stat-number">2002</span><span class="stat-label">SpaceX founded</span></div>
+                    <div class="stat-item"><span class="stat-number">2015</span><span class="stat-label">first Falcon 9 booster landing</span></div>
+                    <div class="stat-item"><span class="stat-number">LEO</span><span class="stat-label">Starlink’s operating neighbourhood</span></div>
+                </div>
+                <aside class="notes">Do not turn this into a personality lesson. Reuse and connectivity are the hooks. ~4 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-layer-group" aria-hidden="true"></i> Four Names, Four Jobs</h2>
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.8em; margin: 0;">Click or press Enter / Space on a card.</p>
+                <div class="flip-grid">
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Falcon 9 — flip for meaning">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-rocket" aria-hidden="true"></i><h4>Falcon 9</h4><p class="hint">Tap to flip</p></div>
+                            <div class="flip-card-back"><p>Two-stage orbital workhorse. Nine Merlin engines on the first stage. The booster that made landing-and-reflying a weekly operation, not a stunt.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Falcon Heavy — flip for meaning">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-layer-group" aria-hidden="true"></i><h4>Falcon Heavy</h4><p class="hint">Tap to flip</p></div>
+                            <div class="flip-card-back"><p>Three Falcon 9 cores strapped together. 27 Merlins at liftoff. Used when the payload is too heavy or too energetic for a single Falcon 9.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Starship — flip for meaning">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-globe" aria-hidden="true"></i><h4>Starship</h4><p class="hint">Tap to flip</p></div>
+                            <div class="flip-card-back"><p>Fully reusable stainless-steel stack: Super Heavy booster plus Starship upper stage. Aimed at huge mass to orbit, then the Moon and Mars. Still in flight test.</p></div>
+                        </div>
+                    </div>
+                    <div class="flip-card" tabindex="0" role="button" aria-label="Starlink — flip for meaning">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><i class="fas fa-satellite" aria-hidden="true"></i><h4>Starlink</h4><p class="hint">Tap to flip</p></div>
+                            <div class="flip-card-back"><p>A mega-constellation of LEO satellites providing broadband. Cheap-enough launches are what make thousands of satellites economically possible.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">Flip Starlink last so learners connect reuse to a product they have heard of. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-recycle" aria-hidden="true"></i> Expendable vs Reusable</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1">
+                        <h3>Expendable</h3>
+                        <ul>
+                            <li>Every stage is hardware you pay for once</li>
+                            <li>High cost per kilogram to orbit</li>
+                            <li>Simple after MECO — nothing has to fly home</li>
+                            <li>Classic model: Saturn V, many still-flying rockets</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2">
+                        <h3>Reusable (Falcon 9 model)</h3>
+                        <ul>
+                            <li>First stage lands, is inspected, and flies again</li>
+                            <li>Cost per kilogram drops as flight count rises</li>
+                            <li>Needs grid fins, landing legs, extra propellant, recovery ships</li>
+                            <li>Second stage is still usually expended</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4>Teaching rule</h4>
+                    <p style="margin:0;">Reuse is not “free launches.” It is extra hardware and extra burns so the expensive piece — the booster — is not scrap metal in the Atlantic.</p>
+                </div>
+                <aside class="notes">Ask who pays for the extra landing fuel. The customer still pays, but less than a new booster. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-fire" aria-hidden="true"></i> How a Falcon 9 Stack Works</h2>
+                <div class="flow-strip">
+                    <div class="flow-node fragment fade-up"><i class="fas fa-box" aria-hidden="true"></i><span>Payload</span></div>
+                    <span class="flow-arrow fragment fade-up">→</span>
+                    <div class="flow-node fragment fade-up"><i class="fas fa-layer-group" aria-hidden="true"></i><span>Second stage</span></div>
+                    <span class="flow-arrow fragment fade-up">→</span>
+                    <div class="flow-node fragment fade-up"><i class="fas fa-rocket" aria-hidden="true"></i><span>First stage</span></div>
+                    <span class="flow-arrow fragment fade-up">→</span>
+                    <div class="flow-node fragment fade-up"><i class="fas fa-industry" aria-hidden="true"></i><span>Nine Merlins</span></div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-gauge-high" aria-hidden="true"></i><h3>MECO</h3><p>Main Engine Cut-Off. First-stage engines shut down; staging happens; second stage takes over.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-plane" aria-hidden="true"></i><h3>Grid fins</h3><p>Steer the empty booster through atmosphere like control surfaces on a plane.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-ship" aria-hidden="true"></i><h3>RTLS vs ASDS</h3><p>Return To Launch Site if energy allows; otherwise land downrange on a drone ship.</p></div>
+                </div>
+                <aside class="notes">Write MECO, RTLS, ASDS. Learners mix up first and second stage constantly. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <span class="section-badge">Doing</span>
+                <h2 class="animated-gradient"><i class="fas fa-location-dot" aria-hidden="true"></i> Read the Stack</h2>
+                <div class="mb-mode-toggle">
+                    <button type="button" class="mb-mode-btn active" data-mode="explore" aria-pressed="true">Explore</button>
+                    <button type="button" class="mb-mode-btn" data-mode="quiz" aria-pressed="false">Label quiz</button>
+                </div>
+                <div class="mb-tour" role="region" aria-label="Falcon 9 hotspot explorer">
+                    <div class="photo-map">
+                        <svg viewBox="0 0 280 540" role="img" aria-label="Simplified Falcon 9 stack: fairing, second stage, first stage, grid fins, landing legs and engines">
+                            <defs>
+                                <linearGradient id="steel" x1="0" x2="1">
+                                    <stop offset="0%" stop-color="#9aa3b2"/>
+                                    <stop offset="50%" stop-color="#e8edf4"/>
+                                    <stop offset="100%" stop-color="#6b7380"/>
+                                </linearGradient>
+                            </defs>
+                            <ellipse cx="140" cy="42" rx="28" ry="22" fill="#1a1a2e" stroke="#F7931E" stroke-width="2"/>
+                            <path d="M112 42 L140 8 L168 42 Z" fill="#F7931E"/>
+                            <rect x="116" y="42" width="48" height="70" fill="url(#steel)" stroke="#8A2BE2" stroke-width="2"/>
+                            <text x="140" y="82" text-anchor="middle" fill="#0a0a1a" font-size="11" font-family="Poppins,sans-serif" font-weight="700">S2</text>
+                            <rect x="112" y="112" width="56" height="280" rx="6" fill="url(#steel)" stroke="#00BDA5" stroke-width="2"/>
+                            <text x="140" y="250" text-anchor="middle" fill="#0a0a1a" font-size="13" font-family="Poppins,sans-serif" font-weight="700">F9</text>
+                            <polygon points="78,175 112,195 112,215 78,205" fill="#00BDA5"/>
+                            <polygon points="202,175 168,195 168,215 202,205" fill="#00BDA5"/>
+                            <polygon points="100,392 112,372 112,392" fill="#F7931E"/>
+                            <polygon points="180,392 168,372 168,392" fill="#F7931E"/>
+                            <g fill="#8A2BE2">
+                                <circle cx="116" cy="410" r="8"/><circle cx="132" cy="410" r="8"/><circle cx="148" cy="410" r="8"/>
+                                <circle cx="164" cy="410" r="8"/><circle cx="124" cy="424" r="8"/><circle cx="140" cy="424" r="8"/>
+                                <circle cx="156" cy="424" r="8"/><circle cx="132" cy="438" r="8"/><circle cx="148" cy="438" r="8"/>
+                            </g>
+                            <text x="140" y="475" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="12" font-family="Poppins,sans-serif">Merlin cluster</text>
+                        </svg>
+                        <button type="button" class="photo-hotspot" style="left:50%;top:8%;" data-id="fairing" aria-label="Hotspot 1, payload fairing">1</button>
+                        <button type="button" class="photo-hotspot" style="left:50%;top:18%;" data-id="second" aria-label="Hotspot 2, second stage">2</button>
+                        <button type="button" class="photo-hotspot" style="left:28%;top:36%;" data-id="fins" aria-label="Hotspot 3, grid fins">3</button>
+                        <button type="button" class="photo-hotspot" style="left:50%;top:55%;" data-id="first" aria-label="Hotspot 4, first stage">4</button>
+                        <button type="button" class="photo-hotspot" style="left:50%;top:78%;" data-id="engines" aria-label="Hotspot 5, Merlin engines">5</button>
+                    </div>
+                    <div class="mb-info-panel" id="site-info-panel">
+                        <h4>Click a numbered hotspot</h4>
+                        <p>Five callouts on a teaching diagram of Falcon 9. Explore mode explains immediately. Label quiz hides the answer for 1.5 seconds.</p>
+                        <p class="hint">Start at 1 — the nose — then work down to the engines.</p>
+                    </div>
+                </div>
+                <aside class="notes">Live all five. Switch to quiz and pick a volunteer for grid fins. ~8 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-satellite-dish" aria-hidden="true"></i> Starlink — Orbit as a Network</h2>
+                <div class="two-col">
+                    <div class="glass-card fragment fade-up">
+                        <p>Starlink is a <strong>low Earth orbit</strong> broadband constellation. Thousands of small satellites hand traffic between space, user dishes, and ground gateways. Latency is lower than geostationary TV satellites because the path is shorter.</p>
+                        <p style="margin-bottom:0;">Reuse is the industrial trick: you cannot economically refresh a mega-constellation if every launch throws the booster away.</p>
+                    </div>
+                    <div class="fragment fade-up">
+                        <div class="feature-card teal"><i class="fas fa-wifi" aria-hidden="true"></i><h3>User terminal</h3><p>Phased-array dish tracks satellites. From the user’s view it is “internet,” not a rocket company.</p></div>
+                        <div class="feature-card purple" style="margin-top:12px;"><i class="fas fa-shield-halved" aria-hidden="true"></i><h3>Trade-offs</h3><p>Coverage in remote places vs sky brightness, debris risk, and who controls a global network.</p></div>
+                    </div>
+                </div>
+                <aside class="notes">Link to 5G and IoT decks: same packet-switching idea, different medium. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-user-astronaut" aria-hidden="true"></i> Crew Dragon and Cargo</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1">
+                        <h3>Crew Dragon</h3>
+                        <ul>
+                            <li>Carries astronauts to the ISS for NASA</li>
+                            <li>Capsule is recovered and can fly again</li>
+                            <li>Life support, abort motors, touchscreens</li>
+                            <li>Demo-2 (2020) was the first commercial crewed orbital US flight</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2">
+                        <h3>Cargo Dragon</h3>
+                        <ul>
+                            <li>Supplies the ISS — no crew on board</li>
+                            <li>Can return experiments to Earth</li>
+                            <li>Same family, different certification and seats</li>
+                            <li>IT still matters: telemetry, uplinks, ground software</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">Stress certification: people-rated software is a career path, not a meme. ~4 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-globe-americas" aria-hidden="true"></i> Starship — The Next Stack</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-industry" aria-hidden="true"></i><h3>Super Heavy</h3><p>The booster. Dozens of Raptor engines. Designed to return and be caught or land for rapid reuse.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-shuttle-space" aria-hidden="true"></i><h3>Starship</h3><p>The ship. Stainless steel, heat-shield tiles, payload bay. Meant to be the upper stage and the spacecraft.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-flask" aria-hidden="true"></i><h3>Flight test</h3><p>Integrated flight tests iterate in public. Treat headlines as data, not as a finished airline timetable.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-microchip" aria-hidden="true"></i><h3>Link to Terafab</h3><p>Scale manufacturing, chips, and energy show up again in the Terafab deck — same industrial story, different product.</p></div>
+                </div>
+                <aside class="notes">Do not oversell Mars. The classroom point is fully reusable mass to orbit. ~4 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <span class="section-badge">Doing</span>
+                <h2 class="animated-gradient"><i class="fas fa-list-ol" aria-hidden="true"></i> Build the Recovery Loop</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.8em; margin: 0;">Drag (or tap then tap) the six steps into order. Check from the first wrong slot.</p>
+                <div class="seq-layout">
+                    <div class="seq-pool">
+                        <h4>Shuffled steps</h4>
+                        <div id="seq-chips"></div>
+                    </div>
+                    <div>
+                        <h4 style="font-size:0.78em;color:var(--brand-orange);margin:0 0 10px;">Mission order</h4>
+                        <div class="seq-slots" id="seq-slots"></div>
+                    </div>
+                </div>
+                <div class="dnd-controls">
+                    <button type="button" class="dnd-btn" id="seq-check">Check order</button>
+                    <button type="button" class="dnd-btn secondary" id="seq-reset">Reset</button>
+                    <span class="sim-status-line" id="seq-status" aria-live="polite"></span>
+                </div>
+                <aside class="notes">If they put landing before staging, freeze the room and redo MECO. ~8 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <span class="section-badge">Doing</span>
+                <h2 class="animated-gradient"><i class="fas fa-calculator" aria-hidden="true"></i> Cost-per-kg Calculator</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.8em; margin: 0;">Teaching numbers, not a bid. Change vehicle and reuse count; watch dollars per kilogram.</p>
+                <div class="two-col">
+                    <div class="calc-card">
+                        <label for="calc-vehicle">Vehicle (classroom estimates)</label>
+                        <select id="calc-vehicle" aria-label="Choose a vehicle">
+                            <option value="f9e">Falcon 9 expendable — ~$90M, 22.8 t LEO</option>
+                            <option value="f9r" selected>Falcon 9 reused — ~$67M, 17.5 t LEO</option>
+                            <option value="fh">Falcon Heavy reused cores — ~$97M, 57 t LEO</option>
+                            <option value="ss">Starship (target) — ~$10M, 100 t LEO</option>
+                        </select>
+                        <label for="calc-flights" style="margin-top:16px;">Booster flight count (amortise a $30M first stage)</label>
+                        <input type="range" id="calc-flights" min="1" max="20" value="5" aria-valuemin="1" aria-valuemax="20" aria-valuenow="5">
+                        <p class="calc-note" id="calc-flights-label">This booster has flown 5 times in the model.</p>
+                    </div>
+                    <div class="calc-card">
+                        <div class="calc-readout" id="calc-readout" aria-live="polite">$3,829 / kg</div>
+                        <div class="calc-bar" aria-hidden="true"><span id="calc-bar"></span></div>
+                        <p class="calc-note" id="calc-detail"></p>
+                        <p class="calc-note">Lower bar = cheaper access. Starship target is a goal, not a ticket price on sale today.</p>
+                    </div>
+                </div>
+                <aside class="notes">Move the slider live. Contrast expendable vs reused Falcon 9. Flag Starship as aspirational. ~6 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-book-open" aria-hidden="true"></i> Case Study: Flight 20, 21 Dec 2015</h2>
+                <div class="case-meta">
+                    <span class="case-pill">Falcon 9 Flight 20</span>
+                    <span class="case-pill">Orbcomm OG2</span>
+                    <span class="case-pill">LZ-1, Cape Canaveral</span>
+                </div>
+                <div class="two-col">
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="margin-top:0;color:var(--brand-orange);">What happened</h3>
+                        <p>After delivering 11 Orbcomm satellites, the first stage boosted back, re-entered, and landed vertically at Landing Zone 1. It was the first time an orbital-class booster had been recovered that way.</p>
+                    </div>
+                    <div class="glass-card-small fragment fade-up">
+                        <h3 style="margin-top:0;color:var(--brand-teal);">Why IT students care</h3>
+                        <p>The payload was a communications constellation. The landing was the proof that reuse was operational, not a video. Everything after — cadence, Starlink, crew — leans on that proof.</p>
+                    </div>
+                </div>
+                <aside class="notes">Name the date. Contrast with Grasshopper hops that were suborbital. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Common Faults</h2>
+                <table class="fault-table">
+                    <thead>
+                        <tr><th>Symptom</th><th>Likely cause</th><th>Fix / response</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="fault-symptom">Engine-out at liftoff</td><td>Merlin shuts down; Falcon 9 can still reach orbit on the rest</td><td>Abort rules + engine-out capability — not “ignore it”</td></tr>
+                        <tr><td class="fault-symptom">Booster misses the deck</td><td>Grid-fin hydraulics, fuel margin, or sea state</td><td>Expend that booster; investigate telemetry before the next flight</td></tr>
+                        <tr><td class="fault-symptom">Starlink dish shows “searching”</td><td>Obstruction, weather, or no satellite in view yet</td><td>Clear sky, wait for pass, check app diagnostics</td></tr>
+                        <tr><td class="fault-symptom">Static fire scrub</td><td>Sensor limit, leak, or range weather</td><td>Hold, recycle, or roll back — cadence is not recklessness</td></tr>
+                        <tr><td class="fault-symptom">Second stage anomaly</td><td>Upper stage still expendable and single-string in places</td><td>Payload may be lost; first stage can still land</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Engine-out is the “RAID of rocketry” analogy if they did storage decks. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <span class="section-badge">Doing</span>
+                <h2 class="animated-gradient"><i class="fas fa-sort" aria-hidden="true"></i> Flies Again or Thrown Away?</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.8em; margin: 0;">Sort each item. Tap a chip, then tap a bin if you are on a tablet.</p>
+                <div class="dnd-board">
+                    <div class="dnd-pool" id="dnd-pool">
+                        <h4>Hardware pool</h4>
+                        <div id="dnd-chips"></div>
+                        <p id="dnd-score" class="sim-status-line" aria-live="polite">0 / 8 correct</p>
+                        <button type="button" class="dnd-btn secondary" id="dnd-reset">Reset</button>
+                    </div>
+                    <div class="dnd-bins" id="dnd-bins">
+                        <div class="dnd-bin" data-cat="reuse"><h4>Typically reused</h4></div>
+                        <div class="dnd-bin" data-cat="expend"><h4>Typically expended</h4></div>
+                    </div>
+                </div>
+                <aside class="notes">Fairing recovery is the trick question — treat classic Falcon fairings as expended unless they argue well. ~6 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <span class="section-badge">Challenge</span>
+                <h2 class="animated-gradient"><i class="fas fa-stopwatch" aria-hidden="true"></i> 60-Second Sort</h2>
+                <p style="color: rgba(255,255,255,0.65); font-size: 0.8em; margin: 0;">Same bins, timed. Best time is stored in this browser.</p>
+                <div class="dnd-controls">
+                    <span class="timer-display" id="timer-display">60</span>
+                    <button type="button" class="dnd-btn" id="timed-start">Start</button>
+                    <button type="button" class="dnd-btn secondary" id="timed-reset">Reset</button>
+                    <span class="best-time" id="best-time-display"></span>
+                </div>
+                <div class="dnd-board">
+                    <div class="dnd-pool" id="timed-dnd-pool">
+                        <h4>Hardware pool</h4>
+                        <div id="timed-dnd-chips"></div>
+                    </div>
+                    <div class="dnd-bins" id="timed-dnd-bins">
+                        <div class="dnd-bin" data-cat="reuse"><h4>Typically reused</h4></div>
+                        <div class="dnd-bin" data-cat="expend"><h4>Typically expended</h4></div>
+                    </div>
+                </div>
+                <aside class="notes">One volunteer on the board, class coaches. ~5 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Practical Task</h2>
+                <div class="two-col">
+                    <div class="glass-card-small">
+                        <h3 style="margin-top:0;color:var(--brand-teal);">Brief</h3>
+                        <p>Pick one real SpaceX launch from the last 24 months. Write a one-page brief a helpdesk technician could understand.</p>
+                        <ul class="criteria-list">
+                            <li>Name the vehicle, payload, and launch site</li>
+                            <li>State whether the booster landed RTLS, ASDS, or was expended</li>
+                            <li>Explain in four sentences why reuse (or not) mattered for that mission</li>
+                            <li>List one IT or network implication (Starlink, telemetry, or ground software)</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card-small">
+                        <h3 style="margin-top:0;color:var(--brand-orange);">Evidence checklist</h3>
+                        <ul class="evidence-list">
+                            <li>Screenshot of an official mission page or licence notice</li>
+                            <li>Diagram of the stack with five labelled parts</li>
+                            <li>Your calculator readout for a similar vehicle</li>
+                            <li>Glossary terms used correctly (MECO, LEO, ASDS)</li>
+                        </ul>
+                    </div>
+                </div>
+                <aside class="notes">No conspiracy blogs. Official sources only. ~4 min to set, rest as homework.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-language" aria-hidden="true"></i> Jargon Buster</h2>
+                <input type="search" class="glossary-search" id="glossary-search" placeholder="Search terms…" aria-label="Search glossary">
+                <dl class="glossary-list">
+                    <div class="glossary-item" data-terms="spacex musk 2002"><dt>SpaceX</dt><dd>Space Exploration Technologies Corp. Private launch company founded in 2002.</dd></div>
+                    <div class="glossary-item" data-terms="falcon 9 f9 merlin"><dt>Falcon 9</dt><dd>Two-stage orbital rocket with a reusable first stage and nine Merlin engines.</dd></div>
+                    <div class="glossary-item" data-terms="meco main engine cutoff staging"><dt>MECO</dt><dd>Main Engine Cut-Off — first-stage engines shut down before staging.</dd></div>
+                    <div class="glossary-item" data-terms="rtls return launch site"><dt>RTLS</dt><dd>Return To Launch Site — booster flies back to a ground pad.</dd></div>
+                    <div class="glossary-item" data-terms="asds drone ship downrange"><dt>ASDS</dt><dd>Autonomous Spaceport Drone Ship — floating landing pad downrange.</dd></div>
+                    <div class="glossary-item" data-terms="grid fins steering reentry"><dt>Grid fins</dt><dd>Lattice control surfaces that steer the booster during atmospheric descent.</dd></div>
+                    <div class="glossary-item" data-terms="leo low earth orbit starlink"><dt>LEO</dt><dd>Low Earth Orbit — a few hundred kilometres up. Starlink’s neighbourhood.</dd></div>
+                    <div class="glossary-item" data-terms="geo geostationary latency"><dt>GEO</dt><dd>Geostationary orbit ~36,000 km up. Higher latency than LEO broadband.</dd></div>
+                    <div class="glossary-item" data-terms="starlink constellation broadband"><dt>Starlink</dt><dd>SpaceX LEO satellite internet constellation and user terminals.</dd></div>
+                    <div class="glossary-item" data-terms="starship super heavy raptor"><dt>Starship</dt><dd>Fully reusable Super Heavy + ship stack, still in flight test.</dd></div>
+                    <div class="glossary-item" data-terms="raptor methalox"><dt>Raptor</dt><dd>Methane/oxygen engine family used on Starship and Super Heavy.</dd></div>
+                    <div class="glossary-item" data-terms="merlin kerosene rp-1"><dt>Merlin</dt><dd>Kerosene/oxygen engine family used on Falcon 9 and Falcon Heavy.</dd></div>
+                    <div class="glossary-item" data-terms="crew dragon nasa iss"><dt>Crew Dragon</dt><dd>Reusable capsule that carries astronauts, certified for NASA crew.</dd></div>
+                    <div class="glossary-item" data-terms="fairing payload nose"><dt>Fairing</dt><dd>Nose shell that protects the payload on the way up; often expended.</dd></div>
+                    <div class="glossary-item" data-terms="gnc guidance navigation control"><dt>GNC</dt><dd>Guidance, Navigation and Control — the software/hardware that flies the vehicle.</dd></div>
+                    <div class="glossary-item" data-terms="telemetry downlink operations"><dt>Telemetry</dt><dd>Live vehicle data sent to the ground. Operations is an IT job as much as a rocket job.</dd></div>
+                </dl>
+                <aside class="notes">Two-minute search challenge: “find ASDS.” ~4 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-map" aria-hidden="true"></i> Where This Fits</h2>
+                <div class="deck-map">
+                    <a class="deck-link current" href="spacex-ocn-level2-presentation.html"><i class="fas fa-rocket" aria-hidden="true"></i><h4>#147 SpaceX</h4><p>You are here</p></a>
+                    <a class="deck-link" href="terafab-ocn-level2-presentation.html"><i class="fas fa-industry" aria-hidden="true"></i><h4>#145 Terafab</h4><p>Scale manufacturing and chips</p></a>
+                    <a class="deck-link" href="5g-ocn-level2-presentation.html"><i class="fas fa-signal" aria-hidden="true"></i><h4>#117 5G</h4><p>Latency and wireless capacity</p></a>
+                    <a class="deck-link" href="iot-ocn-level2-presentation.html"><i class="fas fa-wifi" aria-hidden="true"></i><h4>#119 IoT</h4><p>Sensors, gateways, networks</p></a>
+                    <a class="deck-link" href="robots-automation-ocn-level2-presentation.html"><i class="fas fa-robot" aria-hidden="true"></i><h4>#128 Robots</h4><p>Automation on the factory floor</p></a>
+                    <a class="deck-link" href="green-it-ocn-level2-presentation.html"><i class="fas fa-leaf" aria-hidden="true"></i><h4>#129 Green IT</h4><p>Energy, waste, lifecycle</p></a>
+                </div>
+                <aside class="notes">Point at Terafab if they already did silicon. ~3 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-circle-question" aria-hidden="true"></i> Knowledge Check</h2>
+                <p style="text-align:center;color:rgba(255,255,255,0.7);">Six questions. One attempt each until you hit Retry.</p>
+                <div class="score-bar-wrap"><div class="score-bar-fill" id="quiz-score-bar"></div></div>
+                <p class="score-label" id="quiz-score-label">Score: 0 / 6</p>
+                <aside class="notes">No calling out answers. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="1">
+                <div class="quiz-container">
+                    <p class="quiz-question">What does landing and reusing a Falcon 9 first stage mainly reduce?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="true"><span>A</span> Cost per kilogram to orbit over many flights</button>
+                        <button type="button" class="quiz-option"><span>B</span> The need for a second stage</button>
+                        <button type="button" class="quiz-option"><span>C</span> Gravity on the launch pad</button>
+                        <button type="button" class="quiz-option"><span>D</span> The speed of light to the ISS</button>
+                    </div>
+                </div>
+                <aside class="notes">A. Reuse amortises the booster. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="2">
+                <div class="quiz-container">
+                    <p class="quiz-question">When did a Falcon 9 first stage first land after an orbital mission?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option"><span>A</span> 2002</button>
+                        <button type="button" class="quiz-option"><span>B</span> 2008</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>C</span> 2015</button>
+                        <button type="button" class="quiz-option"><span>D</span> 2020</button>
+                    </div>
+                </div>
+                <aside class="notes">C. Flight 20, 21 December 2015. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="3">
+                <div class="quiz-container">
+                    <p class="quiz-question">What is Starlink?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option"><span>A</span> A geostationary TV satellite the size of a bus</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>B</span> A LEO broadband constellation and user terminals</button>
+                        <button type="button" class="quiz-option"><span>C</span> The name of Falcon 9’s second stage</button>
+                        <button type="button" class="quiz-option"><span>D</span> NASA’s ISS Wi-Fi password</button>
+                    </div>
+                </div>
+                <aside class="notes">B. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="4">
+                <div class="quiz-container">
+                    <p class="quiz-question">What are grid fins for on a Falcon 9 booster?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option"><span>A</span> Generating Starlink internet in flight</button>
+                        <button type="button" class="quiz-option"><span>B</span> Holding the payload fairing closed</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>C</span> Steering the first stage during descent</button>
+                        <button type="button" class="quiz-option"><span>D</span> Cooling the Merlin turbopumps on the pad</button>
+                    </div>
+                </div>
+                <aside class="notes">C. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="5">
+                <div class="quiz-container">
+                    <p class="quiz-question">How does Crew Dragon differ from Cargo Dragon?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option" data-correct="true"><span>A</span> Crew is people-rated with life support; Cargo flies supplies</button>
+                        <button type="button" class="quiz-option"><span>B</span> Cargo uses Merlin engines; Crew uses Raptors</button>
+                        <button type="button" class="quiz-option"><span>C</span> Only Cargo can land on a drone ship</button>
+                        <button type="button" class="quiz-option"><span>D</span> Crew is expendable; Cargo is fully reusable</button>
+                    </div>
+                </div>
+                <aside class="notes">A. ~1 min.</aside>
+            </section>
+
+            <section data-quiz="6">
+                <div class="quiz-container">
+                    <p class="quiz-question">When does Falcon 9 typically land on a drone ship instead of back at the Cape?</p>
+                    <div class="quiz-options">
+                        <button type="button" class="quiz-option"><span>A</span> Only when the weather at LZ-1 is sunny</button>
+                        <button type="button" class="quiz-option" data-correct="true"><span>B</span> When the mission leaves too little energy for an RTLS boostback</button>
+                        <button type="button" class="quiz-option"><span>C</span> When Starlink satellites refuse GEO slots</button>
+                        <button type="button" class="quiz-option"><span>D</span> When the second stage needs a runway</button>
+                    </div>
+                </div>
+                <aside class="notes">B. Downrange / high-energy missions. ~1 min.</aside>
+            </section>
+
+            <section id="slide-quiz-results">
+                <div class="results-card glass-card">
+                    <p class="results-grade" id="results-grade">—</p>
+                    <p id="results-message">Complete the quiz to see your score</p>
+                    <div class="score-bar-wrap"><div class="score-bar-fill" id="results-score-bar"></div></div>
+                    <p class="score-label" id="results-score-label">0 / 6</p>
+                    <button type="button" class="dnd-btn" id="quiz-retry">Retry quiz</button>
+                </div>
+                <aside class="notes">Read the grade aloud. Retry if the room is below B. ~2 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-key" aria-hidden="true"></i> Key Takeaways</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange"><i class="fas fa-recycle" aria-hidden="true"></i><h3>Reuse</h3><p>Landing the first stage turns a disposable booster into a fleet asset.</p></div>
+                    <div class="feature-card purple"><i class="fas fa-diagram-project" aria-hidden="true"></i><h3>Stack</h3><p>Fairing, second stage, first stage, grid fins, Merlins — know which piece flies home.</p></div>
+                    <div class="feature-card teal"><i class="fas fa-satellite" aria-hidden="true"></i><h3>Starlink</h3><p>Cheap-enough launch cadence is what makes a LEO internet mesh possible.</p></div>
+                    <div class="feature-card orange"><i class="fas fa-laptop-code" aria-hidden="true"></i><h3>IT still applies</h3><p>GNC, telemetry, RF, and operations are software jobs wearing flight suits.</p></div>
+                </div>
+                <aside class="notes">Four pillars, then careers. ~3 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-briefcase" aria-hidden="true"></i> Pathways This Touches</h2>
+                <div class="career-path">
+                    <div class="career-step"><i class="fas fa-satellite-dish" aria-hidden="true"></i><h4>Satcom / RF tech</h4><p>Dishes, gateways, spectrum, user terminals</p></div>
+                    <div class="career-step"><i class="fas fa-code" aria-hidden="true"></i><h4>GNC / ops software</h4><p>Telemetry, automation, flight software tests</p></div>
+                    <div class="career-step"><i class="fas fa-industry" aria-hidden="true"></i><h4>Build &amp; test tech</h4><p>Harnesses, sensors, factory data — same as Terafab</p></div>
+                </div>
+                <div class="stats-bar" style="margin-top:28px;">
+                    <div class="stat-item"><span class="stat-number">Cadence</span><span class="stat-label">Operations at airline tempo, not one-off science</span></div>
+                    <div class="stat-item"><span class="stat-number">Networks</span><span class="stat-label">Constellations are distributed systems</span></div>
+                    <div class="stat-item"><span class="stat-number">NI angle</span><span class="stat-label">Same skills as 5G, IoT and cloud ops</span></div>
+                </div>
+                <aside class="notes">Do not promise Hawthorne jobs. Sell transferable technician habits. ~3 min.</aside>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="animated-gradient"><i class="fas fa-forward" aria-hidden="true"></i> Next Steps</h2>
+                <div class="feature-grid">
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-file-lines" aria-hidden="true"></i><h3>Hand in the brief</h3><p>One real launch, four criteria, labelled stack, calculator screenshot.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-industry" aria-hidden="true"></i><h3>Then Terafab</h3><p>How you manufacture at scale when the product is chips, not boosters.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-signal" aria-hidden="true"></i><h3>Then 5G</h3><p>Latency and capacity on the ground — compare with LEO paths.</p></div>
+                </div>
+                <aside class="notes">Homework is the practical if you did not start it live. ~2 min.</aside>
+            </section>
+
+            <section data-background-color="#0a0a1a" data-canvas-bg="true">
+                <div class="title-slide">
+                    <h1 class="animated-gradient">Land it. Fly it again.</h1>
+                    <p class="subtitle">SpaceX’s classroom idea is simple: the expensive hardware should not be scrap after eight minutes</p>
+                    <span class="qualification">Questions · then pick your launch for the brief</span>
+                </div>
+                <aside class="notes">Take three questions. Collect launch choices. ~2 min.</aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            slideNumber: true,
+            showNotes: false,
+            transition: 'fade'
+        });
+
+        const AppState = {
+            jointMode: 'explore',
+            selectedChip: null,
+            selectedSeqChip: null,
+            seqInitialized: false,
+            dndInitialized: false,
+            timedInitialized: false,
+            quizScore: 0,
+            quizAnswered: {},
+            quizBound: false,
+            timerSeconds: 60,
+            timerInterval: null
+        };
+
+        const SITE_INFO = {
+            fairing: {
+                title: '1. Payload fairing',
+                desc: 'The nose shell that protects satellites or Dragon on the way through atmosphere. It splits and falls away. Classic fairings were expended; some later missions tried to catch them.'
+            },
+            second: {
+                title: '2. Second stage',
+                desc: 'One Merlin vacuum engine. This is what finishes the job to orbit after staging. On Falcon 9 it is almost always expended — it does not land.'
+            },
+            fins: {
+                title: '3. Grid fins',
+                desc: 'Titanium lattice “wings” that unfold after the booster turns around. They steer the empty first stage through the atmosphere so it can hit a pad or a ship, not the ocean at random.'
+            },
+            first: {
+                title: '4. First stage (booster)',
+                desc: 'Nine Merlin engines, tanks, landing legs. This is the expensive flying machine SpaceX wants back. After MECO it boosts back or continues downrange, then lands.'
+            },
+            engines: {
+                title: '5. Merlin cluster',
+                desc: 'Nine RP-1 / liquid-oxygen engines. Engine-out capability means one can fail and the rest may still make orbit. The landing burn uses a subset of these engines.'
+            }
+        };
+
+        const SEQ_STEPS = [
+            { id: '1', text: 'Stack, fuel, static fire, go/no-go' },
+            { id: '2', text: 'Liftoff on nine Merlins' },
+            { id: '3', text: 'MECO, staging, second stage to orbit' },
+            { id: '4', text: 'Boostback / entry burn' },
+            { id: '5', text: 'Landing burn on pad or drone ship' },
+            { id: '6', text: 'Recovery, inspect, refly' }
+        ];
+
+        const DND_ITEMS = [
+            { name: 'Falcon 9 first stage', cat: 'reuse' },
+            { name: 'Grid fins', cat: 'reuse' },
+            { name: 'Landing legs', cat: 'reuse' },
+            { name: 'Crew Dragon capsule', cat: 'reuse' },
+            { name: 'Falcon 9 second stage', cat: 'expend' },
+            { name: 'Classic payload fairing', cat: 'expend' },
+            { name: 'Starlink satellite (on station)', cat: 'expend' },
+            { name: 'Falcon 1 (historical)', cat: 'expend' }
+        ];
+
+        const VEHICLES = {
+            f9e: { cost: 90, payload: 22.8, label: 'Falcon 9 expendable' },
+            f9r: { cost: 67, payload: 17.5, label: 'Falcon 9 reused' },
+            fh: { cost: 97, payload: 57, label: 'Falcon Heavy reused' },
+            ss: { cost: 10, payload: 100, label: 'Starship (target)' }
+        };
+
+        function shuffle(list) {
+            return [...list].sort(() => Math.random() - 0.5);
+        }
+
+        function initFlipCards() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                if (card.dataset.bound) return;
+                card.dataset.bound = 'true';
+                const toggle = () => card.classList.toggle('flipped');
+                card.addEventListener('click', toggle);
+                card.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+                });
+            });
+        }
+
+        function initSiteHotspots() {
+            const panel = document.getElementById('site-info-panel');
+            if (!panel || panel.dataset.bound) return;
+            panel.dataset.bound = 'true';
+
+            document.querySelectorAll('.mb-mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.mb-mode-btn').forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-pressed', 'true');
+                    AppState.jointMode = btn.dataset.mode;
+                    if (AppState.jointMode === 'quiz') {
+                        panel.innerHTML = '<h4>Label quiz</h4><p>Click a hotspot, then name it before the answer appears.</p><p class="hint">Work through all five callouts.</p>';
+                    } else {
+                        panel.innerHTML = '<h4>Click a numbered hotspot</h4><p>Five callouts on a Falcon 9 teaching stack.</p><p class="hint">Start at 1 — the fairing — then work down.</p>';
+                    }
+                    document.querySelectorAll('.photo-hotspot').forEach(h => h.classList.remove('active'));
+                });
+            });
+
+            document.querySelectorAll('.photo-hotspot').forEach(hotspot => {
+                const show = () => {
+                    document.querySelectorAll('.photo-hotspot').forEach(h => h.classList.remove('active'));
+                    hotspot.classList.add('active');
+                    const info = SITE_INFO[hotspot.dataset.id];
+                    if (!info) return;
+                    if (AppState.jointMode === 'quiz') {
+                        panel.innerHTML = '<h4>?</h4><p style="font-style:italic;color:rgba(255,255,255,0.5);">What is this part of the stack?</p>';
+                        setTimeout(() => {
+                            panel.innerHTML = '<h4>' + info.title + '</h4><p>' + info.desc + '</p>';
+                        }, 1500);
+                    } else {
+                        panel.innerHTML = '<h4>' + info.title + '</h4><p>' + info.desc + '</p>';
+                    }
+                };
+                hotspot.addEventListener('click', show);
+                hotspot.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); }
+                });
+            });
+        }
+
+        function initSequence() {
+            const pool = document.getElementById('seq-chips');
+            const slotsWrap = document.getElementById('seq-slots');
+            if (!pool || !slotsWrap || AppState.seqInitialized) return;
+            AppState.seqInitialized = true;
+
+            function renderSlots() {
+                slotsWrap.innerHTML = '';
+                for (let i = 1; i <= 6; i++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'seq-slot';
+                    slot.dataset.order = String(i);
+                    slot.innerHTML = '<span class="slot-num">' + i + '</span>';
+                    slotsWrap.appendChild(slot);
+                }
+            }
+
+            function renderChips() {
+                pool.innerHTML = '';
+                shuffle(SEQ_STEPS).forEach(step => {
+                    const chip = document.createElement('span');
+                    chip.className = 'dnd-chip';
+                    chip.textContent = step.text;
+                    chip.dataset.id = step.id;
+                    chip.draggable = true;
+                    chip.tabIndex = 0;
+                    chip.setAttribute('role', 'button');
+                    chip.setAttribute('aria-label', 'Mission step: ' + step.text);
+                    pool.appendChild(chip);
+                });
+            }
+
+            function clearSlotStyles() {
+                slotsWrap.querySelectorAll('.seq-slot').forEach(s => {
+                    s.classList.remove('correct', 'wrong', 'filled', 'drag-over');
+                });
+            }
+
+            function placeChip(slot, chip) {
+                if (!chip || chip.classList.contains('placed')) return;
+                const existing = slot.querySelector('.dnd-chip');
+                if (existing) {
+                    existing.classList.remove('placed', 'selected');
+                    existing.draggable = true;
+                    pool.appendChild(existing);
+                }
+                chip.classList.add('placed');
+                chip.classList.remove('selected');
+                slot.appendChild(chip);
+                slot.classList.add('filled');
+                AppState.selectedSeqChip = null;
+            }
+
+            pool.addEventListener('dragstart', e => {
+                const chip = e.target.closest('.dnd-chip');
+                if (!chip) return;
+                e.dataTransfer.setData('text/plain', chip.dataset.id);
+                AppState.selectedSeqChip = chip;
+            });
+
+            slotsWrap.addEventListener('dragover', e => {
+                e.preventDefault();
+                const slot = e.target.closest('.seq-slot');
+                if (slot) slot.classList.add('drag-over');
+            });
+            slotsWrap.addEventListener('dragleave', e => {
+                const slot = e.target.closest('.seq-slot');
+                if (slot) slot.classList.remove('drag-over');
+            });
+            slotsWrap.addEventListener('drop', e => {
+                e.preventDefault();
+                const slot = e.target.closest('.seq-slot');
+                if (!slot) return;
+                slot.classList.remove('drag-over');
+                placeChip(slot, AppState.selectedSeqChip);
+            });
+
+            document.addEventListener('click', e => {
+                const chip = e.target.closest('#seq-chips .dnd-chip, #seq-slots .dnd-chip');
+                if (chip && !chip.classList.contains('placed')) {
+                    document.querySelectorAll('#seq-chips .dnd-chip, #seq-slots .dnd-chip').forEach(c => c.classList.remove('selected'));
+                    chip.classList.add('selected');
+                    AppState.selectedSeqChip = chip;
+                    return;
+                }
+                const slot = e.target.closest('#seq-slots .seq-slot');
+                if (slot && AppState.selectedSeqChip) placeChip(slot, AppState.selectedSeqChip);
+            });
+
+            renderSlots();
+            renderChips();
+
+            const checkBtn = document.getElementById('seq-check');
+            const resetBtn = document.getElementById('seq-reset');
+            const status = document.getElementById('seq-status');
+            if (checkBtn && !checkBtn.dataset.bound) {
+                checkBtn.dataset.bound = 'true';
+                checkBtn.addEventListener('click', () => {
+                    let filled = 0;
+                    let firstWrong = null;
+                    slotsWrap.querySelectorAll('.seq-slot').forEach(slot => {
+                        const chip = slot.querySelector('.dnd-chip');
+                        slot.classList.remove('correct', 'wrong');
+                        if (!chip) return;
+                        filled++;
+                        if (chip.dataset.id === slot.dataset.order) {
+                            slot.classList.add('correct');
+                        } else {
+                            slot.classList.add('wrong');
+                            if (firstWrong === null) firstWrong = slot.dataset.order;
+                        }
+                    });
+                    if (filled < 6) {
+                        status.textContent = 'Place a step in every slot first.';
+                    } else if (firstWrong === null) {
+                        status.textContent = 'Correct — that is the recovery loop. Say MECO before landing, every time.';
+                    } else {
+                        status.textContent = 'First mistake is step ' + firstWrong + '. Fix from there — later burns depend on it.';
+                    }
+                });
+            }
+            if (resetBtn && !resetBtn.dataset.bound) {
+                resetBtn.dataset.bound = 'true';
+                resetBtn.addEventListener('click', () => {
+                    AppState.selectedSeqChip = null;
+                    status.textContent = '';
+                    renderSlots();
+                    renderChips();
+                    clearSlotStyles();
+                });
+            }
+        }
+
+        function createChips(container, items) {
+            container.innerHTML = '';
+            shuffle(items).forEach(item => {
+                const chip = document.createElement('span');
+                chip.className = 'dnd-chip';
+                chip.textContent = item.name;
+                chip.dataset.cat = item.cat;
+                chip.draggable = true;
+                chip.tabIndex = 0;
+                chip.setAttribute('role', 'button');
+                chip.setAttribute('aria-label', item.name);
+                container.appendChild(chip);
+            });
+        }
+
+        function initDnD(poolId, binsId, chipsId, scoreId) {
+            const pool = document.getElementById(poolId);
+            const binsContainer = document.getElementById(binsId);
+            const chipsContainer = document.getElementById(chipsId);
+            if (!pool || !binsContainer || !chipsContainer) return null;
+
+            createChips(chipsContainer, DND_ITEMS);
+            binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
+                bin.querySelectorAll('.dnd-chip').forEach(c => c.remove());
+            });
+
+            let correctCount = 0;
+            let draggedChip = null;
+
+            function updateScore() {
+                if (scoreId) {
+                    const el = document.getElementById(scoreId);
+                    if (el) el.textContent = correctCount + ' / ' + DND_ITEMS.length + ' correct';
+                }
+            }
+
+            function handleDrop(bin, chip) {
+                const chipCat = chip.dataset.cat;
+                const binCat = bin.dataset.cat;
+                if (chipCat === binCat) {
+                    chip.classList.add('correct', 'placed');
+                    chip.classList.remove('incorrect', 'selected');
+                    chip.draggable = false;
+                    bin.appendChild(chip);
+                    correctCount++;
+                    updateScore();
+                    if (correctCount === DND_ITEMS.length && poolId === 'timed-dnd-pool') {
+                        stopTimer(true);
+                    }
+                } else {
+                    chip.classList.add('incorrect');
+                    setTimeout(() => chip.classList.remove('incorrect'), 600);
+                }
+                AppState.selectedChip = null;
+            }
+
+            function reset() {
+                correctCount = 0;
+                draggedChip = null;
+                AppState.selectedChip = null;
+                binsContainer.querySelectorAll('.dnd-chip').forEach(c => c.remove());
+                createChips(chipsContainer, DND_ITEMS);
+                updateScore();
+            }
+
+            chipsContainer.addEventListener('dragstart', e => {
+                const chip = e.target.closest('.dnd-chip');
+                if (!chip || chip.classList.contains('placed')) return;
+                draggedChip = chip;
+                e.dataTransfer.setData('text/plain', chip.dataset.cat);
+            });
+
+            binsContainer.querySelectorAll('.dnd-bin').forEach(bin => {
+                bin.addEventListener('dragover', e => { e.preventDefault(); bin.classList.add('drag-over'); });
+                bin.addEventListener('dragleave', () => bin.classList.remove('drag-over'));
+                bin.addEventListener('drop', e => {
+                    e.preventDefault();
+                    bin.classList.remove('drag-over');
+                    if (draggedChip) handleDrop(bin, draggedChip);
+                });
+                bin.addEventListener('click', () => {
+                    if (AppState.selectedChip) handleDrop(bin, AppState.selectedChip);
+                });
+            });
+
+            pool.addEventListener('click', e => {
+                const chip = e.target.closest('.dnd-chip');
+                if (!chip || chip.classList.contains('placed')) return;
+                document.querySelectorAll('#' + chipsId + ' .dnd-chip').forEach(c => c.classList.remove('selected'));
+                chip.classList.add('selected');
+                AppState.selectedChip = chip;
+            });
+
+            updateScore();
+            return { reset };
+        }
+
+        let dndGame = null;
+        let timedGame = null;
+
+        function initDnDGames() {
+            if (!AppState.dndInitialized) {
+                dndGame = initDnD('dnd-pool', 'dnd-bins', 'dnd-chips', 'dnd-score');
+                const resetBtn = document.getElementById('dnd-reset');
+                if (resetBtn && !resetBtn.dataset.bound) {
+                    resetBtn.dataset.bound = 'true';
+                    resetBtn.addEventListener('click', () => { if (dndGame) dndGame.reset(); });
+                }
+                AppState.dndInitialized = true;
+            }
+            if (!AppState.timedInitialized) {
+                timedGame = initDnD('timed-dnd-pool', 'timed-dnd-bins', 'timed-dnd-chips', null);
+                const startBtn = document.getElementById('timed-start');
+                const resetBtn = document.getElementById('timed-reset');
+                if (startBtn && !startBtn.dataset.bound) {
+                    startBtn.dataset.bound = 'true';
+                    startBtn.addEventListener('click', startTimer);
+                }
+                if (resetBtn && !resetBtn.dataset.bound) {
+                    resetBtn.dataset.bound = 'true';
+                    resetBtn.addEventListener('click', () => {
+                        stopTimer(false);
+                        if (timedGame) timedGame.reset();
+                        const display = document.getElementById('timer-display');
+                        display.textContent = '60';
+                        display.classList.remove('warning');
+                    });
+                }
+                const bestEl = document.getElementById('best-time-display');
+                const best = localStorage.getItem('spacex-sort-best-time');
+                if (best && bestEl) bestEl.textContent = 'Best time: ' + best + 's';
+                AppState.timedInitialized = true;
+            }
+        }
+
+        function startTimer() {
+            stopTimer(false);
+            if (timedGame) timedGame.reset();
+            AppState.timerSeconds = 60;
+            const display = document.getElementById('timer-display');
+            display.textContent = '60';
+            display.classList.remove('warning');
+            AppState.timerInterval = setInterval(() => {
+                AppState.timerSeconds--;
+                display.textContent = AppState.timerSeconds;
+                if (AppState.timerSeconds <= 10) display.classList.add('warning');
+                if (AppState.timerSeconds <= 0) stopTimer(false);
+            }, 1000);
+        }
+
+        function stopTimer(success) {
+            if (AppState.timerInterval) {
+                clearInterval(AppState.timerInterval);
+                AppState.timerInterval = null;
+            }
+            if (success) {
+                const elapsed = 60 - AppState.timerSeconds;
+                const bestEl = document.getElementById('best-time-display');
+                const prev = parseInt(localStorage.getItem('spacex-sort-best-time') || '999', 10);
+                if (elapsed < prev) {
+                    localStorage.setItem('spacex-sort-best-time', String(elapsed));
+                    if (bestEl) bestEl.textContent = 'New best time: ' + elapsed + 's!';
+                }
+            }
+        }
+
+        function initCostCalc() {
+            const vehicle = document.getElementById('calc-vehicle');
+            const flights = document.getElementById('calc-flights');
+            if (!vehicle || vehicle.dataset.bound) return;
+            vehicle.dataset.bound = 'true';
+
+            function paint() {
+                const v = VEHICLES[vehicle.value] || VEHICLES.f9r;
+                const n = parseInt(flights.value, 10);
+                flights.setAttribute('aria-valuenow', String(n));
+                document.getElementById('calc-flights-label').textContent =
+                    'This booster has flown ' + n + ' time' + (n === 1 ? '' : 's') + ' in the model.';
+                const stageShare = 30 / n;
+                const modelled = v.cost + (vehicle.value === 'ss' ? 0 : 0);
+                const kg = v.payload * 1000;
+                const perKg = Math.round((modelled * 1e6) / kg);
+                const amortNote = vehicle.value === 'f9e'
+                    ? 'Expendable: you pay a new first stage every time.'
+                    : 'Illustrative first-stage share if $30M is spread over ' + n + ' flights: ~$' + stageShare.toFixed(1) + 'M per flight.';
+                document.getElementById('calc-readout').textContent = '$' + perKg.toLocaleString() + ' / kg';
+                document.getElementById('calc-detail').textContent =
+                    v.label + ' teaching price $' + modelled + 'M ÷ ' + v.payload + ' t. ' + amortNote;
+                const max = 5000;
+                const pct = Math.max(4, Math.min(100, (perKg / max) * 100));
+                document.getElementById('calc-bar').style.width = pct + '%';
+            }
+
+            vehicle.addEventListener('change', paint);
+            flights.addEventListener('input', paint);
+            paint();
+        }
+
+        function initGlossary() {
+            const search = document.getElementById('glossary-search');
+            if (!search || search.dataset.bound) return;
+            search.dataset.bound = 'true';
+            search.addEventListener('input', () => {
+                const q = search.value.toLowerCase();
+                document.querySelectorAll('.glossary-item').forEach(item => {
+                    const terms = (item.dataset.terms || '') + ' ' + item.textContent.toLowerCase();
+                    item.classList.toggle('hidden', q.length > 0 && !terms.includes(q));
+                });
+            });
+        }
+
+        function updateQuizUI() {
+            const pct = (AppState.quizScore / 6) * 100;
+            ['quiz-score-bar', 'results-score-bar'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = pct + '%';
+            });
+            const label = document.getElementById('quiz-score-label');
+            if (label) label.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+            const progress = document.getElementById('quiz-progress');
+            if (progress) {
+                progress.textContent = 'Score: ' + AppState.quizScore + ' / 6';
+                progress.classList.toggle('visible', AppState.quizScore > 0 || Object.keys(AppState.quizAnswered).length > 0);
+            }
+        }
+
+        function showResults() {
+            const grade = document.getElementById('results-grade');
+            const msg = document.getElementById('results-message');
+            const label = document.getElementById('results-score-label');
+            if (!grade) return;
+            const s = AppState.quizScore;
+            const attempted = Object.keys(AppState.quizAnswered).length;
+            if (attempted === 0) {
+                grade.textContent = '—';
+                msg.textContent = 'Complete the quiz to see your score';
+                label.textContent = '0 / 6';
+                updateQuizUI();
+                return;
+            }
+            label.textContent = s + ' / 6';
+            if (s === 6) { grade.textContent = 'A+'; msg.textContent = 'Outstanding — you can brief a launch without mixing up the stages.'; }
+            else if (s >= 5) { grade.textContent = 'A'; msg.textContent = 'Excellent. Recap RTLS vs ASDS, then lock the practical brief.'; }
+            else if (s >= 4) { grade.textContent = 'B'; msg.textContent = 'Solid. Revisit MECO and which hardware actually flies again.'; }
+            else if (s >= 2) { grade.textContent = 'C'; msg.textContent = 'Keep going — flip the four names and retry the sort.'; }
+            else { grade.textContent = 'D'; msg.textContent = 'Walk the stack hotspots together before you pick a launch.'; }
+            updateQuizUI();
+        }
+
+        function initQuiz() {
+            if (AppState.quizBound) return;
+            AppState.quizBound = true;
+
+            const activate = option => {
+                const section = option.closest('section[data-quiz]');
+                if (!section) return;
+                const qNum = section.dataset.quiz;
+                if (AppState.quizAnswered[qNum]) return;
+
+                const container = option.closest('.quiz-options');
+                const isCorrect = option.dataset.correct === 'true';
+                option.classList.add(isCorrect ? 'correct' : 'incorrect');
+                container.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') opt.classList.add('correct');
+                });
+
+                AppState.quizAnswered[qNum] = true;
+                if (isCorrect) AppState.quizScore++;
+                updateQuizUI();
+            };
+
+            document.addEventListener('click', e => {
+                const option = e.target.closest('.quiz-option');
+                if (option) activate(option);
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                const option = e.target.closest && e.target.closest('.quiz-option');
+                if (!option) return;
+                e.preventDefault();
+                activate(option);
+            });
+
+            const retryBtn = document.getElementById('quiz-retry');
+            if (retryBtn && !retryBtn.dataset.bound) {
+                retryBtn.dataset.bound = 'true';
+                retryBtn.addEventListener('click', () => {
+                    AppState.quizScore = 0;
+                    AppState.quizAnswered = {};
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                        opt.style.pointerEvents = '';
+                    });
+                    updateQuizUI();
+                    const firstQuiz = document.querySelector('section[data-quiz="1"]');
+                    if (firstQuiz) Reveal.slide(Reveal.getIndices(firstQuiz).h);
+                    showResults();
+                });
+            }
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('circuit-canvas');
+            if (!canvas || canvas.dataset.bound) return;
+            canvas.dataset.bound = 'true';
+            const ctx = canvas.getContext('2d');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1
+                });
+            }
+
+            function draw() {
+                const slide = Reveal.getCurrentSlide();
+                const showCanvas = slide && slide.hasAttribute('data-canvas-bg');
+                canvas.style.opacity = showCanvas ? '0.4' : '0';
+
+                if (!showCanvas || reducedMotion) return requestAnimationFrame(draw);
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, i) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 189, 165, 0.5)';
+                    ctx.fill();
+
+                    particles.forEach((p2, j) => {
+                        if (j <= i) return;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = 'rgba(0, 189, 165, ' + (0.15 * (1 - dist / 120)) + ')';
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function bootWidgets() {
+            initFlipCards();
+            initSiteHotspots();
+            initSequence();
+            initDnDGames();
+            initCostCalc();
+            initGlossary();
+        }
+
+        Reveal.on('slidechanged', event => {
+            bootWidgets();
+            const slide = event.currentSlide;
+            if (slide && slide.id === 'slide-quiz-results') showResults();
+        });
+
+        Reveal.on('ready', () => {
+            bootWidgets();
+            initQuiz();
+            initCanvas();
+            updateQuizUI();
+        });
+    </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+</body>
+</html>
