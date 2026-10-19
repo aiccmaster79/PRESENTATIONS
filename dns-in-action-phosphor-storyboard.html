@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phosphor Terminal storyboard — DNS in Action</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=VT323&display=block">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #141311;
+    color: #e7e1d4;
+    font-family: "Space Mono", ui-monospace, monospace;
+    line-height: 1.45;
+  }
+  .banner, .assumptions { max-width: 1100px; margin: 0 auto; padding: 28px 22px 8px; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: 0; margin: 0 0 8px; }
+  .banner p, .assumptions p, .assumptions li { font-size: 14px; color: #c9c2b4; }
+  .wait {
+    border: 1px solid #3d4a38;
+    background: #1c241c;
+    color: #d5f5c8;
+    padding: 12px 14px;
+    margin: 14px 0;
+  }
+  #status { font-size: 13px; color: #9aa892; min-height: 1.2em; }
+  #grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 22px 40px;
+  }
+  figure { margin: 0; }
+  canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000;
+    border-radius: 6px;
+  }
+  figcaption h2 { font-size: 18px; margin: 12px 0 4px; color: #f3efe4; }
+  .time { font-size: 15px; color: #b6f7a4; margin: 0 0 8px; }
+  figcaption p { margin: 0 0 8px; font-size: 14px; color: #d9d3c6; }
+  figcaption strong { color: #f3efe4; font-weight: 700; }
+  .spoken { color: #f0e2b8; }
+  .assumptions { padding-bottom: 64px; }
+  .assumptions h2 { font-size: 18px; margin: 28px 0 8px; }
+  pre {
+    white-space: pre-wrap;
+    background: #0e0e0c;
+    border: 1px solid #2c2a26;
+    padding: 14px;
+    font-family: "Space Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: #d5d0c4;
+  }
+  html.shot body { margin: 0; background: #000; }
+  html.shot .banner, html.shot figcaption, html.shot .assumptions, html.shot #status { display: none !important; }
+  html.shot #grid { display: block; max-width: none; padding: 0; margin: 0; }
+  html.shot canvas { width: 1280px; height: 720px; border-radius: 0; }
+</style>
+</head>
+<body>
+  <header class="banner">
+    <h1>Phosphor Terminal — DNS in Action</h1>
+    <p>Storyboard for approval. Nine still frames, drawn with the same tube, phosphor and glass as the reference. No motion and no sound yet.</p>
+    <p>Base deck: <a href="dns-in-action-ocn-level2-presentation.html">DNS in Action</a>, OCN NI Level 2, intro to networking. A typed name, a resolver, a walk down the hierarchy, a number, then the lab test that splits a dead name from a dead link. That session already lives on a terminal.</p>
+    <div class="wait">Waiting for your OK before the timed animation is built. No voiceover file or SRT was attached, so the times below are a proposed read. A real take replaces the BEATS table only.</div>
+    <p id="status">Loading the terminal fonts…</p>
+  </header>
+  <div id="grid"></div>
+  <section class="assumptions">
+    <h2>Facts and numbers this storyboard assumes</h2>
+    <ul>
+      <li>No SRT and no audio file were attached. The words and the times are a proposed voiceover at a teaching pace, with a pause of about half a second wherever the tube rolls to a new screen. Planned length is 61.50 seconds: the last word ends near 60.50, then one second on the takeaway.</li>
+      <li>The spoken script is condensed from the DNS in Action deck. It keeps the deck’s path (client, resolver, root, top-level domain, authoritative server), the deck’s tools (nslookup, ping by name, ping by IP, ping 8.8.8.8) and the deck’s lab warning. DHCP option 006, the hosts file, <span>ipconfig /flushdns</span>, and the career slides are in the deck and are left out of this cut.</li>
+      <li><strong>www.example.com</strong> is the deck’s example name. A live lookup on 19 Oct 2026 returned two A records, <strong>172.66.147.243</strong> and <strong>104.20.23.154</strong>, and two AAAA records, 2606:4700:10::6814:179a and 2606:4700:10::ac42:93f3. The apex A records had a TTL of 26 seconds; www.example.com’s A records had a TTL of 300 seconds. Nameservers were hera.ns.cloudflare.com and elliott.ns.cloudflare.com. There was no CNAME on www. These are Cloudflare anycast addresses and can change at any time. The glass shows the two IPv4 answers only. IPv6 is left off because the line does not say it. Re-check both A records on the day the animation is rendered.</li>
+      <li>Ping from this network to both A records, and to the name example.com, returned replies with no loss. The FAIL frame is the deck’s supervised lab test with a bad resolver. It is not a claim that www.example.com is down.</li>
+      <li>8.8.8.8 is the public address the deck uses to show that IP connectivity and name resolution are different tests. On screen, “LINK UP” means that ping still gets an answer, which is the deck’s demonstration.</li>
+      <li>An A record is an IPv4 address and an AAAA record is an IPv6 address, as the deck’s lookup-path slide states. This cut speaks only the A record.</li>
+      <li>The bezel silk-screen reads NX-80 DNS TERMINAL. The reference machine said NEURAL TERMINAL; that name belongs to the other film. The phosphor pipeline, scanlines, barrel distortion, bloom, hum bar and glass are unchanged. The tiny silk-screen on the plastic (15px and 11px Space Mono) is part of that copied bezel. Story labels inside the tube are 28px or larger, headlines 44px or larger, and the key numbers 64px or larger.</li>
+      <li>Keyframes show the cursor lit. In the film it blinks. Each still is the finished hold at the end of its beat, so a label that arrives mid-sentence is already on the glass.</li>
+    </ul>
+    <h2>Proposed voiceover</h2>
+    <pre id="script"></pre>
+    <h2>Word times</h2>
+    <pre id="words"></pre>
+  </section>
+<script>
+// H helper library, unchanged from the style harness.
+(function () {
+  const STYLES = (window.STYLES = window.STYLES || []);
+  window.registerStyle = (s) => STYLES.push(s);
+  const H = (window.H = {});
+  H.rng = function (seed = 1) {
+    let a = typeof seed === 'string' ? hashStr(seed) : (seed >>> 0) || 1;
+    const r = function () {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    r.range = (lo, hi) => lo + r() * (hi - lo);
+    r.int = (lo, hi) => Math.floor(lo + r() * (hi - lo + 1));
+    r.pick = (arr) => arr[Math.floor(r() * arr.length)];
+    r.chance = (p) => r() < p;
+    r.gauss = () => { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+    return r;
+  };
+  function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  H.makeNoise = function (seed = 1) {
+    const r = H.rng(seed), p = new Uint8Array(512), perm = [...Array(256).keys()];
+    for (let i = 255; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+    for (let i = 0; i < 512; i++) p[i] = perm[i & 255];
+    const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10);
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const g3 = (h, x, y, z) => { h &= 15; const u = h < 8 ? x : y, v = h < 4 ? y : h === 12 || h === 14 ? x : z; return ((h & 1) ? -u : u) + ((h & 2) ? -v : v); };
+    function n3(x, y, z) {
+      const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+      x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+      const u = fade(x), v = fade(y), w = fade(z);
+      const A = p[X] + Y, AA = p[A] + Z, AB = p[A + 1] + Z, B = p[X + 1] + Y, BA = p[B] + Z, BB = p[B + 1] + Z;
+      return lerp(lerp(lerp(g3(p[AA], x, y, z), g3(p[BA], x - 1, y, z), u), lerp(g3(p[AB], x, y - 1, z), g3(p[BB], x - 1, y - 1, z), u), v),
+        lerp(lerp(g3(p[AA + 1], x, y, z - 1), g3(p[BA + 1], x - 1, y, z - 1), u), lerp(g3(p[AB + 1], x, y - 1, z - 1), g3(p[BB + 1], x - 1, y - 1, z - 1), u), v), w);
+    }
+    const n2 = (x, y) => n3(x, y, 0.5);
+    const fbm3 = (x, y, z, oct = 4) => { let s = 0, a = 0.5, f = 1, norm = 0; for (let i = 0; i < oct; i++) { s += a * n3(x * f, y * f, z * f); norm += a; a *= 0.5; f *= 2; } return s / norm; };
+    const fbm2 = (x, y, oct = 4) => fbm3(x, y, 0.5, oct);
+    return { n2, n3, fbm2, fbm3 };
+  };
+  H.lerp = (a, b, t) => a + (b - a) * t;
+  H.clamp = (v, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, v));
+  H.map = (v, a, b, c, d) => c + ((v - a) / (b - a)) * (d - c);
+  H.smooth = (e0, e1, x) => { const t = H.clamp((x - e0) / (e1 - e0)); return t * t * (3 - 2 * t); };
+  H.ease = {
+    inOut: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+    out: (t) => 1 - Math.pow(1 - t, 3),
+    in: (t) => t * t * t,
+    back: (t) => { const c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); },
+  };
+  H.hex = (h) => { h = h.replace('#', ''); if (h.length === 3) h = h.split('').map((c) => c + c).join(''); const n = parseInt(h, 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+  H.rgba = (hexOrArr, a = 1) => { const [r, g, b] = Array.isArray(hexOrArr) ? hexOrArr : H.hex(hexOrArr); return `rgba(${r | 0},${g | 0},${b | 0},${a})`; };
+  H.mix = (c1, c2, t) => { const a = Array.isArray(c1) ? c1 : H.hex(c1), b = Array.isArray(c2) ? c2 : H.hex(c2); return [0, 1, 2].map((i) => a[i] + (b[i] - a[i]) * t); };
+  H.layer = (W, H_) => { const c = document.createElement('canvas'); c.width = W; c.height = H_; return c; };
+  H.grain = function (ctx, W, Hh, amount = 0.08, seed = 7, mono = true) {
+    const img = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height), d = img.data, r = H.rng(seed), k = amount * 255;
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (r() - 0.5) * k;
+      if (mono) { d[i] += n; d[i + 1] += n; d[i + 2] += n; }
+      else { d[i] += (r() - 0.5) * k; d[i + 1] += (r() - 0.5) * k; d[i + 2] += (r() - 0.5) * k; }
+    }
+    ctx.putImageData(img, 0, 0);
+  };
+  H.paper = function (ctx, W, Hh, base = '#f3ecdc', seed = 3, strength = 0.06) {
+    ctx.save(); ctx.fillStyle = base; ctx.fillRect(0, 0, W, Hh);
+    const nz = H.makeNoise(seed), cell = 4, [br, bg, bb] = H.hex(base);
+    for (let y = 0; y < Hh; y += cell) for (let x = 0; x < W; x += cell) {
+      const v = nz.fbm2(x * 0.01, y * 0.01, 3) * 0.6 + nz.n2(x * 0.15, y * 0.04) * 0.4;
+      const s = 1 + v * strength * 2;
+      ctx.fillStyle = `rgb(${br * s | 0},${bg * s | 0},${bb * s | 0})`; ctx.fillRect(x, y, cell, cell);
+    }
+    ctx.restore();
+  };
+  H.vignette = function (ctx, W, Hh, strength = 0.5, color = '0,0,0') {
+    const g = ctx.createRadialGradient(W / 2, Hh / 2, Math.min(W, Hh) * 0.3, W / 2, Hh / 2, Math.hypot(W, Hh) * 0.6);
+    g.addColorStop(0, `rgba(${color},0)`); g.addColorStop(1, `rgba(${color},${strength})`);
+    ctx.save(); ctx.fillStyle = g; ctx.fillRect(0, 0, W, Hh); ctx.restore();
+  };
+  H.W = 1280; H.H = 720;
+})();
+
+// Shared tube. Bezel, bloom, barrel remap, scanlines, hum bar and glass match the reference.
+// The silk-screen name is the only copy change: this session is a DNS terminal.
+let BEZEL = null;
+function crtCompose(ctx, W, H_, t, paint, pOnT, boost) {
+  const r = H.rng(80), nz = H.makeNoise(5);
+  const TX = 96, TY = 46, TW = 1088, TH = 576;
+  const rrOn = (c, x, y, w, h, rad) => { c.beginPath(); c.moveTo(x + rad, y); c.arcTo(x + w, y, x + w, y + h, rad); c.arcTo(x + w, y + h, x, y + h, rad); c.arcTo(x, y + h, x, y, rad); c.arcTo(x, y, x + w, y, rad); c.closePath(); };
+  const rr = (x, y, w, h, rad) => rrOn(ctx, x, y, w, h, rad);
+  if (!BEZEL || BEZEL.width !== W || BEZEL.height !== H_) {
+    BEZEL = H.layer(W, H_);
+    const c = BEZEL.getContext('2d');
+    const bz = c.createLinearGradient(0, 0, 0, H_);
+    bz.addColorStop(0, '#3b3934'); bz.addColorStop(0.5, '#2c2a26'); bz.addColorStop(1, '#1d1c19');
+    c.fillStyle = bz; c.fillRect(0, 0, W, H_);
+    const img = c.getImageData(0, 0, W, H_), d = img.data, pn = H.makeNoise(31), gr = H.rng(311);
+    for (let y = 0; y < H_; y++) for (let x = 0; x < W; x++) {
+      const k = 1 + (gr() - 0.5) * 0.06 + pn.n2(x * 0.9, y * 0.9) * 0.025 + pn.n2(x * 0.012, y * 0.012) * 0.03, i = (y * W + x) * 4;
+      d[i] *= k; d[i + 1] *= k; d[i + 2] *= k;
+    }
+    c.putImageData(img, 0, 0);
+    const kl = c.createRadialGradient(W * 0.12, -H_ * 0.1, 40, W * 0.3, H_ * 0.2, W * 0.95);
+    kl.addColorStop(0, 'rgba(255,238,205,0.13)'); kl.addColorStop(0.45, 'rgba(255,238,205,0.04)'); kl.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = kl; c.fillRect(0, 0, W, H_);
+    const fo = c.createLinearGradient(W * 0.35, H_ * 0.3, W, H_);
+    fo.addColorStop(0, 'rgba(0,0,0,0)'); fo.addColorStop(1, 'rgba(0,0,0,0.28)');
+    c.fillStyle = fo; c.fillRect(0, 0, W, H_);
+    c.strokeStyle = 'rgba(255,240,210,0.08)'; c.lineWidth = 2; c.strokeRect(6, 6, W - 12, H_ - 12);
+    c.strokeStyle = 'rgba(255,240,210,0.1)'; c.lineWidth = 1.5; c.beginPath(); c.moveTo(7, H_ - 40); c.lineTo(7, 7); c.lineTo(W - 40, 7); c.stroke();
+    const bev = c.createLinearGradient(0, TY - 30, 0, TY + TH + 30);
+    bev.addColorStop(0, '#0e0d0b'); bev.addColorStop(0.85, '#1a1916'); bev.addColorStop(1, '#4a463e');
+    c.save(); c.shadowColor = 'rgba(255,236,200,0.16)'; c.shadowOffsetY = 2; c.shadowBlur = 3;
+    rrOn(c, TX - 30, TY - 28, TW + 60, TH + 58, 38); c.fillStyle = bev; c.fill(); c.restore();
+    c.save(); rrOn(c, TX - 30, TY - 28, TW + 60, TH + 58, 38); c.clip();
+    const lip = c.createLinearGradient(0, TY + TH + 18, 0, TY + TH + 30);
+    lip.addColorStop(0, 'rgba(255,240,210,0)'); lip.addColorStop(0.7, 'rgba(255,240,210,0.16)'); lip.addColorStop(1, 'rgba(255,240,210,0.04)');
+    c.fillStyle = lip; c.fillRect(TX - 30, TY + TH + 16, TW + 60, 16);
+    c.strokeStyle = 'rgba(0,0,0,0.5)'; c.lineWidth = 3; rrOn(c, TX - 29, TY - 27, TW + 58, TH + 56, 37); c.stroke();
+    c.restore();
+    c.strokeStyle = 'rgba(255,240,215,0.22)'; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(TX + 10, TY + TH + 29.5); c.lineTo(TX + TW - 10, TY + TH + 29.5); c.stroke();
+    rrOn(c, TX - 14, TY - 12, TW + 28, TH + 26, 30); c.fillStyle = '#050605'; c.fill();
+  }
+  ctx.drawImage(BEZEL, 0, 0);
+  const src = H.layer(TW, TH), s = src.getContext('2d', { willReadFrequently: true });
+  s.fillStyle = '#000'; s.fillRect(0, 0, TW, TH);
+  s.fillStyle = '#fff'; s.strokeStyle = '#fff'; s.textBaseline = 'top';
+  paint(s, TW, TH);
+  s.globalAlpha = 1; s.globalCompositeOperation = 'source-over'; s.shadowBlur = 0;
+  const small = H.layer(TW / 4, TH / 4), sm = small.getContext('2d');
+  sm.filter = 'blur(3px)'; sm.drawImage(src, 0, 0, TW / 4, TH / 4);
+  const bloom = H.layer(TW, TH), bl = bloom.getContext('2d', { willReadFrequently: true });
+  bl.imageSmoothingEnabled = true; bl.drawImage(small, 0, 0, TW, TH);
+  const wide = H.layer(TW / 8, TH / 8), wd = wide.getContext('2d');
+  wd.filter = 'blur(4px)'; wd.drawImage(src, 0, 0, TW / 8, TH / 8);
+  bl.globalCompositeOperation = 'lighter'; bl.globalAlpha = 0.9; bl.drawImage(wide, 0, 0, TW, TH);
+  const S = s.getImageData(0, 0, TW, TH).data, Bl = bl.getImageData(0, 0, TW, TH).data;
+  const out = ctx.getImageData(0, 0, W, H_), O = out.data;
+  const K = 0.065, CA = 0.0016;
+  const humY = ((t * 0.18) % 1.3 - 0.15) * TH;
+  const flick = 1 + 0.025 * Math.sin(t * 60 * 2 * Math.PI * 0.5);
+  const pOn = pOnT;
+  const wBand = pOn < 0 ? -1 : H.clamp(pOn / 0.1), hBand = pOn < 0.1 ? 0.007 : 0.007 + H.ease.out(H.clamp((pOn - 0.1) / 0.28));
+  const flash = pOn < 0.1 ? 1.5 : Math.max(0, 1.3 * (1 - (pOn - 0.1) / 0.55));
+  const warm = H.clamp(0.45 + (pOn - 0.3) * 0.9, 0.45, 1);
+  const sample = (A, x, y, ch) => {
+    if (x < 0 || y < 0 || x >= TW - 1 || y >= TH - 1) return 0;
+    const x0 = x | 0, y0 = y | 0, fx = x - x0, fy = y - y0, i = (y0 * TW + x0) * 4 + ch;
+    return (A[i] * (1 - fx) + A[i + 4] * fx) * (1 - fy) + (A[i + TW * 4] * (1 - fx) + A[i + TW * 4 + 4] * fx) * fy;
+  };
+  const rad = 34;
+  for (let y = TY - 12; y < TY + TH + 14; y++) for (let x = TX - 14; x < TX + TW + 14; x++) {
+    const qx = Math.max(Math.abs(x - (TX + TW / 2)) - (TW / 2 + 8 - rad), 0), qy = Math.max(Math.abs(y - (TY + TH / 2)) - (TH / 2 + 8 - rad), 0);
+    const dEdge = rad - Math.hypot(qx, qy);
+    if (dEdge < 0) continue;
+    const u = ((x - TX) / TW) * 2 - 1, v = ((y - TY) / TH) * 2 - 1;
+    const r2 = u * u * 1.0 + v * v * 1.0;
+    let col = [0, 0, 0];
+    for (let c = 0; c < 3; c++) {
+      const f = 1 + K * r2 + (c - 1) * CA * r2 * 2.2;
+      const su = u * f * 0.985, sv = v * f * 0.99;
+      const sx = (su + 1) * 0.5 * TW, sy = (sv + 1) * 0.5 * TH;
+      const scan = 0.42 + 0.58 * Math.pow(Math.cos((sy / 3) * Math.PI), 2);
+      const base = sample(S, sx, sy, 1) / 255;
+      const glow = sample(Bl, sx, sy, 1) / 255;
+      const hum = 1 + 0.07 * Math.exp(-(((sy - humY) / 70) ** 2));
+      col[c] = (base * scan + glow * 0.85) * hum * flick * warm * boost;
+    }
+    if (pOn < 0.7) {
+      const bandA = wBand < 0 ? 0 : H.clamp((hBand - Math.abs(v)) * 90) * H.clamp((wBand - Math.abs(u)) * 40);
+      const fe = flash * (1 - 0.35 * Math.abs(u));
+      for (let c = 0; c < 3; c++) col[c] = (col[c] + fe) * bandA;
+    }
+    const vig = Math.pow(H.clamp(1 - r2 * 0.28), 1.4);
+    const n = (r() - 0.5) * 0.035;
+    const R = col[0], G = col[1], B = col[2];
+    const hotR = Math.max(0, R - 0.8) * 0.8, hotB = Math.max(0, B - 0.8) * 0.7;
+    let or = 7 + (0.2 * Math.pow(R, 1.6) + hotR * 0.3) * 255, og = 13 + Math.min(1.15, G) * 235, ob = 9 + (0.34 * Math.pow(B, 1.6) + hotB * 0.28) * 255;
+    or = (or * vig + n * 255); og = (og * vig + n * 255); ob = (ob * vig + n * 255);
+    const a = H.clamp(dEdge / 6);
+    const i = (y * W + x) * 4;
+    O[i] = O[i] * (1 - a) + or * a; O[i + 1] = O[i + 1] * (1 - a) + og * a; O[i + 2] = O[i + 2] * (1 - a) + ob * a;
+  }
+  ctx.putImageData(out, 0, 0);
+  ctx.save();
+  rr(TX - 6, TY - 4, TW + 12, TH + 10, rad); ctx.clip();
+  const ed = ctx.createRadialGradient(TX + TW / 2, TY + TH / 2, TH * 0.45, TX + TW / 2, TY + TH / 2, TW * 0.62);
+  ed.addColorStop(0, 'rgba(0,0,0,0)'); ed.addColorStop(1, 'rgba(0,0,0,0.55)');
+  ctx.fillStyle = ed; ctx.fillRect(TX - 10, TY - 10, TW + 20, TH + 20);
+  ctx.globalCompositeOperation = 'screen';
+  const sh = ctx.createRadialGradient(TX + TW * 0.22, TY + TH * 0.12, 10, TX + TW * 0.22, TY + TH * 0.12, TW * 0.85);
+  sh.addColorStop(0, 'rgba(200,220,210,0.07)'); sh.addColorStop(0.5, 'rgba(200,220,210,0.025)'); sh.addColorStop(1, 'rgba(200,220,210,0)');
+  ctx.fillStyle = sh; ctx.fillRect(TX, TY, TW, TH);
+  ctx.filter = 'blur(36px)';
+  const wr = ctx.createLinearGradient(TX + TW * 0.69, 0, TX + TW * 0.9, 0);
+  wr.addColorStop(0, 'rgba(190,210,220,0)'); wr.addColorStop(0.5, 'rgba(190,210,220,0.04)'); wr.addColorStop(1, 'rgba(190,210,220,0)');
+  ctx.fillStyle = wr;
+  ctx.beginPath(); ctx.moveTo(TX + TW * 0.7, TY + 20); ctx.lineTo(TX + TW * 0.9, TY + 30); ctx.lineTo(TX + TW * 0.88, TY + TH * 0.42); ctx.lineTo(TX + TW * 0.69, TY + TH * 0.38); ctx.closePath(); ctx.fill();
+  ctx.filter = 'blur(2px)';
+  ctx.strokeStyle = 'rgba(255,255,255,0.12)'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(TX + 60, TY + 14); ctx.quadraticCurveTo(TX + TW / 2, TY + 2, TX + TW - 60, TY + 14); ctx.stroke();
+  ctx.filter = 'none';
+  ctx.restore();
+  ctx.save();
+  ctx.font = '700 15px "Space Mono"'; ctx.textBaseline = 'middle';
+  const by = TY + TH + 44;
+  ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillText('NX-80  DNS TERMINAL', TX + 1, by + 1);
+  ctx.fillStyle = '#8d877a'; ctx.fillText('NX-80  DNS TERMINAL', TX, by);
+  ctx.font = '400 11px "Space Mono"'; ctx.fillStyle = '#5f5a50'; ctx.fillText('HIGH RESOLUTION  P1 PHOSPHOR', TX + 270, by + 1);
+  const lx = TX + TW - 30;
+  const lg = ctx.createRadialGradient(lx, by, 0, lx, by, 22); lg.addColorStop(0, 'rgba(90,255,120,0.55)'); lg.addColorStop(1, 'rgba(90,255,120,0)');
+  ctx.fillStyle = lg; ctx.fillRect(lx - 22, by - 22, 44, 44);
+  ctx.fillStyle = '#b8ffc4'; ctx.beginPath(); ctx.arc(lx, by, 4, 0, 7); ctx.fill();
+  ctx.fillStyle = '#5f5a50'; ctx.font = '400 11px "Space Mono"'; ctx.textAlign = 'right'; ctx.fillText('POWER', lx - 16, by + 1);
+  [lx - 120, lx - 170].forEach((kx) => {
+    const kg = ctx.createRadialGradient(kx - 3, by - 4, 1, kx, by, 12); kg.addColorStop(0, '#5a564e'); kg.addColorStop(1, '#151412');
+    ctx.fillStyle = kg; ctx.beginPath(); ctx.arc(kx, by, 11, 0, 7); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.6)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.strokeStyle = '#8d877a'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(kx, by); ctx.lineTo(kx + 6, by - 7); ctx.stroke();
+  });
+  ctx.restore();
+  ctx.save(); ctx.globalCompositeOperation = 'screen';
+  const spill = ctx.createLinearGradient(0, TY + TH, 0, TY + TH + 30); spill.addColorStop(0, 'rgba(40,140,60,0.18)'); spill.addColorStop(1, 'rgba(40,140,60,0)');
+  ctx.fillStyle = spill; ctx.fillRect(TX, TY + TH + 4, TW, 30);
+  ctx.restore();
+  void nz;
+}
+
+// ---------- storyboard beats. Times are the proposed voiceover. ----------
+const HOST = 'www.example.com';
+const IP1 = '172.66.147.243';
+const IP2 = '104.20.23.154';
+const BEATS = [
+  {
+    id: 1, title: 'Hook', tag: 'ASK', start: 0.15, end: 2.55, t: 2.55,
+    spoken: 'How does a name become an address?',
+    words: [['How', 0.15], ['does', 0.42], ['a', 0.68], ['name', 0.84], ['become', 1.22], ['an', 1.58], ['address', 1.82]],
+    onScreen: ['> name -> address', 'NAME -> ADDRESS'],
+    flow: 'Opens on the live session. The tube is already warm as the first word is spoken. The short query types, then the heading prints under it and the rule locks in. The question is copied into the inverse status line, and it stays there for the rest of the film.',
+    sounds: 'Buckling-spring keys while the query types (minor). Enter thock. Soft print ticks as the heading appears (minor). A low thud on the rule. A short square blip as the status line takes the question.',
+    lands: 'The heading NAME -> ADDRESS is complete as “address” is spoken (1.82s).'
+  },
+  {
+    id: 2, title: 'Name and number', tag: 'NAMES', start: 2.90, end: 7.55, t: 7.55,
+    spoken: 'People remember www dot example dot com. Computers need a number.',
+    words: [['People', 2.90], ['remember', 3.28], ['www', 3.78], ['dot', 4.28], ['example', 4.52], ['dot', 5.08], ['com', 5.30], ['Computers', 5.90], ['need', 6.40], ['a', 6.68], ['number', 6.84]],
+    onScreen: ['NAME', HOST, 'REMEMBERED', 'NUMBER', '?.?.?.?', 'NEEDED'],
+    flow: 'Continuous. The heading scrolls up off the glass and lives on only in the status line. Two boxes take its place. NAME holds the hostname. NUMBER stays unanswered.',
+    sounds: 'A low brown slide for the scroll. A pop on NAME. Print ticks through the hostname (minor). A pop on NUMBER and on the unknown digits.',
+    lands: 'www.example.com finishes as “com” is spoken (5.30s). NUMBER and ?.?.?.? land on “number” (6.64s, 0.2s ahead of 6.84s).'
+  },
+  {
+    id: 3, title: 'Directory', tag: 'DIRECTORY', start: 7.90, end: 10.85, t: 10.85,
+    spoken: 'DNS is the directory that translates the name.',
+    words: [['DNS', 7.90], ['is', 8.30], ['the', 8.48], ['directory', 8.68], ['that', 9.28], ['translates', 9.52], ['the', 10.10], ['name', 10.28]],
+    onScreen: ['NAME', HOST, 'REMEMBERED', 'DNS', 'DIRECTORY', 'TRANSLATES', '?.?.?.?'],
+    flow: 'Continuous. The hostname box stays on the left. The NUMBER box becomes the directory: its title flips to DNS, DIRECTORY and TRANSLATES print inside, and an arrow draws from the name into the box. The address is still blank.',
+    sounds: 'Electron-beam crackle while the arrow and the box redraw (minor). An inverse thud as DNS locks. Print ticks for DIRECTORY and TRANSLATES (minor).',
+    lands: 'DNS lands on the word “DNS” (7.90s). DIRECTORY lands on “directory” (8.68s). TRANSLATES lands on “translates” (9.52s).'
+  },
+  {
+    id: 4, title: 'Resolver', tag: 'RESOLVER', start: 11.20, end: 17.05, t: 17.05,
+    spoken: "Your computer asks a resolver. Often the router, your ISP, or the organisation's DNS.",
+    words: [['Your', 11.20], ['computer', 11.42], ['asks', 11.95], ['a', 12.32], ['resolver', 12.46], ['Often', 13.45], ['the', 13.80], ['router', 13.98], ['your', 14.45], ['ISP', 14.70], ['or', 15.15], ['the', 15.35], ["organisation's", 15.55], ['DNS', 16.30]],
+    onScreen: [HOST, 'CLIENT', 'COMPUTER', 'ASKS', 'RESOLVER', 'ROUTER', 'ISP', 'ORG DNS'],
+    flow: 'Continuous. The directory title becomes RESOLVER. A CLIENT box moves in on the left, COMPUTER prints inside it, and an ASKS arrow joins the two boxes. ROUTER, ISP and ORG DNS print inside the resolver: the three places the deck says that server usually sits.',
+    sounds: 'Beam crackle on the client box (minor). A pop on ASKS. An inverse thud on RESOLVER. Three label pops, on ROUTER, ISP and ORG DNS.',
+    lands: 'CLIENT on “computer” (11.42s). ASKS on “asks” (11.95s). RESOLVER on “resolver” (12.46s). ROUTER on “router” (13.98s). ISP on “ISP” (14.70s). ORG DNS on “organisation’s” (15.55s).'
+  },
+  {
+    id: 5, title: 'Hierarchy', tag: 'HIERARCHY', start: 17.40, end: 23.85, t: 23.85,
+    spoken: 'That resolver walks the hierarchy. Root, then the top-level domain, then the authoritative server.',
+    words: [['That', 17.40], ['resolver', 17.65], ['walks', 18.20], ['the', 18.60], ['hierarchy', 18.77], ['Root', 19.80], ['then', 20.30], ['the', 20.57], ['top-level', 20.75], ['domain', 21.35], ['then', 21.90], ['the', 22.17], ['authoritative', 22.35], ['server', 23.10]],
+    onScreen: [HOST, 'RESOLVER', 'ROUTER', 'ISP', 'ORG DNS', 'ROOT', 'TLD', '.COM', 'AUTH', 'SERVER'],
+    flow: 'Continuous, a pull back on the same lookup. The resolver shrinks into the first box of a row. The walk draws to the right: ROOT, then TLD .COM, then AUTH SERVER. Each arrow completes as that hop is named. The hostname stays on the query line.',
+    sounds: 'A short slide as the view pulls back. A beam and a relay tock as each of the four boxes locks (the tocks are minor). Beam crackle on each arrow (minor).',
+    lands: 'ROOT on “Root” (19.80s). .COM on “top-level” (20.75s). AUTH SERVER on “authoritative” (22.35s).'
+  },
+  {
+    id: 6, title: 'A record', tag: 'ANSWER', start: 24.20, end: 35.90, t: 35.90,
+    spoken: 'The answer comes back as an A record. For www dot example dot com, one is one seventy-two, sixty-six, one forty-seven, two forty-three. There is a second. The resolver caches them.',
+    words: [['The', 24.20], ['answer', 24.40], ['comes', 24.80], ['back', 25.15], ['as', 25.47], ['an', 25.67], ['A', 25.87], ['record', 26.07], ['For', 26.90], ['www', 27.15], ['dot', 27.55], ['example', 27.78], ['dot', 28.30], ['com', 28.52], ['one', 28.95], ['is', 29.20], ['172', 29.45], ['66', 30.35], ['147', 31.10], ['243', 32.05], ['There', 33.15], ['is', 33.40], ['a', 33.60], ['second', 33.75], ['The', 34.20], ['resolver', 34.40], ['caches', 34.90], ['them', 35.30]],
+    onScreen: ['RESOLVER > ROOT > .COM > AUTH', 'A RECORD', HOST, 'A', IP1, 'A', IP2, 'CACHED'],
+    flow: 'Continuous. The four boxes compress into a single path along the top. The answer they returned takes the glass. The spoken address locks in inverse video, group by group. The other A record prints on “second”. CACHED stamps when the resolver is said to keep them.',
+    sounds: 'A short slide as the path compresses. A pop on A RECORD. Digit ticks while the hero number builds (minor). Full-volume terminal bell, a low tone and a phosphor zap as 172.66.147.243 locks — the key reveal, on the last group. A minor tick for the second A record. A stamp on CACHED.',
+    lands: 'A RECORD on “A” (25.87s). The hero number completes as “two forty-three” starts (32.05s). The second A record on “second” (33.55s, 0.2s ahead of 33.75s). CACHED on “caches” (34.90s).'
+  },
+  {
+    id: 7, title: 'Lab fault test', tag: 'FAULT', start: 36.50, end: 46.90, t: 46.90,
+    spoken: 'Now the lab test that separates the faults. Ping the IP. It answers. Ping the name, and it fails. Names fail. The number still works. Suspect DNS.',
+    words: [['Now', 36.50], ['the', 36.75], ['lab', 36.92], ['test', 37.20], ['that', 37.50], ['separates', 37.78], ['the', 38.35], ['faults', 38.55], ['Ping', 39.35], ['the', 39.65], ['IP', 39.82], ['It', 40.20], ['answers', 40.40], ['Ping', 41.25], ['the', 41.55], ['name', 41.72], ['and', 42.15], ['it', 42.35], ['fails', 42.55], ['Names', 43.30], ['fail', 43.65], ['The', 44.10], ['number', 44.30], ['still', 44.65], ['works', 45.00], ['Suspect', 45.80], ['DNS', 46.25]],
+    onScreen: ['LAB ONLY', '$ ping', IP1, '[ OK ]', '$ ping', HOST, '[ FAIL ]', 'SUSPECT DNS'],
+    flow: 'Scene change. In the pause before “Now”, a V-hold roll: the hum sags, a blanking bar travels down the tube, and the raster locks on a new screen. The healthy lookup gives way to the deck’s lab fault test. LAB ONLY stays up so the failed name reads as that test.',
+    sounds: 'V-hold: hum sag, static on the blanking bar, and a thud as the raster locks. A clean two-note bell when the IP answers. On “fails”, the error clash, the phosphor zap, and the X. An inverse thud on SUSPECT DNS.',
+    lands: 'The roll runs 35.90–36.50, in the pause. LAB ONLY on “lab” (36.92s). The IP and [ OK ] on “IP” (39.62s, 0.2s ahead). The name on “name” (41.72s). [ FAIL ] and the X on “fails” (42.55s). SUSPECT DNS on “Suspect” (45.80s).'
+  },
+  {
+    id: 8, title: 'nslookup and the link', tag: 'CHECK', start: 47.30, end: 55.30, t: 55.30,
+    spoken: 'Check it with nslookup. A bad resolver looks like no internet. Eight eight eight eight still proves the link is up.',
+    words: [['Check', 47.30], ['it', 47.60], ['with', 47.75], ['nslookup', 48.00], ['A', 49.15], ['bad', 49.28], ['resolver', 49.55], ['looks', 50.15], ['like', 50.50], ['no', 50.75], ['internet', 51.05], ['Eight', 52.10], ['eight', 52.40], ['eight', 52.70], ['eight', 53.00], ['still', 53.40], ['proves', 53.75], ['the', 54.15], ['link', 54.30], ['is', 54.55], ['up', 54.75]],
+    onScreen: [IP1, 'OK', HOST, 'FAIL', '$ nslookup', HOST, 'BAD RESOLVER', 'NO INTERNET', '8.8.8.8', '[ OK ]', 'LINK UP'],
+    flow: 'Continuous. The two ping results compress into a strip along the top, so the fault stays in view. nslookup grows on the left and names the bad resolver. The right half is the link check: 8.8.8.8 answers.',
+    sounds: 'A short slide as the ping rows compress. Typing for the nslookup command (minor). An error tone on BAD RESOLVER. A full bell as 8.8.8.8 locks, in the breath after the four digits, and a second bell on LINK UP.',
+    lands: 'nslookup on the word “nslookup” (48.00s). BAD RESOLVER on “resolver” (49.55s). NO INTERNET on “no” (50.75s). 8.8.8.8 starts on the first “Eight” (51.90s, 0.2s ahead) and [ OK ] / LINK UP land as the fourth eight is spoken (53.00s).'
+  },
+  {
+    id: 9, title: 'The split', tag: 'SPLIT', start: 55.90, end: 61.50, t: 60.50,
+    spoken: 'Name works, or only the number works. That split is the diagnosis.',
+    words: [['Name', 55.90], ['works', 56.25], ['or', 56.75], ['only', 56.98], ['the', 57.30], ['number', 57.50], ['works', 57.90], ['That', 58.80], ['split', 59.05], ['is', 59.45], ['the', 59.65], ['diagnosis', 59.85]],
+    onScreen: ['NAME', 'WORKS', 'OR', 'ONLY', 'NUMBER', 'WORKS', 'THE SPLIT', 'DIAGNOSIS'],
+    flow: 'Scene change. Another V-hold in the pause before “Name”. The demo clears. One card is a name that works. The other is only the number working. The bar underneath is the diagnosis: the split itself.',
+    sounds: 'V-hold roll. Print ticks as each card lands (minor). A resolving pair of terminal bells as DIAGNOSIS locks, then the cursor settles.',
+    lands: 'The roll runs 55.30–55.90. NAME WORKS on “Name” (55.90s). ONLY NUMBER on “only” (56.98s). THE SPLIT on “split” (59.05s). DIAGNOSIS on “diagnosis” (59.85s). The hold runs to 61.50s.'
+  }
+];
+
+function makePen(s, TH) {
+  function measure(str, font) { s.font = font; s.textAlign = 'left'; return s.measureText(str).width; }
+  function txt(str, x, y, font = '32px "VT323"', a = 1, glow = 3) {
+    s.font = font; s.textAlign = 'left'; s.textBaseline = 'top'; s.fillStyle = '#fff';
+    s.globalAlpha = a; s.shadowColor = '#fff'; s.shadowBlur = glow;
+    s.fillText(str, x, y); s.shadowBlur = 0; s.globalAlpha = 1;
+    return s.measureText(str).width;
+  }
+  function txtC(str, cx, y, font, a = 1, glow = 3) {
+    s.font = font; const w = s.measureText(str).width;
+    txt(str, cx - w / 2, y, font, a, glow); return w;
+  }
+  function inv(str, x, y, font = '32px "VT323"') {
+    s.font = font; s.textAlign = 'left'; s.textBaseline = 'top'; s.shadowBlur = 0; s.fillStyle = '#fff';
+    const w = s.measureText(str).width, hgt = parseInt(font, 10) || 32, pad = Math.max(6, hgt * 0.1);
+    s.globalAlpha = 0.8; s.fillRect(x - pad, y, w + pad * 2, hgt);
+    s.globalAlpha = 1; s.globalCompositeOperation = 'destination-out';
+    s.fillText(str, x, y); s.lineWidth = Math.max(1, hgt / 30); s.strokeText(str, x, y);
+    s.globalCompositeOperation = 'source-over'; s.fillStyle = '#fff'; s.strokeStyle = '#fff';
+    return w;
+  }
+  function invC(str, cx, y, font) { s.font = font; const w = s.measureText(str).width; return inv(str, cx - w / 2, y, font); }
+  function cursor(x, y, h = 28) { s.shadowBlur = 6; s.fillStyle = '#fff'; s.fillRect(x + 4, y + 4, h * 0.55, h * 0.82); s.shadowBlur = 0; }
+  function line(pts, w = 2, a = 1) {
+    s.globalAlpha = a; s.strokeStyle = '#fff'; s.lineWidth = w; s.lineJoin = 'miter'; s.beginPath();
+    pts.forEach(([x, y], i) => (i ? s.lineTo(x, y) : s.moveTo(x, y))); s.stroke(); s.globalAlpha = 1;
+  }
+  function partial(pts, f) {
+    if (f >= 1) return pts; let L = 0; for (let i = 1; i < pts.length; i++) L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+    let left = L * Math.max(0, f); const out = [pts[0]];
+    for (let i = 1; i < pts.length; i++) { const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); if (d >= left) { const k = d ? left / d : 0; out.push([pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * k, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * k]); break; } out.push(pts[i]); left -= d; }
+    return out;
+  }
+  function arrowTo(pts, f, w = 2) {
+    const pth = partial(pts, f); line(pth, w);
+    if (f > 0.05 && pth.length > 1) {
+      const [x2, y2] = pth[pth.length - 1], [x1, y1] = pth[pth.length - 2];
+      const a = Math.atan2(y2 - y1, x2 - x1);
+      line([[x2 + Math.cos(a + 2.5) * 16, y2 + Math.sin(a + 2.5) * 16], [x2, y2], [x2 + Math.cos(a - 2.5) * 16, y2 + Math.sin(a - 2.5) * 16]], w);
+    }
+  }
+  function boxR(x, y, w, h, f = 1, lw = 2, a = 1) {
+    line(partial([[x, y], [x + w, y], [x + w, y + h], [x, y + h], [x, y]], f), lw, a);
+  }
+  function cross(x, y, w, h) { line([[x, y], [x + w, y + h]], 4); line([[x + w, y], [x, y + h]], 4); }
+  function check(x, y) { line([[x, y + 28], [x + 18, y + 52], [x + 58, y + 4]], 4); }
+  function status(tag) {
+    s.shadowBlur = 0; s.globalAlpha = 0.8; s.fillStyle = '#fff';
+    s.fillRect(36, TH - 44, 1088 - 72, 30); s.globalAlpha = 1;
+    s.globalCompositeOperation = 'destination-out'; s.font = '30px "VT323"'; s.letterSpacing = '1px'; s.textAlign = 'left';
+    const stl = ' NX-80   Q: NAME -> ADDRESS   ' + tag;
+    s.fillText(stl, 46, TH - 44); s.lineWidth = 1; s.strokeText(stl, 46, TH - 44);
+    s.globalCompositeOperation = 'source-over'; s.letterSpacing = '0px'; s.fillStyle = '#fff'; s.strokeStyle = '#fff';
+  }
+  return { measure, txt, txtC, inv, invC, cursor, line, partial, arrowTo, boxR, cross, check, status };
+}
+
+// Finished hold of each beat. The animation should call these same drawers.
+function frameHook(p) {
+  const q = '> name -> address';
+  p.txtC(q, 544, 48, '64px "VT323"', 1, 4);
+  const head = 'NAME -> ADDRESS';
+  const hf = '156px "VT323"';
+  p.txtC(head, 544, 150, hf, 1, 8);
+  const n = Math.round(p.measure(head, hf) / p.measure('=', '44px "VT323"'));
+  p.txtC('='.repeat(n), 544, 330, '44px "VT323"', 0.85, 2);
+  const prompt = '>';
+  const pf = '64px "VT323"';
+  const px = 544 - p.measure(prompt, pf) / 2;
+  p.txt(prompt, px, 400, pf, 1, 4);
+  p.cursor(px + p.measure(prompt, pf), 400, 52);
+}
+function frameNames(p) {
+  p.boxR(40, 36, 488, 450, 1, 3);
+  p.inv(' NAME ', 64, 58, '56px "VT323"');
+  p.txt(HOST, 64, 168, '44px "VT323"', 1, 4);
+  p.txt('REMEMBERED', 64, 260, '40px "VT323"', 1, 3);
+  p.boxR(560, 36, 488, 450, 1, 3);
+  p.txt('NUMBER', 584, 58, '56px "VT323"', 0.72, 3);
+  p.txt('?.?.?.?', 584, 176, '84px "VT323"', 0.62, 5);
+  p.txt('NEEDED', 584, 310, '40px "VT323"', 0.72, 3);
+}
+function frameDirectory(p) {
+  p.boxR(36, 48, 430, 430, 1, 3);
+  p.inv(' NAME ', 56, 34, '44px "VT323"');
+  p.txt(HOST, 56, 150, '40px "VT323"', 1, 4);
+  p.txt('REMEMBERED', 56, 230, '36px "VT323"', 1, 3);
+  p.arrowTo([[480, 250], [600, 250]], 1, 3);
+  p.boxR(612, 48, 440, 430, 1, 3);
+  p.invC(' DNS ', 832, 34, '48px "VT323"');
+  p.txtC('DIRECTORY', 832, 150, '52px "VT323"', 1, 5);
+  p.txtC('TRANSLATES', 832, 240, '40px "VT323"', 1, 3);
+  p.txtC('?.?.?.?', 832, 330, '64px "VT323"', 0.55, 4);
+}
+function frameResolver(p) {
+  p.txt(HOST, 40, 16, '40px "VT323"', 1, 3);
+  p.boxR(36, 100, 360, 380, 1, 3);
+  p.inv(' CLIENT ', 58, 84, '44px "VT323"');
+  p.txt('>_', 78, 190, '128px "VT323"', 1, 6);
+  p.txt('COMPUTER', 78, 360, '44px "VT323"', 1, 3);
+  p.arrowTo([[410, 280], [530, 280]], 1, 3);
+  p.txt('ASKS', 418, 214, '36px "VT323"', 1, 3);
+  p.boxR(546, 90, 500, 400, 1, 3);
+  p.invC(' RESOLVER ', 796, 74, '44px "VT323"');
+  p.txt('ROUTER', 590, 180, '52px "VT323"', 1, 4);
+  p.txt('ISP', 590, 270, '52px "VT323"', 1, 4);
+  p.txt('ORG DNS', 590, 360, '52px "VT323"', 1, 4);
+}
+function frameHierarchy(p) {
+  p.txt(HOST, 36, 12, '40px "VT323"', 1, 3);
+  const xs = [32, 300, 568, 836];
+  const w = 220, y = 100, h = 370;
+  xs.forEach((x, i) => {
+    if (i) p.arrowTo([[xs[i - 1] + w + 4, y + 170], [x - 6, y + 170]], 1, 3);
+    p.boxR(x, y, w, h, 1, 3);
+  });
+  p.invC(' RESOLVER ', xs[0] + w / 2, y - 8, '32px "VT323"');
+  p.txt('ROUTER', xs[0] + 18, y + 70, '36px "VT323"', 1, 3);
+  p.txt('ISP', xs[0] + 18, y + 140, '36px "VT323"', 1, 3);
+  p.txt('ORG DNS', xs[0] + 18, y + 210, '36px "VT323"', 1, 3);
+  p.txtC('ROOT', xs[1] + w / 2, y + 140, '72px "VT323"', 1, 5);
+  p.invC(' TLD ', xs[2] + w / 2, y - 8, '32px "VT323"');
+  p.txtC('.COM', xs[2] + w / 2, y + 140, '72px "VT323"', 1, 5);
+  p.invC(' AUTH ', xs[3] + w / 2, y - 8, '32px "VT323"');
+  p.txtC('SERVER', xs[3] + w / 2, y + 150, '48px "VT323"', 1, 4);
+}
+function frameAnswer(p) {
+  const hops = ['RESOLVER', 'ROOT', '.COM', 'AUTH'];
+  hops.forEach((h, i) => {
+    const x = 48 + i * 260;
+    if (i) p.arrowTo([[x - 78, 36], [x - 14, 36]], 1, 3);
+    p.txt(h, x, 16, '36px "VT323"', 0.92, 2);
+  });
+  p.txtC('A RECORD', 544, 78, '48px "VT323"', 1, 3);
+  p.txtC(HOST, 544, 136, '44px "VT323"', 1, 3);
+  const hero = '148px "VT323"';
+  const hw = p.measure(IP1, hero);
+  p.txt('A', 544 - hw / 2 - 78, 214, '52px "VT323"', 1, 3);
+  p.inv(IP1, 544 - hw / 2, 188, hero);
+  const sub = '72px "VT323"';
+  const sw = p.measure(IP2, sub);
+  p.txt('A', 544 - sw / 2 - 64, 360, '44px "VT323"', 1, 3);
+  p.txt(IP2, 544 - sw / 2, 352, sub, 1, 4);
+  p.invC(' CACHED ', 544, 444, '52px "VT323"');
+}
+function frameFault(p) {
+  p.invC(' LAB ONLY ', 544, 8, '44px "VT323"');
+  p.boxR(28, 78, 500, 320, 1, 3);
+  p.txt('$ ping', 52, 100, '36px "VT323"', 0.9, 2);
+  p.txt(IP1, 52, 160, '64px "VT323"', 1, 4);
+  p.inv(' [ OK ] ', 52, 260, '56px "VT323"');
+  p.check(300, 258);
+  p.boxR(560, 78, 500, 320, 1, 3);
+  p.txt('$ ping', 584, 100, '36px "VT323"', 0.9, 2);
+  p.txt(HOST, 584, 168, '48px "VT323"', 1, 4);
+  p.inv(' [ FAIL ] ', 584, 268, '52px "VT323"');
+  p.cross(860, 268, 58, 52);
+  p.invC(' SUSPECT DNS ', 544, 424, '72px "VT323"');
+}
+function frameCheck(p) {
+  p.txt(IP1 + '   OK', 36, 10, '32px "VT323"', 0.9, 2);
+  p.txt(HOST + '   FAIL', 560, 10, '32px "VT323"', 0.9, 2);
+  p.line([[36, 52], [1048, 52]], 2, 0.7);
+  p.txt('$ nslookup', 40, 78, '36px "VT323"', 1, 3);
+  p.txt(HOST, 40, 140, '44px "VT323"', 1, 3);
+  p.txt('BAD RESOLVER', 40, 220, '44px "VT323"', 1, 3);
+  p.inv(' NO INTERNET ', 40, 300, '52px "VT323"');
+  p.line([[560, 70], [560, 470]], 2, 0.55);
+  p.txt('8.8.8.8', 610, 100, '128px "VT323"', 1, 7);
+  p.inv(' [ OK ] ', 600, 250, '56px "VT323"');
+  p.check(820, 250);
+  p.txt('LINK UP', 600, 360, '52px "VT323"', 1, 4);
+}
+function frameSplit(p) {
+  p.boxR(32, 28, 470, 360, 1, 3);
+  p.txt('NAME', 60, 70, '44px "VT323"', 1, 3);
+  p.inv(' WORKS ', 60, 160, '100px "VT323"');
+  p.txtC('OR', 544, 170, '48px "VT323"', 1, 3);
+  p.boxR(586, 28, 470, 360, 1, 3);
+  p.txt('ONLY', 614, 56, '40px "VT323"', 1, 3);
+  p.txt('NUMBER', 614, 120, '52px "VT323"', 1, 4);
+  p.inv(' WORKS ', 614, 210, '88px "VT323"');
+  p.inv(' THE SPLIT = DIAGNOSIS ', 70, 420, '48px "VT323"');
+  p.cursor(70 + p.measure(' THE SPLIT = DIAGNOSIS ', '48px "VT323"') + 18, 420, 40);
+}
+
+const FRAMES = [null, frameHook, frameNames, frameDirectory, frameResolver, frameHierarchy, frameAnswer, frameFault, frameCheck, frameSplit];
+
+function paintBeat(s, TW, TH, beat) {
+  s.fillStyle = '#fff'; s.strokeStyle = '#fff'; s.textBaseline = 'top'; s.textAlign = 'left';
+  const p = makePen(s, TH);
+  FRAMES[beat.id](p, TW, TH);
+  p.status(beat.tag);
+}
+function drawKeyframe(ctx, beat) {
+  crtCompose(ctx, 1280, 720, beat.t, (s, TW, TH) => paintBeat(s, TW, TH, beat), 5, 1);
+}
+
+function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+function caption(b) {
+  const cap = document.createElement('figcaption');
+  cap.appendChild(el('h2', null, 'Beat ' + b.id + '  ·  ' + b.title));
+  cap.appendChild(el('p', 'time', b.start.toFixed(2) + 's  –  ' + b.end.toFixed(2) + 's'));
+  cap.appendChild(el('p', 'spoken', 'Spoken: ' + b.spoken));
+  const on = el('p'); on.innerHTML = '<strong>On screen.</strong> ' + b.onScreen.join('   ·   '); cap.appendChild(on);
+  const flow = el('p'); flow.innerHTML = '<strong>How it gets here.</strong> ' + b.flow; cap.appendChild(flow);
+  const snd = el('p'); snd.innerHTML = '<strong>Sounds.</strong> ' + b.sounds; cap.appendChild(snd);
+  const land = el('p'); land.innerHTML = '<strong>Sync.</strong> ' + b.lands; cap.appendChild(land);
+  return cap;
+}
+function toSrt(t) {
+  const ms = Math.round(t * 1000);
+  const p = (n, l) => String(n).padStart(l, '0');
+  return p(Math.floor(ms / 3600000), 2) + ':' + p(Math.floor(ms / 60000) % 60, 2) + ':' + p(Math.floor(ms / 1000) % 60, 2) + ',' + p(ms % 1000, 3);
+}
+
+const FONTS = [
+  '30px "VT323"', '32px "VT323"', '36px "VT323"', '40px "VT323"', '44px "VT323"',
+  '48px "VT323"', '52px "VT323"', '56px "VT323"', '64px "VT323"', '72px "VT323"',
+  '72px "VT323"', '84px "VT323"', '88px "VT323"', '92px "VT323"', '100px "VT323"',
+  '128px "VT323"', '148px "VT323"', '156px "VT323"', '700 15px "Space Mono"', '400 11px "Space Mono"'
+];
+
+async function boot() {
+  const params = new URLSearchParams(location.search);
+  if (params.has('shot')) document.documentElement.classList.add('shot');
+  const sample = 'AaZz09 NAME ADDRESS www.example.com 172.66.147.243 8.8.8.8';
+  try {
+    await Promise.all(FONTS.map((f) => document.fonts.load(f, sample)));
+    await document.fonts.ready;
+  } catch (e) { /* draw with whatever is available */ }
+  const only = params.get('frame');
+  const beats = only ? BEATS.filter((b) => String(b.id) === only) : BEATS;
+  const grid = document.getElementById('grid');
+  const status = document.getElementById('status');
+  for (let i = 0; i < beats.length; i++) {
+    const b = beats[i];
+    status.textContent = 'Drawing beat ' + b.id + ' of ' + BEATS.length + '…';
+    const fig = document.createElement('figure');
+    fig.id = 'beat-' + b.id;
+    const canvas = document.createElement('canvas');
+    canvas.width = 1280; canvas.height = 720;
+    fig.appendChild(canvas);
+    fig.appendChild(caption(b));
+    grid.appendChild(fig);
+    await new Promise((r) => requestAnimationFrame(() => r()));
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const t0 = performance.now();
+    drawKeyframe(ctx, b);
+    console.log('beat ' + b.id + ' ' + Math.round(performance.now() - t0) + 'ms');
+  }
+  status.textContent = beats.length === BEATS.length
+    ? 'Nine stills drawn. The tube is warm. Nothing is animating.'
+    : 'Beat ' + beats[0].id + ' drawn.';
+  const script = BEATS.map((b, i) => (i + 1) + '\n' + toSrt(b.start) + ' --> ' + toSrt(b.end) + '\n' + b.spoken).join('\n\n');
+  document.getElementById('script').textContent = script;
+  document.getElementById('words').textContent = BEATS.map((b) => 'Beat ' + b.id + '  ' + b.start.toFixed(2) + '–' + b.end.toFixed(2) + '\n' + b.words.map(([w, t]) => '  ' + t.toFixed(2) + '  ' + w).join('\n')).join('\n\n');
+  window.__ready = true;
+  window.BEATS = BEATS;
+  window.DURATION = 61.50;
+}
+boot();
+</script>
+</body>
+</html>
