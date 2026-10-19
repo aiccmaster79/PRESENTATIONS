@@ -191,6 +191,12 @@ course out.
 - **Assessment fit:** Emerging technology, robotics vs automation, responsible use of kit, and a named classroom brief.
 - **Decks:** #146 workshop (`unitree-edu-ocn-level2-presentation.html`); #147 explainer v2 (`unitree-edu-v2-ocn-level2-presentation.html`) — same kit and outcomes, 12-slide spine, close is the naming/safety brief on paper.
 
+### 32. Calling BS on AI — Ed Zitron (Diary Of A CEO)
+- **Practical hook:** Watch the interview, then write a one-page brief that separates pitch, product, subsidy, and a 2027 forecast. Figures stay labelled as claims.
+- **Kit needed:** Browser + the linked YouTube video (`Lf5oqGOCRCM`).
+- **Assessment fit:** Emerging technology — evaluate industry claims, cost/power, reliability, media literacy.
+- **Deck:** #148 explainer (`ed-zitron-ai-critique-ocn-level2-presentation.html`) — 25 slides, no widgets.
+
 ---
 
 ## Quick pick — highest practical value first

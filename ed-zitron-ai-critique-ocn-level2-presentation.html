@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#148 | Level 2 | Calling BS on AI | OCN NI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/black.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-orange: #F7931E;
+            --brand-purple: #8A2BE2;
+            --brand-teal: #00BDA5;
+            --brand-orange-dark: #d47a0a;
+            --brand-purple-dark: #6a1fb2;
+            --brand-teal-dark: #008f7a;
+            --dark-bg: #0a0a1a;
+            --glass-bg: rgba(20, 20, 40, 0.85);
+        }
+
+        * { box-sizing: border-box; }
+
+        .reveal { font-family: 'Poppins', sans-serif; }
+        .reveal .slides { text-align: left; }
+        .reveal .slides section {
+            height: 100%;
+            padding: 20px 40px;
+        }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: -0.02em;
+        }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 1.85em; margin-bottom: 0.45em; }
+        .reveal h3 { font-size: 1.22em; }
+        .reveal p, .reveal li { font-size: 0.86em; line-height: 1.5; }
+        .reveal strong { font-weight: 600; }
+        .reveal a { color: var(--brand-teal); }
+
+        .animated-gradient {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple), var(--brand-teal), var(--brand-orange));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 26px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+        .glass-card-small {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+        .title-slide h1 { font-size: 3.1em; margin: 0 0 16px; }
+        .title-slide .subtitle {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.82);
+            margin-bottom: 22px;
+            max-width: 48rem;
+        }
+        .qualification {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-teal));
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 0.86em;
+            font-weight: 600;
+        }
+        .demo-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin: 0 0 1.1rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #fff;
+            background: rgba(0, 189, 165, 0.18);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+        }
+        .demo-meta .demo-number { color: var(--brand-teal); }
+        .demo-meta .demo-level { color: rgba(255, 255, 255, 0.85); }
+        .demo-meta .sep { opacity: 0.45; }
+
+        .back-to-index {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: rgba(20, 20, 40, 0.88);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+        }
+        .back-to-index:hover,
+        .back-to-index:focus-visible {
+            border-color: #00BDA5;
+            background: rgba(0, 189, 165, 0.22);
+            transform: translateY(-1px);
+            outline: none;
+            color: #fff;
+        }
+        .back-to-index i { color: #00BDA5; font-size: 0.9rem; }
+        .site-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            z-index: 100;
+            margin: 0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.72);
+            background: rgba(20, 20, 40, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+            margin-top: 24px;
+        }
+        .feature-card {
+            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
+            border-radius: 16px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--brand-teal);
+            box-shadow: 0 18px 36px rgba(0, 189, 165, 0.18);
+        }
+        .feature-card i {
+            font-size: 2.1em;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .feature-card.orange i { color: var(--brand-orange); }
+        .feature-card.purple i { color: var(--brand-purple); }
+        .feature-card.teal i { color: var(--brand-teal); }
+        .feature-card h3 { font-size: 1.12em; margin: 0 0 8px; color: #fff; }
+        .feature-card p { font-size: 0.82em; color: rgba(255, 255, 255, 0.72); margin: 0; }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 22px;
+        }
+        .comparison-box {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 22px;
+            border: 2px solid;
+        }
+        .comparison-box.type1 { border-color: var(--brand-purple); }
+        .comparison-box.type2 { border-color: var(--brand-teal); }
+        .comparison-box h3 {
+            text-align: center;
+            margin: 0 0 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comparison-box.type1 h3 { color: var(--brand-purple); }
+        .comparison-box.type2 h3 { color: var(--brand-teal); }
+        .comparison-box ul { list-style: none; padding: 0; margin: 0; }
+        .comparison-box li {
+            padding: 8px 0 8px 26px;
+            position: relative;
+            font-size: 0.82em;
+        }
+        .comparison-box.type1 li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--brand-orange);
+        }
+        .comparison-box.type2 li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--brand-teal);
+        }
+
+        .objectives-list { list-style: none; padding: 0; margin: 0; }
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-orange);
+        }
+        .objectives-list li i { color: var(--brand-teal); font-size: 1.15em; margin-top: 3px; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid var(--brand-orange);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 18px 0 0;
+        }
+        .highlight-box h4 { color: var(--brand-orange); margin: 0 0 8px; }
+        .highlight-box p { margin: 0; }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            margin: 22px 0 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .stat-item { text-align: center; padding: 12px 16px; min-width: 180px; }
+        .stat-number {
+            font-size: 2.1em;
+            font-weight: 700;
+            display: block;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            display: block;
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 4px;
+        }
+
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.78em;
+        }
+        .rule-table th, .rule-table td {
+            padding: 11px 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            vertical-align: top;
+        }
+        .rule-table th {
+            background: rgba(138, 43, 226, 0.3);
+            color: var(--brand-teal);
+            font-weight: 600;
+        }
+        .rule-table tr:hover td { background: rgba(0, 189, 165, 0.08); }
+
+        .keys-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 22px;
+        }
+        .key-chip {
+            background: var(--glass-bg);
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .key-chip kbd {
+            display: inline-block;
+            min-width: 2.2rem;
+            padding: 0.25rem 0.55rem;
+            border-radius: 8px;
+            background: rgba(0, 189, 165, 0.2);
+            border: 1px solid rgba(0, 189, 165, 0.45);
+            color: var(--brand-teal);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .key-chip p { margin: 0; font-size: 0.78em; color: rgba(255, 255, 255, 0.72); }
+
+        .quote-block {
+            font-size: 1.15em;
+            line-height: 1.45;
+            color: #fff;
+            border-left: 4px solid var(--brand-orange);
+            padding: 8px 0 8px 22px;
+            margin: 0 0 18px;
+        }
+        .quote-attr {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8em;
+            margin: 0;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .flow-node {
+            flex: 1;
+            min-width: 140px;
+            background: var(--glass-bg);
+            border-radius: 14px;
+            padding: 16px;
+            border-top: 4px solid var(--brand-orange);
+            text-align: center;
+        }
+        .flow-node:nth-child(3) { border-top-color: var(--brand-purple); }
+        .flow-node:nth-child(5) { border-top-color: var(--brand-teal); }
+        .flow-node h4 { margin: 0 0 8px; font-size: 0.95em; }
+        .flow-node p { margin: 0; font-size: 0.74em; color: rgba(255, 255, 255, 0.7); }
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--brand-teal);
+            font-size: 1.4em;
+        }
+
+        .pathway {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .pathway a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: var(--glass-bg);
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .pathway a:hover,
+        .pathway a:focus-visible {
+            border-color: var(--brand-teal);
+            outline: none;
+        }
+        .pathway span {
+            display: block;
+            color: var(--brand-teal);
+            font-size: 0.72em;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .pathway h3 { margin: 0 0 6px; font-size: 1em; }
+        .pathway p { margin: 0; font-size: 0.76em; color: rgba(255, 255, 255, 0.68); }
+
+        .source-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(247, 147, 30, 0.15);
+            border: 1px solid rgba(247, 147, 30, 0.4);
+            font-size: 0.78em;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .muted { color: rgba(255, 255, 255, 0.68); }
+        .tiny { font-size: 0.72em; color: rgba(255, 255, 255, 0.55); }
+
+        .reveal .slides section .fragment.fade-up {
+            transform: translateY(24px);
+            opacity: 0;
+            transition: all 0.45s ease;
+        }
+        .reveal .slides section .fragment.fade-up.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid, .comparison-container, .keys-row, .pathway { grid-template-columns: 1fr; }
+            .flow-arrow { display: none; }
+            .title-slide h1 { font-size: 2.1em; }
+            .site-credit { font-size: 0.62rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animated-gradient { animation: none; }
+            .feature-card, .back-to-index { transition: none; }
+            .reveal .slides section .fragment.fade-up,
+            .reveal .slides section .fragment.fade-up.visible {
+                transform: none;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-to-index" href="index.html" aria-label="Back to index">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to index</span>
+    </a>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 1 Title -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+                <div class="title-slide">
+                    <div class="demo-meta" aria-label="#148 Level 2 Emerging technology">
+                        <span class="demo-number">#148</span><span class="sep">·</span><span class="demo-level">Level 2</span><span class="sep">·</span><span class="demo-level">Emerging technology</span>
+                    </div>
+                    <h1 class="animated-gradient">Calling BS on AI</h1>
+                    <p class="subtitle">Ed Zitron on The Diary Of A CEO — follow the money, test the myths, and judge a 2027 forecast like a technician, not a fan.</p>
+                    <span class="qualification">OCN NI Level 2 — Understanding Emerging Technology (A/651/0447)</span>
+                    <p class="source-pill"><i class="fas fa-play" aria-hidden="true"></i> Source: youtube.com/watch?v=Lf5oqGOCRCM</p>
+                </div>
+                <aside class="notes">Timing: 2 min. Cue: this is a media-literacy lesson, not an anti-AI rant. Name the source, the guest, and the job of the hour — evaluate claims. Open with: we already use chatbots; this hour is about whether the industry story matches the books.</aside>
+            </section>
+
+            <!-- 2 Objectives -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-bullseye"></i> Learning objectives</h2>
+                <p class="muted" style="margin-bottom: 16px;">By the end of this session you will be able to:</p>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>State</strong> Ed Zitron’s core claim: generative AI is sold as magic, but billed as expensive, unprofitable cloud software.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Contrast</strong> three industry myths (growth, jobs, “the race”) with the evidence he offers.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Explain</strong> capex, circular deals, and why a 2027 cash crunch is his forecast — not a fact.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Evaluate</strong> Steven Bartlett’s counter: early tech often looks worse and unprofitable before it wins.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-check-circle" aria-hidden="true"></i><span><strong>Apply</strong> a four-question check before you trust an AI headline in an assignment.</span></li>
+                </ul>
+                <aside class="notes">Timing: 3 min. Cue: read the verbs — state, contrast, explain, evaluate, apply. This deck has no quiz widgets; the “test” is whether they can argue both sides without slogans.</aside>
+            </section>
+
+            <!-- 3 How to use -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-keyboard"></i> How to use this deck</h2>
+                <p class="muted">Static explainer — no click-to-score widgets. Advance, listen, argue.</p>
+                <div class="keys-row">
+                    <div class="key-chip fragment fade-up"><kbd>→</kbd><p>Next slide</p></div>
+                    <div class="key-chip fragment fade-up"><kbd>←</kbd><p>Previous slide</p></div>
+                    <div class="key-chip fragment fade-up"><kbd>S</kbd><p>Speaker notes</p></div>
+                    <div class="key-chip fragment fade-up"><kbd>F</kbd><p>Fullscreen</p></div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-balance-scale"></i> Classroom rule</h4>
+                    <p>Figures on later slides are <strong>as stated in the interview</strong>. Treat them as claims to check against filings and news, not as numbers you copy into an assessment as fact.</p>
+                </div>
+                <aside class="notes">Timing: 2 min. Cue: press S once so speaker view is visible. Stress the classroom rule — auto-captions and guest stats both need a second source.</aside>
+            </section>
+
+            <!-- 4 Source -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-microphone"></i> The source</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3><i class="fas fa-user"></i> Guest — Ed Zitron</h3>
+                        <ul>
+                            <li>~16 years in tech PR; writes the newsletter <em>Where’s Your Ed At</em></li>
+                            <li>Loves technology; hates being sold “magic”</li>
+                            <li>Thesis: the pitch overstates capability, timeline, and profit</li>
+                            <li>Forecast: OpenAI runs out of steam — and cash — around 2027</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3><i class="fas fa-comments"></i> Host — Steven Bartlett</h3>
+                        <ul>
+                            <li>The Diary Of A CEO (long-form interview)</li>
+                            <li>Pushes back with adoption, the innovator’s dilemma, and cheaper-over-time history</li>
+                            <li>Horse → car analogy: early cars broke down and still won</li>
+                            <li>Closes by thanking a rare contrarian voice</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="tiny" style="margin-top: 16px;">Video: “The Man Who Calls BS On AI … 2027 Is When It All Breaks! | Ed Zitron” — The Diary Of A CEO.</p>
+                <aside class="notes">Timing: 3 min. Cue: two people, two jobs. Zitron prosecutes the pitch. Bartlett stress-tests it. Learners should be able to name both without collapsing them into “the video says”.</aside>
+            </section>
+
+            <!-- 5 Why it matters -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-bolt"></i> Why this matters</h2>
+                <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                        <h3>Your course already uses AI</h3>
+                        <p>Chatbots, prompts, and “AI will take jobs” sit in #116, #124 and #128. This hour is the sceptical twin.</p>
+                    </div>
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-newspaper" aria-hidden="true"></i>
+                        <h3>Headlines are a product</h3>
+                        <p>If every outlet repeats “this will take your job,” adoption is not the same as honest demand.</p>
+                    </div>
+                    <div class="feature-card teal fragment fade-up">
+                        <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+                        <h3>IT people follow invoices</h3>
+                        <p>A technician asks: who pays, who profits, what fails, and what happens if the money stops.</p>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Consequence</h4>
+                    <p>If you write “AI is inevitable” in an assessment with no cost, power, or reliability line, you have described marketing — not emerging technology.</p>
+                </div>
+                <aside class="notes">Timing: 3 min. Cue: link to Green IT (#129) and Robots &amp; Automation (#128). The consequence line is the hook — assessments need cost and risk, not slogans.</aside>
+            </section>
+
+            <!-- 6 Core claim -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-quote-left"></i> The core claim</h2>
+                <p class="quote-block fragment fade-up">“I think generative AI is at its heart a con … they’ve sold it in the terms of magic … it’s boring cloud software that’s extremely expensive and unprofitable and also unreliable at its core.”</p>
+                <p class="quote-attr fragment fade-up">Ed Zitron, paraphrased from the interview opening</p>
+                <div class="feature-grid" style="margin-top: 22px;">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i><h3>Sold as</h3><p>Replace all jobs. Cure cancer. Autonomous. Set and forget. AGI is coming.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-cloud" aria-hidden="true"></i><h3>Runs as</h3><p>A large language model in a data centre: prompts, tokens, GPUs, electricity, human cleanup.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-scale-unbalanced" aria-hidden="true"></i><h3>His test</h3><p>If it were honest software, vendors would publish AI revenue, a path to profit, and failure rates on real work.</p></div>
+                </div>
+                <aside class="notes">Timing: 4 min. Cue: “con” is his word — learners may use “over-sold” in coursework. Unpack LLM vs AGI. Stress unreliable-at-core: hallucinations are not a UI bug in his view.</aside>
+            </section>
+
+            <!-- 7 Three myths -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-ban"></i> Three myths he knocks down</h2>
+                <p class="muted">Bartlett plays a myth game. Zitron’s answers, in one line each:</p>
+                <table class="rule-table">
+                    <thead>
+                        <tr>
+                            <th>Claim you will hear</th>
+                            <th>Zitron’s reply</th>
+                            <th>What to check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fragment fade-up">
+                            <td>The AI industry is creating enormous economic growth</td>
+                            <td>The labs run at a “horrifying loss.” He cites OpenAI losing <strong>$20.9 billion</strong> in one year.</td>
+                            <td>Profit vs revenue. Who is still being subsidised?</td>
+                        </tr>
+                        <tr class="fragment fade-up">
+                            <td>AI will replace all human jobs</td>
+                            <td>“That just isn’t happening and there’s no economic data to support it.”</td>
+                            <td>Unemployment stats, not demo videos.</td>
+                        </tr>
+                        <tr class="fragment fade-up">
+                            <td>The US must spend trillions to beat China</td>
+                            <td>What is the race <em>for</em>? “Wrong hands” already include the people shipping the models.</td>
+                            <td>National-security language vs a product pitch.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Timing: 4 min. Cue: do not let the class treat “no jobs lost yet” as “no jobs will change.” The claim he rejects is total replacement with no data.</aside>
+            </section>
+
+            <!-- 8 Capex vs revenue -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-calculator"></i> Capex versus what comes back</h2>
+                <p class="muted">Capex = long-term spend (data centres, GPUs). OpEx = running costs (power, staff). His complaint: spend is in the trillions; AI sales are not.</p>
+                <div class="stats-bar">
+                    <div class="stat-item fragment fade-up"><span class="stat-number">&gt;$1T</span><span class="stat-label">Capex already spent, he says — another trillion wanted next year</span></div>
+                    <div class="stat-item fragment fade-up"><span class="stat-number">70%</span><span class="stat-label">Of “AI revenue” at the big clouds, he says, is OpenAI + Anthropic</span></div>
+                    <div class="stat-item fragment fade-up"><span class="stat-number">$10B</span><span class="stat-label">Microsoft AI leftover after OpenAI, vs $115B capex (his FY2026 read)</span></div>
+                </div>
+                <div class="glass-card-small fragment fade-up" style="margin-top: 22px;">
+                    <p style="margin: 0;"><strong style="color: var(--brand-orange);">Microsoft snapshot (as he tells it):</strong> ~$34.33B related take, $24.1B of that from OpenAI, ~$10B left — in a year with $115B capex and $175B planned. “The math does not make sense.”</p>
+                </div>
+                <p class="tiny" style="margin-top: 12px;">Also cited: Nvidia ~$215.9B of GPU sales supporting ~$22B of AI revenue outside the two unprofitable labs.</p>
+                <aside class="notes">Timing: 5 min. Cue: draw capex vs revenue on a board. Stress these are his Bloomberg-style reads. A Level 2 answer can say “spend dwarfs disclosed AI profit” without memorising every dollar.</aside>
+            </section>
+
+            <!-- 9 Circular money -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-sync"></i> Circular money</h2>
+                <p class="muted">Progress, he says, only continues while cash is circulated into the two labs that cannot yet stand alone.</p>
+                <div class="flow-row">
+                    <div class="flow-node fragment fade-up">
+                        <h4>Cloud giants</h4>
+                        <p>Amazon, Google, Microsoft book “AI growth” from labs they also fund.</p>
+                    </div>
+                    <div class="flow-arrow fragment fade-up" aria-hidden="true">→</div>
+                    <div class="flow-node fragment fade-up">
+                        <h4>The labs</h4>
+                        <p>OpenAI and Anthropic: huge users of GPUs and cloud, still unprofitable.</p>
+                    </div>
+                    <div class="flow-arrow fragment fade-up" aria-hidden="true">→</div>
+                    <div class="flow-node fragment fade-up">
+                        <h4>Chip vendor</h4>
+                        <p>Nvidia sells the GPUs — and, he argues, helps keep the buyers alive.</p>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-hand-holding-dollar"></i> Cheques he names</h4>
+                    <p>Amazon → OpenAI $50B; Amazon → Anthropic $5B; Google → Anthropic $10B. Recent OpenAI funding mix: SoftBank, Nvidia, Amazon. Sell-side hopes: $400B+ of lab revenue in ~3.5 years that has to come from <em>somewhere</em>.</p>
+                </div>
+                <aside class="notes">Timing: 4 min. Cue: circular is not automatically fraud — but it is not the same as millions of customers paying cost-plus. Ask: if OpenAI paused spending, whose “AI revenue” falls?</aside>
+            </section>
+
+            <!-- 10 Forced adoption -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-toggle-on"></i> “The largest non-consensual push”</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>Bartlett’s push</h3>
+                        <ul>
+                            <li>Fastest product adoption in tech history</li>
+                            <li>Hundreds of millions of people choose to use it</li>
+                            <li>Money is a lagging indicator — invest ahead of monetisation</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>Zitron’s reply</h3>
+                        <ul>
+                            <li>Gemini in Google / Docs, Copilot in Word, Rufus on Amazon — the button is in your face</li>
+                            <li>Three years of “this will take your job if you don’t”</li>
+                            <li>Most use is search-shaped because search got worse, not because the model is a colleague</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="glass-card-small fragment fade-up" style="margin-top: 18px;">When Uber burned an annual token budget in three months, he says, “the moment people actually had to pay for it” the romance cooled.</p>
+                <aside class="notes">Timing: 4 min. Cue: ask the class — did you turn Copilot on, or did it appear? That is the difference between demand and distribution.</aside>
+            </section>
+
+            <!-- 11 Product reality -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-robot"></i> What the product actually is</h2>
+                <p class="quote-block fragment fade-up">Ask an “AI person” for their setup and you get a Rube Goldberg of prompts and model-switching — “Pee-wee’s Playhouse.” That is not set-and-forget intelligence.</p>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-comments" aria-hidden="true"></i><h3>LLM</h3><p>Predicts likely next tokens from training data. Useful. Not a mind. Not AGI.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-user-gear" aria-hidden="true"></i><h3>Human in the loop</h3><p>Right prompt, right model, review the output. The “autonomous agent” still needs a babysitter.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-code" aria-hidden="true"></i><h3>Vibe-coding risk</h3><p>If you have not written the code yourself for months, you may not spot the security hole the model left open.</p></div>
+                </div>
+                <aside class="notes">Timing: 4 min. Cue: connect to #124 AI in Your Pocket. Good prompting is a skill because the product is not autonomous. AGI/superintelligence = theory, not a shipping spec.</aside>
+            </section>
+
+            <!-- 12 Reliability -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-ghost"></i> Hallucinations are not a cute bug</h2>
+                <div class="comparison-container">
+                    <div class="comparison-box type1 fragment fade-up">
+                        <h3>Host’s lived experience</h3>
+                        <ul>
+                            <li>ChatGPT used to invent facts more often</li>
+                            <li>Now: weaker reasoning sometimes, fewer outright hallucinations</li>
+                            <li>Simple-task leaderboards: ~21.8% → ~0.7% error on summarisation (figures he quotes)</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box type2 fragment fade-up">
+                        <h3>Zitron’s lived experience</h3>
+                        <ul>
+                            <li>Bloomberg “ask B” invented a Microsoft share price that never existed</li>
+                            <li>Cute on a newsletter; dangerous in a clinic or a hedge-fund model</li>
+                            <li>“Agent” demos that run for an hour at ~50% success are not a junior engineer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-stethoscope"></i> Multiplicative failure</h4>
+                    <p>One wrong line in a refactor can open a door. If you have been vibe-coding, you may have forgotten how to look. He does not believe you can train that fully out.</p>
+                </div>
+                <aside class="notes">Timing: 4 min. Cue: both can be true — simple tasks got cleaner; high-stakes tasks still need a human owner. Software quality at GitHub/Meta is his “are products actually better?” test.</aside>
+            </section>
+
+            <!-- 13 Horse vs car -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-horse"></i> Horse, car, or a very expensive horse?</h2>
+                <p class="muted"><em>The Innovator’s Dilemma</em> is Bartlett’s frame. Early cars broke down, cost too much, and needed a red-flag walker. They still ate the horse.</p>
+                <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-arrow-trend-up" aria-hidden="true"></i>
+                        <h3>If the analogy holds</h3>
+                        <p>5% better, 5% cheaper, month after month, and the ceiling is higher than any human coder. Hallucinations become as rare as a stall.</p>
+                    </div>
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-ban" aria-hidden="true"></i>
+                        <h3>Why he rejects it</h3>
+                        <p>Moore’s law is not a GPU law. The whole planet already threw talent, governments, and credit at this. “Shipped tokens” is not “better software.” Cars did not have every scientist on Earth and a media megaphone from day one.</p>
+                    </div>
+                </div>
+                <p class="tiny" style="margin-top: 16px;">Scale check he uses vs other “unprofitable for years” stories: Spotify did not lose $20.9B in one year; Uber’s lifetime losses and early AWS capex are a different order of magnitude.</p>
+                <aside class="notes">Timing: 5 min. Cue: this is the intellectual heart of the hour. Let two learners steelman each side. Do not pick a winner for them.</aside>
+            </section>
+
+            <!-- 14 Power -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-bolt"></i> Power, chips, debt</h2>
+                <p class="muted">Worked example from the interview: <strong>Stargate Abilene</strong> — OpenAI + Oracle, Texas.</p>
+                <div class="stats-bar">
+                    <div class="stat-item fragment fade-up"><span class="stat-number">1.2 GW</span><span class="stat-label">Campus power he cites — eight buildings</span></div>
+                    <div class="stat-item fragment fade-up"><span class="stat-number">50k</span><span class="stat-label">Nvidia GB200 GPUs per building (his figure)</span></div>
+                    <div class="stat-item fragment fade-up"><span class="stat-number">Debt</span><span class="stat-label">All but Microsoft, he says, are borrowing to keep building</span></div>
+                </div>
+                <div class="glass-card fragment fade-up" style="margin-top: 20px;">
+                    <p style="margin: 0;">He compresses a city’s worth of electricity into a tiny footprint. GPUs are specialised: if the AI bet fails, you do not simply turn the hall into a “normal” cloud. That is the Green IT overlap — energy is not a rounding error.</p>
+                </div>
+                <aside class="notes">Timing: 3 min. Cue: the Bristol comparison in the auto-caption mixed units — do not copy it. Keep 1.2 GW and “specialised GPUs are not general-purpose leftovers.”</aside>
+            </section>
+
+            <!-- 15 2027 -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-calendar-xmark"></i> 2027 — when it “all breaks”?</h2>
+                <p class="muted">The title is a forecast. Teach it as a sequence, not a prophecy.</p>
+                <div class="flow-row">
+                    <div class="flow-node fragment fade-up"><h4>1. Labs need more cash</h4><p>Better models, in his view, only come from tens of billions more training spend.</p></div>
+                    <div class="flow-arrow fragment fade-up" aria-hidden="true">→</div>
+                    <div class="flow-node fragment fade-up"><h4>2. Raise gets hard</h4><p>OpenAI IPO slipped; CFO talk of “2027 or earlier.” Anthropic might list first.</p></div>
+                    <div class="flow-arrow fragment fade-up" aria-hidden="true">→</div>
+                    <div class="flow-node fragment fade-up"><h4>3. Cash runs short</h4><p>Nvidia or private credit (Blackstone / BlackRock-style) may patch — then not.</p></div>
+                    <div class="flow-arrow fragment fade-up" aria-hidden="true">→</div>
+                    <div class="flow-node fragment fade-up"><h4>4. Clouds restate</h4><p>Microsoft, Google, Amazon cut AI growth guidance. He calls that a “tech depression.”</p></div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-triangle-exclamation"></i> WeWork-shaped warning</h4>
+                    <p>If they “bum-rush” a listing with worse economics than Anthropic, public markets can be brutal. SoftBank sits on a huge paper bet. Many ways to fail; the shared risk is <strong>OpenAI as a single point of demand</strong>.</p>
+                </div>
+                <aside class="notes">Timing: 5 min. Cue: write 2027 on the board with a question mark. Learners must say “Zitron predicts” not “AI dies in 2027.”</aside>
+            </section>
+
+            <!-- 16 Downstream -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-sitemap"></i> Who gets hit if the bet fails</h2>
+                <div class="feature-grid">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-chart-pie" aria-hidden="true"></i><h3>Index funds</h3><p>Retail money in the “Magnificent 7.” He flags Nvidia as a large slice of the S&amp;P 500 story.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-microchip" aria-hidden="true"></i><h3>Nvidia</h3><p>Circular financing: fund the customer so they can borrow to buy more GPUs. He sketches 50–70% revenue down if demand cracks.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-building" aria-hidden="true"></i><h3>Everyone else</h3><p>Private credit in data centres; Japanese SoftBank exposure; governments that treated the spend as industrial policy.</p></div>
+                </div>
+                <p class="glass-card-small fragment fade-up" style="margin-top: 18px;">His deeper theory: big tech is <strong>out of hypergrowth ideas</strong>. Buying GPUs lets them say “we’re working on AI — don’t think too hard” while ads and search only have so many tweaks left.</p>
+                <aside class="notes">Timing: 3 min. Cue: this is systems thinking for Level 2 — one company’s cash problem can be a market problem if everyone is the customer.</aside>
+            </section>
+
+            <!-- 17 Jobs & AGI myths extra -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-brain"></i> Jobs, AGI, and “it went rogue”</h2>
+                <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="feature-card orange fragment fade-up">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
+                        <h3>Jobs</h3>
+                        <p>Tools change tasks. Total replacement needs labour-market evidence. Demo clips are not a census.</p>
+                    </div>
+                    <div class="feature-card purple fragment fade-up">
+                        <i class="fas fa-infinity" aria-hidden="true"></i>
+                        <h3>AGI / consciousness</h3>
+                        <p>“Anyone saying this stuff will become this is just guessing and does not have proof.” Treat as science fiction until it ships.</p>
+                    </div>
+                    <div class="feature-card teal fragment fade-up">
+                        <i class="fas fa-user-secret" aria-hidden="true"></i>
+                        <h3>Blackmail / escape stories</h3>
+                        <p>He reads system-card drama as sandbox mis-setup plus media hunger — not proof the model has a will.</p>
+                    </div>
+                </div>
+                <div class="highlight-box fragment fade-up">
+                    <h4><i class="fas fa-people-group"></i> “Wrong hands”</h4>
+                    <p>If the fear is “what if the model falls into the wrong hands,” his punchline is that it is already in the hands of Zuckerberg, Altman, and Amodei — people he does not trust with the pitch.</p>
+                </div>
+                <aside class="notes">Timing: 3 min. Cue: keep it Level 2 — we do not need a philosophy of mind. We need: no proof, so do not write it as fact.</aside>
+            </section>
+
+            <!-- 18 Evaluate -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-clipboard-check"></i> Four questions before you trust a claim</h2>
+                <ul class="objectives-list">
+                    <li class="fragment fade-up"><i class="fas fa-user-tie" aria-hidden="true"></i><span><strong>Who is selling it?</strong> Founder, chip vendor, cloud, journalist, or a critic with a newsletter? Incentives differ.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-ruler" aria-hidden="true"></i><span><strong>What is the unit?</strong> Users, tokens, “run rate,” profit, or completed jobs? Run rate, he says, is undefined on purpose.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-bomb" aria-hidden="true"></i><span><strong>What happens when it is wrong?</strong> Newsletter typo vs clinical note vs production code.</span></li>
+                    <li class="fragment fade-up"><i class="fas fa-plug-circle-xmark" aria-hidden="true"></i><span><strong>What if the subsidy stops?</strong> Would this product still exist at today’s quality if OpenAI could not raise?</span></li>
+                </ul>
+                <aside class="notes">Timing: 4 min. Cue: this is the transferable skill. They can use it on any emerging-tech article, not just this guest.</aside>
+            </section>
+
+            <!-- 19 Faults -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-triangle-exclamation"></i> Common faults — talking about AI</h2>
+                <table class="rule-table">
+                    <thead>
+                        <tr>
+                            <th>Symptom in an assignment</th>
+                            <th>Likely cause</th>
+                            <th>Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>“AI will take all jobs / cure cancer.”</td>
+                            <td>Copied the pitch</td>
+                            <td>Write what the tool does today, plus a limit</td>
+                        </tr>
+                        <tr>
+                            <td>“Everyone uses it, so it must be profitable.”</td>
+                            <td>Confusing users with profit</td>
+                            <td>Ask who subsidises inference</td>
+                        </tr>
+                        <tr>
+                            <td>“The model is autonomous.”</td>
+                            <td>Marketing language</td>
+                            <td>Describe prompt → check → edit</td>
+                        </tr>
+                        <tr>
+                            <td>“Hallucinations are basically gone.”</td>
+                            <td>Only tested easy tasks</td>
+                            <td>Name a high-stakes fail mode</td>
+                        </tr>
+                        <tr>
+                            <td>“AI dies in 2027.”</td>
+                            <td>Treating a forecast as a fact</td>
+                            <td>Attribute: Zitron predicts a cash crunch</td>
+                        </tr>
+                        <tr>
+                            <td>One source, no numbers</td>
+                            <td>Media literacy miss</td>
+                            <td>Second source: filing, Ofcom, or a rival guest</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Timing: 3 min. Cue: walk one row with a volunteer’s draft sentence if you have time.</aside>
+            </section>
+
+            <!-- 20 Jargon -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-book"></i> Jargon buster</h2>
+                <table class="rule-table">
+                    <thead>
+                        <tr><th>Term</th><th>Plain English in this lesson</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Generative AI / LLM</td><td>Software that produces text, code or images by predicting likely tokens.</td></tr>
+                        <tr><td>AGI</td><td>Hypothetical general intelligence. Not a current product spec.</td></tr>
+                        <tr><td>Capex</td><td>Capital expenditure — buildings and chips you hope last years.</td></tr>
+                        <tr><td>Inference</td><td>Running a trained model to answer a user. Costs money every time.</td></tr>
+                        <tr><td>Run rate</td><td>A guessed yearly total from a short window. Easy to massage.</td></tr>
+                        <tr><td>Circular deal</td><td>A funds B so B can buy A’s product; both report “growth.”</td></tr>
+                        <tr><td>Hallucination</td><td>Fluent output that is false. Still a risk on hard tasks.</td></tr>
+                        <tr><td>IPO / going public</td><td>Listing on a stock market so early investors can sell.</td></tr>
+                        <tr><td>Private credit</td><td>Big lenders (not high-street banks) funding data centres.</td></tr>
+                        <tr><td>CUDA</td><td>Nvidia’s software layer that made GPUs usable for this wave of AI.</td></tr>
+                    </tbody>
+                </table>
+                <aside class="notes">Timing: 3 min. Cue: pick three terms to hear back from the room — capex, circular, hallucination.</aside>
+            </section>
+
+            <!-- 21 Pathway -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-route"></i> Where this fits</h2>
+                <p class="muted">Pair this brief with the rest of the emerging-technology library.</p>
+                <div class="pathway">
+                    <a href="ai-ml-ocn-level2-presentation.html" class="fragment fade-up"><span>#116</span><h3>AI &amp; Machine Learning</h3><p>How models learn — the constructive twin of this critique.</p></a>
+                    <a href="ai-prompting-ocn-level2-presentation.html" class="fragment fade-up"><span>#124</span><h3>AI in Your Pocket</h3><p>Prompting and spotting hallucinations in daily tools.</p></a>
+                    <a href="robots-automation-ocn-level2-presentation.html" class="fragment fade-up"><span>#128</span><h3>Robots &amp; Automation</h3><p>Which jobs change — without the “all jobs vanish” myth.</p></a>
+                    <a href="green-it-ocn-level2-presentation.html" class="fragment fade-up"><span>#129</span><h3>Green IT</h3><p>Power, e-waste and why a 1.2 GW campus is a sustainability story.</p></a>
+                    <a href="deepfakes-misinformation-ocn-level2-presentation.html" class="fragment fade-up"><span>#126</span><h3>Deepfakes &amp; Misinformation</h3><p>Fluent output can still be false — verify what you see.</p></a>
+                    <a href="emerging-technology-ocn-level2-presentation.html" class="fragment fade-up"><span>#115</span><h3>Emerging Technology Overview</h3><p>Adoption factors: cost, risk, hype, and who benefits.</p></a>
+                </div>
+                <aside class="notes">Timing: 2 min. Cue: if they only do one follow-on, send them to #124 for practice and #129 for energy.</aside>
+            </section>
+
+            <!-- 22 Practical -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-pen"></i> Practical task</h2>
+                <div class="glass-card fragment fade-up">
+                    <h3 style="color: var(--brand-teal); margin-top: 0;">Watch 20 minutes, then write a one-page brief</h3>
+                    <p>Source: <a href="https://www.youtube.com/watch?v=Lf5oqGOCRCM">The Diary Of A CEO — Ed Zitron</a>. Pause on any stat you intend to quote and mark it <em>claimed</em>.</p>
+                    <ul>
+                        <li><strong>Success criteria:</strong> name both speakers; state the core claim; give one myth with his reply; give one Bartlett counter; give one 2027 step; end with your verdict and why.</li>
+                        <li><strong>Evidence:</strong> timestamp or quote; a second source for any dollar figure; a sentence on power or reliability.</li>
+                        <li><strong>Out of scope:</strong> “AI is fake” or “AI is god.” Neither is a Level 2 answer.</li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 4 min. Cue: this can be homework. Collect briefs next session. Grade the evaluation, not which side they pick.</aside>
+            </section>
+
+            <!-- 23 Takeaways -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-key"></i> Key takeaways</h2>
+                <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-bullhorn" aria-hidden="true"></i><h3>Pitch ≠ product</h3><p>Magic language hides token-billed cloud software that still needs a human checker.</p></div>
+                    <div class="feature-card purple fragment fade-up"><i class="fas fa-coins" aria-hidden="true"></i><h3>Follow the subsidy</h3><p>Users and “run rate” are not profit. Circular cheques can look like demand.</p></div>
+                    <div class="feature-card teal fragment fade-up"><i class="fas fa-calendar" aria-hidden="true"></i><h3>2027 is a forecast</h3><p>His sequence: raise fails, cash thins, clouds restate. Attribute it. Do not treat it as destiny.</p></div>
+                    <div class="feature-card orange fragment fade-up"><i class="fas fa-scale-balanced" aria-hidden="true"></i><h3>Keep both brains</h3><p>Bartlett’s early-car argument is real. So is Zitron’s “show me the books.” Good IT people use both.</p></div>
+                </div>
+                <aside class="notes">Timing: 3 min. Cue: four pillars on fingers — pitch, subsidy, forecast, both-brains.</aside>
+            </section>
+
+            <!-- 24 Next -->
+            <section>
+                <h2 class="animated-gradient"><i class="fas fa-forward"></i> Next steps</h2>
+                <div class="glass-card">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-play" style="color: var(--brand-orange); margin-right: 12px;" aria-hidden="true"></i><strong>Watch with a purpose</strong> — the linked interview, notes in one column, “claimed / checked” in the other.</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-file-alt" style="color: var(--brand-purple); margin-right: 12px;" aria-hidden="true"></i><strong>Read a filing headline</strong> — search “OpenAI / Microsoft / Nvidia earnings AI revenue” and compare to the guest’s numbers.</li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><i class="fas fa-leaf" style="color: var(--brand-teal); margin-right: 12px;" aria-hidden="true"></i><strong>Open #129 Green IT</strong> — put a kWh and carbon line next to any “just build more GPUs” sentence.</li>
+                        <li style="padding: 12px 0;"><i class="fas fa-comment-dots" style="color: var(--brand-orange); margin-right: 12px;" aria-hidden="true"></i><strong>Practice #124</strong> — use a chatbot, then log one hallucination and how you caught it.</li>
+                    </ul>
+                </div>
+                <aside class="notes">Timing: 2 min. Cue: assign at least the one-page brief. Optional: one learner presents the “car” case, one the “circular money” case next week.</aside>
+            </section>
+
+            <!-- 25 Thanks -->
+            <section data-background="linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%)">
+                <div class="title-slide">
+                    <h1 class="animated-gradient">Thank you</h1>
+                    <p class="subtitle">Questions? Argue the pitch, then show the invoice.</p>
+                    <span class="qualification">Understanding Emerging Technology (A/651/0447)</span>
+                    <p class="muted" style="margin-top: 18px;">OCN NI Level 2 Diploma in Information Technology</p>
+                    <p class="source-pill"><i class="fas fa-play" aria-hidden="true"></i> Interview: The Diary Of A CEO × Ed Zitron</p>
+                    <div style="margin-top: 36px;">
+                        <i class="fas fa-scale-balanced" style="font-size: 2.4em; color: var(--brand-teal); margin: 0 14px;" aria-hidden="true"></i>
+                        <i class="fas fa-file-invoice-dollar" style="font-size: 2.4em; color: var(--brand-orange); margin: 0 14px;" aria-hidden="true"></i>
+                        <i class="fas fa-robot" style="font-size: 2.4em; color: var(--brand-purple); margin: 0 14px;" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <aside class="notes">Timing: 2 min. Cue: take questions. If they ask “so is AI useless?” answer: no — it is over-sold, power-hungry, and not AGI. Useful tools still need owners.</aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            slideNumber: true,
+            plugins: [RevealNotes]
+        });
+    </script>
+    <p class="site-credit">Powered by A1 Agents - Designs by C4R50N</p>
+</body>
+</html>

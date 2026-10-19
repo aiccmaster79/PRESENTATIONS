@@ -486,6 +486,8 @@ a mandate — swap them if something fits the topic better.
   - kWh to cost and CO₂ calculator, e-waste routing game, lifecycle extension planner
 - [x] **#145 Terafab** — `terafab-ocn-level2-presentation.html` · **new** · 32 · (#50)
   - Site hotspot explorer on the Grimes County overlay, chip-loop sequence builder, Earth vs orbit sort + timed round, 100M sq ft scale calculator
+- [x] **#148 Calling BS on AI** — `ed-zitron-ai-critique-ocn-level2-presentation.html` · **new** · 25 · explainer spine
+  - Diary Of A CEO × Ed Zitron: myths, capex vs circular money, 2027 forecast vs Bartlett’s innovator’s-dilemma counter; static tables and pathway only — no widgets or quiz
 
 ### Digital Skills & Employability
 
